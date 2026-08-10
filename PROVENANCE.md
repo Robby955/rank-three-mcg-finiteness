@@ -1,0 +1,45 @@
+# Provenance and artifact identity
+
+This repository is the public review package for the candidate manuscript.
+
+## Artifact history
+
+The initial TeX source and PDF were copied byte-for-byte from the canonical
+source checkpoint. On 9 August 2026, the public review copy received one
+presentation correction in the universal-extension proof: a display that
+incorrectly printed `H^1(O_C)=0` was rewritten to say that the composite into
+`H^1(O_C)` is zero. The following sentence already proves that this map is an
+isomorphism. No theorem statement or mathematical hypothesis changed.
+
+The `0.1.2-candidate` review release records a subsequent line-by-line review
+of the zero-weight $q=9$ branch. It replaces the invalid bare use of a section on
+a pointed universal curve with an explicit residue and point-pushing descent
+to a finite cover of the unpointed moduli space. It also makes the Pfaffian
+square, semisimple sheaf equality, minimal-centralizer saturation, canonical
+global determinant character, completed-kernel lattice, and scalar Artin
+twist explicit. The headline theorem and `CANDIDATE` status are unchanged.
+
+The same review snapshot now also records a shorter main elimination. A
+normalizer boundary-cocycle identity directly excludes the zero-weight
+$q=9$ branch and the final high-HN branch once their universal-extension
+kernels have generic rank at least three. The Pfaffian/spectral-projector and
+canonical-Deligne determinant arguments remain in the manuscript as separate
+reconstructions, but are no longer load-bearing for those
+two eliminations. This simplification was checked internally against the
+generic orbit algebra and both bundle-theoretic applications. The theorem
+statement and `CANDIDATE` status are unchanged.
+
+## Canonical artifacts
+
+| Artifact | Pages | SHA-256 |
+|---|---:|---|
+| `manuscript/rank3_genus5_reader.tex` | -- | `8874f0236f860fca3959e33d47d9616758b76105b5e1f5eddfda4aa021c910e1` |
+| `output/pdf/rank3_genus5_reader.pdf` | 32 | `ae00d07c240d3f2211bbba63817dfd6615e97b55aefb8f00988d663d4c9f569f` |
+
+The same values are recorded in `CHECKSUMS.sha256` and enforced by
+`verification/verify_release.py`.
+
+## Scope
+
+This package is designed to let a reader audit the rank-three argument without
+navigating exploratory notes, alternate approaches, or general-rank work.

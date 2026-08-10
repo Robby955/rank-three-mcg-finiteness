@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use or discuss this candidate manuscript, please cite it using this metadata."
+title: "A Candidate Proof of Finite Image for Rank-Three Surface-Group Representations in Genus at Least Five"
+authors:
+  - family-names: Sneiderman
+    given-names: Robert
+repository-code: "https://github.com/Robby955/rank-three-mcg-finiteness"
+url: "https://github.com/Robby955/rank-three-mcg-finiteness"
+version: "0.1.2-candidate"
+date-released: "2026-08-10"
+license: CC-BY-4.0
+abstract: >-
+  A new, unrefereed candidate proof that mapping-class-finite complex
+  rank-three representations of punctured surface groups have finite image
+  in genus at least five.
+keywords:
+  - mapping class groups
+  - surface groups
+  - algebraic geometry
+  - local systems
+  - representation theory
+preferred-citation:
+  type: unpublished
+  status: preprint
+  title: "A Candidate Proof of Finite Image for Rank-Three Surface-Group Representations in Genus at Least Five"
+  authors:
+    - family-names: Sneiderman
+      given-names: Robert
+  version: "0.1.2-candidate"
+  year: 2026
+  url: "https://github.com/Robby955/rank-three-mcg-finiteness/tree/v0.1.2-candidate"

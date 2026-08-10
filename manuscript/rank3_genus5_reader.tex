@@ -1,0 +1,2391 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\hypersetup{
+  pdftitle={A Candidate Proof of Finite Image for Rank-Three Surface-Group Representations in Genus at Least Five},
+  pdfauthor={Robert Sneiderman},
+  pdfsubject={Unrefereed candidate manuscript},
+  pdfkeywords={mapping class groups, surface groups, local systems, representation theory}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{audit}[theorem]{Audit point}
+
+\newcommand{\C}{\mathbf C}
+\newcommand{\Ocal}{\mathcal O}
+\newcommand{\Mcal}{\mathcal M}
+\newcommand{\Ecal}{\mathcal E}
+\newcommand{\Lcal}{\mathcal L}
+\newcommand{\Vcal}{\mathcal V}
+\newcommand{\Ucal}{\mathcal U}
+\newcommand{\Wcal}{\mathcal W}
+\newcommand{\Hcal}{\mathcal H}
+\newcommand{\Scal}{\mathcal S}
+\newcommand{\Kcal}{\mathcal K}
+\newcommand{\Ncal}{\mathcal N}
+\newcommand{\Dcal}{\mathcal D}
+\newcommand{\Bcal}{\mathcal B}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\degp}{\operatorname{pardeg}}
+\newcommand{\ad}{\operatorname{ad}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Gr}{\operatorname{Gr}}
+\newcommand{\HN}{\operatorname{HN}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Span}{\operatorname{Span}}
+\newcommand{\coker}{\operatorname{coker}}
+
+\title{A Candidate Proof of Finite Image\\
+for Rank-Three Surface-Group Representations\\
+in Genus at Least Five}
+\author{Robert Sneiderman}
+\date{Version 0.1.2-candidate\\10 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give a candidate proof that a complex rank-three representation of an
+orientable genus-$g$ punctured surface group, whose conjugacy class has
+finite mapping-class-group orbit, has finite image whenever $g\ge5$.
+Landesman--Litt prove this under the strict inequality
+$r<\sqrt{g+1}$, which treats rank three directly only for $g\ge9$.
+The proof combines a corrected endpoint estimate, explicit
+Harder--Narasimhan analysis in genera six and five, universal-extension
+and boundary-cocycle obstructions for adjoint bundles, and a
+rank-three-specific formal-propagation argument.  Separate
+spectral-projector and canonical-Deligne determinant reconstructions are
+retained for auditability but are not needed for the main elimination.  The
+manuscript is unrefereed, and the assembled argument has not received
+independent mathematical review.
+\end{abstract}
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\textbf{Status and scope.}  This is an unrefereed candidate proof.
+The published inputs are recorded in \cref{sec:dependencies}.  No claim is
+made in genus three or four.}}
+\end{center}
+
+\begin{center}
+\small Copyright \textcopyright\ 2026 Robert Sneiderman.  Licensed under
+\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.
+\end{center}
+
+\tableofcontents
+
+\section{Statement and proof architecture}
+
+Let $\Sigma_{g,n}$ be an orientable genus-$g$ surface with $n$ punctures.
+The mapping class group $\Mod_{g,n}$ acts on conjugacy classes of
+representations of $\pi_1(\Sigma_{g,n})$ by precomposition.
+
+\begin{theorem}[Main theorem]\label{thm:main}
+Let $g\ge5$ and $n\ge0$.  If
+\[
+ \rho:\pi_1(\Sigma_{g,n})\longrightarrow \GL_3(\C)
+\]
+has finite $\Mod_{g,n}$-orbit up to conjugacy, then $\rho$ has finite image.
+\end{theorem}
+
+Landesman--Litt prove finite image when
+\[
+ r<\sqrt{g+1},
+\]
+with strict inequality \cite[Theorem 1.2.1]{LLCan}.  Thus their theorem treats
+$r=3$ directly for $g\ge9$.  The new cases are $g=8,7,6,5$.
+
+The proof has eight layers.
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item At the square endpoint $r^2-1=g$, equality in the
+Landesman--Litt bundle estimate is shown to be impossible.
+\item A universal-extension construction produces large trivial subbundles
+of quotient normalizers.  A Cech boundary-cocycle identity rules out such a
+subbundle once it has generic rank at least three and the full extension
+boundary is injective.
+\item In genus five, proper positive-dimensional projective closures reduce
+to adjoint constituents of ranks $5+3$ or $6+2$; the rank-six monomial
+constituent is treated separately.
+\item The dense rank-eight genus-five case is reduced to a finite HN branch
+tree.
+\item Every no-high-slope branch is eliminated by Brill--Noether, Kirillov,
+relative-line, boundary-cocycle, block-vanishing, or exact jet arguments.
+In particular, after closed descent the zero-weight $q=9$ branch supplies a
+trivial quotient-normalizer subbundle of rank at least three.
+\item The sole high-HN branch is another instance of the same obstruction:
+the universal extension supplies a trivial rank-four subbundle, while
+parabolic stability makes the full boundary injective.
+\item For independent reconstruction, the former residual $q=9$
+configuration is also eliminated by a spectral projector, and an integral
+periodic-chain calculation extends the minimal-nilpotent determinant
+character without poles for arbitrary contact order.
+\item Projective-extension uniqueness descends residual adjoint invariants
+from any dominant versal base to a finite etale cover, and a direct
+small-extension devissage propagates their vanishing through every Artin
+thickening when the unitary anchor is irreducible.  Reducible unitary anchors
+are treated separately by the fibral-unitary isotypic decomposition and an
+exact coefficient/multiplicity inequality.  The remaining rigidity,
+integrality, nonabelian-Hodge, and socle-induction steps of \cite{LLCan} then
+apply.
+\end{enumerate}
+
+\section{Published inputs and conventions}\label{sec:dependencies}
+
+We use the following statements exactly in the forms indicated.
+
+\subsection{Landesman--Litt}
+
+From \cite{LLCan}:
+\begin{itemize}
+\item Theorem 1.2.1: finite image for an MCG-finite rank-$r$ representation
+when $r<\sqrt{g+1}$, with arbitrary punctures.
+\item Proposition 2.1.1: semisimple subquotients preserve MCG-finiteness.
+\item Lemma 2.2.3: an irreducible MCG-finite representation admits a
+\emph{projective} globalization on a scheme finite etale over $\Mcal_{g,n}$.
+\item Proposition 2.3.4 and Corollary 2.3.5: a finite-determinant linear lift
+exists after a dominant etale base change.  We never use this dominant lift
+as though it were a finite cover.
+\item Lemmas 2.1.4--2.1.5, Lemma 2.2.3, and the proof of Lemma 2.2.2:
+finite-index image of a dominant versal base, geometric existence of the
+projective globalization, and uniqueness of the projective intertwiners
+defining it.  We do not attribute a separate uniqueness statement to
+Lemma 2.2.3.
+\item Lemmas 2.3.2, 2.4.1, and 2.4.2: finite determinant, extension of
+unitarity/finiteness from a normal fibre subgroup, and the published general
+fibral-unitary Artin decomposition.  Direct adjoint devissage treats an
+irreducible unitary anchor; Lemma 2.4.2 is essential for reducible anchors.
+\item Theorem 1.7.1 and Lemma 6.1.1: a nonzero sub-local system of
+$R^1\pi_*U$ has rank at least $2g-2\rk U$, and a low-rank sub-local system
+produces a Hodge vector with controlled period-map rank.
+\item Proposition 5.2.3 and Theorem 6.2.1: the parabolic multiplication
+estimate and the published strict Artin vanishing.
+\item Sections 8.2--8.7: strong rigidity, integrality, unitary finiteness,
+nonabelian-Hodge constancy, and characteristic-socle induction.
+\end{itemize}
+
+From \cite{LLGeo} we use Lemma 6.2.3 and Proposition 6.3.6, including the
+inequalities appearing in their proofs after quotienting the high HN part.
+
+\subsection{Small-slope Brill--Noether theory}
+
+From Brambila-Paz--Grzegorczyk--Newstead \cite{BPGN} we use:
+\begin{itemize}
+\item the vector-bundle Clifford estimate;
+\item the generated-subbundle conclusion in the low-slope equality range;
+\item the necessary inequality
+\[
+ n\le d+(n-k)g
+\]
+for a semistable bundle of rank $n$, degree $0<d\le n$, and at least $k$
+sections.
+\end{itemize}
+We apply these estimates separately to HN graded pieces.
+
+\subsection{Sections of universal curves}
+
+Earle--Kra prove that for genus at least three the Teichmuller curve with $n$
+marked points has exactly the $n$ tautological holomorphic sections
+\cite{EarleKra}; for $n=0$ there are none.  Chen--Salter prove that the Birman
+exact sequence does not virtually split for $g\ge4$ \cite{ChenSalter}.
+
+\subsection{Canonical Deligne and coparabolic convention}
+
+For a unitary local system, $E_*$ denotes the parabolic bundle associated
+with the Deligne canonical extension, with weights in $[0,1)$.  The
+parabolic non-GGG estimate is applied to
+\[
+ P_*=(E_*)^\vee\otimes\omega_C(D),
+\]
+where $\omega_C(D)$ carries the trivial parabolic structure.  The ordinary
+bundle that enters all section counts is its coparabolic degree-zero piece.
+
+\begin{proposition}[Underlying ordinary bundle]\label{prop:coparabolic-bundle}
+With the preceding convention,
+\[
+ \widehat P_0=E^\vee\otimes\omega_C.
+\]
+Consequently
+\[
+ \deg(E^\vee\otimes\omega_C)=\rk(E)(2g-2)+S,
+\]
+where $S=-\deg E$ is the total canonical parabolic weight.
+\end{proposition}
+
+\begin{proof}
+Choose $0<\varepsilon$ smaller than every positive weight.  By the
+coparabolic definition, $\widehat P_0=P_\varepsilon$.  The parabolic tensor
+rule and the trivial parabolic structure on $\omega_C(D)$ give
+\[
+ P_\varepsilon
+ = (E_*^\vee)_\varepsilon\otimes\omega_C(D)
+   +(E_*^\vee)_0\otimes\omega_C.
+\]
+The parabolic dual formula used in \cite[Section~2]{LLGeo} is
+\[
+ (E_*^\vee)_\alpha=(\widehat E_{-\alpha})^\vee(-D).
+\]
+For small $\varepsilon$, periodicity gives
+$\widehat E_{-\varepsilon}=E$.  Hence the first summand is
+\[
+ E^\vee(-D)\otimes\omega_C(D)=E^\vee\otimes\omega_C.
+\]
+Locally at a marked point, the second summand is a submodule of this first
+summand: the factor $(-D)$ in the dual formula shifts precisely the
+positive-weight directions.  Thus their sum is $E^\vee\otimes\omega_C$.
+
+Moreover $\degp((E_*)^\vee)=0$, while the trivial parabolic line
+$\omega_C(D)$ has parabolic degree $2g-2+n$.  Therefore the input to
+\cite[Proposition~6.3.6]{LLGeo} lies exactly in its boundary case, with no
+hidden marked-point divisor in the ordinary bundle.
+\end{proof}
+
+This identity also fixes the section deficit used below.  If the
+Landesman--Litt multiplication map has rank zero, every section of
+$E^\vee\otimes\omega_C$ lies in the contraction kernel, so the deficit
+$\delta$ in the proof of \cite[Lemma~6.2.3]{LLGeo} is zero.
+
+\section{Reduction to actual adjoint constituents}\label{sec:closure}
+
+A reducible semisimple rank-three representation has constituents of rank at
+most two and is already in the published strict range for $g\ge5$.  We may
+therefore treat an irreducible rank-three system $V$.
+
+\begin{proposition}[Projective closure alternatives]\label{prop:closure}
+If the projective image of $V$ is infinite, the irreducible adjoint
+constituents are multiplicity-free and occur in one of the following forms:
+\[
+\begin{array}{c|c}
+\text{projective closure}&\ad V\\ \hline
+\PGL_3\text{-dense}&U_8\\
+\PGL_2\simeq\SO_3&U_5\oplus U_3\\
+\text{monomial, component quotient }S_3&U_6\oplus U_2\\
+\text{monomial, component quotient }C_3&
+ U_3^+\oplus U_3^-\oplus\chi\oplus\chi^{-1}.
+\end{array}
+\]
+The only coefficient ranks not already in the published strict range at
+genus five are therefore $8$, $6$, and $5$, and each of those occurs once.
+\end{proposition}
+
+\begin{proof}
+The connected reductive projective closure acts irreducibly on a
+three-dimensional space.  If its connected semisimple part is nontrivial, it
+is either $\SL_3$ in the standard representation or $\SL_2$ through
+$\operatorname{Sym}^2$.  These give respectively $\mathfrak{sl}_3$ and
+$\operatorname{Sym}^4\oplus\operatorname{Sym}^2$, with multiplicity one.
+
+If the connected component is a torus, irreducibility gives three distinct
+weights permuted transitively by a quotient $C_3$ or $S_3$.  The connected
+projective torus is the full diagonal torus: its rational character space is a
+nonzero invariant subspace of the irreducible two-dimensional standard
+permutation module.  Hence the six root characters are distinct.  For $S_3$
+they form one orbit, giving an irreducible rank-six off-diagonal module, while
+the traceless diagonal part is the irreducible rank-two standard module.  For
+$C_3$ the roots split into the two oriented three-cycles, giving nonisomorphic
+rank-three modules $U_3^+,U_3^-$; the diagonal part splits into the two
+distinct nontrivial characters.  All constituents are therefore
+multiplicity-free.  Dimension three is prime, so there is no nontrivial
+tensor-product case.
+\end{proof}
+
+The table records the actual residual coefficient systems that must be
+excluded on finite etale moduli covers.  Formal propagation will not assume
+that the finite-cover geometric contradiction persists after the dominant
+etale base changes of \cite[Lemma 2.4.2]{LLCan}.  Instead,
+\cref{prop:finite-index-descent,lem:artin-devissage} below works with the
+whole adjoint: projective uniqueness pulls its residual local system back
+from a finite cover, and a direct small-extension induction handles the
+Artin thickness.
+
+\section{The fixed-part interface}\label{sec:fixedpart}
+
+\begin{lemma}[Closed descent in the dense zero-weight branch]
+\label{lem:zero-weight-closed-descent}
+Let $B\to\Mcal_{g,n}$ be a connected smooth finite-etale scheme cover
+carrying the canonical projective globalization of an irreducible unitary,
+projectively MCG-finite rank-three system.  Let $\pi:X\to B$ be the compact
+universal curve, let $D=\sum_i s_i(B)$, and put $X^\circ=X\setminus D$.
+Suppose that the fibral
+projective monodromy factors through $\pi_1(\Sigma_g)$ and is Zariski dense in
+$\PGL_3$.  Let $\Ucal$ be its adjoint local system on $X^\circ$, and assume
+that $\Ucal$ is unitary on the total space, as ensured in the application by
+\cref{lem:coefficient-unitarity}.  Then
+\[
+ H^0\!\left(B,R^1\pi_*\Ucal\right)
+ \xrightarrow{\ \sim\ }
+ H^0\!\left(B,R^1\pi_*^\circ\Ucal\right).
+\]
+Moreover, every nonzero fixed vector on the right, together with the
+rank-zero Hodge line supplied by the fixed-part construction, descends to a
+connected finite-etale scheme cover of $\Mcal_g$.
+\end{lemma}
+
+\begin{proof}
+The projective puncture monodromies are trivial, so $\Ucal$ extends uniquely
+across every marked divisor.  The relative residue sequence is
+\begin{equation}
+ 0\longrightarrow R^1\pi_*\Ucal
+ \longrightarrow R^1\pi_*^\circ\Ucal
+ \longrightarrow\bigoplus_i s_i^*\Ucal(-1)
+ \longrightarrow R^2\pi_*\Ucal.
+ \label{eq:residue-fixed-part}
+\end{equation}
+In fact the last term vanishes because dense adjoint monodromy has no
+fibrewise invariants, but only exactness is needed below.
+
+Write $\Gamma=\pi_1(B)$ and let $K_i$ be the Birman point-pushing subgroup
+for the $i$th mark.  Let
+$\operatorname{ev}_i:K_i\to\pi_1(\Sigma_g)$ be evaluation followed by filling
+the other marks.  The subgroup $\Gamma\cap K_i$ has finite index in $K_i$.
+Under the canonical projective globalization, point-pushing by $\alpha$ acts
+on $s_i^*\Ucal$ as
+\[
+ \operatorname{Ad}\!\left(\bar\rho(\operatorname{ev}_i(\alpha))\right).
+\]
+The lift of $\alpha$ along the boundary section $s_i$ moves the
+universal-curve basepoint together with the $i$th marked point.  After filling
+the marks, this diagonal lift acts on the based closed surface group by
+conjugation with $\operatorname{ev}_i(\alpha)$.  The intertwiner calculation
+in the proof of \cite[Lemma 2.2.2]{LLCan} therefore gives the displayed
+adjoint action on $s_i^*\Ucal$.  This is a direct diagonal/filling computation;
+Lemma 2.2.3 is used only for the geometric existence of the globalization.
+After filling the marked points, the
+evaluation image of $\Gamma\cap K_i$ has finite index in
+$\pi_1(\Sigma_g)$.  Its image
+under $\bar\rho$ is therefore still Zariski dense: a finite-index subgroup
+of a dense subgroup of the connected group $\PGL_3$ is dense.  Consequently
+\[
+ H^0(B,s_i^*\Ucal)
+ \subseteq
+ \mathfrak{sl}_3^{\,\overline{\operatorname{Ad}\bar\rho(
+ \operatorname{ev}_i(\Gamma\cap K_i))}}=0.
+\]
+Taking global flat sections in \eqref{eq:residue-fixed-part} proves the
+displayed isomorphism.
+
+Let $\bar\Gamma$ be the image of $\Gamma$ under the forgetful map to
+$\Mod_g$; it has finite index.  On closed twisted cohomology, a forgotten
+point-push acts by an inner automorphism together with the corresponding
+coefficient conjugation, and hence acts trivially on group cohomology.
+Explicitly, if $z$ is a cocycle and the push is represented by $a$, the
+transformed cocycle is $g\mapsto z(g)+(g-1)z(a)$, differing from $z$ by a
+coboundary.
+Thus the monodromy action on $R^1\pi_*\Ucal$ factors through
+$\bar\Gamma$.  The factored projective representation is stabilized by
+$\bar\Gamma$.  Its dense image has trivial centralizer in $\PGL_3$, so the
+uniqueness proof of \cite[Lemma 2.2.2]{LLCan} constructs the canonical
+projective globalization over the corresponding finite cover of $\Mcal_g$
+even if the closed projective representation has no global $\GL_3$-lift.
+After passage to a common finite cover, its pullback to the pointed family is
+the original globalization: both are defined by the same unique projective
+intertwiners from the proof of \cite[Lemma 2.2.2]{LLCan}.
+Their adjoint local systems are therefore identified.  The fixed vector
+descends to the closed cover.  Intersecting with a level subgroup makes it a
+scheme cover.  The closed adjoint globalization has trivial determinant and
+irreducible unitary fibral restriction.  The exact sequence of
+\cite[Lemma 2.1.5]{LLCan} makes the fibre group normal, so
+\cite[Lemma 2.4.1(2)]{LLCan} makes the closed adjoint unitary on the total
+space.  Apply \cite[Theorem 4.1.1]{LLCan} to
+$\Ucal\oplus\Ucal^\vee$, which has the natural real structure noted there,
+and take the $\Ucal$-summand.  Applying the same theorem with
+$D=\varnothing$ identifies its closed $F^1$ term with
+$\pi_*(E\otimes\omega_\pi)$.  For the open family, trivial puncture monodromy
+identifies the weight-one term with $R^1\pi_*\Ucal$, and strictness of the
+inclusion of variations of mixed Hodge structure gives
+\[
+ F^1R^1\pi_*^\circ\Ucal\cap R^1\pi_*\Ucal
+ =F^1R^1\pi_*\Ucal.
+\]
+Hence the rank-zero Hodge representative lies in
+\[
+ H^0(C,E\otimes\omega_C),
+\]
+with no logarithmic residue, and descends with the fixed vector.
+\end{proof}
+
+\begin{lemma}[A rank-one fixed part gives multiplication rank zero]
+\label{lem:fixedpart-rankzero}
+Let $U$ be a unitary local system on the total space of a punctured versal
+family over a smooth quasi-projective complex base whose classifying map is
+etale.  If
+\[
+ H^0(B,R^1\pi_*^\circ U)\ne0,
+\]
+then, after possibly replacing $U$ by its complex conjugate, there is a
+nonzero
+\[
+ v\in H^0(C,E\otimes\omega_C(D))
+\]
+for which the Landesman--Litt multiplication map
+\[
+ H^0(C,E^\vee\otimes\omega_C)
+ \longrightarrow H^0(C,\omega_C^2(D))
+\]
+has rank zero.
+\end{lemma}
+
+\begin{proof}
+A nonzero flat section spans a trivial irreducible rank-one sub-local system
+$L\subset R^1\pi_*^\circ U$.  By \cite[Lemma 6.1.1]{LLCan}, after possible
+complex conjugation there is a nonzero $v\in L_b\cap F^1\mathcal H_b$ whose
+period derivative has rank at most $\rk L/2=1/2$.  Its rank is an integer,
+so it is zero.  Equivalently, in the proof of that lemma the two-Hodge-type
+case cannot occur in rank one, and the remaining case has identically zero
+period map.  The Hodge--de Rham degeneration used in
+\cite[Theorem 4.1.1]{LLCan} identifies $F^1$ with the logarithmic one-form
+term.  Because the classifying map is etale, the cotangent map $c_b^*$ in
+\cite[Theorem 5.1.6]{LLCan} is an isomorphism, so the factorization in that
+theorem identifies zero period derivative with the displayed zero
+multiplication map.
+\end{proof}
+
+\begin{lemma}[Compatibility for the new adjoint coefficients]
+\label{lem:coefficient-unitarity}
+After a finite etale base change fixing the projective-closure data, every
+coefficient of rank $8$, $6$, or $5$ used below is a globally defined
+irreducible unitary local system on the total family, and complex conjugation
+does not alter its parabolic HN problem.
+\end{lemma}
+
+\begin{proof}
+The dense adjoint $U_8$ is self-dual by the trace form.  The principal
+$\PGL_2$ constituents $U_5$ and $U_3$ are the self-dual representations
+$\operatorname{Sym}^4$ and $\operatorname{Sym}^2$.  The $S_3$ monomial
+constituent $U_6$ is self-dual under the pairing of $E_{ij}$ with $E_{ji}$.
+For a unitary system, complex conjugation is the dual, so these coefficients
+are self-conjugate.  The two oriented rank-three constituents in the cyclic
+monomial case are exchanged by conjugation, but both already lie in the
+published strict range.
+
+The determinants of $U_8,U_5,U_3$ are trivial.  On $U_6$ the product of the
+six torus weights $t_i/t_j$ is one and the component group contributes only
+a finite permutation determinant.  Thus every new coefficient has finite
+determinant.  Its fibral restriction is irreducible and unitary, so
+\cite[Lemma 2.4.1]{LLCan} makes the total coefficient unitary.  Finite etale
+base change preserves versality.  Hence \cref{lem:fixedpart-rankzero} applies
+on every finite cover required later.
+\end{proof}
+
+\section{The endpoint rank-one lemma}\label{sec:endpoint}
+
+\begin{proposition}[Strict stable pairing estimate]\label{prop:endpoint-pairing}
+Let $C$ have genus $g\ge2$, let $D$ be reduced, and let $E_*$ be
+parabolically stable of parabolic degree zero and rank $d\ge2$.  For a nonzero
+\[
+ v\in H^0(C,E\otimes\omega_C(D)),
+\]
+let $s$ be the rank of the multiplication map of
+\cite[Proposition 5.2.3]{LLCan}
+\[
+ H^0(C,E^\vee\otimes\omega_C)\longrightarrow
+ H^0(C,\omega_C^2(D))
+\]
+Then
+\[
+ \boxed{d\ge g-s+1.}
+\]
+\end{proposition}
+
+\begin{proof}
+The claim is automatic if $s\ge g$, so assume $s<g$.  The published weak
+estimate gives $d\ge g-s$.  If the displayed stronger estimate failed, then
+$d=g-s$.
+
+Put $F=E^\vee\otimes\omega_C$, let $K$ be the corank-one contraction
+kernel, and let $A$ be the saturation in $F$ of the evaluation image of
+$H^0(K)$.  Saturation stays inside the saturated kernel $K$, and every
+section of either $K$ or $A$ factors through $A$.  Hence, with
+$\delta=h^0(F)-h^0(A)$,
+\[
+ \delta=h^0(F)-h^0(K)=s.
+\]
+If $c=d-\rk A$, Proposition 6.3.6 of \cite{LLGeo} gives
+\[
+ d\ge gc-s.
+\]
+Since $c\ge1$ and $d+s=g$, equality forces $c=1$.
+
+Let $N^t$ be the HN part of $A$ with slope $>2g-2$.  The proof of the same
+proposition, using $H^1(N^t)=0$ to preserve the deficit $s$, gives
+\[
+ \rk(F/N^t)\ge g-s=d.
+\]
+Since $\rk F=d$, $N^t=0$.  The intermediate inequality of
+\cite[Lemma 6.2.3]{LLGeo} is
+\[
+ \mu(F)+2\le (2g-\mu(F))d+2s.
+\]
+The quotient-slope lemma gives $\mu(F)\ge2g-2$.  At $\mu(F)=2g-2$ the two
+sides are equal because $d+s=g$, and increasing $\mu(F)$ increases the left
+side while decreasing the right.  Therefore equality is forced.  If $S$ is
+the total parabolic weight, then
+\[
+ \mu(F)=2g-2+\frac{S}{d},
+\]
+and therefore $S=0$.  The bundle $E$ is now ordinary stable of degree zero,
+and $F$ is stable of slope $2g-2$: all weights lie in $[0,1)$, so total
+weight zero forces every weight to be zero and the strictly increasing
+parabolic flag to be the trivial one-step flag.
+
+We can now return to the complete inequality chain in the proof of
+\cite[Lemma 6.2.3]{LLGeo}.  Since $N^t=0$, the bundle $A$ satisfies its
+Harder--Narasimhan hypotheses, and that proof gives
+\[
+ \deg F+(1-g)d
+ \le \frac{\deg A}{2}+\rk A+s
+ \le \frac{\mu(F)\rk A}{2}+\rk A+s.
+\]
+Here $\mu(F)=2g-2$, $\rk A=d-1$, and $d+s=g$.  Both extreme terms are
+therefore equal to $d(g-1)$:
+\[
+ \deg F+(1-g)d=d(g-1)
+\]
+and
+\[
+ \frac{\mu(F)(d-1)}2+(d-1)+s
+ =g(d-1)+s=d(g-1).
+\]
+Thus equality holds throughout.  In particular,
+\[
+ \deg A=\mu(F)\rk A,
+\]
+so $\mu(A)=\mu(F)$.  But $d\ge2$ and $c=1$, hence $A$ is a nonzero proper
+subbundle of the ordinary stable bundle $F$.  Stability requires
+$\mu(A)<\mu(F)$, a contradiction.
+
+This last step uses no additional Clifford theorem: the contradiction is
+already contained in the equality conditions of the Landesman--Litt
+inequality chain.  The condition $d\ge2$ is exactly what ensures
+$\rk A=d-1>0$.
+\end{proof}
+
+\begin{remark}[The rank-one exception]
+The restriction $d\ge2$ is sharp.  If $D=\varnothing$ and
+$E\in\Pic^0(C)$ is nontrivial, then
+$h^0(E\omega_C)=h^0(E^{-1}\omega_C)=g-1$.  Multiplication by any nonzero
+$v\in H^0(E\omega_C)$ is injective on $H^0(E^{-1}\omega_C)$, so
+$s=g-1$ and $d+s=g$.  Thus the published weak bound is attained in rank
+one.
+\end{remark}
+
+\begin{corollary}[Strict fixed-part estimate]\label{cor:endpoint}
+Let $U$ be an irreducible unitary fibral local system of rank $d$ on a
+punctured versal genus-$g$ family.  Every nonzero irreducible sub-local
+system $L\subset R^1\pi_*U$ has
+\[
+ \rk L\ge
+ \begin{cases}
+ 2g-2,&d=1,\\
+ 2g-2d+2,&d\ge2.
+ \end{cases}
+\]
+\end{corollary}
+
+\begin{proof}
+For $d=1$ use \cite[Theorem 1.7.1]{LLCan}.  For $d\ge2$, by
+\cite[Lemma 6.1.1]{LLCan}, after possible complex conjugation there is a
+nonzero Hodge vector whose multiplication rank $s$ is at most $\rk L/2$.
+The proposition gives $s\ge g-d+1$, and the claim follows.
+\end{proof}
+
+\begin{corollary}[Artin vanishing through rank $g$]\label{cor:artin-endpoint}
+Let $g\ge3$.  In the setup of \cite[Theorem 6.2.1]{LLCan}, the conclusion
+remains valid when $\rk_A\Vcal\le g$.
+\end{corollary}
+
+\begin{proof}
+A possible term $U\otimes\pi^*W$ satisfies
+\[
+ uw\le g
+\]
+and, if it contributes a nonzero invariant, the preceding fixed-part lower
+bound is at most $w$.  If $w=1$, that lower bound is at least two for every
+$u\le g$.  If $w\ge2$ and $u=1$, then
+\[
+ uw=w\ge2g-2>g.
+\]
+If $w\ge2$ and $u\ge2$, then $u\le g/2$ and
+\[
+ uw\ge2u(g-u+1)\ge2g>g.
+\]
+Both alternatives contradict $uw\le g$.
+\end{proof}
+
+
+\begin{theorem}[Square-endpoint finite-image theorem]\label{thm:square-endpoint}
+Let $g\ge3$, $n\ge0$, and $r^2\le g+1$.  Every MCG-finite representation
+\[
+ \rho:\pi_1(\Sigma_{g,n})\longrightarrow\GL_r(\C)
+\]
+has finite image.
+\end{theorem}
+
+\begin{proof}
+Only the boundary case $r^2=g+1$ is new.  Then
+$\rk(\ad\rho)=r^2-1=g$, so \cref{cor:artin-endpoint} replaces
+\cite[Theorem 6.2.1]{LLCan} in the proofs of strong cohomological rigidity
+\cite[Proposition 8.2.1]{LLCan} and formal constancy
+\cite[Lemma 8.5.1]{LLCan}.  The projective and linear integrality arguments,
+unitary finiteness, and the semisimple nonabelian-Hodge deformation in
+\cite[Sections 8.3--8.5]{LLCan} then apply unchanged.  The PVHS-to-unitary
+input is used in the larger range $r<2\sqrt{g+1}$, which is automatic here.
+
+It remains to check the non-semisimple step at equality.  In the notation of
+\cite[Lemma 8.6.1]{LLCan}, let the characteristic semisimple factors have
+ranks $a,b$.  Then
+\[
+ ab\le\frac{(a+b)^2}{4}\le\frac{g+1}{4}.
+\]
+Writing
+$\rho_2^\vee\otimes\rho_1=\bigoplus_i\sigma_i^{\oplus n_i}$ gives
+$n_i\dim\sigma_i\le(g+1)/4$ and $\dim\sigma_i<g$.  Any nonzero projected
+extension support has, by \cite[Theorem 7.2.1]{LLCan}, rank at least
+\[
+ 2g-2\dim\sigma_i
+ \ge\frac{3g-1}{2}
+ >\frac{g+1}{4}
+ \ge n_i\dim\sigma_i,
+\]
+a contradiction.  Thus every characteristic extension splits.  The socle
+induction of \cite[Section 8.7]{LLCan} completes the proof.
+\end{proof}
+
+This includes the square endpoints $(g,r)=(3,2),(8,3),(15,4),(24,5),\ldots$.
+The detailed endpoint proof is logically independent of the genus-seven,
+six, and five branch analysis below.
+
+\section{The first super-endpoint}\label{sec:first-super}
+
+The next proposition moves one rank above the stable endpoint.  It is used
+only when the multiplication rank is zero, but it replaces two separate
+low-genus calculations.
+
+\begin{proposition}[First super-endpoint pairing lemma]
+\label{prop:first-super}
+Let $g\ge3$, let $D$ be reduced, and let $E_*$ be parabolically stable of
+parabolic degree zero and rank
+\[
+ d=g+1.
+\]
+Write $S$ for the total canonical parabolic weight of $E_*$.  Suppose
+$S\ne1$.  Then no nonzero
+\[
+ v\in H^0(C,E\otimes\omega_C(D))
+\]
+can have multiplication rank zero.
+\end{proposition}
+
+\begin{proof}
+Assume the multiplication map is zero and put
+$F=E^\vee\otimes\omega_C$.  Let $K\subset F$ be the contraction kernel and
+let $A\subset K$ be the saturation of the evaluation image.  Then
+$h^0(A)=h^0(F)$.  If
+\[
+ c=d-\rk A\ge1,
+\]
+the proof of \cite[Proposition 6.3.6]{LLGeo} gives $d\ge gc$.  Since
+$g+1<2g$, one has $c=1$ and hence $\rk A=g$.
+
+Let $N\subset A$ be the HN part of slope $>2g-2$.  The same proof, after
+quotienting by $N$, gives $\rk(F/N)\ge g$, so $\rk N\le1$.  If $\rk N=1$,
+then $\rk(F/N)=g$ and the complete inequality chain in
+\cite[Lemma 6.2.3]{LLGeo} is
+\[
+ 2g\le\mu(F/N)+2
+ \le(2g-\mu(F/N))g
+ \le2g.
+\]
+Thus equality holds throughout,
+\[
+ \mu(F/N)=\mu(A/N)=2g-2.
+\]
+Since
+\[
+ \deg F=(g+1)(2g-2)+S,
+\]
+this forces
+\[
+ \deg N=2g-2+S,
+ \qquad
+ \deg(A/N)=(g-1)(2g-2),
+\]
+and therefore $\deg(F/A)=2g-2$.  If $M\subset E$ is the saturated line
+generated by $v$, contraction gives
+\[
+ F/A\simeq M^\vee\otimes\omega_C,
+\]
+so $\deg M=0$.  Its induced parabolic weights are nonnegative, contradicting
+parabolic stability.  Hence $N=0$.
+
+The intermediate inequality now gives
+\[
+ \mu(F)+2\le(2g-\mu(F))(g+1).
+\]
+Using
+\[
+ \mu(F)=2g-2+\frac{S}{g+1}
+\]
+yields
+\[
+ S\le\frac{2(g+1)}{g+2}<2.
+\]
+The parabolic-degree identity makes $S$ a nonnegative integer.  Since
+$S\ne1$, it follows that $S=0$.  Thus $E$ is an ordinary stable
+zero-degree bundle and $F$ is stable of slope $2g-2$.  Since $g+1>1$,
+$H^0(E)=0$, and Riemann--Roch gives
+\[
+ h^0(F)=(g+1)(g-1)=g^2-1.
+\]
+
+The generically globally generated bundle $A$ has rank $g$ and every HN
+slope lies in $[0,2g-2)$.  The BPGN Clifford estimate and stability give
+\[
+ 2g^2-2g-2\le\deg A<2g^2-2g,
+\]
+so
+\[
+ \deg A\in\{2g^2-2g-2,\ 2g^2-2g-1\}.
+\]
+Set $G=A^\vee\otimes\omega_C$.  Every HN slope of $G$ is positive, and
+Serre duality gives
+\[
+ (\deg G,h^0(G))=(1,g)\quad\text{or}\quad(2,g+1).
+\]
+The BPGN small-slope bound, applied HN-piece by HN-piece, gives at most
+$g-1$ sections in either total degree.  This is a contradiction.
+\end{proof}
+
+
+
+\begin{proposition}[Classification of the weight-one boundary]
+\label{prop:super-classification}
+Under the hypotheses of Proposition~\ref{prop:first-super}, suppose instead
+that a rank-zero vector exists.  Then necessarily $S=1$, and if $M\subset E$
+is its saturated Hodge line and $A\subset E^\vee\otimes\omega_C$ its
+saturated evaluation kernel, then
+\[
+ A\simeq\omega_C^{\oplus g},\qquad \deg M=-1,
+\]
+and the underlying bundle is the universal extension
+\[
+ 0\longrightarrow M\longrightarrow E
+ \longrightarrow\Ocal_C^{\oplus g}\longrightarrow0.
+\]
+Equivalently, the boundary map $\C^g\to H^1(C,M)$ is an isomorphism.
+\end{proposition}
+
+\begin{proof}
+The proof of Proposition~\ref{prop:first-super} gives $S<2$ and excludes
+$S=0$, so $S=1$.  Parabolic stability gives $H^0(E)=0$, and hence
+\[
+ h^0(F)=\chi(F)=(g+1)(g-1)+1=g^2.
+\]
+The rank-$g$ bundle $A$ carries all these sections and has every HN slope in
+$[0,2g-2]$.  Clifford and the HN upper bound give
+\[
+ g^2\le\frac{\deg A}{2}+g,
+ \qquad
+ \deg A\le g(2g-2),
+\]
+so $\deg A=2g(g-1)$.  Thus
+$G=A^\vee\otimes\omega_C$ has degree zero, nonnegative HN slopes, and
+\[
+ h^0(G)=h^1(A)=g.
+\]
+A semistable degree-zero bundle with as many sections as its rank is trivial,
+so $G\simeq\Ocal_C^g$ and $A\simeq\omega_C^g$.
+
+Since $\deg F=(g+1)(2g-2)+1$, one has $\deg(F/A)=2g-1$.  The contraction
+identity $F/A\simeq M^\vee\otimes\omega_C$ gives $\deg M=-1$.  Tensoring the
+contraction sequence by $\omega_C^{-1}$ and dualizing gives
+\[
+ 0\to M\to E\to\Ocal_C^g\to0.
+\]
+The boundary map $\C^g\to H^1(M)$ is injective because
+$H^0(E)=H^0(M)=0$, and both spaces have dimension $g$.  Hence it is an
+isomorphism.
+\end{proof}
+
+\begin{proposition}[Normalizer boundary-cocycle obstruction]
+\label{prop:normalizer-boundary}
+Let $C$ be a smooth projective connected complex curve.  Let $E$ be a
+vector bundle of Lie algebras whose generic fibre is
+$\mathfrak{sl}_3$, let $M\subset E$ be a saturated line, and put
+\[
+ G=E/M,\qquad K=N_E(M)/M\subset G.
+\]
+Let
+\[
+ \partial:H^0(C,G)\longrightarrow H^1(C,M)
+\]
+be the boundary map.  If $\partial$ is injective, there is no vector
+subspace $U\subset H^0(C,K)$ of dimension at least three for which
+\[
+ U\otimes\Ocal_C\longrightarrow K
+\]
+has generic rank $\dim U$.
+\end{proposition}
+
+\begin{proof}
+Since $M$ is saturated, $G$ is locally free.  The quotient bracket identifies
+\[
+ K=\ker\bigl(G\longrightarrow G\otimes M^{-1}\bigr)
+   =N_E(M)/M.
+\]
+In particular, $K$ is saturated in $G$.  The normalizer is a Lie
+subalgebra, $M$ is an ideal in it, and hence $K$ is a sheaf of Lie algebras.
+
+The action of the normalizer on $M$ induces the grading character
+\[
+ \lambda:K\longrightarrow\End(M)=\Ocal_C,
+ \qquad [x,m]=\lambda(x)m.
+\]
+For a global section $x$ of $K$, the function $\lambda(x)$ is constant
+because $C$ is projective.
+
+Let $x,y\in H^0(C,K)$.  On an affine cover choose local lifts
+$X_i,Y_i\in N_E(M)$ and write
+\[
+ a_{ij}=X_j-X_i\in M,\qquad b_{ij}=Y_j-Y_i\in M.
+\]
+With the corresponding Cech convention, these cocycles represent
+$\partial x$ and $\partial y$.  Since $[M,M]=0$,
+\[
+ [X_j,Y_j]-[X_i,Y_i]
+ =\lambda(x)b_{ij}-\lambda(y)a_{ij}.
+\]
+Consequently
+\[
+ \partial[x,y]
+ =\lambda(x)\partial y-\lambda(y)\partial x.
+\]
+Injectivity of $\partial$ gives the identity
+\begin{equation}
+ [x,y]=\lambda(x)y-\lambda(y)x.
+ \label{eq:normalizer-boundary-law}
+\end{equation}
+Thus every vector subspace of $H^0(C,K)$ is bracket-closed.
+
+Suppose now that $U$ has generic rank at least three.  Replacing it by a
+three-dimensional subspace, let $F=\mathbb C(C)$ and let
+$U_F\subset K_F$ be its three-dimensional generic fibre.  The quotient
+boundary law \eqref{eq:normalizer-boundary-law} extends $F$-bilinearly to
+$U_F$.  The quotient
+normalizer of a nonzero element of $\mathfrak{sl}_3$ has dimension
+$1,2,3,$ or $4$ in the regular nonnilpotent, regular nilpotent,
+semisimple $(2,1)$, or minimal-nilpotent cases, respectively.  Hence only
+the last two cases remain.
+
+In the semisimple $(2,1)$ case,
+\[
+ K_F\simeq\mathfrak{sl}_2(F),\qquad \lambda=0.
+\]
+Since $\dim_F U_F=3$, one has $U_F=K_F$, whereas
+\eqref{eq:normalizer-boundary-law} makes it abelian, a contradiction.
+
+In the minimal-nilpotent case, after extending $F$ if necessary, take
+$m=E_{12}$.  Modulo $Fm$, the quotient normalizer has basis
+\[
+ D=\operatorname{diag}(1/2,-1/2,0),\quad
+ H=\operatorname{diag}(1/2,1/2,-1),\quad
+ P=E_{13},\quad Q=E_{32},
+\]
+with
+\[
+ \lambda(D)=1,\qquad \lambda(H)=\lambda(P)=\lambda(Q)=0
+\]
+and
+\[
+ [D,P]=\tfrac12P,\quad [D,Q]=\tfrac12Q,\quad
+ [H,P]=\tfrac32P,\quad [H,Q]=-\tfrac32Q,\quad [P,Q]=0.
+\]
+If $\lambda|_{U_F}=0$, then
+$U_F=\ker\lambda=\langle H,P,Q\rangle_F$, but this is not abelian.
+If $\lambda|_{U_F}\ne0$, choose $X\in U_F$ with $\lambda(X)=1$ and put
+$V=U_F\cap\ker\lambda$.  Equation
+\eqref{eq:normalizer-boundary-law} gives
+\[
+ [V,V]=0,\qquad [X,v]=v\quad(v\in V).
+\]
+If two independent vectors
+$u=\alpha H+\beta P+\gamma Q$ and
+$v=\alpha' H+\beta' P+\gamma' Q$ commute, their $P$- and $Q$-coefficients
+give
+\[
+ \alpha\beta'-\alpha'\beta=0,
+ \qquad
+ \alpha\gamma'-\alpha'\gamma=0.
+\]
+If either $\alpha$ or $\alpha'$ were nonzero, these equations would make
+$u,v$ proportional.  Thus the only two-dimensional abelian subspace of
+$\langle H,P,Q\rangle_F$ is $\langle P,Q\rangle_F$.  Writing
+\[
+ X=D+cH+aP+bQ,
+\]
+the eigenvalues of $\ad_X$ on $P,Q$ are
+\[
+ \frac{1+3c}{2},\qquad\frac{1-3c}{2},
+\]
+which cannot both equal one.  This is again a contradiction.
+\end{proof}
+
+\begin{proposition}[Adjoint universal-extension obstruction]
+\label{prop:adjoint-universal}
+Let $C$ have genus $g\ge5$.  Let $E$ be an adjoint bundle with generic
+fibre $\mathfrak{sl}_3$, let $M\subset E$ be a saturated line of degree
+$-1$, put $L=M^{-1}$ and $G=E/M$, and suppose that
+\[
+ W\otimes\Ocal_C\subset G,
+ \qquad \dim W=g.
+\]
+Let $Q=G/(W\otimes\Ocal_C)$ and let $P\subset E$ be the inverse image of
+$W\otimes\Ocal_C$.  Assume $H^0(P)=0$, $h^0(Q\otimes L)\le h$, and that
+bracket with $M$ descends to
+\[
+ \beta:G\longrightarrow G\otimes L.
+\]
+Then
+\[
+ \Ocal_C^{g-h}\subset\ker\beta.
+\]
+Consequently, the configuration is impossible if $g-h\ge5$.  If in
+addition $H^0(C,E)=0$, it is impossible already when $g-h\ge3$.
+\end{proposition}
+
+\begin{proof}
+Riemann--Roch gives $h^1(M)=g$.  The boundary map of
+\[
+ 0\to M\to P\to W\otimes\Ocal_C\to0
+\]
+is injective because $H^0(P)=0$, hence is an isomorphism
+$e:W\xrightarrow{\sim}H^1(M)$.  Let
+$\phi:W\to H^0(Q\otimes L)$ be the quotient component of $\beta$ and put
+$W_0=\ker\phi$, so $\dim W_0\ge g-h$.
+
+If $h^0(L)=0$, the remaining block
+$W_0\otimes\Ocal_C\to W\otimes L$ vanishes.  If
+$L=\Ocal_C(r)$, write that block as $sA$, where $s$ is the unique section
+of $L$ and $A:W_0\to W$ is constant.  The morphism-of-extensions identity
+says that the composite
+\[
+ W_0\xrightarrow{A}W\xrightarrow{e}H^1(M)
+ \xrightarrow{s_*}H^1(\Ocal_C)
+\]
+is zero.  The last map is an isomorphism by
+$0\to\Ocal_C(-r)\to\Ocal_C\to k(r)\to0$, so $A=0$.  Thus
+$W_0\otimes\Ocal_C\subset\ker\beta$.
+
+For a nonzero $m\in\mathfrak{sl}_3$, the quotient-adjoint kernel has
+dimension $4,3,2,$ or $1$ according as $m$ is minimal nilpotent,
+semisimple of type $2+1$, regular nilpotent, or regular semisimple.
+Therefore a kernel of rank at least five is impossible.  If $H^0(C,E)=0$,
+the boundary map
+$H^0(C,G)\to H^1(C,M)$ is injective.  Proposition
+\ref{prop:normalizer-boundary}, applied to
+$\Ocal_C^{g-h}\subset\ker\beta$, gives the stronger conclusion when
+$g-h\ge3$.
+\end{proof}
+
+\begin{corollary}[Two rank-three applications]
+\label{cor:first-super-apps}
+The rank-eight dense adjoint coefficient in genus seven and the rank-six
+off-diagonal monomial coefficient in genus five have no rank-one fixed part.
+\end{corollary}
+
+\begin{proof}
+For the dense adjoint in genus seven, Proposition~\ref{prop:first-super}
+reduces a possible rank-zero vector to the weight-one universal extension of
+Proposition~\ref{prop:super-classification}.  There $G=E/M\simeq\Ocal_C^7$,
+so Proposition~\ref{prop:adjoint-universal} applies with $h=0$ and gives an
+impossible rank-seven quotient-bracket kernel.
+
+For the rank-six off-diagonal monomial coefficient in genus five,
+$d=6=g+1$ and the exact local totals are
+\[
+ 0,\quad\frac32,\quad2,\quad\frac52,\quad3.
+\]
+The global total is integral and therefore cannot equal one.  Apply
+Proposition~\ref{prop:first-super}.
+\end{proof}
+
+\section{The rank-eight coefficient in genera seven and six}
+
+\subsection{Genus seven}
+
+The Artin coefficient optimization leaves only ranks seven and eight with
+base multiplicity one.  Rank seven is covered by
+Corollary~\ref{cor:endpoint}, while rank eight is excluded by
+Corollary~\ref{cor:first-super-apps}.  No separate genus-seven HN branch
+calculation is needed.
+
+\subsection{Genus six}
+
+Here $F$ has rank eight and $2g-2=10$.  Let $N\subset A$ be the HN part of
+slope $>10$, and write $t=\rk N$.  The quotient-rank estimate gives
+$t\le2$.
+
+If $t=2$, then $\rk(F/N)=g=6$, so equality holds throughout the
+Landesman--Litt chain.  Consequently
+\[
+ \mu(F/N)=\mu(A/N)=10,
+ \qquad \deg(F/A)=10,
+\]
+and hence $\deg M=0$, contrary to parabolic stability.  If $t=1$, the two
+integral degree offsets left by the quotient-slope and Clifford inequalities
+are the equality offset, which again gives $\deg M=0$, and one strict offset.
+In the strict offset the dual low-slope quotient pulls back to a proper
+ordinary degree-zero subbundle of $E$ or, at a puncture, to a quotient whose
+induced weight violates strict parabolic stability.  Thus no high-HN branch
+survives.
+
+With $N=0$, the exact no-high list is
+\[
+ (S,q)=(0,11),(0,12),(0,13),(0,14),(2,12).
+\]
+For the zero-weight cases put $G=E/M$.  The relevant BPGN bounds, applied to all
+positive-degree HN factors, are
+\[
+\begin{array}{c|c|c|c}
+q&\deg G&h^0(G)&\text{maximum allowed}\\ \hline
+11&1&6&6\\
+12&2&7&6\\
+13&3&8&7\\
+14&4&9&8.
+\end{array}
+\]
+Hence only $(S,q)=(0,11)$ remains among the zero-weight branches.  There the
+rank-seven degree-one quotient $G$ has a saturated trivial evaluation
+subbundle $W=\Ocal_C^6$.  Its quotient $Q$ is a line, $\deg M=-1$, and
+$h^0(Q\otimes M^{-1})\le1$ on a nonhyperelliptic fibre.  The inverse image
+$P\subset E$ has $H^0(P)=0$ by stability.  Proposition~\ref{prop:adjoint-universal},
+with $g=6$ and $h=1$, therefore produces an impossible rank-five
+quotient-bracket kernel.
+
+For $(S,q)=(2,12)$ the same low-degree equality analysis gives
+\[
+ E/M\simeq\Ocal_C^7,
+ \qquad \deg M^{-1}=2.
+\]
+The ordinary $\mathfrak{sl}_3$ fibre and the contracted
+\[
+ \mathfrak{gl}_2\ltimes(\C^2\oplus(\C^2)^\vee)
+\]
+fibre have no one-dimensional ideals, so the quotient bracket is fibrewise
+nonzero.  On a nonhyperelliptic genus-six curve, a degree-two line has at
+most one section, and the matrix has a common zero.  Contradiction.
+
+We have therefore obtained the required adjoint Artin vanishing for every
+rank-three unitary system in genus at least six.
+
+\section{Genus five: monomial coefficient}
+
+Let $U_6$ be the irreducible off-diagonal constituent of an irreducible
+monomial rank-three unitary system.  Its rank is
+\[
+ 6=g+1
+\]
+in genus five.  The exact local total weights are
+\[
+ 0,\quad\frac32,\quad2,\quad\frac52,\quad3.
+\]
+The global total is integral because $\deg E+S=0$, and hence cannot equal
+one.  Proposition~\ref{prop:first-super} excludes a rank-one fixed part.
+The rank-five orthogonal constituent is covered by
+Corollary~\ref{cor:endpoint}, and the smaller constituents lie in the
+published strict range.  Thus every proper positive-dimensional projective
+closure is eliminated in genus five.
+
+\section{Genus-five dense HN reconstruction}\label{sec:hn5}
+
+Let $E_*$ be the parabolically stable rank-eight adjoint Deligne bundle.  Put
+\[
+ F=E^\vee\otimes\omega_C,
+ \qquad
+ \deg F=64+S,
+ \qquad
+ h^0(F)=32+S.
+\]
+A rank-one fixed part gives a saturated line $M\subset E$ and a rank-seven
+kernel $A\subset F$ with
+\[
+ F/A\simeq M^\vee\otimes\omega_C,
+ \qquad
+ q:=\deg(F/A)=8-\deg M\ge9.
+\]
+
+Let $N$ be the HN part of $A$ with slope $>8$, and put
+$t=\rk N$, $x=\deg N$, $B=A/N$.  The proof of
+\cite[Proposition 6.3.6]{LLGeo} and Clifford give
+\begin{align}
+64-(8-t)\frac{10(8-t)-2}{9-t}&\le x-S\le8t,
+\label{eq:offset}\tag{7.1}\\
+x&\ge S+10t+q-14,
+\label{eq:cliff}\tag{7.2}\\
+x&\ge8t+1.
+\label{eq:high}\tag{7.3}
+\end{align}
+The integral offsets are
+\[
+\begin{array}{c|c}
+t&x-S\\ \hline
+1&5,6,7,8\\
+2&15,16\\
+3&24.
+\end{array}
+\]
+
+For $t=3$, \eqref{eq:cliff} gives $q\le8$.  For $t=2$, the offset $16$
+produces a proper degree-zero rank-six subbundle of $E$, while offset $15$
+forces
+\[
+ t=2,\quad q=9,\quad x=S+15,\quad S\ge2,
+ \quad(A/N)^\vee\otimes\omega_C\simeq\Ocal_C^5.
+\label{eq:highres}\tag{7.4}
+\]
+For $t=1$, the HN upper degree and Clifford inequalities give
+$q+y\ge16$ and $q\le y+4$, where $y=x-S$.  The case $y=5$ is numerically
+impossible; $y=8$ gives a degree-zero subbundle; and $y=6,7$ violate the
+parabolic quotient-weight inequality.  Thus \eqref{eq:highres} is the only
+high-HN family.
+
+If $N=0$, the intermediate inequality gives
+\[
+ S\le\frac{16}{3},
+ \qquad
+ \max(9,8+S)\le q\le14-S.
+\]
+Since an adjoint puncture contributes $0$, $2$, or $3$, the exact list is
+\[
+\begin{aligned}
+S=0 &: q=9,10,11,12,13,14,\\
+S=2 &: q=10,11,12,\\
+S=3 &: q=11.
+\end{aligned}
+\]
+For
+\[
+ G=A^\vee\otimes\omega_C\simeq E/M
+\]
+one has
+\[
+ \rk G=7,
+ \qquad
+ \deg G=q-8-S,
+ \qquad
+ h^0(G)=q-4.
+\]
+For the zero-weight $S=0$ branches, applying BPGN HN-piece by HN-piece gives
+\[
+\begin{array}{c|c|c|c}
+q&\deg G&h^0(G)&\text{maximum allowed}\\ \hline
+9&1&5&5\\
+10&2&6&6\\
+11&3&7&6\\
+12&4&8&7\\
+13&5&9&8\\
+14&6&10&8.
+\end{array}
+\]
+Thus only $q=9,10$ survive.  In the punctured branch $(S,q)=(2,12)$ the
+rank-seven degree-two bundle has eight sections, whereas the same calculation,
+now allowing degree-zero HN factors, gives a maximum of seven.  The no-high
+residual list is
+\[
+ (0,9),(0,10),(2,10),(2,11),(3,11).
+\]
+
+\section{Zero-weight genus-five branches}
+
+\subsection{The branch \texorpdfstring{$(S,q)=(0,10)$}{(S,q)=(0,10)}}
+
+Here $G=E/M$ has rank seven, degree two, and six sections, while
+$L=M^{-1}=\det G$ has degree two.  The trace form $\operatorname{tr}(XY)$ (equivalently, a nonzero scalar
+multiple of the Killing form) and the bracket define the Kirillov form
+\[
+ \Omega:\Lambda^2G\longrightarrow L.
+\]
+For $0\ne m\in\mathfrak{sl}_3$, the rank of $\ad_m$ is four or six.  The
+radical of the induced form on $\mathfrak{sl}_3/\C m$ is the centralizer of
+$m$ modulo $\C m$, so the form has the same rank.  Thus an isotropic subspace
+in the seven-dimensional quotient has dimension at most five.
+
+The positive integral HN degrees of $G$ sum to two.  The BPGN small-slope
+bound shows that six sections are possible only in the following two cases:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $G$ is semistable of rank seven and degree two;
+\item there is an exact sequence $0\to J\to G\to Q\to0$ with
+$(\rk,\deg,h^0)(J)=(1,1,1)$ and $(\rk,\deg,h^0)(Q)=(6,1,5)$, and every
+section of $Q$ lifts.
+\end{enumerate}
+
+In case (i), coprimality makes $G$ stable.  Let $V$ be the saturation of the
+evaluation image of its six sections.  Since $V$ is generically generated,
+its HN quotients have nonnegative degree.  Stability and the degree-one BPGN
+bound force $\rk V=6$ and $\deg V=0$: if $\deg V=1$, equality of the section
+count would give a positive degree-one HN line in $V$, which would destabilize
+$G$.  Hence the evaluation determinant has no zeros and
+\[
+ V\simeq\Ocal_C^6.
+\]
+Since $h^0(L)\le1$ on a nonhyperelliptic genus-five curve, all entries of
+$\Omega|_V$ vanish on a common fibre (or vanish identically), producing a
+six-dimensional isotropic subspace.
+
+In case (ii), let $V$ be the saturation of the evaluation image of
+$H^0(Q)$.  Semistability of $Q$ of slope $1/6$ gives $\deg V=0$, while five
+sections force $\rk V=5$ and
+\[
+ V\simeq\Ocal_C^5.
+\]
+Pulling $V$ back to $G$ gives $0\to J\to P\to\Ocal_C^5\to0$.  All five
+sections of $Q$ lift, so this extension splits:
+\[
+ P\simeq J\oplus\Ocal_C^5.
+\]
+Let $T=Q/\Ocal_C^5$, a degree-one line.  Determinants give
+$L=J\otimes T$.  The form entries on $P$ lie in $H^0(L)$ on
+$\Lambda^2\Ocal_C^5$ and in $H^0(T)$ on $J\otimes\Ocal_C^5$.  If
+$h^0(T)=0$, all cross terms vanish, while the $H^0(L)$ entries have a common
+zero (or vanish identically).  If $h^0(T)=1$, the product of the unique
+sections of $J$ and $T$ spans $H^0(L)$ whenever the latter is nonzero; the
+zero of the section of $T$ kills every form entry.  In either case a fibre of
+$P$ is six-dimensional isotropic, a contradiction.
+
+\subsection{The branch \texorpdfstring{$(S,q)=(0,9)$}{(S,q)=(0,9)}}
+\label{subsec:q9}
+
+Here $S=0$ says that the projective puncture monodromies are trivial; by
+itself it does not say that $n=0$.  Since this is the dense adjoint branch,
+\cref{lem:zero-weight-closed-descent} moves the fixed vector and its Hodge
+line to a finite cover of $\Mcal_g$.  We run the entire branch on that closed
+family.  All constructions below use only the adjoint Lie bundle and its
+associated Azumaya algebra, so no global $\GL_3$-lift is required.
+
+Thus $E=\ad\bar V$ is stable of degree zero, $M\subset E$ is saturated with
+$\deg M=-1$, and
+\[
+ G=E/M
+\]
+is stable of rank seven, degree one, and has five sections.  The saturated
+evaluation image is
+\[
+ W=\Ocal_C^5\subset G,
+\]
+with rank-two quotient $R=G/W$, $\deg R=1$, and
+$\det R\simeq L:=M^{-1}$.  Let
+\[
+ \beta:G\longrightarrow G\otimes L,
+ \qquad K=\ker\beta.
+\]
+The inverse image of $W$ in $E$ is the universal extension of
+$\Ocal_C^5$ by $M$.  If
+\[
+ h=h^0(R\otimes L),
+\]
+then stability and the small-slope bounds give $h\le2$, and the
+universal-extension identity gives
+\begin{equation}\label{eq:q9-large-kernel}
+ \Ocal_C^{5-h}\subset K.
+\end{equation}
+
+Since $E$ is stable of degree zero, $H^0(C,E)=0$, so the boundary map
+$H^0(C,G)\to H^1(C,M)$ is injective.  Because $h\le2$,
+\eqref{eq:q9-large-kernel} supplies a generically injective trivial
+subbundle of rank at least three in $K$, contradicting
+Proposition~\ref{prop:normalizer-boundary}.  This eliminates the
+zero-weight $q=9$ branch.
+
+\subsection{Independent determinant and spectral reconstruction}
+
+For auditability, we retain a second elimination of the former $h=2$
+configuration.  It is not used in the proof above.  Suppose $h=2$, so
+$\Ocal_C^3\subset K$.  The following proposition supplies the determinant
+and degree reduction used in this independent reconstruction.
+
+\begin{proposition}[Determinant reduction in the $h=2$ branch]
+\label{prop:q9-reduction}
+Let $Z\subset E$ be the saturated centralizer of the Hodge line.  One of the
+following occurs.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $L=M^{-1}$ is effective of degree one;
+\item the Hodge line is minimal nilpotent on every fibre, the image of
+$\ad_m$ is saturated, and the grading character
+$\lambda:K\to\Ocal_C$ is surjective and nonzero on the displayed
+$\Ocal_C^3\subset K$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+At the generic point, $K$ is the normalizer of the Hodge line modulo that
+line.  The inclusion $\Ocal_C^3\subset K$ therefore rules out every regular
+element of $\mathfrak{sl}_3$: its quotient normalizer has dimension one in
+the nonnilpotent case and dimension two in the regular-nilpotent case.  The
+remaining nonzero orbit types are the semisimple type $(2,1)$ and the minimal
+nilpotent type.
+
+The invariant trace form identifies $Z^\perp$ with the dual quotient of $E$.
+The $L$-valued Kirillov form
+\[
+ \kappa_m:\Lambda^2(E/Z)\longrightarrow L,
+ \qquad \kappa_m(\bar x,\bar y)=\operatorname{tr}(m[x,y]),
+\]
+is generically symplectic, since both the semisimple $(2,1)$ orbit and the
+minimal nilpotent orbit in $\mathfrak{sl}_3$ have dimension four.  Its
+Pfaffian is therefore a generically nonzero morphism
+\[
+ \det(E/Z)\longrightarrow L^2.
+\]
+Because $\det E\simeq\Ocal_C$, there is a unique effective divisor $T$ such
+that
+\begin{equation}
+ \det Z\simeq M^2\otimes\Ocal_C(T).
+ \label{eq:q9-centralizer-det}
+\end{equation}
+The divisor $T$ is the degeneracy divisor of the integral orbit form; it
+vanishes exactly when $\operatorname{im}(\ad_m)$ is saturated in
+$Z^\perp\otimes L$.
+Indeed, under the trace identification
+$Z^\perp\simeq(E/Z)^\vee$, the determinant of
+\[
+ \overline{\ad}_m:E/Z\longrightarrow Z^\perp\otimes L
+\]
+is the square of the displayed Pfaffian.  Its divisor is therefore $2T$,
+and it is a unit at every point exactly when the image is saturated.
+
+Suppose first that the generic element is semisimple of type $(2,1)$.  Then
+the generic line normalizer equals the centralizer.  More intrinsically,
+bracket with $M$ defines a global grading morphism
+\[
+ \lambda:K\longrightarrow\Ocal_C,
+ \qquad [x,m]=\lambda(x)m,
+\]
+whose kernel is $Z/M$.  At the generic point
+$\operatorname{tr}(m^2)\ne0$, while trace invariance gives
+$\lambda(x)\operatorname{tr}(m^2)=0$.  Thus $\lambda$ vanishes generically
+and hence identically.  Consequently the equality extends across every
+degeneration point and
+\[
+ K=Z/M,
+ \qquad \det K\simeq M\otimes\Ocal_C(T).
+\]
+The inclusion $\Ocal_C^3\subset K$ has full generic rank.  Since $K$ is a
+rank-three subsheaf of the stable bundle $G$ of rank seven and degree one,
+$\deg K\le0$.  Taking determinants of the inclusion gives $\deg K\ge0$.
+Thus $\deg K=0$, $\deg T=1$, and a nonzero section trivializes $\det K$.
+Equation~\eqref{eq:q9-centralizer-det} then gives
+$L\simeq\Ocal_C(T)$, so $L$ is effective.
+
+Now suppose the generic element is minimal nilpotent.  Minimal nilpotence holds
+on every fibre: the equations $m^2=0$ and $\rk m\le1$ define a closed locus,
+and the saturated line never vanishes.  Let
+\[
+ \lambda:K\longrightarrow\Ocal_C,
+ \qquad [x,m]=\lambda(x)m,
+\]
+be the grading character and let $Z_\lambda$ be the effective divisor defined
+by $\operatorname{im}\lambda=\Ocal_C(-Z_\lambda)$.  Its kernel is
+$Z/M$, and \eqref{eq:q9-centralizer-det} gives
+\begin{equation}
+ \det K\simeq M\otimes\Ocal_C(T-Z_\lambda).
+ \label{eq:q9-kernel-det}
+\end{equation}
+
+If $\lambda$ vanishes on $\Ocal_C^3$, then
+$\Ocal_C^3\subset Z/M$ has full generic rank.  Stability again gives
+$\deg(Z/M)\le0$, while the determinant of the inclusion gives
+$\deg(Z/M)\ge0$.  Hence $\det(Z/M)\simeq\Ocal_C$, and
+\eqref{eq:q9-centralizer-det} yields $\deg T=1$ and
+$L\simeq\Ocal_C(T)$.
+
+If $\lambda$ is nonzero on $\Ocal_C^3$, its restriction is a nonzero map
+from a trivial bundle to $\Ocal_C(-Z_\lambda)$.  Since $Z_\lambda$ is
+effective and $C$ is projective, this forces $Z_\lambda=0$ and makes the
+restriction surjective.  The integral determinant theorem of
+\cref{sec:deligne} gives a nonzero morphism $\det K\to M$.  Combining it
+with \eqref{eq:q9-kernel-det} produces a nonzero morphism
+$\Ocal_C(T)\to\Ocal_C$, and hence $T=0$.  Thus the adjoint image is
+saturated, and alternative (ii) holds.
+\end{proof}
+
+In alternative (i), \cref{prop:relative-hodge-line} gives a section of the
+universal curve over the finite cover of $\Mcal_g$ supplied above,
+contradicting Chen--Salter.  It remains only to eliminate alternative (ii).
+
+\begin{proposition}[Spectral-projector obstruction]\label{prop:q9-spectral}
+Suppose the Hodge line is minimal nilpotent on every fibre, $K$ has rank
+four, and the grading character
+\[
+ \lambda:K\longrightarrow\Ocal_C,
+ \qquad [x,m]=\lambda(x)m,
+\]
+is surjective and nonzero on the displayed $\Ocal_C^3\subset K$.  Then the
+configuration is impossible.
+\end{proposition}
+
+\begin{proof}
+Put $C_0=\ker\lambda$.  Then $C_0$ is the quotient centralizer
+$\mathfrak z(m)/M$, of rank three, and
+\[
+ 0\longrightarrow C_0\longrightarrow K\longrightarrow\Ocal_C\longrightarrow0.
+\]
+The determinant morphism gives $\deg C_0=\deg K\le-1$.  Etale-locally a
+generator of the saturated minimal-nilpotent line is $m=E_{12}$.  Modulo
+$M$, the centralizer then has the basis
+\[
+ E_{13},\quad E_{32},\quad
+ H=\operatorname{diag}(1/2,1/2,-1).
+\]
+Its derived algebra is the span of $E_{13},E_{32}$, a saturated rank-two
+subbundle.  The trace form has precisely this radical and
+$\operatorname{tr}(H^2)=3/2$, so it descends perfectly to the quotient line.
+Thus the derived algebra
+\[
+ R_0=[C_0,C_0]
+\]
+has rank two, and for $T=C_0/R_0$ one has
+$T^{\otimes2}\simeq\Ocal_C$ and $\deg T=0$.
+
+Let
+\[
+ U=\Ocal_C^3\cap C_0\simeq\Ocal_C^2.
+\]
+If the projection $U\to T$ vanishes, then $U\subset R_0$ and determinants
+give a nonzero map $\Ocal_C\to\det R_0$, contradicting
+$\deg\det R_0=\deg C_0\le-1$.  Otherwise $T\simeq\Ocal_C$.  Choose a global
+section $u\in H^0(C,U)$ mapping to a generator of $T$ and a global section
+$x\in H^0(C,\Ocal_C^3)$ with $\lambda(x)=1$.  Set $x_t=x+tu$.
+
+Choose locally a generator $m$ of $M$ and a lift $X_t$ of $x_t$ to $E$.
+Then $[X_t,m]=m$.  Any other lift is $X_t+fm$, and
+\[
+ X_t+fm=\exp(-fm)X_t\exp(fm)
+\]
+because $m^2=0$.  Hence the characteristic polynomial of $X_t$ is
+independent of the lift and has global holomorphic, therefore constant,
+coefficients.
+
+In a frame with $m=E_{12}$, every lift has the form
+\[
+ \operatorname{diag}(1/2,-1/2,0)+aE_{12}+bE_{13}+cE_{32}
+ +d\operatorname{diag}(1/2,1/2,-1).
+\]
+The section $u$ changes $d$ by a nonzero affine function of $t$.  Fix one
+point of $C$ and choose $t$ so that its value $D$ is zero there.  The
+three eigenvalues are
+\[
+ \frac{D+1}{2},\qquad \frac{D-1}{2},\qquad -D,
+\]
+At the chosen point the spectrum is therefore
+$\{1/2,-1/2,0\}$.  Since the characteristic coefficients are global
+holomorphic functions, this is the spectrum at every point; in particular,
+$1/2,-1/2$ are the unique ordered pair differing by one.
+
+Let $\alpha=1/2$, $\beta=-1/2$, and $\gamma=0$.  The projector onto the
+$\gamma$-eigenspace is
+\[
+ P_\gamma=
+ \frac{(X_t-\alpha I)(X_t-\beta I)}
+      {(\gamma-\alpha)(\gamma-\beta)}.
+\]
+It satisfies $P_\gamma m=mP_\gamma=0$.  The conjugacy formula above makes it
+independent of the choice of lift, while ordinary frame changes conjugate
+it as an endomorphism.  The local projectors therefore glue to a global
+rank-one idempotent in the Azumaya algebra associated with $\bar V$.  Its
+trace-free part is a nonzero section of the adjoint bundle $E$, contradicting
+$H^0(C,E)=0$.
+\end{proof}
+
+This completes the independent $h=2$ reconstruction.
+
+\subsection{Fixed-part Hodge section and relative degree-one contradiction}
+\label{subsec:picard}
+
+\begin{lemma}[Fixed-part rank-zero Hodge section]
+\label{lem:fixed-part-hodge}
+Let $\pi^\circ:\mathcal C^\circ\to B$ be a punctured versal family over a
+smooth quasi-projective complex base whose classifying map is etale, and let
+$\Ucal$ be unitary.  If
+\[
+ H^0(B,R^1\pi_*^\circ\Ucal)\ne0,
+\]
+then, after complex conjugation if necessary, there is a global fibrewise
+nonzero section
+\[
+ v\in H^0\!\left(B,\pi_*(\Ecal\otimes\omega_\pi(D))\right)
+\]
+whose Landesman--Litt multiplication map has rank zero on every fibre.
+Equivalently, adjunction gives a global map
+\[
+ \omega_\pi(D)^{-1}\longrightarrow\Ecal.
+\]
+\end{lemma}
+
+\begin{proof}
+A nonzero fixed vector spans a trivial irreducible rank-one local system
+$\mathbb L\subset R^1\pi_*^\circ\Ucal$.  For a general complex unitary
+coefficient, apply \cite[Proposition 4.2.2]{LLCan} to
+$\mathbb W=R^1\pi_*^\circ\widetilde{\Ucal}$ and
+$\widetilde{\mathbb L}=\mathbb L$; the trivial line has its natural real
+structure.  The proof of
+\cite[Lemma 6.1.1]{LLCan} then splits into two cases.  Its second case would
+give the real rank-one system $\widetilde{\mathbb L}=\mathbb L$ two conjugate
+Hodge types, which is impossible in rank one.  Thus, after conjugating
+$\Ucal$ if necessary, the first case gives a global morphism of variations
+from a constant line into $F^1R^1\pi_*^\circ\Ucal$.  Its period map is
+identically zero.
+
+The filtered de Rham description and Hodge--de Rham degeneration in
+\cite[Theorem 4.1.1]{LLCan} give
+\[
+ F^1R^1\pi_*^\circ\Ucal\simeq
+ \pi_*(\Ecal\otimes\omega_\pi(D)),
+\]
+Because the classifying map is etale, the cotangent map $c_b^*$ in
+\cite[Theorem 5.1.6]{LLCan} is an isomorphism, so the factorization in that
+theorem identifies zero second fundamental form with zero multiplication
+map.  Thus the corresponding global section has
+rank-zero multiplication on every fibre.  The nonzero map from the
+irreducible local system $\mathbb L$ is injective, so its Hodge-bundle image is
+fibrewise nonzero.
+\end{proof}
+
+\begin{proposition}[Relative Hodge-line closure]
+\label{prop:relative-hodge-line}
+Let $\pi:X\to B$ be the pullback of the universal curve to a connected
+finite-etale scheme cover, with $B$ integral and regular.  Let $\Ecal$ be a
+vector bundle on $X$, and suppose a line bundle $\Hcal$ on $B$ gives a
+generically nonzero morphism
+\[
+ \pi^*\Hcal\otimes\omega_\pi(D)^{-1}\longrightarrow\Ecal.
+\]
+Let $\Scal$ be the saturation of its rank-one image in $\Ecal$ and put
+$\Mcal=\Scal^{**}$.  Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item $\Mcal$ is invertible and the induced map
+$\Mcal\hookrightarrow\Ecal$ is injective;
+\item on the generic fibre, $\Mcal_\eta$ is exactly the saturated line
+generated by the Hodge vector;
+\item if $\deg(\Mcal_\eta)=-1$, then $\Lcal=\Mcal^{-1}$ has relative degree
+one on all of $B$;
+\item if $\Lcal_\eta$ is effective, then $\pi$ admits a section.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The total space $X$ is regular.  The sheaf $\Mcal$ is coherent reflexive of
+rank one.  Since every regular local ring is a UFD, a rank-one reflexive
+module on $X$ is invertible.  Double dualizing the inclusion
+$\Scal\hookrightarrow\Ecal$ gives $\Mcal\to\Ecal$; it is generically
+injective, and its kernel would be a torsion subsheaf of the line bundle
+$\Mcal$, hence is zero.
+
+The quotient $\Mcal/\Scal$ is supported in codimension at least two.  It does
+not meet the generic fibre: a closed point of the generic curve has
+codimension one in $X$.  Therefore
+\[
+ \Mcal_\eta=\Scal_\eta,
+\]
+and the right side is saturated by construction.  Fibre degree of a line
+bundle is locally constant in a connected smooth proper family, proving
+(iii).  The base twist $\Hcal$ has fibre degree zero.
+
+Assume now that $\Lcal_\eta$ is effective.  Upper semicontinuity makes
+\[
+ \{b\in B:h^0(X_b,\Lcal_b)\ge1\}
+\]
+a closed subset containing the generic point, hence all of $B$.  A degree-one
+line bundle on a positive-genus smooth curve has at most one independent
+section, so $h^0(X_b,\Lcal_b)=1$ for every $b$; Riemann--Roch also makes
+$h^1(X_b,\Lcal_b)=g-1$ constant.  Cohomology and base change therefore makes
+$\pi_*\Lcal$ invertible and identifies its fibres with
+$H^0(X_b,\Lcal_b)$.
+
+The evaluation
+\[
+ \pi^*\pi_*\Lcal\longrightarrow\Lcal
+\]
+is nonzero on every fibre.  It cuts out an effective Cartier divisor
+$Z\subset X$.  Its restriction to each fibre is the unique degree-one zero
+divisor.  Since the section remains a nonzerodivisor on every smooth integral
+fibre, $Z$ is a relative effective Cartier divisor and is flat over $B$.
+It is proper with zero-dimensional fibres, hence finite.  Thus $Z\to B$ is
+finite locally free of degree one, therefore an isomorphism.  Its inverse is a
+section of $\pi$.
+\end{proof}
+
+Apply the proposition on the connected finite-etale base on which the fixed
+part has been globalized.  Lemma~\ref{lem:fixed-part-hodge} supplies the global
+evaluation, and its generic saturation is the line $M$ from the fibre
+calculation.  Thus a fibrewise proof that $M^{-1}$ is effective produces an
+actual section of that universal curve.  In the zero-weight effective
+subcases of \cref{subsec:q9},
+\cref{lem:zero-weight-closed-descent} first replaces the pointed base by a
+finite cover of $\Mcal_g$; only there does the resulting section contradict
+Chen--Salter's non-virtual-splitting theorem for $g\ge4$
+\cite{ChenSalter}.  No line defined only on an HN stratum is being extended,
+and no arbitrary pointed section is declared contradictory.
+
+For a nontrivial rank-one sub-local system rather than an actual fixed vector,
+\cite[Proposition 4.2.2 and Lemma 6.1.1]{LLCan} supply the same evaluation
+with a flat line bundle pulled back from the base.  In pointed branches a
+section is not itself contradictory; Earle--Kra identifies it with one of
+the tautological marked sections \cite{EarleKra}.
+
+\section{Punctured no-high branches}
+
+\subsection{The branch \texorpdfstring{$(S,q)=(2,11)$}{(S,q)=(2,11)}}
+
+Let $p$ be the unique $2+1$ puncture.  Here $G$ has rank seven,
+degree one, seven sections, and nonnegative HN slopes.  The degree-one BPGN
+bound shows that equality is possible only with a positive degree-one HN line
+$J$ and a rank-six degree-zero quotient carrying six sections.  The quotient
+is $\Ocal_C^6$, every quotient section lifts, and the extension splits.  Thus
+\[
+ G\simeq J\oplus\Ocal_C^6,
+ \qquad
+ \deg J=1,
+ \qquad h^0(J)=1,
+ \qquad \deg L=3.
+\]
+The degree-one line globalizes on the full finite cover: intrinsically
+$J=\det G$, because the complementary evaluation summand has trivial
+determinant.  Generic effectivity and the degree-one Abel closed immersion
+give a global section, and Earle--Kra forces
+$J\simeq\Ocal_C(r)$ for a marked point $r$.  Since
+$\det E\simeq\Ocal_C(-2p)$,
+\[
+ L\simeq\Ocal_C(2p+r).
+\]
+The four blocks of the quotient bracket have coefficients in
+\[
+ \Ocal(2p+r),\quad \Ocal(2p),\quad
+ \Ocal(2p+2r),\quad \Ocal(2p+r).
+\]
+On a very general pointed genus-five fibre, each indicated section space is
+one-dimensional and every unique section vanishes at $p$.  Hence the bracket
+vanishes at $p$, making $M_p$ a one-dimensional ideal of
+\[
+ \mathfrak{gl}_2\ltimes(\C^2\oplus(\C^2)^\vee),
+\]
+which has no such ideal.
+
+\subsection{The branch \texorpdfstring{$(S,q)=(3,11)$}{(S,q)=(3,11)}}
+
+Here $G\simeq\Ocal_C^7$ and there is one full-flag puncture $p$.
+The canonical adjoint lattice has determinant $\Ocal_C(-3p)$, while
+$\det G=\det E\otimes L$ is trivial.  Hence
+\[
+ L\simeq\Ocal_C(3p).
+\]
+Choose the very general marked fibre so that $p$ is non-Weierstrass; then
+$h^0(\Ocal_C(3p))=1$, and every bracket coefficient vanishes to order at
+least three at $p$.
+
+The full-flag contracted fibre has exactly three line ideals:
+\[
+ \C E_{12},\qquad \C E_{23},\qquad \C E_{31}.
+\]
+For each, the bracket with the opposite root has exact order one:
+\[
+ [E_{12},E_{21}]=zH_1,
+ \quad [E_{23},E_{32}]=zH_2,
+ \quad [E_{31},E_{13}]=-z(H_1+H_2).
+\]
+These pure-root equalities also control an arbitrary saturated lift.  Let
+$e_\alpha$ be the canonical root frame of one of the three ideals and
+$e_{-\alpha}$ its opposite frame.  A primitive generator has the form
+$m=e_\alpha+zr+O(z^2)$; multiplying by a unit removes the
+$e_\alpha$ component of $r$.  Since
+$[e_\alpha,e_{-\alpha}]=zH_\alpha$, while a bracket with
+$e_{-\alpha}$ has Cartan component only from the $e_\alpha$ component, one
+gets
+\[
+ \operatorname{pr}_{\mathfrak t}[m,e_{-\alpha}]
+ =zH_\alpha\pmod {z^2\mathfrak t_R}.
+\]
+Thus the order-one Cartan term cannot cancel for any saturated lift.
+A matrix of sections of $\Ocal(3p)$ would vanish to order at least three.
+Contradiction.
+
+\subsection{The branch \texorpdfstring{$(S,q)=(2,10)$}{(S,q)=(2,10)}}
+
+Here
+\[
+ 0\to\Ocal_C^6\to G\to D\to0,
+ \qquad \deg D=0,
+ \qquad \deg L=2,
+\]
+and $D=L(-2p)$.  If $h^0(L)=0$, then $h^0(G\otimes L)\le1$, whereas the
+ordinary quotient-adjoint map has rank at least three and restricts to rank
+at least two on a hyperplane.  Thus $L$ is effective.  Its unique degree-two
+divisor can be supported only at the sole nonordinary point:
+\[
+ L\simeq\Ocal_C(2p),
+ \qquad D\simeq\Ocal_C.
+\]
+The six global bracket sections then have length-two jets spanning at most
+one complex dimension.
+
+Let $W(z)$ be the local rank-six subbundle.  A one-dimensional jet image gives
+a five-dimensional kernel in the constant section space.  Because the global
+subbundle is trivial, evaluation identifies it with a five-dimensional
+subspace of $W_0$.  For a moving vector $v(z)=v_0+zv_1$, the vanishing jet
+equation is $B_0v_0=0$ and $B_1v_0+B_0v_1=0$; projection to
+$\coker B_0$ removes the moving-frame term $B_0v_1$.  Hence the induced map
+$T:\ker B_0\to\coker B_0$ must vanish on a five-dimensional subspace.
+
+In the $2+1$ contracted fibre, the only quotient-bracket ranks at most two are
+a pure radical line and an isotropic mixed radical line.  For an arbitrary
+first-order correction, the induced map
+\[
+ T:\ker B_0\longrightarrow\coker B_0
+\]
+has rank at least two in the pure case and at least three in the mixed case.
+Indeed, in suitable bases the respective matrices contain constant minors
+\[
+ \det T_{\{1,3\},\{5,6\}}=1,
+ \qquad
+ \det T_{\{1,2,3\},\{3,4,5\}}=1.
+\]
+A one-dimensional two-jet image would force $T$ to vanish on a
+five-dimensional subspace, impossible.
+
+\section{The final high-HN branch}\label{sec:high}
+
+The sole remaining branch is
+\[
+ t=2,\quad q=9,\quad\deg N=S+15,\quad S\ge2,
+ \quad(A/N)^\vee\otimes\omega_C\simeq\Ocal_C^5.
+\]
+Put
+\[
+ G=E/M,
+ \qquad L=M^{-1},
+ \qquad W=\Ocal_C^5\subset G,
+ \qquad Q=G/W.
+\]
+Then
+\[
+ \deg M=-1,
+ \quad \deg L=1,
+ \quad \rk Q=2,
+ \quad \deg Q=1-S,
+ \quad h^0(Q\otimes L)\le1.
+\]
+
+\subsection{Exclusion of full-flag punctures}
+
+Let $P\subset E$ be the inverse image of $W$.  Then $\rk P=6$ and
+$\deg P=-1$.  At a full-flag puncture, write the cyclic gaps as
+$x,y,z>0$ with $x+y+z=1$.  The adjoint weights are two zeros and
+\[
+ x,y,z,1-x,1-y,1-z.
+\]
+Any rank-six induced fibre has weight at least the sum of the four smallest
+root weights.  The six root weights total three, while each of the two
+largest is strictly less than one, so the four-smallest sum is $>1$.
+Therefore $\degp(P)>0$, contradicting parabolic stability.  Every non-scalar
+puncture in this branch is of type $2+1$.
+
+\subsection{Universal-extension obstruction}
+
+Let $P\subset E$ be the inverse image of $W=\Ocal_C^5$.  Parabolic
+stability gives $H^0(P)=0$, and the branch data give
+$h^0(Q\otimes L)\le1$.  Proposition~\ref{prop:adjoint-universal}, with
+$g=5$ and $h=1$, yields
+\[
+ \Ocal_C^4\subset\ker\beta.
+\]
+Parabolic stability also gives $H^0(C,E)=0$: a nonzero holomorphic section
+would generate a saturated parabolic line of nonnegative parabolic degree
+inside the stable parabolic degree-zero bundle $E$.  Thus the full boundary
+map $H^0(C,G)\to H^1(C,M)$ is injective, and
+Proposition~\ref{prop:normalizer-boundary} contradicts the displayed
+rank-four trivial subbundle.  Hence the final high-HN branch is impossible.
+
+\section{Independent canonical-Deligne determinant reconstruction}
+\label{sec:deligne}
+
+The preceding boundary-cocycle obstruction makes the determinant character
+unnecessary for the main proof.  We retain its integral construction and its
+second elimination of the former minimal-nilpotent endpoint as an independent
+reconstruction.
+
+At a $2+1$ puncture, a scalar twist lets us choose canonical residue
+\[
+ \operatorname{diag}(0,0,\delta),\qquad 0<\delta<1.
+\]
+The adjoint residues on $E_{13},E_{23}$ are $-\delta$, those on
+$E_{31},E_{32}$ are $\delta$, and the Levi part has residue zero.  Moving the
+negative residues into $[0,1)$ multiplies precisely $E_{13},E_{23}$ by $z$.
+Thus, with $R=\C[[z]]$ and $K=\C((z))$, the canonical adjoint lattice is
+\[
+ \mathfrak p_R=
+ \left\{
+ \begin{pmatrix}A&zb\\c&d\end{pmatrix}:\tr A+d=0
+ \right\}\subset\mathfrak{sl}_3(K).
+\]
+Equivalently, it is the trace-zero endomorphism lattice of the periodic chain
+\[
+ z\Lambda_0\subset\Lambda_1\subset\Lambda_0,
+ \qquad
+ \Lambda_0=R^3,
+ \quad
+ \Lambda_1=zRe_1\oplus zRe_2\oplus Re_3.
+\]
+At a scalar puncture the chain is hyperspecial.  The following theorem is
+stated for an arbitrary periodic chain because no contact-order or orbit
+reduction is needed.
+
+\begin{theorem}[Integral minimal-nilpotent determinant morphism]
+\label{thm:integral-det}
+Let $\Lambda_\bullet$ be a periodic lattice chain in an $r$-dimensional
+$K$-vector space and put
+\[
+ \mathfrak p_R=\End_{\mathrm{ch}}(\Lambda_\bullet)\cap\mathfrak{sl}_r(K).
+\]
+Let $\Mcal\subset\mathfrak p_R$ be a saturated rank-one module whose generic
+fibre is a minimal-nilpotent line.  If
+\[
+ \Kcal=
+ \bigl(N_{\mathfrak{sl}_r(K)}(K\Mcal)\cap\mathfrak p_R\bigr)/\Mcal,
+\]
+then there is a holomorphic, generically nonzero morphism
+\[
+ \det\Kcal\longrightarrow\Mcal^{\otimes(r-2)}.
+\]
+It may have zeros at the boundary but cannot have a pole.
+\end{theorem}
+
+\begin{proof}
+Let
+\[
+ I_K=\im m,
+ \qquad H_K=\ker m,
+ \qquad J_K=H_K/I_K,
+ \qquad Q_K=V_K/H_K.
+\]
+The induced intersections and quotients of the periodic chain give free
+chains $I_\bullet,J_\bullet,Q_\bullet$.  A field map in the generic
+minimal-nilpotent line preserves the original chain exactly when the induced
+map $Q_K\to I_K$ preserves the quotient chains.  Saturation therefore gives
+the equality of integral lattices
+\begin{equation}\label{eq:M-chain-final}
+ \Mcal=\Hom_{\mathrm{ch}}(Q_\bullet,I_\bullet).
+\end{equation}
+
+Let $\Ncal=N_{\mathfrak{sl}_r(K)}(K\Mcal)\cap\mathfrak p_R$.  The field
+normalizer preserves the flag $I_K\subset H_K\subset V_K$, hence $\Ncal$
+acts on the three induced chains.  Let $\Dcal$ be its image on the graded
+chains and $\Ucal$ its kernel.  There is an exact sequence
+\[
+ 0\longrightarrow\Ucal/\Mcal\longrightarrow\Kcal
+ \longrightarrow\Dcal\longrightarrow0.
+\]
+The two nontrivial first off-diagonal blocks give an integral injection,
+generically an isomorphism,
+\[
+ \Ucal/\Mcal\longrightarrow
+ A\oplus B,
+ \qquad
+ A=\Hom_{\mathrm{ch}}(J_\bullet,I_\bullet),
+ \quad
+ B=\Hom_{\mathrm{ch}}(Q_\bullet,J_\bullet).
+\]
+If both blocks vanish, the endomorphism factors from $Q_\bullet$ to
+$I_\bullet$ and belongs to $\Mcal$ by \eqref{eq:M-chain-final}.  Thus
+\[
+ \det(\Ucal/\Mcal)\longrightarrow\det A\otimes\det B
+\]
+is integral and generically nonzero.
+
+It remains to treat the diagonal factor without choosing a generic volume.
+Put
+\[
+ \Bcal=\End_{\mathrm{ch}}(I_\bullet)\oplus
+       \End_{\mathrm{ch}}(J_\bullet)\oplus
+       \End_{\mathrm{ch}}(Q_\bullet).
+\]
+The trace map
+\[
+ \tau:\Bcal\longrightarrow R,
+ \qquad (a,A,c)\longmapsto a+\tr(A)+c,
+\]
+is split surjective; its kernel is the integral trace-zero graded module
+$\Dcal_0$.  Hence
+\[
+ \det\Dcal_0\simeq\det\Bcal
+ \simeq\det\End_{\mathrm{ch}}(J_\bullet).
+\]
+Choose one lattice $J_0$ in the chain.  Inclusion into
+$\End_R(J_0)$ and the canonical identity
+$\det\End_R(J_0)\simeq R$ give an integral map
+\[
+ \det\Dcal_0\longrightarrow R.
+\]
+Since $\Dcal$ is a full-rank sublattice of $\Dcal_0$, we obtain
+$\det\Dcal\to R$, again with zeros but no poles.
+
+Finally, composition of chain maps is integral:
+\[
+ A\otimes B\longrightarrow\Mcal.
+\]
+Since $\rk J_K=r-2$, the determinant of this perfect generic pairing gives
+\[
+ \det A\otimes\det B\longrightarrow\Mcal^{\otimes(r-2)}.
+\]
+Combining the three integral determinant maps proves the theorem.
+\end{proof}
+
+\begin{corollary}[Global no-pole determinant character]
+\label{cor:global-integral-det}
+Let $E$ be a canonical adjoint Deligne bundle on a smooth complete curve,
+with its periodic-chain lattices at the punctures.  Let $M\subset E$ be a
+saturated line with generically minimal-nilpotent fibre, and let $K$ be its
+global quotient normalizer.  Then the intrinsic generic determinant
+character extends to a generically nonzero morphism
+\[
+ \det K\longrightarrow M^{\otimes(r-2)}
+\]
+on the whole curve.
+\end{corollary}
+
+\begin{proof}
+Over the function field, the flag
+$I=\im M\subset H=\ker M\subset V$ and the composition pairing
+\[
+ \Hom(H/I,I)\otimes\Hom(V/H,H/I)\longrightarrow\Hom(V/H,I)=M
+\]
+define one intrinsic determinant character.  The determinant
+trivialization of the trace-zero diagonal factor is likewise functorial;
+equivalently, it is the canonical identity
+$\det\End(H/I)\simeq\Ocal$.  Thus every completed-DVR construction in
+\cref{thm:integral-det} restricts to this same generic morphism, rather than
+to unrelated local choices.  The theorem says that this rational morphism
+has no pole at any closed point.  A rational section of a line bundle on a
+smooth curve that is regular at every completed DVR is global, proving the
+claim.
+\end{proof}
+
+\begin{proposition}[Local--global kernel identity]
+\label{prop:kernel-compatibility}
+Let $E$ be the canonical adjoint Deligne bundle on a smooth curve, let
+$M\subset E$ be saturated, and put $G=E/M$.  If
+\[
+ \beta:G\longrightarrow G\otimes M^{-1}
+\]
+is the quotient bracket and $\Kcal_{\mathrm{glob}}=\ker\beta$, fix a puncture
+with completed local ring $R$, fraction field $K$, canonical lattice
+$\mathfrak p_R$, and completed line $\widehat M$.  Then the completed stalk
+is exactly
+\[
+ \left(N_{\mathfrak{sl}_r(K)}(K\widehat M)\cap\mathfrak p_R\right)/\widehat M.
+\]
+\end{proposition}
+
+\begin{proof}
+The image of $\beta$ is torsion-free, so the kernel is saturated and locally
+free.  Completion is flat and commutes with the kernel.  Choose a generator
+$m$ of the free rank-one $R$-module $\widehat M$.  For
+$x\in\mathfrak p_R$,
+\[
+ \bar x\in\ker\beta_R
+ \Longleftrightarrow [m,x]\in Rm.
+\]
+The canonical chain-endomorphism lattice is closed under bracket.  Since the
+global line is saturated, completion remains saturated and
+\[
+ (K\widehat M)\cap\mathfrak p_R=\widehat M,
+\]
+so the preceding condition is equivalent to $[m,x]\in Km$, i.e. to
+$x\in N_{\mathfrak{sl}_r(K)}(Km)\cap\mathfrak p_R$.
+\end{proof}
+
+In the final high-HN branch, $r=3$ and the universal-extension argument gives
+$\Ocal_C^4\subset\Kcal_{\mathrm{glob}}$, generically an equality.  Taking
+determinants and applying
+\cref{cor:global-integral-det,prop:kernel-compatibility}
+gives
+\[
+ \Ocal_C\longrightarrow\det\Kcal_{\mathrm{glob}}
+ \longrightarrow M.
+\]
+This is impossible because $\deg M=-1$.  Thus the determinant argument
+independently recovers the elimination of the final high-HN branch for
+arbitrary contact order.
+
+\section{Propagation to all rank-three representations}\label{sec:propagation}
+
+For an irreducible unitary rank-three system, the preceding arguments supply
+\[
+ H^0(B,R^1\pi_*\ad\Vcal)=0
+\]
+on every finite etale moduli cover $B$ in every genus $g\ge5$.  The smaller
+actual adjoint constituents lie in the published strict range or in the
+endpoint lemma.  The Leray argument of
+\cite[Proposition 8.2.1]{LLCan} gives strong cohomological rigidity.
+
+The formal constancy step needs vanishing on the dominant etale versal base
+used for a linear lift.  The following proposition separates that issue from
+the finite-cover geometry.
+
+\begin{proposition}[Projective finite-index descent]
+\label{prop:finite-index-descent}
+Let $B\to\Mcal_{g,n}$ be a connected finite etale scheme cover carrying the
+canonical projective globalization of an irreducible MCG-finite
+rank-three representation, and let
+\[
+ \Ucal_B=\ad(\mathbb P\rho_B)
+\]
+be its honest adjoint local system.  Suppose that for every connected finite
+etale $B'\to B$,
+\[
+ H^0(B',R^1\pi_*\Ucal_{B'})=0.
+ \tag{\ref{prop:finite-index-descent}.1}
+\]
+Let $M\to\Mcal_{g,n}$ be connected, dominant and etale, and let $\gamma_0$
+be a complex local system on the punctured total curve whose fibral
+restriction is the same irreducible representation.  Then
+\[
+ H^0(M,R^1\pi_*\ad\gamma_0)=0.
+\]
+\end{proposition}
+
+\begin{proof}
+Let $X_0$ be the connected component of
+$M\times_{\Mcal_{g,n}}B$ containing the chosen matching lift.  It is
+surjective finite etale over $M$ and dominant etale over $B$; a nonzero flat
+section remains nonzero after pullback.  After one fibral conjugation, the linear local system
+$\gamma_0|_{X_0}$ restricts exactly to the chosen irreducible fibre
+representation $\rho$.  For an element $x$ of the total fundamental group,
+$\gamma_0(x)$ is therefore an exact linear intertwiner from $\rho$ to
+$\rho^x$.  By the construction in \cite[Lemma 2.2.2]{LLCan}, the canonical
+projective globalization assigns to $x$ the projective class of another
+exact linear intertwiner $M_x$ for the same pair.  Thus
+$M_x^{-1}\gamma_0(x)$ commutes with $\rho$ and is scalar by Schur's lemma.
+Consequently the projective classes agree and
+\[
+ \ad\gamma_0\simeq f^*\Ucal_B.
+\]
+The use of exact linear intertwiners is essential: arbitrary projective
+extensions may differ by a finite self-twist, which can alternatively be
+killed after a further finite etale cover.
+The image
+\[
+ \Gamma=\operatorname{im}(\pi_1(X_0)\to\pi_1(B))
+\]
+has finite index by \cite[Lemma 2.1.4]{LLCan}.  A global section is therefore
+a vector fixed by $\Gamma$.  It becomes a nonzero global section on the
+connected finite topological cover corresponding to $\Gamma$, which is a
+finite etale algebraic cover $B_\Gamma\to B$ by Riemann existence,
+contradicting (\ref{prop:finite-index-descent}.1).
+\end{proof}
+
+\begin{lemma}[Direct Artin devissage]\label{lem:artin-devissage}
+Let $A$ be a local Artin $\C$-algebra and let $\Wcal_A$ be a local system of
+free $A$-modules on a punctured family.  Put
+$\Wcal_0=\Wcal_A\otimes_A\C$.  If
+\[
+ R^0\pi_*\Wcal_0=0,
+ \qquad
+ H^0(M,R^1\pi_*\Wcal_0)=0,
+\]
+then
+\[
+ R^0\pi_*\Wcal_A=0,
+ \qquad
+ H^0(M,R^1\pi_*\Wcal_A)=0.
+\]
+\end{lemma}
+
+\begin{proof}
+Induct on the length of $A$.  For a small quotient
+\[
+ 0\to I\to A\to A'\to0,
+ \qquad \mathfrak m_AI=0,
+\]
+freeness gives
+\[
+ 0\to I\otimes_\C\Wcal_0\to\Wcal_A\to\Wcal_{A'}\to0.
+\]
+The action on the kernel is residual.  The long exact sequence of higher
+direct images and induction first give $R^0\pi_*\Wcal_A=0$, and then an exact
+segment
+\[
+ 0\to I\otimes R^1\pi_*\Wcal_0
+ \to R^1\pi_*\Wcal_A
+ \to R^1\pi_*\Wcal_{A'}.
+\]
+Taking global sections proves the claim.
+\end{proof}
+
+The preceding argument applies only when the residual unitary fibre is
+irreducible.  This qualification is essential: \cite[Lemma 8.5.1]{LLCan}
+assumes only unitarity, and the deformation to a PVHS need not preserve
+irreducibility.  We now treat every residual rank-three type.
+
+\begin{lemma}[Exact trivial-coefficient gap]
+\label{lem:constant-gap}
+Let $g\ge2$.  Every nonzero sub-local system of
+$R^1\pi_*^\circ\C$ has rank at least $2g$.
+\end{lemma}
+
+\begin{proof}
+Apply \cite[Lemma 6.1.1]{LLCan} to an irreducible sub-local system $L$.
+For the trivial coefficient, $E=\Ocal_C$ and every nonzero
+$v\in H^0(\omega_C(D))$ acts injectively on $H^0(\omega_C)$, so the
+multiplication rank is $g$.  Lemma 6.1.1 bounds it above by $\rk L/2$.
+Therefore $\rk L\ge2g$.
+\end{proof}
+
+\begin{lemma}[Reducible rank-three adjoint multiplicities]
+\label{lem:reducible-multiplicity}
+Let $R$ be semisimple, reducible, non-scalar, and of rank three.  In an
+isotypic decomposition
+\[
+ \ad R\simeq\bigoplus_i U_i^{\oplus w_i},
+ \qquad u_i=\rk U_i,
+\]
+the possible multiplicities satisfy
+\[
+\begin{array}{c|c}
+\text{type of }R&\text{possible }(u_i,w_i)\\ \hline
+1+1+1,\text{ not scalar}&(1,w\le4),\\
+2+1&(1,w\le3),(2,w\le3),(3,1).
+\end{array}
+\]
+In particular, for $g\ge5$ one has $w_i<2g-2u_i$.
+\end{lemma}
+
+\begin{proof}
+For three characters, $\ad R$ is the two-dimensional diagonal part together
+with the six ratios $\chi_i\chi_j^{-1}$.  If two characters agree, the
+trivial coefficient has multiplicity four and each cross character has
+multiplicity two; if all three are distinct, every multiplicity is at most
+three.
+
+For $R=T\oplus\chi$, with $T$ irreducible of rank two,
+\[
+ \ad R\simeq\mathbf1\oplus\ad T
+ \oplus(T\otimes\chi^{-1})\oplus(T^\vee\otimes\chi).
+\]
+A rank-one constituent can occur at most three times inside $\ad T$; a
+rank-two constituent can occur in the two cross terms and at most once in
+$\ad T$; and a rank-three constituent occurs at most once.  At genus five
+the corresponding fixed-part lower bounds are $8,6,4$, respectively, and
+the inequalities improve with genus.
+\end{proof}
+
+\begin{proposition}[Rank-three formal propagation]
+\label{prop:formal-propagation}
+Assume $g\ge5$, and assume the finite-cover adjoint fixed-part vanishing
+proved above for every irreducible unitary MCG-finite rank-three fibre.  Let
+$\gamma$ be any free Artin deformation on a dominant etale versal base whose
+fibral restriction is the constant deformation of a unitary rank-three
+system $R$.  Then
+\[
+ H^0(M,R^1\pi_*^\circ\ad\gamma)=0.
+\]
+\end{proposition}
+
+\begin{proof}
+If $R$ is irreducible, Schur gives $R^0\pi_*^\circ\ad R=0$,
+Proposition~\ref{prop:finite-index-descent} gives residual fixed-part
+vanishing, and Lemma~\ref{lem:artin-devissage} propagates it through every
+small extension.
+
+Suppose $R$ is reducible and non-scalar.  After the dominant etale base
+change of \cite[Lemma 2.4.2]{LLCan}, write
+\[
+ \ad\gamma\simeq\bigoplus_i U_i\otimes\pi^*W_i,
+\]
+where $W_i$ is free of rank $w_i$.  The maximal-ideal filtration on $W_i$
+has graded pieces that are direct sums of copies of
+$W_i^0=W_i\otimes_A\C$.  A first nonzero invariant therefore produces a
+nonzero complex map
+\[
+ (W_i^0)^\vee\longrightarrow R^1\pi_*^\circ U_i
+\]
+whose image has rank at most $w_i$.  Lemma~\ref{lem:reducible-multiplicity}
+gives $w_i<2g-2u_i$, contradicting \cite[Theorem 1.7.1]{LLCan}.
+
+Finally suppose $R=\chi^{\oplus3}$.  Then $\ad R$ is eight copies of the
+trivial fibral coefficient.  In the decomposition of
+\cite[Lemma 2.4.2]{LLCan}, any rank-one unitary factor that is trivial on
+the fibres is pulled back from the base and is absorbed into the coefficient
+module.  Write the result as $\ad\gamma\simeq\pi^*W$, where $W$ is free of
+rank eight, and put $W^0=W\otimes_A\C$.  A first nonzero Artin graded piece
+then gives a nonzero map
+\[
+ (W^0)^\vee\longrightarrow R^1\pi_*^\circ\C
+\]
+whose image is a sub-local system of rank at most eight.  This contradicts
+Lemma~\ref{lem:constant-gap}, since $8<2g$ for $g\ge5$.
+\end{proof}
+
+Proposition~\ref{prop:formal-propagation} supplies exactly the hypothesis of
+\cite[Proposition 3.2.1]{LLCan} for every Artin truncation.  It does not
+assume that a finite-cover geometric contradiction persists on an arbitrary
+dominant etale base.
+
+\begin{proposition}[Unitary rank-three finite image]
+\label{prop:unitary-rank3}
+Let $g\ge5$.  Every unitary MCG-finite rank-three representation has finite
+image.
+\end{proposition}
+
+\begin{proof}
+If the representation is reducible, its irreducible summands have rank at
+most two and have finite image by the published strict theorem.  Assume it is
+irreducible.  If its projective image is finite, then its image is finite:
+the scalar kernel has finite image because the determinant has finite image,
+and the kernel of $z\mapsto z^3$ is finite.  We may therefore assume the
+projective image is infinite.  The specialized adjoint fixed-part vanishing and the Leray
+argument of \cite[Proposition 8.2.1]{LLCan} give strong cohomological
+rigidity.  The proofs of \cite[Lemmas 8.3.3 and 8.3.4]{LLCan} use the
+numerical rank hypothesis only through that rigidity; their remaining inputs
+are $g\ge3$, finite determinant, and quasi-unipotent boundary monodromy.
+Thus the representation is integral.
+
+Strong rigidity is preserved under every complex embedding of its number
+field of definition.  Lemma~\cite[Lemma 4.3.2]{LLCan} makes every conjugate
+total-space representation a complex PVHS.  The isomonodromy input used in
+\cite[Proposition 8.4.1]{LLCan} applies in the larger range
+$3<2\sqrt{g+1}$, automatic here, so every conjugate fibre representation is
+unitary.  In the current arXiv version of \cite{LLGeo} this input is
+Theorem~1.2.13; \cite{LLCan} cites an earlier numbering, Theorem~1.2.12.  The arithmetic unitary criterion at the end of that proposition
+then gives finite image.
+\end{proof}
+
+\begin{proposition}[Semisimple rank-three finite image]
+\label{prop:semisimple-rank3}
+Let $g\ge5$.  Every semisimple MCG-finite rank-three representation has
+finite image.
+\end{proposition}
+
+\begin{proof}
+The reducible case has rank-one and rank-two summands and is published.  For
+an irreducible system, use the finite-determinant linear globalization and
+the constant-determinant nonabelian-Hodge deformation of
+\cite[Theorem 4.3.1]{LLCan}.  Its PVHS endpoint is unitary because
+$3<2\sqrt{g+1}$ and is MCG-finite by \cite[Proposition 2.1.3]{LLCan}.
+Proposition~\ref{prop:unitary-rank3} makes the endpoint finite.
+Proposition~\ref{prop:formal-propagation} is precisely the replacement for
+\cite[Theorem 6.2.1]{LLCan} in \cite[Lemma 8.5.1]{LLCan}; hence the formal
+restriction is constant.  In the proof of \cite[Lemma 8.5.2]{LLCan}, the
+numerical rank hypothesis is used only through Lemma 8.5.1.  The remaining
+argument spreads formal constancy to a dense open and then uses closedness of
+the semisimple conjugacy orbit.  It therefore shows that the original fibre
+is conjugate to the unitary endpoint.
+\end{proof}
+
+\begin{proposition}[Rank-three characteristic extensions]
+\label{prop:rank3-socle}
+Let $g\ge5$.  An MCG-finite extension of two semisimple finite-image
+representations of total rank at most three has finite image, and hence
+splits, provided the subobject is characteristic.
+\end{proposition}
+
+\begin{proof}
+Let the factor ranks be $a,b$.  Then $a+b\le3$, so $ab\le2$.  Decompose
+\[
+ \rho_2^\vee\otimes\rho_1
+ =\bigoplus_i\sigma_i^{\oplus n_i},
+ \qquad d_i=\dim\sigma_i.
+\]
+Thus $n_id_i\le2$ and $d_i\le2$.  Pass to a finite Galois cover
+$\Sigma'_{g',n'}\to\Sigma_{g,n}$ on which both factors are trivial.  The
+one-step unipotent restriction factors through
+an equivariant homology map
+\[
+ H_1(\Sigma'_{g',n'};\C)\longrightarrow
+ \rho_2^\vee\otimes\rho_1.
+\]
+Because the subrepresentation is characteristic, the argument of
+\cite[Lemma 8.6.1]{LLCan} makes each projected isotypic quotient stable under
+a finite-index mapping-class subgroup.  Its dimension is at most
+$n_id_i\le2$.  Equivariant duality gives a stable subrepresentation of the
+same dimension.  By \cite[Theorem 7.2.1]{LLCan}, every nonzero such
+subrepresentation has dimension at least
+\[
+ 2g-2d_i\ge6.
+\]
+Hence every projected map vanishes and the restriction to the finite cover
+is trivial.  Thus the original image is finite; over $\C$ the extension
+then splits.
+\end{proof}
+
+The semisimplification of an arbitrary MCG-finite rank-three representation
+is MCG-finite and finite by Proposition~\ref{prop:semisimple-rank3}.
+Applying Proposition~\ref{prop:rank3-socle} inductively to the characteristic
+socle filtration, exactly as in \cite[Section 8.7]{LLCan}, proves
+\cref{thm:main}.
+
+\section*{Status of the argument}
+
+The theorem is new and unrefereed.  The endpoint and coparabolic convention,
+the genus-five branch reconstruction, the normalizer boundary-cocycle
+obstruction, and the formal-propagation interfaces have each been re-derived
+within the project.  The spectral-projector closure and periodic-chain
+determinant theorem are retained as separate reconstructions,
+not as load-bearing inputs.  The remaining external task is specialist
+verification of the assembled use of the Landesman--Litt Hodge, parabolic,
+and deformation machinery.  Exact scripts used during development verify
+only finite arithmetic and fibrewise linear algebra; they are not substitutes
+for those geometric inputs.
+
+\begin{thebibliography}{99}
+
+\bibitem{BPGN}
+L.~Brambila-Paz, I.~Grzegorczyk, and P.~E. Newstead,
+\emph{Geography of Brill--Noether loci for small slopes},
+J. Algebraic Geom. \textbf{6} (1997), 645--669.
+
+\bibitem{ChenSalter}
+L.~Chen and N.~Salter,
+\emph{The Birman exact sequence does not virtually split},
+Math. Res. Lett. \textbf{28} (2021), 383--413.
+
+\bibitem{EarleKra}
+C.~J. Earle and I.~Kra,
+\emph{On sections of some holomorphic families of closed Riemann surfaces},
+Acta Math. \textbf{137} (1976), 49--79.
+
+\bibitem{LLCan}
+A.~Landesman and D.~Litt,
+\emph{Canonical representations of surface groups},
+Ann. of Math. (2) \textbf{199} (2024), 823--897.
+
+\bibitem{LLGeo}
+A.~Landesman and D.~Litt,
+\emph{Geometric local systems on very general curves and isomonodromy},
+J. Amer. Math. Soc. \textbf{37} (2024), 683--729.
+
+\end{thebibliography}
+
+\end{document}
