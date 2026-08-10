@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -13,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TEX = ROOT / "manuscript/rank3_genus5_reader.tex"
-PDF = ROOT / "output/pdf/rank3_genus5_reader.pdf"
+PDF = ROOT / "output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf"
 LICENSE = ROOT / "LICENSE"
 CITATION = ROOT / "CITATION.cff"
 REVIEW_REQUEST = ROOT / "REVIEW_REQUEST.md"
@@ -180,14 +181,7 @@ def verify_claim_boundaries() -> None:
         "README claim boundary is missing",
     )
     require(
-        "$" not in readme
-        and "```math" not in readme
-        and r"\sqrt" not in readme
-        and r"\ge" not in readme,
-        "README contains raw math that does not render in GitHub mobile",
-    )
-    require(
-        "Rank-three finite image for $g=3,4$ | `OPEN`" in status,
+        "Rank-three finite image for `g = 3, 4` | `OPEN`" in status,
         "STATUS does not keep genus three and four open",
     )
     require(
@@ -216,14 +210,26 @@ def verify_claim_boundaries() -> None:
         "q=10 finite verifier is not wired into the release",
     )
 
-    forbidden_markdown = (r"\(", r"\)", r"\operatorname")
-    for markdown in sorted(ROOT.glob("*.md")):
+    forbidden_markdown = ("$", "```math", r"\(", r"\)", r"\[", r"\]")
+    for markdown in sorted(ROOT.rglob("*.md")):
+        if any(part.startswith(".") or part == "build" for part in markdown.parts):
+            continue
         text = markdown.read_text(encoding="utf-8")
         for fragment in forbidden_markdown:
             require(
                 fragment not in text,
-                f"unsupported GitHub math syntax {fragment!r}: {markdown.name}",
+                f"unsupported GitHub math syntax {fragment!r}: {markdown.relative_to(ROOT)}",
             )
+        latex_command = re.search(r"\\[A-Za-z]+", text)
+        require(
+            latex_command is None,
+            (
+                "unsupported GitHub LaTeX command "
+                f"{latex_command.group(0)!r}: {markdown.relative_to(ROOT)}"
+                if latex_command
+                else ""
+            ),
+        )
 
 
 def verify_pdf(pdfinfo: str, pdffonts: str, gs: str) -> None:

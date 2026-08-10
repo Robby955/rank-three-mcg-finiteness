@@ -7,15 +7,13 @@ not an established theorem. No claim is made in genus three or four.
 
 ## Claim under review
 
-For $g\geq5$ and $n\geq0$, the manuscript argues that a representation
+For `g ≥ 5` and `n ≥ 0`, the manuscript argues that a representation
 
-```math
-\rho:\pi_1(\Sigma_{g,n})\longrightarrow\mathrm{GL}_3(\mathbb C)
-```
+> `ρ: π₁(Σ_{g,n}) → GL₃(ℂ)`
 
 with finite mapping-class-group orbit up to conjugacy has finite image.
 Landesman--Litt prove the corresponding statement when
-$r<\sqrt{g+1}$, which covers rank three directly for $g\geq9$.
+`r < √(g + 1)`, which covers rank three directly for `g ≥ 9`.
 
 ## Highest-value checks
 
@@ -23,15 +21,15 @@ A focused review of the following interfaces would be especially useful:
 
 1. **Normalizer boundary-cocycle obstruction:** Section 6. Does the Cech
    identity for global quotient-normalizer sections force
-   $[x,y]=\lambda(x)y-\lambda(y)x$ when the full extension boundary is
-   injective? Does the displayed $\mathfrak{sl}_3$ normalizer calculation
+   `[x, y] = λ(x)y − λ(y)x` when the full extension boundary is
+   injective? Does the displayed `sl₃` normalizer calculation
    then exclude every generically rank-three space of global sections? In
-   both genus-five applications, does $H^0(C,E)=0$ give exactly the required
-   injectivity of $H^0(C,E/M)\to H^1(C,M)$?
+   both genus-five applications, does `H⁰(C, E) = 0` give exactly the required
+   injectivity of `H⁰(C, E/M) → H¹(C, M)`?
 2. **Fixed part, boundary descent, and full finite cover:** Section 4 and the
    fixed-part Hodge-section subsection of Section 10. Does the rank-one fixed
    part give a global rank-zero Hodge line on
-   every connected finite-etale cover? In the dense $S=0$ branch, does the
+   every connected finite-etale cover? In the dense `S = 0` branch, does the
    point-pushing calculation kill the boundary summands and descend that line
    to a finite cover of the unpointed moduli space before Chen--Salter is used?
    Does generic degree-one effectivity then produce a section without
@@ -41,7 +39,7 @@ A focused review of the following interfaces would be especially useful:
    pass correctly to the dominant-etale Artin base for irreducible, reducible
    nonscalar, and scalar residual systems, and do the cited downstream
    Landesman--Litt arguments use no additional strict-rank hypothesis?
-4. **Optional separate reconstructions:** In the non-load-bearing $q=9$ and
+4. **Optional separate reconstructions:** In the non-load-bearing `q = 9` and
    canonical-Deligne sections, do the Pfaffian/spectral-projector and
    periodic-chain no-pole arguments separately recover their former
    endpoint contradictions?
@@ -63,7 +61,7 @@ make verify-math
 ```
 
 This replays the displayed genus-six and genus-five HN arithmetic,
-reconstructs the $q=10$ local jet matrices, and checks the $q=9$ fibrewise
+reconstructs the `q = 10` local jet matrices, and checks the `q = 9` fibrewise
 linear algebra. Passing scripts do not certify Hodge theory, parabolic
 geometry, saturation, moduli descent, or mapping-class-group propagation.
 

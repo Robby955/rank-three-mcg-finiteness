@@ -17,9 +17,9 @@ Status vocabulary in this repository:
 
 | Statement | Status | Boundary |
 |---|---|---|
-| Finite image for MCG-finite rank $r$ when $r<\sqrt{g+1}$ | `PUBLISHED` | Landesman--Litt, Theorem 1.2.1 |
-| Rank-three finite image for $g\ge5$, all $n\ge0$ | `CANDIDATE` | Complete unrefereed manuscript |
-| Rank-three finite image for $g=3,4$ | `OPEN` | No claim and no counterexample |
+| Finite image for MCG-finite rank `r` when `r < √(g + 1)` | `PUBLISHED` | Landesman--Litt, Theorem 1.2.1 |
+| Rank-three finite image for `g ≥ 5`, all `n ≥ 0` | `CANDIDATE` | Complete unrefereed manuscript |
+| Rank-three finite image for `g = 3, 4` | `OPEN` | No claim and no counterexample |
 
 ## Why genus five remains the claimed endpoint
 
@@ -27,13 +27,11 @@ The normalizer boundary-cocycle obstruction eliminates any branch in which
 the universal-extension argument produces a generically injective trivial
 subbundle
 
-```math
-\mathcal{O}_C^3\subseteq\ker\beta
-```
+> `𝒪_C³ ⊆ ker β`
 
 inside the quotient normalizer, provided the full boundary
-$H^0(C,E/M)\to H^1(C,M)$ is injective. This directly closes both the
-zero-weight $q=9$ branch and the final high-Harder--Narasimhan branch in
+`H⁰(C, E/M) → H¹(C, M)` is injective. This directly closes both the
+zero-weight `q = 9` branch and the final high-Harder--Narasimhan branch in
 genus five. The genus-four analysis still lacks the required bracket
 compression across its surviving branches; genus three loses an additional
 rank. These are method walls, not evidence that the theorem is false in those
@@ -50,10 +48,10 @@ The current manuscript explicitly addresses the following proof interfaces:
 - the ordinary-degree and induced-weight bookkeeping at each punctured
   stability contradiction;
 - the normalizer boundary-cocycle identity and its direct application to all
-  $q=9$ cases and the final high-HN branch;
-- the residue and point-pushing descent that moves the dense $S=0$ fixed part
+  `q = 9` cases and the final high-HN branch;
+- the residue and point-pushing descent that moves the dense `S = 0` fixed part
   from a pointed family to a finite cover of the unpointed moduli space;
-- the full $q=9$, $h=2$ Pfaffian, determinant, and spectral-projector
+- the full `q = 9`, `h = 2` Pfaffian, determinant, and spectral-projector
   reconstruction, retained as an independent second argument;
 - the complex rank-one fixed-part route through the cited
   Landesman--Litt interfaces;
@@ -65,8 +63,8 @@ The current manuscript explicitly addresses the following proof interfaces:
 
 The boundary-cocycle, fixed-part/full-cover, and Artin-propagation interfaces,
 together with the independent canonical-Deligne reconstruction, are recorded
-in [LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md). The finite HN, $q=10$ jet,
-and $q=9$ calculations are replayable with `make verify-math`.
+in [LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md). The finite HN, `q = 10` jet,
+and `q = 9` calculations are replayable with `make verify-math`.
 
 These interfaces are stated in full in the current source. Independent
 verification of the assembled argument remains outstanding, so the theorem

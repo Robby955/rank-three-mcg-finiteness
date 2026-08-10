@@ -52,7 +52,6 @@ genera 8, 7, 6, and 5.
 | Document | Purpose |
 |---|---|
 | [Manuscript PDF](https://github.com/Robby955/rank-three-mcg-finiteness/releases/download/v0.1.4-candidate/rank3_genus5_reader-v0.1.4-candidate.pdf) | Version-specific current review copy |
-| [Repository PDF](output/pdf/rank3_genus5_reader.pdf) | Same PDF stored with the source tree |
 | [TeX source](manuscript/rank3_genus5_reader.tex) | Canonical source corresponding to the PDF |
 | [Proof map](PROOF_MAP.md) | Suggested specialist review order |
 | [Pipeline audit](PIPELINE_AUDIT.md) | Exact substitutions in Landesman–Litt Sections 8.2–8.7 |
@@ -117,11 +116,8 @@ in [`verification/math`](verification/math).
 
 The latest review release is
 [`v0.1.4-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.4-candidate).
-The preceding
-[`v0.1.3-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.3-candidate)
-and
-[`v0.1.2-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.2-candidate)
-remain archived and unchanged.
+Earlier versioned review copies remain archived and unchanged on the
+[Releases page](https://github.com/Robby955/rank-three-mcg-finiteness/releases).
 Citation metadata is provided in [CITATION.cff](CITATION.cff).
 
 The manuscript and documentation are licensed under CC BY 4.0. Verification
