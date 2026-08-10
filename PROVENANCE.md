@@ -37,12 +37,19 @@ explicit AI-assistance disclosure. The finite checker now reconstructs the
 displayed $q=10$ matrices from the parahoric bracket. No theorem statement or
 mathematical hypothesis changes.
 
+The `0.1.4-candidate` review release retains `0.1.3-candidate` unchanged and
+adds a compact load-bearing dependency roadmap, an explicit general-fibre
+testing remark with local cross-references, and the parabolic-stability degree
+and weight calculations at the formerly compressed uses. It also makes the
+README notation robust in the GitHub mobile application. No theorem statement
+or mathematical hypothesis changes.
+
 ## Canonical artifacts
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `manuscript/rank3_genus5_reader.tex` | -- | `6066f2119a86502e29b00222fff7851c670ecf9e5fb892b36df6776d4aef79bf` |
-| `output/pdf/rank3_genus5_reader.pdf` | 34 | `b40da451110b922dc5db8e4330e61797481b9d5765d68e22b5839501108978dd` |
+| `manuscript/rank3_genus5_reader.tex` | -- | `30fa0464ab1ea32b6dfe99ed81f98347d436ecc5825c832feb916f67f9087942` |
+| `output/pdf/rank3_genus5_reader.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
 
 The same values are recorded in `CHECKSUMS.sha256` and enforced by
 `verification/verify_release.py`.

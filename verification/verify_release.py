@@ -17,10 +17,10 @@ PDF = ROOT / "output/pdf/rank3_genus5_reader.pdf"
 LICENSE = ROOT / "LICENSE"
 CITATION = ROOT / "CITATION.cff"
 REVIEW_REQUEST = ROOT / "REVIEW_REQUEST.md"
-EXPECTED_PAGES = 34
+EXPECTED_PAGES = 35
 EXPECTED_HASHES = {
-    TEX: "6066f2119a86502e29b00222fff7851c670ecf9e5fb892b36df6776d4aef79bf",
-    PDF: "b40da451110b922dc5db8e4330e61797481b9d5765d68e22b5839501108978dd",
+    TEX: "30fa0464ab1ea32b6dfe99ed81f98347d436ecc5825c832feb916f67f9087942",
+    PDF: "9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25",
 }
 
 
@@ -79,7 +79,7 @@ def verify_claim_boundaries() -> None:
     math_readme = (ROOT / "verification/math/README.md").read_text(encoding="utf-8")
     require(r"\author{Robert Sneiderman}" in source, "manuscript author is missing")
     require(
-        r"Version 0.1.3-candidate\\Expanded review copy\\10 August 2026" in source,
+        r"Version 0.1.4-candidate\\10 August 2026" in source,
         "manuscript candidate version is missing",
     )
 
@@ -136,6 +136,13 @@ def verify_claim_boundaries() -> None:
         "published propagation dependency map is missing",
     )
     require(
+        r"\paragraph{Load-bearing dependency roadmap.}" in source
+        and r"\label{rem:general-fibre}" in source
+        and r"\label{rem:stability-bookkeeping}" in source
+        and r"\degp(P)=(y-8)+(S-\beta)<0" in source,
+        "v0.1.4 referee-proofing blocks are missing",
+    )
+    require(
         r"\section*{AI-assistance disclosure}" in source
         and "OpenAI GPT-5.6 Pro and GPT-5.6 Sol" in source
         and "These tools were not treated as mathematical authorities" in source,
@@ -167,9 +174,17 @@ def verify_claim_boundaries() -> None:
         and "https://arxiv.org/abs/2205.15352v4" in readme
         and "https://doi.org/10.1090/jams/1038" in readme
         and "https://arxiv.org/abs/2202.00039v3" in readme
-        and "current expanded review release" in readme
-        and "remains archived and unchanged" in readme,
+        and "current review release" in readme
+        and "remain archived and unchanged" in readme
+        and "rank3_genus5_reader-v0.1.4-candidate.pdf" in readme,
         "README claim boundary is missing",
+    )
+    require(
+        "$" not in readme
+        and "```math" not in readme
+        and r"\sqrt" not in readme
+        and r"\ge" not in readme,
+        "README contains raw math that does not render in GitHub mobile",
     )
     require(
         "Rank-three finite image for $g=3,4$ | `OPEN`" in status,
@@ -182,7 +197,7 @@ def verify_claim_boundaries() -> None:
         "dual-license terms are incomplete",
     )
     require(
-        'version: "0.1.3-candidate"' in citation
+        'version: "0.1.4-candidate"' in citation
         and "family-names: Sneiderman" in citation
         and "given-names: Robert" in citation
         and 'date-released: "2026-08-10"' in citation
@@ -323,7 +338,7 @@ def main() -> None:
     parser.add_argument(
         "--portable",
         action="store_true",
-        help="skip cross-TeX-version text equality; requires a clean 34-page build",
+        help="skip cross-TeX-version text equality; requires a clean release build",
     )
     args = parser.parse_args()
     require(

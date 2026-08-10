@@ -5,9 +5,9 @@ This map is an entry point for a specialist reader. Section names refer to the
 
 | Manuscript component | Role | Focused review question |
 |---|---|---|
-| Section 2, published inputs and conventions | Fixes Landesman--Litt, Brill--Noether, universal-curve, coparabolic, and canonical-Deligne inputs | Are the published hypotheses and conventions imported in their exact form? |
+| Section 2, published inputs and conventions | Fixes Landesman--Litt, Brill--Noether, universal-curve, coparabolic, canonical-Deligne, and parabolic-stability bookkeeping | Are the published hypotheses, ordinary degrees, and induced weights imported in their exact form? |
 | Section 3, projective closure alternatives | Reduces irreducible rank three to actual adjoint constituents | Does the projective classification cover every closure type used later? |
-| Section 4, fixed-part interface | Converts an invariant rank-one subsystem into multiplication rank zero | Is the complex rank-one case split through Proposition 4.2.2 and Lemma 6.1.1 valid on the chosen cover? |
+| Section 4, fixed-part interface | Converts an invariant rank-one subsystem into multiplication rank zero and explains why a general test fibre may be chosen | Is the complex rank-one case split valid on the chosen cover, and do the required open moduli conditions meet the branch locus? |
 | Sections 5--6, endpoint and first super-endpoint | Strengthens the stable coefficient estimate, classifies the next equality case, and proves the normalizer boundary-cocycle obstruction | Are stability, parabolic degree, and equality cases used with the correct strictness, and does the Cech identity exclude a generically rank-three normalizer subspace? |
 | Sections 7--9, genera seven, six, and genus-five HN tree | Reduces the remaining adjoint coefficient to finitely many branches | Are all numerical branches exhaustive under the stated HN inequalities? |
 | Sections 4 and 10.2, zero-weight $(S,q)=(0,9)$ branch | Descends the fixed part past the pointed boundary, then uses a rank-at-least-three trivial quotient-normalizer subbundle | Does point-pushing kill every residue summand, and do stability and the full extension boundary give the exact hypotheses of the cocycle obstruction? |

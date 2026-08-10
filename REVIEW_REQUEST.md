@@ -35,7 +35,8 @@ A focused review of the following interfaces would be especially useful:
    point-pushing calculation kill the boundary summands and descend that line
    to a finite cover of the unpointed moduli space before Chen--Salter is used?
    Does generic degree-one effectivity then produce a section without
-   shrinking the base?
+   shrinking the base? Does the general-fibre remark justify every later
+   nonhyperelliptic, non-Weierstrass, and pointed nonspecial-divisor test?
 3. **Formal propagation:** Section 14. Does finite-cover adjoint vanishing
    pass correctly to the dominant-etale Artin base for irreducible, reducible
    nonscalar, and scalar residual systems, and do the cited downstream
@@ -44,6 +45,9 @@ A focused review of the following interfaces would be especially useful:
    canonical-Deligne sections, do the Pfaffian/spectral-projector and
    periodic-chain no-pole arguments separately recover their former
    endpoint contradictions?
+
+The finite branch review should also use the explicit parabolic-stability
+bookkeeping in Section 2 when checking the genus-six and genus-five HN tables.
 
 The source-level internal reconstruction is recorded in
 [LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md), and the downstream source map

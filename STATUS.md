@@ -43,6 +43,12 @@ genera.
 
 The current manuscript explicitly addresses the following proof interfaces:
 
+- a compact load-bearing dependency roadmap that separates the main proof
+  from the two independent reconstructions;
+- the legitimacy of testing generic branches on the required open loci in
+  moduli;
+- the ordinary-degree and induced-weight bookkeeping at each punctured
+  stability contradiction;
 - the normalizer boundary-cocycle identity and its direct application to all
   $q=9$ cases and the final high-HN branch;
 - the residue and point-pushing descent that moves the dense $S=0$ fixed part
