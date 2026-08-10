@@ -59,8 +59,8 @@ The current manuscript explicitly addresses the following proof interfaces:
 
 The boundary-cocycle, fixed-part/full-cover, and Artin-propagation interfaces,
 together with the independent canonical-Deligne reconstruction, are recorded
-in [LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md). The finite HN and $q=9$
-calculations are independently replayable with `make verify-math`.
+in [LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md). The finite HN, $q=10$ jet,
+and $q=9$ calculations are replayable with `make verify-math`.
 
 These interfaces are stated in full in the current source. Independent
 verification of the assembled argument remains outstanding, so the theorem

@@ -58,9 +58,10 @@ Run:
 make verify-math
 ```
 
-This replays the genus-five HN arithmetic and the $q=9$ fibrewise linear
-algebra. Passing scripts do not certify Hodge theory, parabolic geometry,
-saturation, moduli descent, or mapping-class-group propagation.
+This replays the displayed genus-six and genus-five HN arithmetic,
+reconstructs the $q=10$ local jet matrices, and checks the $q=9$ fibrewise
+linear algebra. Passing scripts do not certify Hodge theory, parabolic
+geometry, saturation, moduli descent, or mapping-class-group propagation.
 
 ## Most useful response
 

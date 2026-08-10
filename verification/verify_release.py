@@ -17,10 +17,10 @@ PDF = ROOT / "output/pdf/rank3_genus5_reader.pdf"
 LICENSE = ROOT / "LICENSE"
 CITATION = ROOT / "CITATION.cff"
 REVIEW_REQUEST = ROOT / "REVIEW_REQUEST.md"
-EXPECTED_PAGES = 32
+EXPECTED_PAGES = 34
 EXPECTED_HASHES = {
-    TEX: "8874f0236f860fca3959e33d47d9616758b76105b5e1f5eddfda4aa021c910e1",
-    PDF: "ae00d07c240d3f2211bbba63817dfd6615e97b55aefb8f00988d663d4c9f569f",
+    TEX: "6066f2119a86502e29b00222fff7851c670ecf9e5fb892b36df6776d4aef79bf",
+    PDF: "b40da451110b922dc5db8e4330e61797481b9d5765d68e22b5839501108978dd",
 }
 
 
@@ -74,9 +74,12 @@ def verify_claim_boundaries() -> None:
     license_text = LICENSE.read_text(encoding="utf-8")
     citation = CITATION.read_text(encoding="utf-8")
     review_request = REVIEW_REQUEST.read_text(encoding="utf-8")
+    development = (ROOT / "DEVELOPMENT.md").read_text(encoding="utf-8")
+    makefile = (ROOT / "Makefile").read_text(encoding="utf-8")
+    math_readme = (ROOT / "verification/math/README.md").read_text(encoding="utf-8")
     require(r"\author{Robert Sneiderman}" in source, "manuscript author is missing")
     require(
-        r"Version 0.1.2-candidate\\10 August 2026" in source,
+        r"Version 0.1.3-candidate\\Expanded review copy\\10 August 2026" in source,
         "manuscript candidate version is missing",
     )
 
@@ -113,6 +116,38 @@ def verify_claim_boundaries() -> None:
         "normalizer boundary-cocycle applications are missing",
     )
     require(
+        r"y\in\{9,10\}" in source
+        and r"q+y\ge20" in source
+        and r"q+y\ge16" in source
+        and r"\text{allowed }q" in source,
+        "expanded genus-six/five HN tables are missing",
+    )
+    require(
+        r"T_{\mathrm{pure}}" in source
+        and r"T_{\mathrm{mixed}}" in source
+        and "Both have determinant one" in source,
+        "expanded q=10 jet matrices are missing",
+    )
+    require(
+        r"\paragraph{Published propagation map.}" in source
+        and r"\cite[Lemma 8.5.1]{LLCan}" in source
+        and r"\cite[Lemma 8.5.2]{LLCan}" in source
+        and r"\cite[Section 8.7]{LLCan}" in source,
+        "published propagation dependency map is missing",
+    )
+    require(
+        r"\section*{AI-assistance disclosure}" in source
+        and "OpenAI GPT-5.6 Pro and GPT-5.6 Sol" in source
+        and "These tools were not treated as mathematical authorities" in source,
+        "AI-assistance disclosure is missing",
+    )
+    require(
+        "OpenAI GPT-5.6 Pro and GPT-5.6 Sol" in development
+        and "Robert Sneiderman directed" in development
+        and "These tools were not treated as mathematical authorities" in development,
+        "development disclosure is inconsistent",
+    )
+    require(
         r"\cite[Proposition 4.2.2]{LLCan}" in source
         and "real rank-one system" in source
         and "two conjugate\nHodge types" in source,
@@ -131,7 +166,9 @@ def verify_claim_boundaries() -> None:
         and "https://annals.math.princeton.edu/2024/199-2/p06" in readme
         and "https://arxiv.org/abs/2205.15352v4" in readme
         and "https://doi.org/10.1090/jams/1038" in readme
-        and "https://arxiv.org/abs/2202.00039v3" in readme,
+        and "https://arxiv.org/abs/2202.00039v3" in readme
+        and "current expanded review release" in readme
+        and "remains archived and unchanged" in readme,
         "README claim boundary is missing",
     )
     require(
@@ -145,7 +182,7 @@ def verify_claim_boundaries() -> None:
         "dual-license terms are incomplete",
     )
     require(
-        'version: "0.1.2-candidate"' in citation
+        'version: "0.1.3-candidate"' in citation
         and "family-names: Sneiderman" in citation
         and "given-names: Robert" in citation
         and 'date-released: "2026-08-10"' in citation
@@ -156,6 +193,12 @@ def verify_claim_boundaries() -> None:
         "`CANDIDATE` manuscript proposing a new proof" in review_request
         and "No claim is made in genus three or four" in review_request,
         "focused review request loses the claim boundary",
+    )
+    require(
+        (ROOT / "verification/math/verify_q10_jet.py").is_file()
+        and "verification/math/verify_q10_jet.py" in makefile
+        and "`verify_q10_jet.py`" in math_readme,
+        "q=10 finite verifier is not wired into the release",
     )
 
     forbidden_markdown = (r"\(", r"\)", r"\operatorname")
@@ -280,7 +323,7 @@ def main() -> None:
     parser.add_argument(
         "--portable",
         action="store_true",
-        help="skip cross-TeX-version text equality; requires a clean 32-page build",
+        help="skip cross-TeX-version text equality; requires a clean 34-page build",
     )
     args = parser.parse_args()
     require(

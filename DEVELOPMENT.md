@@ -3,7 +3,7 @@
 Robert Sneiderman directed the development, reconstruction, and packaging of this
 research manuscript.
 
-AI tools were used for:
+OpenAI GPT-5.6 Pro and GPT-5.6 Sol were used for:
 
 - drafting and reorganizing mathematical prose;
 - symbolic and finite-dimensional exploration;
@@ -12,10 +12,10 @@ AI tools were used for:
 - checking successive manuscript versions for missing cases and mismatched
   hypotheses.
 
-AI tools are not authors, referees, or sources of mathematical authority. The
-verification scripts check finite arithmetic, artifact identity, and document
-quality; they do not prove the imported Hodge theory, parabolic geometry,
-moduli arguments, or mapping-class-group propagation.
+These tools were not treated as mathematical authorities. The verification
+scripts check finite arithmetic, artifact identity, and document quality;
+they do not prove the imported Hodge theory, parabolic geometry, moduli
+arguments, or mapping-class-group propagation.
 
 Accordingly, this repository labels the result `CANDIDATE` pending independent
 specialist review.

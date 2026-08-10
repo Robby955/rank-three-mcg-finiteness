@@ -16,6 +16,7 @@ verify:
 
 verify-math:
 	$(PYTHON) verification/math/verify_hn_branches.py
+	$(PYTHON) verification/math/verify_q10_jet.py
 	$(PYTHON) verification/math/verify_q9.py
 
 verify-release:

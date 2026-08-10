@@ -64,7 +64,7 @@
 for Rank-Three Surface-Group Representations\\
 in Genus at Least Five}
 \author{Robert Sneiderman}
-\date{Version 0.1.2-candidate\\10 August 2026}
+\date{Version 0.1.3-candidate\\Expanded review copy\\10 August 2026}
 
 \begin{document}
 \maketitle
@@ -1045,8 +1045,15 @@ calculation is needed.
 
 \subsection{Genus six}
 
-Here $F$ has rank eight and $2g-2=10$.  Let $N\subset A$ be the HN part of
-slope $>10$, and write $t=\rk N$.  The quotient-rank estimate gives
+Here $F$ has rank eight, $2g-2=10$, and $\deg F=80+S$.  A rank-one fixed
+part gives a saturated line $M\subset E$ and a rank-seven evaluation kernel
+$A\subset F$ with
+\[
+ F/A\simeq M^\vee\otimes\omega_C,
+ \qquad q:=\deg(F/A)=10-\deg M\ge11.
+\]
+Let $N\subset A$ be the HN part of slope $>10$, and write
+$t=\rk N$, $x=\deg N$, and $y=x-S$.  The quotient-rank estimate gives
 $t\le2$.
 
 If $t=2$, then $\rk(F/N)=g=6$, so equality holds throughout the
@@ -1055,13 +1062,51 @@ Landesman--Litt chain.  Consequently
  \mu(F/N)=\mu(A/N)=10,
  \qquad \deg(F/A)=10,
 \]
-and hence $\deg M=0$, contrary to parabolic stability.  If $t=1$, the two
-integral degree offsets left by the quotient-slope and Clifford inequalities
-are the equality offset, which again gives $\deg M=0$, and one strict offset.
-In the strict offset the dual low-slope quotient pulls back to a proper
-ordinary degree-zero subbundle of $E$ or, at a puncture, to a quotient whose
-induced weight violates strict parabolic stability.  Thus no high-HN branch
-survives.
+and hence $\deg M=0$, contrary to parabolic stability.
+
+Suppose $t=1$ and put $B=A/N$.  The two quotient-slope bounds give
+\[
+ 10\le\mu(F/N)=\frac{80-y}{7}
+ \le\frac{12\cdot7-2}{8}=\frac{41}{4},
+\]
+so $y\in\{9,10\}$.  Since
+\[
+ \rk B=6,
+ \qquad \deg B=80-q-y,
+\]
+the HN upper degree $\deg B\le60$ and the Clifford inequality, together with
+$q\ge11$ above, give
+\[
+ q+y\ge20,
+ \qquad q\le y+2,
+ \qquad q\ge11.
+\]
+Let $G=B^\vee\otimes\omega_C\subset E/M$ and let $P\subset E$ be its
+inverse image.  The two offsets and all allowed values of $q$ are therefore
+\[
+\begin{array}{c|c|c|c}
+y& q&\deg P&\deg(E/P)\\ \hline
+9&11&-1&1-S\\
+10&11,12&0&-S.
+\end{array}
+\]
+The row $y=10$ contradicts parabolic stability because the proper subbundle
+$P$ has ordinary degree zero and nonnegative induced parabolic weights.
+For $y=9$, the inequality $x=S+9>10$ gives $S\ge2$.  Let $\beta$ be the
+total parabolic weight of the quotient line $E/P$, and let $m$ be the number
+of nonscalar punctures.  Stability of $P$ would require
+\[
+ -1+(S-\beta)<0,
+ \qquad\text{hence}\qquad \beta>S-1.
+\]
+At a scalar puncture the adjoint parabolic structure is trivial, so its
+quotient-line weight is zero.  At each nonscalar puncture that weight is
+strictly less than one, while every nonscalar adjoint puncture contributes
+total weight $2$ or $3$.  Consequently
+\[
+ \beta<m\le\frac S2\le S-1,
+\]
+a contradiction.  Thus no high-HN branch survives.
 
 With $N=0$, the exact no-high list is
 \[
@@ -1167,11 +1212,47 @@ forces
  \quad(A/N)^\vee\otimes\omega_C\simeq\Ocal_C^5.
 \label{eq:highres}\tag{7.4}
 \]
-For $t=1$, the HN upper degree and Clifford inequalities give
-$q+y\ge16$ and $q\le y+4$, where $y=x-S$.  The case $y=5$ is numerically
-impossible; $y=8$ gives a degree-zero subbundle; and $y=6,7$ violate the
-parabolic quotient-weight inequality.  Thus \eqref{eq:highres} is the only
-high-HN family.
+For $t=1$, put $y=x-S$, $B=A/N$, and
+$G=B^\vee\otimes\omega_C\subset E/M$, and let $P\subset E$ be the inverse
+image of $G$.  The HN upper degree and Clifford inequalities give
+\[
+ q+y\ge16,
+ \qquad q\le y+4,
+ \qquad q\ge9.
+\]
+Moreover
+\[
+ \deg P=y-8,
+ \qquad \deg(E/P)=8-y-S.
+\]
+Thus the complete integer table is
+\[
+\begin{array}{c|c|c|c}
+y&\text{allowed }q&\deg P&\text{extra consequence of }x=S+y>8\\ \hline
+5&\varnothing&-3&--\\
+6&10&-2&S\ge3\\
+7&9,10,11&-1&S\ge2\\
+8&9,10,11,12&0&--.
+\end{array}
+\]
+The row $y=8$ contradicts parabolic stability because $P$ has degree zero
+and nonnegative induced weights.  For $y=6,7$, let $\beta$ be the total
+weight of the quotient line $E/P$ and let $m$ be the number of nonscalar
+punctures.  Stability of $P$ requires
+\[
+ \beta>S-2\quad(y=6),
+ \qquad
+ \beta>S-1\quad(y=7).
+\]
+At a scalar puncture the adjoint parabolic structure is trivial, so its
+quotient-line weight is zero.  Every nonscalar quotient-line weight is
+strictly less than one and every nonscalar adjoint puncture contributes total
+weight $2$ or $3$, so $\beta<m\le S/2$.  This immediately contradicts the
+$y=7$ inequality.  For
+$y=6$ it also contradicts stability when $S\ge4$.  If $S=3$, there is
+exactly one full-flag puncture, so $\beta<1$, whereas stability requires
+$\beta>1$.  Hence every $t=1$ row is impossible, and
+\eqref{eq:highres} is the only high-HN family.
 
 If $N=0$, the intermediate inequality gives
 \[
@@ -1759,19 +1840,92 @@ equation is $B_0v_0=0$ and $B_1v_0+B_0v_1=0$; projection to
 $\coker B_0$ removes the moving-frame term $B_0v_1$.  Hence the induced map
 $T:\ker B_0\to\coker B_0$ must vanish on a five-dimensional subspace.
 
-In the $2+1$ contracted fibre, the only quotient-bracket ranks at most two are
-a pure radical line and an isotropic mixed radical line.  For an arbitrary
-first-order correction, the induced map
+We now display the finite local calculation.  Put $R=\C[[z]]$ and use the
+canonical $2+1$ lattice frame
 \[
- T:\ker B_0\longrightarrow\coker B_0
+ (e_1,\ldots,e_8)
+ =(H_1,H_2,E_{12},E_{21},zE_{13},zE_{23},E_{31},E_{32}),
 \]
-has rank at least two in the pure case and at least three in the mixed case.
-Indeed, in suitable bases the respective matrices contain constant minors
+where $H_1=\operatorname{diag}(1,-1,0)$ and
+$H_2=\operatorname{diag}(0,1,-1)$.  The special fibre is
+$\mathfrak{gl}_2\ltimes(V\oplus V^\vee)$.  A line with nonzero Levi part
+has quotient-bracket rank at least three.  For a radical vector $(u,v)$,
+the ranks at most two are exactly the pure case, in which one of $u,v$
+vanishes, and the mixed isotropic case $u,v\ne0$, $v(u)=0$.
+
+In the pure normal form take
 \[
- \det T_{\{1,3\},\{5,6\}}=1,
+ m=e_5+z\sum_{i=1}^8a_i e_i+O(z^2).
+\]
+On $G_0=\mathfrak p_R/\langle e_5\rangle$, the constant bracket has
+$B_0(e_4)=-e_6$ and vanishes on the other quotient basis vectors.  With
+ordered bases
+\[
+ \ker B_0=(e_1,e_2,e_3,e_6,e_7,e_8),
  \qquad
- \det T_{\{1,2,3\},\{3,4,5\}}=1.
+ \coker B_0=(e_1,e_2,e_3,e_4,e_7,e_8),
 \]
+the induced first-order map is
+\begingroup
+\scriptsize
+\[
+T_{\mathrm{pure}}=
+\begin{pmatrix}
+a_1&a_1&-a_4&0&1&0\\
+a_2&a_2&0&0&1&0\\
+-a_3&2a_3&2a_1-a_2&0&0&1\\
+3a_4&0&0&0&0&0\\
+2a_7&2a_7&0&0&-a_1-a_2&-a_4\\
+0&3a_8&a_7&0&-a_3&a_1-2a_2
+\end{pmatrix}.
+\]
+\endgroup
+The $R$-linear Lie-lattice involution
+\[
+ X\longmapsto-DX^{\mathsf t}D^{-1},
+ \qquad D=\operatorname{diag}(z,z,1),
+\]
+exchanges $e_5$ with $-e_7$ and $e_6$ with $-e_8$, so this calculation
+covers both pure radical orbits, including arbitrary first-order
+corrections.
+
+In the mixed isotropic normal form take
+\[
+ m=e_5+e_8+z\sum_{i=1}^8a_i e_i+O(z^2).
+\]
+Here $B_0(e_2)=3e_8$ and $B_0(e_4)=-e_6+e_7$.  Use
+\[
+ \ker B_0=(e_1,e_3,e_6,e_7,e_8),
+ \qquad
+ \coker B_0=(e_1,e_2,e_3,e_4,e_6),
+\]
+where $e_7=e_6$ and $e_8=0$ in the cokernel.  Then
+\begingroup
+\scriptsize
+\[
+T_{\mathrm{mixed}}=
+\begin{pmatrix}
+a_1&-a_4&0&1&0\\
+a_2&0&-1&1&0\\
+-a_3&2a_1-a_2&0&0&1\\
+3a_4&0&0&0&0\\
+2a_6+2a_7&0&-a_1+2a_2&-a_1-a_2&-a_4
+\end{pmatrix}.
+\]
+\endgroup
+The respective constant submatrices are
+\[
+ (T_{\mathrm{pure}})_{\{1,3\},\{5,6\}}
+ =\begin{pmatrix}1&0\\0&1\end{pmatrix},
+ \qquad
+ (T_{\mathrm{mixed}})_{\{1,2,3\},\{3,4,5\}}
+ =\begin{pmatrix}0&1&0\\-1&1&0\\0&0&1\end{pmatrix}.
+\]
+Both have determinant one.  Changing the moving frame replaces
+$B_1$ by $B_1+B_0U-VB_0$, and rescaling the line adds a multiple of $B_0$;
+neither operation changes the induced map
+$T:\ker B_0\to\coker B_0$.  Thus $T$ has rank at least two in the pure
+case and at least three in the mixed case for every first-order correction.
 A one-dimensional two-jet image would force $T$ to vanish on a
 five-dimensional subspace, impossible.
 
@@ -2253,6 +2407,34 @@ Proposition~\ref{prop:formal-propagation} supplies exactly the hypothesis of
 assume that a finite-cover geometric contradiction persists on an arbitrary
 dominant etale base.
 
+\paragraph{Published propagation map.}
+For clarity, the remaining uses of the strict Landesman--Litt rank bound are
+replaced as follows.  In the proof of
+\cite[Proposition 8.2.1]{LLCan}, the hypothesis $r<\sqrt{g+1}$ is used to get
+$\rk\ad(V)=r^2-1<g$ and invoke \cite[Theorem 6.2.1]{LLCan}; the fixed-part
+vanishing and finite-index descent proved above supply that input here.  The
+proofs of \cite[Lemmas 8.3.3 and 8.3.4]{LLCan} then use strong rigidity
+together with irreducibility, $g\ge3$, quasi-unipotent boundary monodromy,
+and finite determinant, but no further rank estimate.  The isomonodromy input
+used in \cite[Proposition 8.4.1]{LLCan} has the larger range
+$r<2\sqrt{g+1}$, which holds for $r=3$ and $g\ge5$.
+
+In the proof of \cite[Lemma 8.5.1]{LLCan}, the strict bound is again used only
+to obtain $\rk\ad(\gamma)=r^2-1<g$ and apply
+\cite[Theorem 6.2.1]{LLCan} at every Artin truncation;
+Proposition~\ref{prop:formal-propagation} replaces that application.  The
+proof of \cite[Lemma 8.5.2]{LLCan} uses the rank bound only through
+Lemma~8.5.1.  In the proof of \cite[Lemma 8.6.1]{LLCan}, the original bound
+enters in the estimate
+\[
+ n_i\dim\sigma_i\le \dim\rho_1\dim\rho_2<\frac{g+1}{4}
+\]
+before \cite[Theorem 7.2.1]{LLCan} is applied.  Here total rank at most three
+instead gives $n_i\dim\sigma_i\le2$, while the same published lower bound is
+at least six.  Proposition~\ref{prop:rank3-socle} records that replacement,
+and no further numerical bound enters the socle induction of
+\cite[Section 8.7]{LLCan}.
+
 \begin{proposition}[Unitary rank-three finite image]
 \label{prop:unitary-rank3}
 Let $g\ge5$.  Every unitary MCG-finite rank-three representation has finite
@@ -2358,6 +2540,15 @@ verification of the assembled use of the Landesman--Litt Hodge, parabolic,
 and deformation machinery.  Exact scripts used during development verify
 only finite arithmetic and fibrewise linear algebra; they are not substitutes
 for those geometric inputs.
+
+\section*{AI-assistance disclosure}
+
+OpenAI GPT-5.6 Pro and GPT-5.6 Sol were used for drafting, symbolic
+exploration, generation of finite verification scripts, and checks of
+successive versions for omitted cases and mismatched hypotheses.  The author
+directed their use and is responsible for the manuscript and any errors.
+These tools were not treated as mathematical authorities, and the finite
+scripts do not verify the imported geometric inputs.
 
 \begin{thebibliography}{99}
 

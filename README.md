@@ -2,7 +2,7 @@
 
 [![Status: candidate](https://img.shields.io/badge/status-candidate-C27C0E)](STATUS.md)
 [![Verify](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml/badge.svg)](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml)
-[![Release: v0.1.2-candidate](https://img.shields.io/badge/release-v0.1.2--candidate-2F6FEB)](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.2-candidate)
+[![Release: v0.1.3-candidate](https://img.shields.io/badge/release-v0.1.3--candidate-2F6FEB)](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.3-candidate)
 
 A focused manuscript and review package for a proposed extension of the
 rank-three finite-image range for punctured surface groups.
@@ -30,7 +30,10 @@ This candidate starts from two papers by Aaron Landesman and Daniel Litt:
 The proposed extension to rank three in genus $g\ge5$ is new and unrefereed;
 it is not a theorem claimed by Landesman and Litt.
 
-The current review release is `v0.1.2-candidate`.
+The current expanded review release is `v0.1.3-candidate`. It keeps the same
+theorem and hypotheses as `v0.1.2-candidate`, while displaying additional
+finite HN eliminations, local jet matrices, and the final dependency map.
+The earlier release remains available as a fixed historical review copy.
 
 ## Result under review
 
@@ -51,7 +54,7 @@ remaining genera $8,7,6,5$.
 
 | Document | Purpose |
 |---|---|
-| [Manuscript PDF](output/pdf/rank3_genus5_reader.pdf) | Current review copy |
+| [Manuscript PDF](output/pdf/rank3_genus5_reader.pdf) | Current expanded review copy |
 | [TeX source](manuscript/rank3_genus5_reader.tex) | Canonical source corresponding to the PDF |
 | [Proof map](PROOF_MAP.md) | Suggested specialist review order |
 | [Pipeline audit](PIPELINE_AUDIT.md) | Exact substitutions in Landesman--Litt Sections 8.2--8.7 |
@@ -107,14 +110,18 @@ The separate finite-mathematics checks are:
 make verify-math
 ```
 
-They enumerate the genus-five HN arithmetic and check the $q=9$ fibre algebra
+They enumerate the displayed genus-six and genus-five HN arithmetic,
+reconstruct the $q=10$ local jet matrices, and check the $q=9$ fibre algebra
 with exact rational and polynomial arithmetic. Their precise scope is recorded
 in [`verification/math`](verification/math).
 
 ## Citation and licensing
 
-The immutable review release is
-[`v0.1.2-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.2-candidate).
+The latest expanded review release is
+[`v0.1.3-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.3-candidate).
+The preceding
+[`v0.1.2-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.2-candidate)
+remains archived and unchanged.
 Citation metadata is provided in [CITATION.cff](CITATION.cff).
 
 The manuscript and documentation are licensed under CC BY 4.0. Verification
@@ -127,7 +134,8 @@ This repository contains the rank-three manuscript and the review materials
 needed to evaluate it. General-rank work and exploratory notes are outside its
 scope.
 
-AI tools, principally GPT-5.6 Pro and GPT-5.6 Sol, assisted with drafting,
-symbolic exploration, deterministic checks, and review of successive drafts.
-Rob Sneiderman directed the work and is responsible for any errors. Further
-details are recorded in [DEVELOPMENT.md](DEVELOPMENT.md).
+OpenAI GPT-5.6 Pro and GPT-5.6 Sol were used for drafting, symbolic
+exploration, generation of finite verification scripts, and checks of
+successive versions for omitted cases and mismatched hypotheses. Robert
+Sneiderman directed their use and is responsible for the manuscript and any
+errors. Further details are recorded in [DEVELOPMENT.md](DEVELOPMENT.md).

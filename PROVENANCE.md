@@ -29,12 +29,20 @@ two eliminations. This simplification was checked internally against the
 generic orbit algebra and both bundle-theoretic applications. The theorem
 statement and `CANDIDATE` status are unchanged.
 
+The `0.1.3-candidate` expanded review release retains the
+`0.1.2-candidate` release unchanged and expands the finite genus-six and genus-five
+high-HN eliminations, prints the local jet matrices used in the
+$(S,q)=(2,10)$ branch, and adds a source-by-source propagation map and an
+explicit AI-assistance disclosure. The finite checker now reconstructs the
+displayed $q=10$ matrices from the parahoric bracket. No theorem statement or
+mathematical hypothesis changes.
+
 ## Canonical artifacts
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `manuscript/rank3_genus5_reader.tex` | -- | `8874f0236f860fca3959e33d47d9616758b76105b5e1f5eddfda4aa021c910e1` |
-| `output/pdf/rank3_genus5_reader.pdf` | 32 | `ae00d07c240d3f2211bbba63817dfd6615e97b55aefb8f00988d663d4c9f569f` |
+| `manuscript/rank3_genus5_reader.tex` | -- | `6066f2119a86502e29b00222fff7851c670ecf9e5fb892b36df6776d4aef79bf` |
+| `output/pdf/rank3_genus5_reader.pdf` | 34 | `b40da451110b922dc5db8e4330e61797481b9d5765d68e22b5839501108978dd` |
 
 The same values are recorded in `CHECKSUMS.sha256` and enforced by
 `verification/verify_release.py`.

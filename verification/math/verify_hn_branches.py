@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact finite checks for the genus-five HN branch reconstruction.
+"""Exact finite checks for the genus-six and genus-five HN reconstruction.
 
 The section routine deliberately ranges over every rank/degree decomposition,
 not only slope-ordered HN types. Its result is therefore a safe upper bound.
@@ -11,21 +11,37 @@ from __future__ import annotations
 from fractions import Fraction
 from functools import lru_cache
 from math import ceil, floor
+from typing import Iterable
 
 GENUS = 5
 COEFFICIENT_RANK = 8
 
 
-def offset_ranges() -> dict[int, tuple[int, ...]]:
+def high_t1_candidates(
+    offsets: Iterable[int],
+    *,
+    q_min: int,
+    sum_min: int,
+    clifford_slack: int,
+) -> dict[int, tuple[int, ...]]:
+    """Enumerate the integral t=1 rows left by the displayed inequalities."""
+    return {
+        y: tuple(q for q in range(q_min, y + clifford_slack + 1) if q + y >= sum_min)
+        for y in offsets
+    }
+
+
+def offset_ranges(genus: int) -> dict[int, tuple[int, ...]]:
     ranges: dict[int, tuple[int, ...]] = {}
     for high_rank in range(COEFFICIENT_RANK + 1):
         quotient_rank = COEFFICIENT_RANK - high_rank
         if quotient_rank <= 0:
             continue
-        lower = Fraction(64) - Fraction(
-            quotient_rank * (10 * quotient_rank - 2), quotient_rank + 1
+        coefficient_degree = COEFFICIENT_RANK * (2 * genus - 2)
+        lower = Fraction(coefficient_degree) - Fraction(
+            quotient_rank * (2 * genus * quotient_rank - 2), quotient_rank + 1
         )
-        upper = 8 * high_rank
+        upper = (2 * genus - 2) * high_rank
         values = tuple(range(ceil(lower), upper + 1))
         if values:
             ranges[high_rank] = values
@@ -98,7 +114,38 @@ def hn_section_upper_bound(
 
 
 def main() -> None:
-    offsets = offset_ranges()
+    genus_six_offsets = offset_ranges(6)
+    assert genus_six_offsets[1] == (9, 10)
+    assert genus_six_offsets[2] == (20,)
+    genus_six_t1 = high_t1_candidates(
+        genus_six_offsets[1],
+        q_min=11,
+        sum_min=20,
+        clifford_slack=2,
+    )
+    assert genus_six_t1 == {9: (11,), 10: (11, 12)}
+    assert {y: y - 10 for y in genus_six_t1} == {9: -1, 10: 0}
+
+    offsets = offset_ranges(5)
+    genus_five_t1 = high_t1_candidates(
+        offsets[1],
+        q_min=9,
+        sum_min=16,
+        clifford_slack=4,
+    )
+    assert genus_five_t1 == {
+        5: (),
+        6: (10,),
+        7: (9, 10, 11),
+        8: (9, 10, 11, 12),
+    }
+    assert {y: y - 8 for y in genus_five_t1} == {
+        5: -3,
+        6: -2,
+        7: -1,
+        8: 0,
+    }
+
     assert offsets[1] == (5, 6, 7, 8)
     assert offsets[2] == (15, 16)
     assert offsets[3] == (24,)
@@ -152,7 +199,9 @@ def main() -> None:
             residual.append((total_weight, q))
     assert residual == [(0, 9), (0, 10), (2, 10), (2, 11), (3, 11)]
 
-    print("HN offsets:", {key: offsets[key] for key in (1, 2, 3)})
+    print("Genus-six t=1 table:", genus_six_t1)
+    print("Genus-five t=1 table:", genus_five_t1)
+    print("Genus-five HN offsets:", {key: offsets[key] for key in (1, 2, 3)})
     print("No-high candidates:", no_high)
     print("Closed rank-seven section bounds:", closed)
     print("Punctured rank-seven degree-two bound:", punctured)
