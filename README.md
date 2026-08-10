@@ -7,9 +7,7 @@
 A focused manuscript and review package for a proposed extension of the
 rank-three finite-image range for punctured surface groups.
 
-**Author:** Robert Sneiderman
-
-**Status: CANDIDATE.** The manuscript proposes a proof that has not received
+The manuscript proposes a proof that has not received
 independent mathematical review. No claim is made for genus three or four.
 
 ## Published foundation
@@ -20,7 +18,7 @@ This candidate starts from two papers by Aaron Landesman and Daniel Litt:
   199 (2024), 823--897
   ([published version](https://annals.math.princeton.edu/2024/199-2/p06),
   [arXiv:2205.15352v4](https://arxiv.org/abs/2205.15352v4)). Their Theorem 1.2.1
-  proves finite image for mapping-class-finite rank-$r$ representations when
+  proves finite image for mapping-class-finite rank-r representations when
   $r<\sqrt{g+1}$, with arbitrary punctures.
 - *Geometric local systems on very general curves and isomonodromy*,
   **Journal of the American Mathematical Society** 37 (2024), 683--729
@@ -66,7 +64,7 @@ remaining genera $8,7,6,5$.
 
 ## Main review points
 
-The load-bearing new interfaces are:
+The new infrastructure is:
 
 1. the normalizer boundary-cocycle obstruction, including full boundary-map
    injectivity in its two genus-five applications;
@@ -75,7 +73,7 @@ The load-bearing new interfaces are:
 4. the propagation from adjoint vanishing to arbitrary rank-three
    representations.
 
-Each appears in the manuscript itself or is tied to an exact published input.
+Each appears in the manuscript itself or is tied to an published input.
 
 The manuscript also includes separate $q=9$ Pfaffian/spectral-projector and
 canonical-Deligne no-pole reconstructions. Neither is used in the main
@@ -89,8 +87,6 @@ elimination.
 | `5 <= g <= 8` | **Candidate** | Manuscript in this repository |
 | `g = 3, 4` | **Open** | Not claimed; the present endpoint argument loses rank |
 
-Successful builds and internal checks establish artifact integrity. They do
-not replace specialist mathematical review.
 
 ## Verification
 
@@ -131,7 +127,7 @@ This repository contains the rank-three manuscript and the review materials
 needed to evaluate it. General-rank work and exploratory notes are outside its
 scope.
 
-AI tools assisted with drafting, symbolic exploration, deterministic checks,
+AI tools (GPT 5.6 Pro and use of OpenAI Codex Sol model) assisted with drafting, symbolic exploration, deterministic checks,
 and checking successive drafts for missing cases and mismatched hypotheses.
-Robert Sneiderman is responsible for the manuscript and any errors. Further
+Rob Sneiderman orchestrated the AI and is responsible for any errors. Further
 details are recorded in [DEVELOPMENT.md](DEVELOPMENT.md).
