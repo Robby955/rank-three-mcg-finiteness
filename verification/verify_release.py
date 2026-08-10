@@ -124,7 +124,8 @@ def verify_claim_boundaries() -> None:
         "universal-extension composite is misstated",
     )
     require(
-        "Status: CANDIDATE" in readme
+        "status-candidate" in readme
+        and "The manuscript proposes a proof that has not received" in readme
         and "No claim is made for genus three or four" in readme
         and "Aaron Landesman and Daniel Litt" in readme
         and "https://annals.math.princeton.edu/2024/199-2/p06" in readme
