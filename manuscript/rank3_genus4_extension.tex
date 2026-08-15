@@ -1,0 +1,2170 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\hypersetup{
+  pdftitle={Rank-Three Mapping-Class-Finite Representations in Genus Four: A Candidate Extension},
+  pdfauthor={Robert Sneiderman},
+  pdfsubject={New, unrefereed candidate extension},
+  pdfkeywords={mapping class groups, surface groups, local systems, genus four, representation theory}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{candidate}[theorem]{Candidate theorem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{audit}[theorem]{Audit point}
+
+\newcommand{\C}{\mathbf C}
+\newcommand{\Ocal}{\mathcal O}
+\newcommand{\Mcal}{\mathcal M}
+\newcommand{\Vcal}{\mathcal V}
+\newcommand{\Ucal}{\mathcal U}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\degp}{\operatorname{pardeg}}
+\newcommand{\ad}{\operatorname{ad}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\PGL}{\operatorname{PGL}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\SO}{\operatorname{SO}}
+\newcommand{\Sp}{\operatorname{Sp}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\title{Rank-Three Mapping-Class-Finite Representations\\
+in Genus Four: A Candidate Extension}
+\author{Robert Sneiderman}
+\date{Version 0.1.1-candidate\\15 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give a candidate extension to genus four of the rank-three
+finite-image argument developed in the companion genus-at-least-five
+candidate manuscript.  For an irreducible rank-three system, the new work
+eliminates the dense rank-eight adjoint coefficient, the rank-five
+orthogonal coefficient, and the rank-six monomial coefficient on every
+finite-etale moduli cover.  It then resolves the scalar equality case in
+formal propagation by comparing the adjoint Killing form with the standard
+rank-eight symplectic monodromy representation.  The conclusion remains
+conditional on the fixed-part, Hodge, parabolic, canonical-Deligne,
+finite-cover, integrality, isomonodromy, and socle interfaces stated below.
+The argument is new and unrefereed, and is presented as a
+\texttt{CANDIDATE}, not as an established theorem.
+\end{abstract}
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\textbf{Status and scope.}  Every result called a ``candidate theorem'' in
+this manuscript is conditional on the imported interface package in
+\cref{sec:interfaces}.  The companion genus-at-least-five manuscript is
+itself an unrefereed candidate, not a published input.  This paper is
+restricted to genus four and makes no lower-genus assertion.}}
+\end{center}
+
+\begin{center}
+\small Copyright \textcopyright\ 2026 Robert Sneiderman.  Licensed under
+\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.
+\end{center}
+
+\tableofcontents
+
+\section{Statement and proof architecture}\label{sec:statement}
+
+Let $\Sigma_{4,n}$ be an orientable genus-four surface with $n$ punctures.
+The mapping class group $\Mod_{4,n}$ acts on conjugacy classes of
+representations of $\pi_1(\Sigma_{4,n})$ by precomposition.
+
+\begin{candidate}[Rank-three finite image in genus four]\label{cand:main}
+Assume the published inputs and the companion-candidate interfaces recorded
+in \cref{sec:interfaces}.  Let $n\ge0$.  If
+\[
+ \rho:\pi_1(\Sigma_{4,n})\longrightarrow\GL_3(\C)
+\]
+has finite $\Mod_{4,n}$-orbit up to conjugacy, then $\rho$ has finite image.
+\end{candidate}
+
+Landesman--Litt prove finite image under the strict inequality
+$r<\sqrt{g+1}$ \cite[Theorem~1.2.1]{LLCan}.  Their published theorem therefore
+does not directly treat $(g,r)=(4,3)$.  The companion manuscript proposes a
+rank-three theorem for $g\ge5$ \cite{SneidermanG5}; the present paper is a
+separate extension, and does not promote either candidate to established
+status.
+
+The proof has five layers.
+\begin{enumerate}[label=\textup{(\arabic*)}]
+\item The fixed-part reduction leaves three coefficient ranks: the dense
+rank-eight adjoint coefficient, a rank-five orthogonal coefficient, and a
+rank-six monomial coefficient.
+\item Exact no-high and high-Harder--Narasimhan ledgers are reconstructed in
+genus four.  Universal-extension symmetry, normalizer cocycles, Killing and
+Spin parity, canonical-lattice pairing bounds, and low-degree section
+estimates eliminate every dense rank-eight branch.
+\item The rank-five coefficient is eliminated by the first-super endpoint
+classification and its invariant symmetric form.
+\item Exact monomial arithmetic leaves two no-high rows and one strict
+high-HN row for the rank-six coefficient.  Symmetric universal extensions,
+parabolic stability, and the determinant-sign character eliminate them.
+\item Projective finite-index descent and Artin devissage are unchanged.
+The only new propagation equality identifies a putative rank-eight adjoint
+coefficient with the standard genus-four cohomology system; their preserved
+bilinear forms are incompatible.
+\end{enumerate}
+
+\section{Published inputs and imported candidate interfaces}
+\label{sec:interfaces}
+
+The dependency boundary is part of the statement.  We use the following
+published results in the forms already isolated in the companion manuscript:
+\begin{itemize}
+\item Landesman--Litt's projective globalization, fixed-part, Hodge,
+parabolic multiplication, rigidity, integrality, isomonodromy, and
+characteristic-socle interfaces \cite{LLCan,LLGeo};
+\item the small-slope vector-bundle Clifford and generated-subbundle
+estimates of Brambila-Paz--Grzegorczyk--Newstead \cite{BPGN};
+\item the classification of holomorphic sections of universal curves by
+Earle--Kra \cite{EarleKra}, and Chen--Salter's virtual non-splitting theorem
+in its stated range $g\ge4$ \cite{ChenSalter}.
+\end{itemize}
+
+The following items are imported from the unrefereed companion candidate
+\cite{SneidermanG5}.  They are hypotheses of Candidate
+theorem~\ref{cand:main}, not claims of published provenance:
+\begin{enumerate}[label=\textup{B\arabic*},leftmargin=3.2em]
+\item the passage from an MCG-finite rank-three system to its actual
+multiplicity-free adjoint constituents on connected finite-etale moduli
+covers;
+\item the canonical-Deligne and coparabolic convention, the fixed-part
+Hodge-line reduction, and the closed-descent interface;
+\item the strict endpoint and first-super endpoint estimates, including the
+weight-one universal-extension classification;
+\item the normalizer boundary-cocycle obstruction and the extension
+compatibility identities for bracket and invariant symmetric forms;
+\item projective finite-index descent, direct Artin devissage, the exact
+trivial-coefficient gap, reducible unitary multiplicity control, and the
+remaining projective/linear integrality, unitary-conjugate, and
+characteristic-socle propagation steps.
+\end{enumerate}
+
+For clarity, the imported projective-closure reduction is
+\[
+\begin{array}{c|c}
+\text{projective closure}&\ad V\\ \hline
+\PGL_3\text{-dense}&U_8\\
+\PGL_2\simeq\SO_3&U_5\oplus U_3\\
+\text{monomial, component quotient }S_3&U_6\oplus U_2\\
+\text{monomial, component quotient }C_3&
+ U_3^+\oplus U_3^-\oplus\chi\oplus\chi^{-1}.
+\end{array}
+\]
+Ranks at most three are already below the relevant fixed-part threshold in
+genus four.  The new fixed-part work is therefore exactly the elimination of
+$U_8$, $U_6$, and $U_5$ carried out below.
+
+\begin{audit}[Conditionality]
+Finite HN enumeration and fibrewise linear algebra do not certify the
+geometric interfaces in B1--B5.  In particular, compilation of this paper or
+successful execution of finite verification scripts is not a proof of
+Candidate theorem~\ref{cand:main}.
+\end{audit}
+
+\section{Genus-four setup}\label{sec:setup}
+
+Work on a very general smooth genus-four fibre $C$ of the relevant finite
+cover.  It is nonhyperelliptic.  For a parabolically stable coefficient
+$E_*$ of parabolic degree zero, let $E$ denote the underlying canonical
+Deligne bundle and let $S=-\deg E$ be its total canonical parabolic weight.
+For a rank-zero Hodge vector, let $M\subset E$ be the saturated Hodge line,
+put $L=M^{-1}$ and $G=E/M$, and let $A\subset E^\vee\otimes\omega_C$ be the
+saturated evaluation kernel.  In genus four set
+\[
+ q=\deg(M^\vee\otimes\omega_C)=6-\deg M.
+\]
+When the high-HN part $N\subset A$ is nonzero, write
+$t=\rk N$ and $y=\deg N-S$.  All saturations and brackets below are taken in
+the canonical parahoric lattice supplied by B2 and B4.
+
+The next two sections give the exhaustive numerical ledgers for the dense
+rank-eight coefficient.  Subsequent sections eliminate every listed row.
+
+\section{No-high reconstruction}\label{no-high-reconstruction}
+
+For the rank-eight dense adjoint coefficient, the no-high inequalities
+give
+
+\[S\le \frac{16(8-g)}9,
+\qquad
+\max(2g-1,2g-2+S)\le q\le14-S.\]
+
+The quotient bundle has
+
+\[(\mathrm{rk}\,G,\deg G,h^0(G))
+=(7,q-(2g-2)-S,q-g+1).\]
+
+The exhaustive HN enumeration imposes strictly decreasing HN slopes. For
+\(S=0\) it uses positive-degree factors, as in the companion manuscript;
+for \(S>0\) it also
+permits degree-zero factors, and every factor has slope at most
+\(2g-2\). The section bounds are applied on the very general,
+nonhyperelliptic genus-four fibre.
+
+\subsection{Numerical survivor table}\label{genus-four}
+
+\begin{longtable}[]{@{}rlll@{}}
+\toprule\noalign{}
+\(S\) & Candidate \(q\) & Eliminated numerically & Survivors \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & 7--14 & 12, 13 & 7, 8, 9, 10, 11, 14 \\
+2 & 8--12 & none & 8, 9, 10, 11, 12 \\
+3 & 9--11 & 11 & 9, 10 \\
+4 & 10 & none & 10 \\
+\end{longtable}
+
+Thus 14 of 17 candidates survive. The first is
+
+\[(S,q)=(0,7),
+\qquad
+(\mathrm{rk}\,G,\deg G,h^0(G))=(7,1,4).\]
+
+The exact BPGN small-slope inequality gives only \(h^0(G)\le5\) for a
+semistable rank-seven, degree-one piece in genus four. Requiring four
+sections is therefore genuinely compatible with the cited bound. Section
+counting cannot remove this branch.
+
+\section{High-HN numerical frontier}\label{high-hn-numerical-frontier}
+
+Write \(t=\mathrm{rk}\,N\) and \(y=\deg N-S\). After the offset,
+Clifford, lower-slope, and \(q\) inequalities, the following necessary
+rows remain. They have not been geometrically realized as adjoint
+branches.
+
+\subsection{Numerical survivor table}\label{genus-four-1}
+
+\begin{longtable}[]{@{}rrll@{}}
+\toprule\noalign{}
+\(t\) & \(y\) & \(q\) & Weight condition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 & 3 & 9 & \(S\ge4\) \\
+1 & 4 & 8--10 & \(S\ge3\) \\
+1 & 5 & 7--11 & \(S\ge2\) \\
+2 & 10 & 8 & \(S\ge3\) \\
+2 & 11 & 7--9 & \(S\ge2\) \\
+3 & 17 & 7 & \(S\ge2\) \\
+\end{longtable}
+
+The omitted top offset \(y=(2g-2)t\) gives a
+nonpositive-parabolic-degree dual quotient of the stable adjoint bundle
+and is impossible for that reason.
+
+\section{Genus-four branch analysis}\label{genus-four-branch-analysis}
+
+\subsection{The first no-high branch is
+eliminated}\label{the-first-no-high-branch-is-eliminated}
+
+In the \((S,q)=(0,7)\) branch, \(G\) has rank seven, degree one, and
+four sections. If \(H\subsetneq G\) is a subbundle and
+\(\widetilde H\subset E\) its inverse image, stability of the
+degree-zero bundle \(E\) gives \(\deg\widetilde H<0\), hence
+\(\deg H\le0\). Thus \(G\) is stable. Its saturated evaluation image is
+generically generated of degree zero, so it is \(W=\mathcal O_C^4\). The
+quotient is stable as well: a proper subbundle of \(Q=G/W\) pulls back
+to a subbundle of \(G\) of degree at most zero. Therefore
+
+\[L=M^{-1},\qquad
+W=\mathcal O_C^4\subset G,\qquad
+(\mathrm{rk}\,Q,\deg Q)=(3,1).\]
+
+Let \(P\subset E\) be the inverse image of \(W\). Since \(H^0(P)=0\) and
+\(h^1(M)=4\), the boundary of
+
+\[0\longrightarrow M\longrightarrow P\longrightarrow W\longrightarrow0\]
+
+is an isomorphism \(e:H^0(W)\simeq H^1(M)\). Define the quotient-bracket
+component
+
+\[f:M\otimes W\longrightarrow Q,\qquad
+\phi:H^0(W)\longrightarrow H^0(Q\otimes L).\]
+
+The map \(b:\Lambda^2P\to Q\) supplies information absent from pointwise
+Lie algebra. A \v{C}ech comparison of local splittings gives
+
+\[f(v)_*e(u)=f(u)_*e(v)\quad\text{in }H^1(Q).\]
+
+After Serre duality and \(H^0(L\omega_C)\simeq W^\vee\), put
+\(V_\phi=W/\ker\phi\) and \(k=\dim V_\phi\). The induced map
+
+\[\Theta:H^0(Q^\vee\omega_C)
+\longrightarrow H^0(L\omega_C)\otimes V_\phi^\vee\]
+
+has image in \(\mathrm{Sym}^2(V_\phi^\vee)\).
+
+This symmetry forces \(k\le1\). Here is the complete rank analysis. Let
+\(I\subset Q\) be the saturated image of \(f\), of rank \(r\).
+
+\begin{itemize}
+\item
+  If \(r=1\), stability gives \(\deg I\le0\), so the line \(I\otimes L\)
+  has at most one section.
+\item
+  If \(r=2\), then \(-2\le\deg I\le0\). The quotient line \(R=Q/I\)
+  satisfies \(h^0(R^\vee\omega_C)\le3\), while
+  \(h^0(Q^\vee\omega_C)\ge8\). Thus \(\mathrm{rk}\,\Theta\ge5\),
+  excluding \(k=2\). If \(k\ge3\), three generically spanning sections
+  of the rank-two bundle \(I\otimes L\) have at least two independent
+  wedges. Otherwise their Pl\"ucker kernel would be constant and give a
+  global linear relation. This would be a pencil on a line of degree at
+  most two, impossible on the nonhyperelliptic genus-four fibre.
+\item
+  If \(r=3\) and \(k=3\), then \(\Theta\) is injective, but its domain
+  has dimension at least eight and
+  \(\dim\mathrm{Sym}^2(\mathbb C^3)=6\).
+\item
+  If \(r=3\) and \(k=4\), write \(H=Q\otimes L\), let
+  \(a:\mathcal O_C^4\to H\), set \(A=\ker a\), and let \(D\) be the
+  Fitting divisor of its torsion cokernel, of length \(\ell\). Then
+  \(\deg A=\ell-4\) and injectivity on constant sections gives
+  \(\ell\le3\). For the raw image \(I_0=\mathrm{im}(a)\), local Smith
+  form gives \(\mathcal O_C(-D)I_0^\vee\subset H^\vee\). If
+  \(K_A=\ker(W^\vee\to H^0(A^\vee))\), the lower dimension bounds for
+  \(H^0(L\omega_C(-D))\) and \(K_A\) are respectively
+
+  \[(4,3,2,1)\quad\text{and}\quad(1,2,2,3)\]
+
+  for \(\ell=0,1,2,3\). Choose nonproportional elements \(u\) and
+  \(\eta\) in these spaces. Their product is a section
+  \(\alpha\in H^0(Q^\vee\omega_C)\) with
+  \(\Theta(\alpha)=u\otimes\eta\). A pure tensor is symmetric only when
+  its factors are proportional, a contradiction.
+\end{itemize}
+
+Consequently \(\mathrm{rk}\,\phi\le1\). Put \(W_0=\ker\phi\), so
+\(\dim W_0\ge3\). If \(h^0(L)=0\), the remaining self-block of \(\beta\)
+on \(W_0\) vanishes. If \(L\simeq\mathcal O_C(p)\), write that block as
+\(sA\), where \(s\) is the unique section of \(L\) and \(A:W_0\to W\) is
+constant. Compatibility with the universal extension gives
+
+\[W_0\xrightarrow{A}W\xrightarrow{e}H^1(M)
+\xrightarrow{s_*}H^1(\mathcal O_C),\]
+
+with zero composite. The last map is an isomorphism by the exact
+sequence for \(0\to\mathcal O_C(-p)\to\mathcal O_C\to k(p)\to0\), and
+\(e\) is an isomorphism, so \(A=0\). Thus in either case
+\(\mathcal O_C^3\subset\ker\beta\).
+
+There is a second, shorter global obstruction once three kernel sections
+are available. Put \(K=N_E(M)/M\). The normalizer acts on \(M\) through
+a character \(\lambda:K\to\mathcal O_C\). For global \(x,y\in H^0(K)\),
+local lifts satisfy
+
+\[\partial[x,y]=\lambda(x)\partial y-\lambda(y)\partial x.\]
+
+Here \(\partial:H^0(G)\to H^1(M)\) is injective because \(H^0(E)=0\).
+Hence
+
+\[[x,y]=\lambda(x)y-\lambda(y)x.\]
+
+No generically independent three-dimensional subspace of an
+\(\mathfrak{sl}_3\) quotient normalizer obeys this law. Regular orbit
+types have quotient normalizer dimension at most two. In the semisimple
+\((2,1)\) case the quotient is \(\mathfrak{sl}_2\) and \(\lambda=0\), so
+the law would make it abelian. For a minimal nilpotent \(m=E_{12}\), use
+the quotient basis
+
+\[D=\mathrm{diag}(1/2,-1/2,0),\quad
+H=\mathrm{diag}(1/2,1/2,-1),\quad E_{13},\quad E_{32}.\]
+
+The character is one on \(D\) and zero on the other three vectors. Its
+kernel is nonabelian, and its only two-dimensional abelian subalgebra is
+\(\langle E_{13},E_{32}\rangle\). If a three-space is not contained in
+that kernel, the displayed law requires eigenvalue one with multiplicity
+two on this two-dimensional intersection. The actual eigenvalues are
+\((1+3c)/2\) and \((1-3c)/2\) for \(D+cH+aE_{13}+bE_{32}\), and cannot
+both be one. This contradiction eliminates \((S,q)=(0,7)\) without a
+determinant or relative-section endpoint.
+
+\subsection{\texorpdfstring{The next no-high branch:
+\((S,q)=(0,8)\)}{The next no-high branch: (S,q)=(0,8)}}\label{the-next-no-high-branch-sq08}
+
+Now \((\mathrm{rk}\,G,\deg G,h^0(G))=(7,2,5)\) and \(\deg L=2\).
+Positive HN degrees give exactly
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+HN type & Section maximum \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\((7,2)\) & 5 \\
+\((1,1)+(6,1)\) & \(1+4\) \\
+\((2,1)+(5,1)\) & \(1+4\) \\
+\((3,1)+(4,1)\) & \(2+3\) \\
+\end{longtable}
+
+The evaluation saturation is consequently either
+
+\[\mathcal O_C^5\subset G,\qquad
+(\mathrm{rk}\,Q,\deg Q)=(2,2),\]
+
+with \(Q\) semistable, or
+
+\[J\oplus\mathcal O_C^4\subset G,\qquad
+\deg J=1,\qquad
+(\mathrm{rk}\,R,\deg R)=(2,1),\]
+
+with \(R\) stable. In the second case the \v{C}ech argument must use the
+full evaluation injection \(\mathcal O_C^5\to G\), including the section
+of \(J\); using only \(\mathcal O_C^4\) loses the boundary isomorphism.
+
+We use two elementary linear-algebra lemmas to make the remaining
+argument explicit.
+
+First, let \(V\subset H^0(H)\) have dimension \(k\), where \(H\) has
+rank two, and consider
+
+\[\delta:\Lambda^2V\longrightarrow H^0(\det H).\]
+
+If \(\ker\delta\) contains a decomposable vector \(s\wedge t\), the
+saturation of \(s,t\) is a line subbundle with at least two sections.
+Otherwise \(\mathbb P(\ker\delta)\) is disjoint from
+\(\mathrm{Gr}(2,V)\subset\mathbb P(\Lambda^2V)\). Since the Grassmannian
+has dimension \(2k-4\), the projective dimension theorem gives
+
+\[\dim\mathrm{im}(\delta)\ge2k-3.\]
+
+Second, a projective pencil of singular ternary quadrics has either a
+common linear factor or a common kernel point. Indeed, a nontrivial such
+pencil has a rank-two member: otherwise two independent rank-one members
+would have a rank-two sum. Such a member can be written \(xy\). Write
+the other member as
+
+\[ax^2+by^2+cz^2+dxy+exz+fyz.\]
+
+The determinant of the pencil vanishes identically only if \(c=0\),
+\(ef=0\), and \(af^2+be^2=0\). If \(e=f=0\), the pencil has the common
+kernel point \([0:0:1]\); if only \(e\) or only \(f\) vanishes, it has
+the common factor \(y\) or \(x\), respectively.
+
+Return first to the \(\mathcal O_C^5\) evaluation case. Put
+\(H=Q\otimes L\), let \(V=\mathrm{im}\,\phi\), and set \(k=\dim V\). The
+same zero-weight condition gives \(\det E\simeq\mathcal O_C\), hence
+\(\det G\simeq L\) and \(\det Q\simeq L\). The same symmetric-\(\Theta\)
+argument gives the initial dichotomy: a rank-one saturated bracket image
+has \(k\le2\), with equality only when \(I\otimes L\) is a degree-three
+trigonal pencil; a rank-two image cannot have \(k=2\), so it has
+\(k\ge3\).
+
+There is one degree-two issue before \(\ker\phi\) becomes a normalizer
+kernel. If \(W_0=\ker\phi\) and \(L\) is ineffective, the remaining
+self-block vanishes and \(W_0\otimes\mathcal O_C\subset\ker\beta\). If
+\(L\simeq\mathcal O_C(D)\) is effective, its unique section gives a
+self-block \(sA_0\). Extension compatibility only forces the image of
+\(A_0\) into the one-dimensional kernel of
+
+\[s_*:H^1(M)\longrightarrow H^1(\mathcal O_C),\]
+
+so at least \(\dim W_0-1\) normalizer sections are guaranteed. The full
+boundary is injective because \(H^0(E)=0\). Thus every case with
+\(k\le1\) supplies at least three genuine normalizer sections and is
+eliminated by the boundary-cocycle obstruction. If \(k=2\), the
+ineffective-\(L\) case is eliminated as well, leaving only an apparently
+exceptional effective-\(L\) case. That exception is also impossible, but
+its lift defect must be retained.
+
+Let \(I\subset Q\) be the degree-one bracket image, put
+\(A=I\otimes L\), and let \(R_1=Q/I\). Then \(A\) is a basepoint-free
+\(g^1_3\). Let
+
+\[T=\mathrm{im}\bigl(H^0(Q^\vee\omega_C)
+  \longrightarrow H^0(I^\vee\omega_C)\bigr).\]
+
+For nonzero \(\alpha\in T\), symmetry says that the two-space
+\(\alpha H^0(A)\) equals the fixed plane
+\(V^\vee\subset H^0(L\omega_C)\). Two independent elements of \(T\)
+would therefore have a ratio preserving \(H^0(A)\). Multiplication by
+that ratio has an eigenvector, so the ratio is constant on the
+nonvanishing locus of the eigenvector and hence globally. Thus
+\(\dim T\le1\). Exactness and Riemann--Roch give
+
+\[\dim T=(4+h^0(Q))-(2+h^0(R_1))
+      =2+h^0(Q)-h^0(R_1).\]
+
+Since \(h^0(R_1)\le1\), one must have \(R_1\simeq\mathcal O_C(r)\) and
+\(h^0(Q)=0\). The inclusion \(I\subset Q\) then gives \(h^0(I)=0\).
+Determinants give \(I\otimes R_1=L\), hence \(I=L(-r)\) and
+\(A=L^2(-r)\). The equality characterization in
+Clifford's theorem gives \(h^0(L^2)\le2\) on a
+nonhyperelliptic genus-four curve. Since \(h^0(A)=2\), the point \(r\)
+would be a base point of \(|L^2|\). But \(h^0(I)=0\) says that \(r\) is
+not in the divisor of the unique section of the effective degree-two
+line \(L\), so the square of that section does not vanish at \(r\). This
+contradiction eliminates the rank-one \(k=2\) case.
+
+It remains to exclude full bracket image in \(Q\). For \(k=3\),
+\(\Theta\) is injective and
+
+\[\dim\mathrm{im}\,\Theta=4+h^0(Q),
+\qquad h^0(Q)\le2.\]
+
+On the dense open where \(V\otimes\mathcal O_C\to H\) has rank two, let
+\(\ell_x\in\mathbb P(V)\) be its kernel and let \(u_x\in\mathbb P(V)\)
+be the evaluation vector of the fixed inclusion
+\(V^\vee\subset H^0(L\omega_C)\). If \(M_\alpha\) is the symmetric
+matrix \(\Theta(\alpha)\), evaluating on \(\ell_x\) gives
+
+\[u_x^tM_\alpha\ell_x=0.\]
+
+Consequently the singular conic \(q_x=\mathrm{sym}(u_x\otimes\ell_x)\)
+lies in \((\mathrm{im}\,\Theta)^\perp\subset\mathrm{Sym}^2(V)\). If
+\(h^0(Q)=2\) this orthogonal space is zero. If \(h^0(Q)=1\) it is a
+fixed projective point, and unique factorization of the fixed reducible
+conic makes either \([u_x]\) or \([\ell_x]\) constant, contradicting
+independence of the dual sections or of \(V\). If \(h^0(Q)=0\), the
+orthogonal space is a projective pencil. The map \(x\mapsto[q_x]\)
+cannot be constant by the same factorization argument, so the whole
+pencil is singular. The second lemma gives either a common factor, again
+making one of \([u_x],[\ell_x]\) constant, or a common kernel point. In
+the latter case all \(u_x\) lie in a fixed two-plane, so a nonzero
+member of \(V^\vee\) vanishes identically. Every alternative is
+impossible.
+
+For \(k=4\) or \(5\), apply the wedge lemma to \(H\). Here \(H\) is
+semistable of rank two and degree six, and \(\det H=L^3\) has at most
+four sections. If \(k=5\), the lemma forces a line subbundle
+\(A_1\subset H\) with at least two sections. Semistability and
+nonhyperellipticity force \(\deg A_1=3\) and \(h^0(A_1)=2\); the
+degree-three quotient has at most two sections, contradicting \(k=5\).
+
+If \(k=4\), the same lemma forces a line subbundle, and equality in the
+section bounds forces an exact sequence
+
+\[0\longrightarrow A_1\longrightarrow H\longrightarrow A_2
+\longrightarrow0\]
+
+in which \(A_1,A_2\) are basepoint-free \(g^1_3\)'s and
+every section of \(A_2\) lifts. A base point in either pencil would
+leave a degree-two pencil and make \(C\) hyperelliptic. In particular
+\(V=H^0(H)=V_1\oplus V_2\), with \(V_1=H^0(A_1)\) and \(V_2\) a lift of
+\(H^0(A_2)\). Twisting by \(M\) gives \(I=A_1\otimes M\subset Q\) and
+\(R_2=A_2\otimes M=Q/I\). For
+\(\alpha\in H^0(R_2^\vee\omega_C)\subset H^0(Q^\vee\omega_C)\), the
+\(V_1\) columns of \(\Theta(\alpha)\) vanish; symmetry makes its \(V_1\)
+rows vanish as well. Hence \(\alpha H^0(A_2)\) is the fixed two-plane
+\(V_2^\vee\). But
+
+\[h^0(R_2^\vee\omega_C)=2+h^0(R_2)\ge2,\]
+
+so two independent choices of \(\alpha\) give the same product pencil.
+Their ratio preserves \(H^0(A_2)\) and is constant by the eigenvector
+argument, a contradiction. Thus every \(\mathcal O_C^5\) evaluation case
+is eliminated.
+
+For the \(J\oplus\mathcal O_C^4\) evaluation, the full map
+\(\mathcal O_C^5\to G\) is not saturated at the zero of the section of
+\(J\). It is enough for the \v{C}ech symmetry, but bracket with \(M\) is not
+known to preserve that raw evaluation lattice. Its self-block may
+acquire a pole in a raw trivialization. The full-rank residual cases can
+nevertheless be excluded before confronting that lattice issue. Write
+the stable residual bundle as \(R_0\) and put \(H_0=R_0\otimes L\), a
+stable rank-two bundle of degree five. If \(H_0\) had four sections, the
+wedge lemma and \(h^0(\det H_0)\le3\) would produce a line subbundle
+with two sections; stability gives degree at most two, contradicting
+nonhyperelliptic gonality. Thus \(h^0(H_0)\le3\).
+
+A full bracket image cannot have coefficient rank two, because
+injectivity of \(\Theta\) gives
+
+\[\dim H^0(R_0^\vee\omega_C)=5+h^0(R_0)>3
+  =\dim\mathrm{Sym}^2(\mathbb C^2).\]
+
+It must therefore have \(k=3\). The same \(q_x\) construction now has
+\(\dim\mathrm{im}\,\Theta=5\) or \(6\): indeed, stability gives
+\(h^0(R_0)\le1\). To see this, two sections with zero wedge would lie in
+a degree-zero line with two sections, while a nonzero wedge vanishes at
+the unique point of \(\det R_0\) and a linear combination would generate
+a degree-at-least-one line subbundle. Both alternatives contradict
+stability. Thus the orthogonal of \(\mathrm{im}\,\Theta\) in
+\(\mathrm{Sym}^2(\mathbb C^3)\) is projectively a point or empty. The
+empty case is immediate; in the point case unique factorization again
+forces an evaluation vector or a kernel line to be constant. Hence every
+full-rank residual image is impossible. A rank-one residual image has
+\(k\le1\): its saturated line in \(R_0\) has degree at most zero, so
+after twisting by \(L\) it has degree at most two and at most one
+section. It remains to convert the resulting large kernel into genuine
+normalizer sections without pretending that the raw evaluation lattice
+is saturated.
+
+Let
+
+\[V_0=H^0(G),\qquad
+F=\operatorname{im}(V_0\otimes\mathcal O_C\to G),\qquad
+W=J\oplus\mathcal O_C^4.\]
+
+The five sections are generically independent, so
+\(F\simeq\mathcal O_C^5\), and the degree-one saturation defect gives
+\(W/F\simeq k(p)\). Stability gives \(H^0(E)=0\); since \(h^1(M)=5\),
+the extension boundary is an isomorphism
+
+\[e:V_0\xrightarrow{\sim}H^1(M).\]
+
+Write \(\phi:V_0\to H^0(R_0\otimes L)\) for the residual
+quotient-bracket map. The \v{C}ech symmetry is valid for the actual raw
+sections: choosing local lifts in \(E\) and projecting their bracket to
+\(R_0\) gives
+
+\[\phi(v)_*e(u)=\phi(u)_*e(v)
+\quad\text{in }H^1(R_0).\]
+
+Suppose first that \(\dim\operatorname{im}\phi=1\). Write
+\(\phi(v)=c(v)r\) with \(0\ne r:M\to R_0\). Taking \(u\in\ker c\) and
+\(v\) with \(c(v)=1\) shows that \(r_*e(u)=0\), hence
+
+\[\dim\ker\bigl(H^1(M)\xrightarrow{r_*}H^1(R_0)\bigr)\ge4.\]
+
+Let \(I\subset R_0\) be the saturation of \(r(M)\) and put
+\(d=\operatorname{length}(I/r(M))\). Stability of the rank-two,
+degree-one bundle \(R_0\) gives \(\deg I\le0\), so \(0\le d\le2\). For
+\(Q_r=R_0/r(M)\) there is an exact sequence
+
+\[0\longrightarrow I/r(M)\longrightarrow Q_r
+\longrightarrow R_0/I\longrightarrow0,
+\qquad \deg(R_0/I)=3-d.\]
+
+On the nonhyperelliptic genus-four test fibre, \(h^0(R_0/I)\le2,1,1\)
+for \(d=0,1,2\), respectively. Thus \(h^0(Q_r)\le2,2,3\). The long exact
+sequence of \(0\to M\to R_0\to Q_r\to0\) gives
+
+\[\dim\ker r_*=h^0(Q_r)-h^0(R_0)\le h^0(Q_r)\le3,\]
+
+contradicting the preceding lower bound. Therefore \(\phi=0\).
+
+Now \(\beta(V_0)\subset H^0(W\otimes L)\). Compose with the
+principal-part map to \(H^0((W/F)\otimes L)\) and let \(V_1\) be its
+kernel. The target is one-dimensional, so \(\dim V_1\ge4\), and
+
+\[\beta(V_1)\subset H^0(F\otimes L)
+=V_0\otimes H^0(L).\]
+
+If \(h^0(L)=0\), all of \(V_1\) consists of genuine normalizer sections.
+If \(h^0(L)=1\), write its generator as \(s\) and \(\beta|_{V_1}=sA\)
+for a linear map \(A:V_1\to V_0\). The global bracket map
+\(M\otimes G\to E\) lifts \(sA(x):M\to G\) for every \(x\in V_1\). Hence
+the pullback of the extension along multiplication by \(s\) splits, or
+\(s_*e(Ax)=0\).
+
+The zero divisor of \(s\) has length two, and
+\(0\to M\xrightarrow{s}\mathcal O_C\to\mathcal O_D\to0\) gives
+\(\dim\ker(s_*:H^1(M)\to H^1(\mathcal O_C))=1\). Since \(e\) is an
+isomorphism, \(\operatorname{rk}A\le1\) and therefore
+\(\dim\ker A\ge3\). These are three generically independent global
+normalizer sections because \(F\simeq V_0\otimes\mathcal O_C\). The
+normalizer boundary-cocycle obstruction excludes them. Thus the entire
+nonsaturated evaluation locus, and hence all of \((S,q)=(0,8)\), is
+impossible.
+
+\subsection{\texorpdfstring{The zero-weight \(q=9\) branch and its
+closure}{The zero-weight q=9 branch and its closure}}\label{the-zero-weight-q9-branch-and-its-closure}
+
+For \((S,q)=(0,9)\) one has
+
+\[\deg M=-3,\qquad \deg L=3,\qquad
+(\operatorname{rk}G,\deg G,h^0(G))=(7,3,6).\]
+
+Stability gives \(H^0(E)=0\), so the full boundary is an isomorphism
+
+\[e:H^0(G)\xrightarrow{\sim}H^1(M)\]
+
+between six-dimensional spaces. The exact HN equality types allowed by
+the small-slope bounds are
+
+\[(7,3),\qquad (1,1)+(6,2),\qquad (2,2)+(5,1).\]
+
+The saturation \(W\) of the six-section evaluation has rank six.
+Stability of \(E\) bounds its degree by two, and equality in the section
+bounds gives exactly
+
+\[\mathcal O_C^6,\qquad
+J_1\oplus\mathcal O_C^5,\qquad
+A_2\oplus\mathcal O_C^5,\qquad
+B_{2,2}\oplus\mathcal O_C^4.\]
+
+Here \(J_1\) is a degree-one line with one section, \(A_2\) is a
+degree-two line with one section, and \(B_{2,2}\) is a semistable
+rank-two, degree-two bundle with two sections. If
+\(d=\deg W\in\{0,1,2\}\) and
+\(F=\operatorname{im}(H^0(G)\otimes\mathcal O_C\to G)\), then
+
+\[F\simeq\mathcal O_C^6,\qquad
+\operatorname{length}(W/F)=d,
+\qquad R:=G/W\simeq L(-D),\quad \deg D=d.\]
+
+Let
+
+\[\phi:H^0(G)\longrightarrow H^0(R\otimes L),
+\qquad U=\operatorname{im}\phi,\quad k=\dim U\]
+
+be the residual bracket coefficient. If \(\phi\ne0\), \v{C}ech symmetry
+gives an injective map
+
+\[\Theta:H^0(R^{-1}\otimes\omega_C)
+\longrightarrow\operatorname{Sym}^2(U^\vee).\]
+
+Every nonzero form in its image is nondegenerate. Indeed, choose
+\(0\ne u\in U\) and a lift \(v\in H^0(G)\) with \(\phi(v)=u\). If \(u\)
+were a null vector, then for every \(w\in H^0(G)\) the \v{C}ech symmetry
+would give
+
+\[0=\langle e(v),\alpha\phi(w)\rangle
+ =\langle e(w),\alpha u\rangle.\]
+
+The boundary isomorphism and Serre duality would force \(\alpha u=0\),
+which is impossible for two nonzero sections on an integral curve. A
+complex pencil of symmetric forms always contains a singular member, so
+
+\[\phi\ne0\quad\Longrightarrow\quad
+h^0(R^{-1}\otimes\omega_C)\le1.\]
+
+Riemann--Roch and \(R=L(-D)\) give the exact dimension
+
+\[h^0(R^{-1}\otimes\omega_C)=d+h^0(R).\]
+
+Consequently \(d=2\) forces \(k=0\); \(d=1\) forces \(k=0\) when \(R\)
+is effective; and \(d=0\) forces \(k=0\) when \(L\) is trigonal.
+
+The remaining issue is no longer the residual Petri map. After taking
+\(\ker\phi\) and killing the \(d\) principal parts of \(W/F\), there is
+a subspace \(V_1\subset H^0(G)\) of dimension at least \(6-k-d\) on
+which the self-block is
+
+\[V_1\longrightarrow H^0(G)\otimes H^0(L).\]
+
+Write \(\ell=h^0(L)\). On the nonhyperelliptic genus-four test fibre,
+\(\ell\in\{0,1,2\}\). Extension compatibility places the self-block in
+the kernel of
+
+\[\delta_L:H^1(M)\otimes H^0(L)\longrightarrow H^1(\mathcal O_C),
+\qquad a\otimes s\longmapsto s_*a.\]
+
+For \(\ell=0,1,2\), the kernel dimensions are respectively
+
+\[\kappa_\ell=0,2,8.\]
+
+For \(\ell>0\) this follows because multiplication by any nonzero
+section of \(L\) surjects \(H^1(M)\to H^1(\mathcal O_C)\); the domain of
+\(\delta_L\) has dimension \(6\ell\) and the target has dimension four.
+The guaranteed normalizer rank is therefore only
+
+\[N=\max\{0,6-k-d-\kappa_\ell\}.\]
+
+This formula closes some subloci, but not the branch:
+
+\begin{longtable}[]{@{}lrrl@{}}
+\toprule\noalign{}
+Evaluation data & Residual rank & Guaranteed \(N\) & Status from the
+extension count alone \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(d=2\), \(\ell=0\) & \(k=0\) & \(4\) & closed \\
+\(d=2\), \(\ell=1\) & \(k=0\) & \(2\) & not closed at this stage \\
+\(d=2\), \(\ell=2\) & \(k=0\) & \(0\) & not closed at this stage \\
+\(d=1\), \(R\) effective, \(\ell=1\) & \(k=0\) & \(3\) & closed \\
+\(d=1\), \(R\) effective, \(\ell=2\) & \(k=0\) & \(0\) & not closed at
+this stage \\
+\(d=0\), \(\ell=2\) & \(k=0\) & \(0\) & not closed at this stage \\
+\end{longtable}
+
+There are also possible escapes with nonzero residual coefficient rank:
+\(d=0,\ell=0,k=4\) when \(h^0(L^2)=4\), equivalently
+\(L^2\simeq\omega_C\); \(d=0,\ell=1,k\ge2\); and, when \(R\) is
+ineffective, \(d=1,\ell=0,k=3\) when \(h^0(R\otimes L)=3\), or
+\(d=1,\ell=1,k\ge1\). The case \(d=1\), \(R\) ineffective, \(\ell=2\)
+cannot occur because a degree-three pencil on the nonhyperelliptic fibre
+is basepoint-free. In each surviving case the current lower bound can
+fall below three.
+
+The global Killing pairing supplies the missing constraint. Let
+\(Q_2=\operatorname{tr}(m^2)\in H^0(L^2)\). Pairing the inverse image
+\(P\subset E\) with \(M\) by the global Killing form gives
+
+\[b:P\longrightarrow M^*=L,
+\qquad b|_M=Q_2.\]
+
+Thus the pushout of the universal extension
+\(0\to M\to P\to\mathcal O_C^6\to0\) along \(Q_2:M\to L\) splits. Since
+its boundary \(e:\mathbb C^6\to H^1(M)\) is an isomorphism,
+multiplication
+
+\[(Q_2)_*:H^1(M)\longrightarrow H^1(L)\]
+
+must vanish. If \(Q_2\ne0\), its Serre-dual map is multiplication by \(Q_2\)
+from \(H^0(\omega_C\otimes L^{-1})\) to \(H^0(\omega_C\otimes L)\); this
+is injective on the integral curve and has nonzero source, of dimension
+\(h^0(L)\ge1\). Hence \((Q_2)_*\) cannot vanish. Therefore every
+effective-\(L\) realization,
+equivalently every sublocus with \(h^0(L)>0\), must satisfy
+
+\[Q_2=\operatorname{tr}(m^2)=0.\]
+
+In the unpunctured no-high branch, Killing gives more than isotropy.
+Since \(Q_2=0\), pairing with \(M\) descends to
+
+\[\bar b:G=E/M\longrightarrow L.\]
+
+For \(x,y\in H^0(G)\), choose local lifts with boundary cocycles
+representing \(e(x),e(y)\in H^1(M)\). The overlap formula for their
+Killing pairing gives
+
+\[\bar b(y)_*e(x)+\bar b(x)_*e(y)=0
+\quad\text{in }H^1(\mathcal O_C).\]
+
+If the induced map \(H^0(G)\to H^0(L)\) were nonzero, choose \(x\) whose
+image is a nonzero section \(s\). Its kernel has dimension at least
+\(6-h^0(L)\ge4\), and the displayed identity would carry that kernel
+injectively under \(e\) into
+
+\[\ker\bigl(s_*:H^1(M)\longrightarrow H^1(\mathcal O_C)\bigr),\]
+
+which has dimension two. This is impossible. Hence \(\bar b\) kills the
+raw evaluation \(F\simeq\mathcal O_C^6\). If \(P\subset E\) is its
+inverse image, then \(P\subset M^\perp\); both bundles have rank seven
+and degree \(-3\), so
+
+\[P=M^\perp,
+\qquad F=M^\perp/M.\]
+
+In particular \(F\) is saturated. Thus every effective-\(L\) case with
+\(d=1\) or \(d=2\) is impossible. Moreover
+\([M,M^\perp]\subset M^\perp\), so the residual coefficient map vanishes
+automatically when \(d=0\). If \(h^0(L)=1\), the remaining self-block is
+\(sA\) and compatibility puts \(e(\operatorname{im}A)\) in the
+two-dimensional kernel of \(s_*\). Hence \(\operatorname{rk}A\le2\) and
+at least four constant normalizer sections remain, a contradiction. The
+last effective case left by these extension counts is
+
+\[d=0,\qquad h^0(L)=2,\qquad P=M^\perp.\]
+
+Here Killing descends to a nondegenerate constant symmetric form on
+\(F\simeq\mathcal O_C^6\), and the self-block is a pencil skew for that
+form.
+
+The actual inner \(\mathrm{PGL}_3\) structure now gives a topological
+contradiction. The adjoint homomorphism
+
+\[\mathrm{PGL}_3\longrightarrow\mathrm{SO}_8\]
+
+lifts to \(\mathrm{Spin}_8\): lift first from the simply connected group
+\(\mathrm{SL}_3\), and observe that its central \(\mu_3\) must map
+trivially to the \(\mu_2\) kernel of
+\(\mathrm{Spin}_8\to\mathrm{SO}_8\). Hence the orthogonal obstruction
+class of the adjoint bundle is \(w_2(E)=0\). On the other hand, a smooth
+orthogonal splitting along the isotropic line gives
+
+\[E\simeq H(M)\perp F,
+\qquad
+w_2(E)=c_1(M)+w_2(F)\pmod2.\]
+
+The form on the trivial bundle \(F\simeq\mathcal O_C^6\) is a constant
+nondegenerate matrix, so \(w_2(F)=0\), while \(\deg M=-3\) is odd. This
+gives \(w_2(E)=1\), a contradiction. Here \(w_2\) is the obstruction
+class of the complex orthogonal bundle, not the Stiefel--Whitney class
+of its underlying realification. Therefore \textbf{every effective-\(L\)
+no-high \(q=9\) sublocus is impossible}.
+
+The punctured canonical lattices admit an even sharper elementary
+obstruction. At a marked DVR their standard basis consists of two Cartan
+generators and root generators
+
+\[z^{\epsilon_{ij}}E_{ij},
+\qquad \epsilon_{ij}\in\{0,1\}.\]
+
+For an opposite root pair, \(\epsilon_{ij}+\epsilon_{ji}\) is zero
+inside a Levi block and one across distinct flag blocks. Let a
+saturated, hence primitive, isotropic generator \(m\) have pairing ideal
+\(\operatorname{tr}(mE)=z^{d_p}R\). If a unit coefficient of \(m\)
+occurs in the Cartan part, the unimodular Cartan Gram matrix gives
+\(d_p=0\). If it occurs on a root generator, pairing with the unique
+opposite root generator isolates that coefficient and gives \(d_p\le1\).
+Thus
+
+\[d_p\le1\]
+
+at every nonscalar marking, with no possible cancellation; at scalar or
+ordinary points \(d_p=0\).
+
+Let \(N_{\rm ns}\) be the number of nonscalar markings and let \(s_p\)
+be the adjoint determinant contribution, two for type \(2+1\) and three
+for a full flag. If \(D_b=\sum_p d_p p\), then
+
+\[\deg D_b\le N_{\rm ns}\le S/2,
+\qquad S=\sum s_p.\]
+
+On the other hand,
+
+\[\operatorname{im}(E\longrightarrow M^*)=L(-D_b),
+\qquad
+\deg M^\perp=\deg D_b-S-3.\]
+
+The symmetric \v{C}ech identity gives \(P\subset M^\perp\), while
+\(\deg P=-3\), and therefore \(\deg D_b\ge S\). This contradicts the
+displayed upper bound whenever \(S>0\). Hence \textbf{every effective
+punctured high-HN \(q=9\) row is impossible}. This argument uses the
+canonical periodic-chain root exponents; it is not asserted for an
+arbitrary commensurable lattice.
+
+The ineffective-\(L\) subloci close by a different two-normalizer
+argument. Put \(\ell=h^0(L)=0\). The extension count already closes
+\(d=2\). For \(d=1\), the only possible escape has \(k=3\): the
+three-dimensional space \(\ker\phi\) loses at most one dimension to the
+length-one principal-part map. Its remaining two-space has bracket in
+\(H^0(F\otimes L)=H^0(L)^6=0\). For \(d=0\), the only escape has \(k=4\)
+and the two-dimensional space \(\ker\phi\) has the same property. Thus
+in either case there are two generically independent global sections
+
+\[\mathcal O_C^2\longrightarrow K:=\ker\beta.\]
+
+The two maximal escapes have the exact line-bundle
+forms
+
+\[(d,k)=(0,4):\quad L^2\simeq\omega_C,\]
+
+and
+
+\[(d,k)=(1,3):\quad
+L^2\simeq\omega_C(D-p)\]
+
+for an effective divisor \(D\) of degree one and a point \(p\). Lower
+coefficient rank already leaves at least three normalizer sections.
+
+Let \(Q_2=\operatorname{tr}(m^2)\in H^0(L^2)\). If \(Q_2=0\), Killing
+pairing descends on the inverse image \(P\) of the raw
+\(F\simeq\mathcal O_C^6\) to a map \(F\to L\). This map is zero because
+\(h^0(L)=0\), so \(P\subset M^\perp\). Equal rank and degree give
+\(P=M^\perp\). For \(d=1\) this already contradicts the nonsaturation of
+\(F\); for \(d=0\) it gives \(M^\perp/M\simeq\mathcal O_C^6\) and the
+Spin-parity contradiction above.
+
+It remains to take \(Q_2\ne0\). For a quotient-normalizer element \(x\),
+write \([x,m]=\lambda(x)m\). Killing invariance gives
+
+\[\lambda(x)Q_2=\operatorname{tr}([x,m]m)=0,\]
+
+so the grading character \(\lambda\) vanishes. The injective-boundary
+\v{C}ech law then makes the two global normalizer sections commute. After
+extending the generic field if necessary, if \(m\) is regular, its
+centralizer has dimension two and \(Z(m)/\mathbb C m\) has dimension
+one, so it cannot contain them. If \(m\) is nonregular and \(Q_2\ne0\),
+its minimal polynomial has degree at most two and tracelessness forces
+the semisimple eigenvalue pattern \((a,a,-2a)\) with \(a\ne0\). In that
+case
+
+\[Z(m)/\mathbb C m\simeq\mathfrak{sl}_2,\]
+
+which has no two-dimensional abelian subalgebra. This is the final
+contradiction. Therefore \textbf{the entire unpunctured no-high branch
+\((S,q)=(0,9)\) is impossible}.
+
+\subsection{\texorpdfstring{The first punctured branch:
+\((S,q)=(2,8)\)}{The first punctured branch: (S,q)=(2,8)}}\label{the-first-punctured-branch-sq28}
+
+Here the branch data are
+
+\[\deg M=-2,\qquad \deg L=2,\qquad
+(\mathrm{rk}\,G,\deg G,h^0(G))=(7,0,5),
+\qquad h^1(M)=5.\]
+
+The no-high bundle \(A\) has rank seven, degree \(42\), and
+\(\mu_{\max}(A)\le6=\mu(A)\). Hence \(A\) is semistable, and
+\(G=A^\vee\otimes\omega_C\) is semistable of degree zero. The saturated
+evaluation image is generically generated, so it has nonnegative degree;
+semistability of \(G\) gives the opposite inequality. It is therefore a
+degree-zero trivial bundle. Since all five global sections of \(G\)
+factor through it, its rank is at least five; an evaluation image
+generated by five sections has rank at most five. Thus its rank is
+exactly five:
+
+\[W=\mathcal O_C^5\subset G.\]
+
+The quotient \(Q=G/W\) is semistable of rank two and degree zero.
+Parabolic stability gives \(H^0(E)=0\), so the boundary of the
+inverse-image extension is an isomorphism
+
+\[e:H^0(W)\xrightarrow{\sim}H^1(M).\]
+
+Put \(H=Q\otimes L\), a semistable rank-two bundle of degree four. On
+the nonhyperelliptic test fibre, Riemann--Roch gives
+
+\[h^0(\det H)=1+h^0(\omega_C\otimes\det H^{-1})\le2,\]
+
+because the residual line has degree two. Three independent sections of
+\(H\) would give a nonzero kernel for
+
+\[\Lambda^2\mathbb C^3\longrightarrow H^0(\det H).\]
+
+Every nonzero bivector in three variables is decomposable, so two
+independent sections would generate a line subbundle of degree at most
+two. Such a line cannot have two sections on a nonhyperelliptic curve.
+Therefore
+
+\[h^0(Q\otimes L)\le2.\]
+
+Let \(\phi:H^0(W)\to H^0(Q\otimes L)\) be the quotient-bracket
+coefficient map and put \(k=\dim\operatorname{im}\phi\). If \(k=2\), the
+two image sections generically span \(Q\otimes L\); otherwise they again
+generate a forbidden degree-at-most-two pencil. The \v{C}ech symmetry then
+makes the Petri map injective with image in the symmetric square:
+
+\[H^0(Q^\vee\otimes\omega_C)
+\hookrightarrow\mathrm{Sym}^2(\mathbb C^2)^\vee.\]
+
+Riemann--Roch gives \(h^0(Q^\vee\otimes\omega_C)=6+h^0(Q)\ge6\), while
+the target has dimension three. Thus \(k\le1\).
+
+Now \(W_0=\ker\phi\) has dimension at least four. If \(L\) is
+ineffective, the remaining self-block vanishes. If
+\(L\simeq\mathcal O_C(D)\), write the block as \(sA\). Extension
+compatibility gives \(s_*eA=0\), and the exact sequence
+
+\[0\longrightarrow M\xrightarrow{s}\mathcal O_C
+\longrightarrow\mathcal O_D\longrightarrow0\]
+
+shows that \(\ker(s_*:H^1(M)\to H^1(\mathcal O_C))\) is one-dimensional.
+Since \(e\) is an isomorphism, \(\operatorname{rk}A\le1\). At least
+three generically independent constant sections therefore lie in
+\(\ker\beta\), and the normalizer boundary-cocycle obstruction
+eliminates the branch. No Pfaffian effectivity or relative-section
+endpoint is used.
+
+\subsection{\texorpdfstring{The punctured no-high \(q=9\) rows are
+eliminated}{The punctured no-high q=9 rows are eliminated}}\label{the-punctured-no-high-q9-rows-are-eliminated}
+
+The two punctured no-high numerical rows at coefficient rank \(q=9\) are
+\((S,q)=(2,9),(3,9)\).
+
+For \((S,q)=(2,9)\) one has
+
+\[(\operatorname{rk}G,\deg G,h^0(G))=(7,1,6),
+\qquad \deg M=-3,
+\qquad h^1(M)=6.\]
+
+Let \(W\) be the saturation of the six-section evaluation and \(F\) its
+raw image. The no-high slopes of \(G\) are nonnegative. Since \(G/W\)
+also has nonnegative degree, one has \(0\le\deg W\le1\). A
+rank-at-most-five bundle of degree at most one that is generically
+generated cannot carry six independent sections: after choosing its rank
+many independent sections it is either \(\mathcal O_C^r\) or
+\(\mathcal O_C(p)\oplus\mathcal O_C^{r-1}\), and in either case has at
+most \(r\) sections. Hence \(W\) has rank six. The evaluation
+\(H^0(G)\otimes\mathcal O_C\to G\) is therefore generically injective,
+so \(F\simeq\mathcal O_C^6\), with the exact alternatives
+
+\[W=F=\mathcal O_C^6
+\quad\text{or}\quad
+W=\mathcal O_C(p)\oplus\mathcal O_C^5,
+\quad W/F\simeq k(p).\]
+
+Write \(\delta=\deg W\in\{0,1\}\) and \(R=G/W\), so \(\deg R=1-\delta\).
+If the residual bracket coefficient
+\(\phi:\mathbb C^6\to H^0(R\otimes L)\) were nonzero, \v{C}ech symmetry
+would inject
+
+\[H^0(R^{-1}\otimes\omega_C)
+\longrightarrow\operatorname{Sym}^2(\operatorname{im}\phi)^\vee\]
+
+with every nonzero form in the image nondegenerate. But Riemann--Roch
+gives
+
+\[h^0(R^{-1}\otimes\omega_C)
+=2+\delta+h^0(R)\ge2,\]
+
+If \(\dim\operatorname{im}\phi=1\), the target of the displayed
+injection has dimension one, already contradicting the source dimension.
+If \(\dim\operatorname{im}\phi\ge2\), any two-dimensional subspace of
+the image is a complex pencil of symmetric forms and contains a singular
+member. Thus \(\phi=0\).
+
+If \(L\) is ineffective, killing the at-most-one principal part leaves
+at least five raw sections, and their self-block lies in
+\(H^0(F\otimes L)=0\). The normalizer boundary law gives a
+contradiction. If \(L\) is effective, the quadratic Killing pushout
+forces \(Q_2=\operatorname{tr}(m^2)=0\). The symmetric Killing \v{C}ech
+identity then gives \(P\subset M^\perp\). Since \(S=2\) consists of one
+type-\(2+1\) marking, the canonical local basis gives \(\deg D_b\le1\),
+while the global degree comparison gives \(\deg D_b\ge S=2\). This is
+impossible.
+
+For \((S,q)=(3,9)\) the data are
+
+\[(\operatorname{rk}G,\deg G,h^0(G))=(7,0,6),
+\qquad \deg M=-3,
+\qquad h^1(M)=6.\]
+
+Here the no-high inequalities make \(G\) semistable of degree zero, so
+its saturated evaluation is
+
+\[W=\mathcal O_C^6,\]
+
+with degree-zero quotient line \(Q\). A nonzero residual coefficient
+would again produce a subspace of everywhere nondegenerate symmetric
+forms, now of dimension
+
+\[h^0(Q^{-1}\otimes\omega_C)=3+h^0(Q)\ge3,\]
+
+which is impossible. Thus the residual coefficient vanishes. If \(L\) is
+ineffective, all six raw sections lie in the quotient normalizer. If
+\(L\) is effective, the same Killing argument gives
+\(P\subset M^\perp\). The equation \(2a+3b=3\) forces exactly one
+full-flag marking, so the canonical local bound is \(\deg D_b\le1\),
+while the global inclusion requires \(\deg D_b\ge3\). This is again
+impossible.
+
+Therefore \textbf{all no-high genus-four rows at \(q=9\) are
+impossible}.
+
+\subsection{\texorpdfstring{The no-high \(q=10\) layer is
+eliminated}{The no-high q=10 layer is eliminated}}\label{the-no-high-q10-layer-is-eliminated}
+
+The four rows at \(q=10\) have the common data
+
+\[\deg M=-4,\qquad \deg L=4,\qquad h^1(M)=h^0(G)=7,
+\qquad \deg G=4-S.\]
+
+For \(S=0\), the unique HN type attaining the required seven-section
+upper bound is
+
+\[(\operatorname{rk},\deg)=(2,3)+(5,1),\]
+
+with section contributions three and four. Let \(H\) be the semistable
+rank-two, degree-three first factor. Equality would give \(h^0(H)=3\).
+The wedge map
+
+\[\Lambda^2H^0(H)\longrightarrow H^0(\det H)\]
+
+is injective: a nonzero kernel vector is decomposable because
+\(\dim H^0(H)=3\), and its two sections would generate a line subbundle
+with at least two sections. Such a line has degree at least three on the
+nonhyperelliptic test fibre, contradicting semistability of \(H\) of
+slope \(3/2\). But \(\det H\) has degree three and at most two sections,
+so the three-dimensional exterior square cannot inject. The row
+\((0,10)\) is impossible.
+
+Now let \(S=2,3,4\). The exact equality HN types are respectively
+
+\[(1,2)+(6,0)\text{ or }(2,2)+(5,0),
+\qquad (1,1)+(6,0),
+\qquad (7,0).\]
+
+Equality forces every degree-zero factor to be trivial and the positive
+factor to have full-rank evaluation. Hence the seven sections have
+generically full-rank raw image
+
+\[F\simeq\mathcal O_C^7\subset G,
+\qquad d:=\operatorname{length}(G/F)=4-S=2,1,0.\]
+
+If \(P\subset E\) is the inverse image of \(F\), parabolic stability
+gives \(H^0(P)=0\), so the extension boundary is an isomorphism
+
+\[e:\mathbb C^7\overset\sim\longrightarrow H^1(M).\]
+
+Riemann--Roch and nonhyperellipticity give \(h^0(L)\in\{1,2\}\).
+Suppose first that \(h^0(L)=1\), with generator \(s\). Killing the \(d\)
+principal parts leaves a subspace \(V_1\) of dimension at least \(7-d\)
+on which the self-block has the form \(sA\). Extension compatibility
+gives
+
+\[s_*eA=0,\]
+
+and the degree-four divisor sequence gives
+
+\[\dim\ker\bigl(s_*:H^1(M)\longrightarrow H^1(\mathcal O_C)\bigr)=3.\]
+
+Thus at least \(7-d-3=4-d\) constant quotient-normalizer directions
+remain. For \(S=3,4\) this is at least three, and the normalizer
+boundary-cocycle obstruction closes the rows.
+
+For \(S=2\), the count leaves two directions. Put
+\(Q_2=\operatorname{tr}(m^2)\). If \(Q_2=0\), the Killing pairing
+descends to a map \(G\to L\). If its restriction to the seven raw
+sections were nonzero, the symmetric Killing \v{C}ech identity would inject
+a subspace of dimension at least six under \(e\) into the
+three-dimensional kernel of multiplication by \(s\). Hence that
+restriction vanishes. Since \(F\) has full generic rank in \(G\), the
+Hodge line would then be orthogonal to the whole generic fibre of \(E\),
+contradicting nondegeneracy of the \(\mathfrak{sl}_3\) Killing form.
+
+If instead \(Q_2\ne0\), Killing invariance forces the grading character
+to vanish on the two surviving quotient-normalizer sections, and the
+boundary law makes them commute. A regular element has
+\(\dim Z(m)/\mathbb C m=1\). The only nonregular traceless \(3\times3\)
+orbit with \(Q_2\ne0\) is semisimple of type \((2,1)\), where
+\(Z(m)/\mathbb C m\simeq\mathfrak{sl}_2\), which contains no abelian
+two-plane. This closes the last one-section case.
+
+Finally suppose \(h^0(L)=2\). Riemann--Roch gives
+\(h^0(\omega_C\otimes L^{-1})=1\). The Killing map splits the pushout of
+the universal extension along \(Q_2:M\to L\), so \((Q_2)_*e=0\). Since
+\(e\) is surjective, \((Q_2)_*=0\) on \(H^1(M)\). If \(Q_2\) were
+nonzero, its Serre-dual multiplication map from the one-dimensional
+space \(H^0(\omega_C\otimes L^{-1})\) would be injective. Therefore
+\(Q_2=0\), and the preceding full-rank Killing contradiction applies.
+Consequently \textbf{every no-high genus-four row at \(q=10\) is
+impossible}.
+
+\subsection{A degree-four factor
+lemma}\label{a-degree-four-factor-lemma}
+
+We use the following sharpening repeatedly. If \(H\) is semistable of
+degree four and rank \(r=1,2,3\) on the nonhyperelliptic genus-four test
+fibre, then
+
+\[h^0(H)\le r+1.\]
+
+For \(r=1\), Riemann--Roch reduces the assertion to the fact that a
+degree-two line has at most one section. For \(r=2\), suppose
+\(h^0(H)=4\) and put \(V=H^0(H)\). Since \(h^0(\det H)\le2\), the kernel
+of
+
+\[\Lambda^2V\longrightarrow H^0(\det H)\]
+
+has dimension at least four. Its projectivization has dimension at least
+three and must meet the four-dimensional Grassmannian
+\(\operatorname{Gr}(2,4)\subset\mathbb P^5\). A decomposable kernel
+vector would give a line subbundle with two sections and hence degree at
+least three, contradicting semistability at slope two.
+
+For \(r=3\), suppose \(h^0(H)=5\). Every saturated rank-two subsheaf
+\(K\subset H\) has degree at most two and cannot have three sections:
+the exterior square of three such sections maps to the
+at-most-one-dimensional space \(H^0(\det K)\), so a decomposable kernel
+vector would give a two-section line subbundle, impossible under
+semistability of \(H\). On the other hand, the kernel of
+
+\[\Lambda^3H^0(H)\longrightarrow H^0(\det H)\]
+
+has dimension at least eight. Its projectivization is at least
+\(\mathbb P^7\) and must meet
+\(\operatorname{Gr}(3,5)\subset\mathbb P^9\), of dimension six. The
+resulting three sections lie in a saturated subsheaf of rank at most
+two, which was just excluded. This proves the lemma.
+
+\subsection{\texorpdfstring{The no-high \(q=11\) layer is
+eliminated}{The no-high q=11 layer is eliminated}}\label{the-no-high-q11-layer-is-eliminated}
+
+For \((S,q)=(0,11)\) one has
+
+\[(\operatorname{rk}G,\deg G,h^0(G))=(7,5,8).\]
+
+The only HN types whose numerical bounds reach eight sections are
+
+\[(2,4)+(5,1),\qquad (3,4)+(4,1),\]
+
+with respective section bounds \(4+4\) and \(5+3\). The degree-four
+factor lemma improves the leading bounds to three and four, so both
+totals are at most seven. Thus \((0,11)\) is impossible.
+
+For \((S,q)=(2,11)\) the data are
+
+\[(\operatorname{rk}G,\deg G,h^0(G))=(7,3,8),
+\qquad \deg M=-5,\qquad h^1(M)=8.\]
+
+The equality types are
+
+\[(1,3)+(6,0),\qquad (2,3)+(5,0).\]
+
+The rank-two, degree-three factor in the second type cannot have three
+sections, by the same exterior-square argument used at \(q=10\).
+Equality in the first type forces a splitting
+
+\[G\simeq J\oplus\mathcal O_C^6,\]
+
+where \(J\) is a basepoint-free trigonal pencil. The evaluation sequence
+is
+
+\[0\longrightarrow J^{-1}\longrightarrow\mathcal O_C^8
+\longrightarrow G\longrightarrow0.\]
+
+The weight \(S=2\) comes from a unique type-\(2+1\) marking \(p\). Since
+\(\det E\simeq\mathcal O_C(-2p)\) and \(\det G=J\), one has
+
+\[L=M^{-1}=J(2p).\]
+
+The boundary \(e:H^0(G)\to H^1(M)\) is an isomorphism. Project the
+quotient bracket to the \(J\otimes L\) target and call its coefficient
+map \(\phi\). \v{C}ech symmetry gives an injection
+
+\[H^0(\omega_C\otimes J^{-1})
+\longrightarrow\operatorname{Sym}^2(\operatorname{im}\phi)^\vee\]
+
+whose nonzero image forms are nondegenerate. The source has dimension
+two. If \(\dim\operatorname{im}\phi=1\), the target is only
+one-dimensional; if \(\dim\operatorname{im}\phi\ge2\), the image
+contains a complex pencil and therefore a singular form. Both are
+impossible, so \(\phi=0\). Since \(G\) is globally generated, the whole
+target-\(J\) bracket block vanishes.
+
+Let \(J'=\omega_C\otimes J^{-1}\) be the residual trigonal pencil.  On a
+very general genus-four curve, every trigonal pencil is induced by one of
+the two rulings of the smooth canonical quadric: a trigonal pencil produces
+a ruling of the unique quadric containing the canonical curve.  Each pencil
+has a finite ramification divisor.  Since the marked point varies on the
+dominant pointed moduli cover, choose the test fibre so that \(p\) is
+unramified for every trigonal pencil, hence for \(J'\). Then
+
+\[h^0(J'(-2p))=0,
+\qquad H^0(J(2p))=H^0(J),
+\qquad H^0(\mathcal O_C(2p))=H^0(\mathcal O_C).\]
+
+Both equalities of section spaces are induced by the natural inclusions.
+If \(z\) is a local parameter at \(p\), then relative to the standard
+twisted frames \(z^{-2}e_J\) of \(J(2p)\) and \(z^{-2}\) of
+\(\mathcal O_C(2p)\), these inclusions are multiplication by \(z^2\).
+After the target-\(J\) bracket block has vanished, every remaining matrix
+coefficient of \(\beta\) lies in one of these two images.  Consequently
+every coefficient is divisible by \(z^2\), and its reduction on the
+contracted fibre is zero:
+
+\[\beta_p=0.\]
+
+Saturation makes \(M_p\ne0\), so \(M_p\) would be a one-dimensional ideal
+in the contracted type-\(2+1\) algebra
+
+\[\mathfrak{gl}_2\ltimes
+(\mathbb C^2\oplus(\mathbb C^2)^\vee).\]
+
+No such ideal exists: a line in the radical would be a one-dimensional
+\(\mathfrak{gl}_2\)-submodule, while a line projecting nontrivially to
+\(\mathfrak{gl}_2\) would have to project to its center, whose
+nontrivial action on the radical violates ideality. Thus \((2,11)\) is
+impossible.
+
+\subsection{\texorpdfstring{The no-high \(q=12\) row is
+eliminated}{The no-high q=12 row is eliminated}}\label{the-no-high-q12-row-is-eliminated}
+
+The only row is \((S,q)=(2,12)\), with
+
+\[(\operatorname{rk}G,\deg G,h^0(G))=(7,4,9).\]
+
+The exhaustive equality types are
+
+\[(1,4)+(6,0),\qquad (2,4)+(5,0),\qquad (3,4)+(4,0),\]
+
+and in each case the degree-four factor of rank \(r=1,2,3\) would need
+\(r+2\) sections. The degree-four factor lemma rules out all three.
+Hence \((2,12)\) is impossible. The \(q=12,13\) zero-weight rows were
+already eliminated by the original finite section bounds.
+
+\begin{lemma}[Equality in the BPGN induction]
+\label{lem:bpgn-equality-degree}
+Let \(C\) be a nonhyperelliptic curve of genus \(g\ge2\), and let \(H\) be
+a semistable bundle satisfying
+
+\[0\le\mu(H)\le2g-2,
+\qquad h^0(H)=\operatorname{rk}H+\frac{\deg H}{2}.\]
+
+Then \(\deg H\) is divisible by \(2g-2\).
+\end{lemma}
+
+\begin{proof}
+Follow the induction in the proof of \cite[Theorem~2.1]{BPGN}.  For its
+maximal-slope subbundle \(H_1\) and semistable quotient \(H_2\), one has
+
+\[h^0(H)\le h^0(H_1)+h^0(H_2)
+\le \operatorname{rk}H+\frac{\deg H}{2}.\]
+
+Equality for \(H\) forces equality throughout, so both \(H_1\) and \(H_2\)
+again attain the Clifford bound.  Iteration reduces to line bundles
+attaining classical Clifford equality.  No nonspecial term can attain
+equality in the stated slope range: Riemann--Roch would force its slope to
+be \(2g\).  On a nonhyperelliptic curve, the only line bundles attaining
+classical Clifford equality are \(\mathcal O_C\) and \(\omega_C\), of
+degrees zero and \(2g-2\).  Additivity of degree along the induction
+filtration proves the claim.
+\end{proof}
+
+\subsection{\texorpdfstring{The no-high \(q=14\) row is
+eliminated}{The no-high q=14 row is eliminated}}\label{the-no-high-q14-row-is-eliminated}
+
+For \((S,q)=(0,14)\) one has
+
+\[(\operatorname{rk}G,\deg G,h^0(G))=(7,8,11).\]
+
+The exact HN enumeration has only one type attaining the BPGN bound
+eleven, namely the single factor \((7,8)\); every unstable type has
+bound at most ten. Thus \(G\) is semistable (indeed stable, since
+\(\gcd(7,8)=1\)) and equality holds in the vector-bundle Clifford
+inequality
+
+\[h^0(G)=\operatorname{rk}G+\frac{\deg G}{2}.\]
+
+Apply Lemma~\ref{lem:bpgn-equality-degree}.  In genus four an equality bundle
+has degree divisible by \(2g-2=6\), contradicting \(\deg G=8\). Hence
+\((0,14)\) is impossible, and \textbf{the complete dense rank-eight
+genus-four branch is eliminated}.
+
+\subsection{\texorpdfstring{The high-HN \(q=7\) layer is
+eliminated}{The high-HN q=7 layer is eliminated}}\label{the-high-hn-q7-layer-is-eliminated}
+
+The three genus-four high-HN rows with \(q=7\) are
+
+\[(t,y)=(1,5),(2,11),(3,17),\qquad S\ge2.\]
+
+For all three, \(B=A/N\) has rank \(7-t\) and degree \(6(7-t)\). Every
+HN slope of \(B\) is at most six, so equality of its mean slope forces
+\(B\) to be semistable of slope six. Put \(H=B^\vee\otimes\omega_C\).
+Then \(H\) is semistable of degree zero. The exact sequence
+
+\[0\longrightarrow H\longrightarrow G
+\longrightarrow N^\vee\otimes\omega_C\longrightarrow0\]
+
+has a negative-slope right term, while \(h^0(G)=4\). Hence \(h^0(H)=4\).
+Successively saturating its nowhere-vanishing sections in the semistable
+degree-zero bundle gives a saturated evaluation subbundle
+
+\[W=\mathcal O_C^4\subset G.\]
+
+Let \(Q=G/W\). From
+
+\[0\longrightarrow H/W\longrightarrow Q
+\longrightarrow N^\vee\otimes\omega_C\longrightarrow0\]
+
+one obtains
+
+\[\mathrm{rk}\,Q=3,\qquad \deg Q=1-S,
+\qquad \mu_{\max}(Q)\le0.\]
+
+Parabolic stability gives \(H^0(E)=0\), hence also \(H^0(P)=0\) for the
+inverse image \(P\) of \(W\). Since \(\deg M=-1\) and \(h^1(M)=4\), the
+inverse-image extension has boundary
+\(e:H^0(W)\xrightarrow{\sim}H^1(M)\). Let
+
+\[f:M\otimes W\longrightarrow Q,
+\qquad
+\phi:H^0(W)\longrightarrow H^0(Q\otimes L)\]
+
+be the quotient bracket and its coefficient map. The same \v{C}ech
+comparison gives \(f(v)_*e(u)=f(u)_*e(v)\). If
+\(V=\operatorname{im}\phi\) and \(k=\dim V\), the resulting Petri map
+lands in \(\mathrm{Sym}^2(V^\vee)\).
+
+Let \(I\subset Q\) be the saturated image of \(f\), with rank \(r\) and
+degree \(d\). Every HN slope of \(I\otimes L\) is at most one. The
+small-slope section bound gives \(h^0(I\otimes L)\le r\). Since \(V\)
+generically spans \(I\otimes L\), one has \(r\le k\le r\), so \(k=r\).
+
+If \(r=2\), then \(-2\le d\le0\). For the quotient line \(R=Q/I\),
+Riemann--Roch gives
+
+\[\operatorname{rk}\Theta
+=6-d+h^0(Q)-h^0(R)\ge6.\]
+
+Indeed \(h^0(R)\le1\) because \(\deg R\le1\); if it is one, then
+\(\deg R\ge0\) forces \(d\le-1\). This contradicts
+\(\dim\mathrm{Sym}^2(\mathbb C^2)=3\). If \(r=3\), the Petri map is
+injective, but
+
+\[h^0(Q^\vee\otimes\omega_C)=8+S+h^0(Q)\ge10
+>6=\dim\mathrm{Sym}^2(\mathbb C^3).\]
+
+Thus \(r=k\le1\). Consequently \(W_0=\ker\phi\) has dimension at least
+three. If \(h^0(L)=0\), its remaining self-block vanishes. If
+\(L\simeq\mathcal O_C(p)\), write that block as \(sA\). Extension
+compatibility gives \(s_*eA=0\), while
+\(s_*:H^1(M)\to H^1(\mathcal O_C)\) is an isomorphism by the exact
+sequence for \(0\to\mathcal O_C(-p)\to\mathcal O_C\to k(p)\to0\). Hence
+\(A=0\). Therefore
+
+\[\mathcal O_C^3\subset\ker\beta.\]
+
+Parabolic stability gives \(H^0(E)=0\), so the full boundary
+\(H^0(G)\to H^1(M)\) is injective. The normalizer boundary-cocycle
+obstruction excludes the rank-three trivial kernel. This closes all
+three \(q=7\) rows. The argument uses closure of the canonical parahoric
+lattice under bracket, but no determinant effectivity, puncture-type
+exclusion, or relative-section theorem.
+
+\subsection{\texorpdfstring{The high-HN \(q=8\) layer is
+eliminated}{The high-HN q=8 layer is eliminated}}\label{the-high-hn-q8-layer-is-eliminated}
+
+The four genus-four high-HN rows with \(q=8\) are
+
+\begin{longtable}[]{@{}rrr@{}}
+\toprule\noalign{}
+\((t,y)\) & Weight condition & \((\operatorname{rk}H,\deg H)\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\((1,4)\) & \(S\ge3\) & \((6,0)\) \\
+\((1,5)\) & \(S\ge2\) & \((6,1)\) \\
+\((2,10)\) & \(S\ge3\) & \((5,0)\) \\
+\((2,11)\) & \(S\ge2\) & \((5,1)\) \\
+\end{longtable}
+
+Here
+
+\[\deg M=-2,\qquad \deg L=2,\qquad
+h^0(G)=h^1(M)=5,\qquad \deg G=2-S,\]
+
+and \(H=(A/N)^\vee\otimes\omega_C\subset G\). The quotient
+\(N^\vee\otimes\omega_C\) has negative HN slopes, so \(H^0(H)=H^0(G)\).
+We treat the degree-zero and degree-one evaluation types separately.
+
+For \((t,y)=(1,4),(2,10)\), the bundle \(H\) is semistable of degree
+zero and its five sections give a saturated
+
+\[W=\mathcal O_C^5\subset G.\]
+
+The quotient \(Q=G/W\) has rank two, degree \(2-S\), and
+\(\mu_{\max}(Q)\le0\). Thus \(Q\otimes L\) has determinant of degree at
+most three and every line subbundle has degree at most two. If it had
+three independent sections, the wedge map to its determinant would have
+a decomposable kernel and would produce a degree-at-most-two pencil.
+Hence \(h^0(Q\otimes L)\le2\). If a coefficient-rank-two bracket had
+saturated image a line \(I\), then \(\mu_{\max}(Q)\le0\) would give
+\(\deg(I\otimes L)\le2\), producing the same forbidden pencil. Its image
+must therefore have full rank, so the \v{C}ech--Petri map is injective.
+But
+
+\[h^0(Q^\vee\otimes\omega_C)=4+S+h^0(Q)\ge7
+>3=\dim\operatorname{Sym}^2(\mathbb C^2).\]
+
+The coefficient rank is therefore at most one. The degree-two self-block
+can lose at most one further dimension, so three of the five universal
+sections lie in the quotient normalizer. The normalizer boundary-cocycle
+obstruction eliminates both degree-zero rows.
+
+For \((t,y)=(1,5),(2,11)\), the HN-piece section bounds force the
+saturated evaluation bundle to have rank five and degree zero or one.
+Degree zero gives \(\mathcal O_C^5\). Degree one gives
+
+\[W=J\oplus\mathcal O_C^4,\qquad J\simeq\mathcal O_C(p),
+\qquad F:=\operatorname{im}(\mathcal O_C^5\to G),
+\qquad W/F\simeq k(p).\]
+
+When \(\operatorname{rk}H=5\), as in \((2,11)\), only the degree-one
+alternative is possible. The saturated \(\mathcal O_C^5\) alternative
+occurs only in the row \((1,5)\).
+
+In that saturated alternative, \(Q\) has rank two, degree \(2-S\), and
+\(\mu_{\max}(Q)\le1\). If the saturated bracket image is a line and has
+two coefficient sections, it has degree one before twisting, so its
+twist by \(L\) is a basepoint-free trigonal pencil \(A\). For the
+quotient line \(R=Q/I\), the actual restriction image
+
+\[T=\operatorname{im}\bigl(
+H^0(Q^\vee\otimes\omega_C)\longrightarrow
+H^0(I^\vee\otimes\omega_C)\bigr)\]
+
+has dimension \(2+h^0(Q)\ge2\). \v{C}ech symmetry says that
+\(\alpha H^0(A)\) is the same fixed two-plane for every nonzero
+\(\alpha\in T\). Two independent choices would have a nonconstant ratio
+preserving the pencil; the eigenvector argument makes that ratio
+constant, a contradiction.
+
+If the bracket image has full rank, coefficient rank two is excluded by
+
+\[h^0(Q^\vee\otimes\omega_C)=4+S+h^0(Q)\ge6>3.\]
+
+For coefficient ranks greater than two, use
+
+\[0\longrightarrow (H/W)\otimes L\longrightarrow Q\otimes L
+\longrightarrow N^\vee\otimes\omega_C\otimes L\longrightarrow0.\]
+
+The two line terms have at most two and one sections, respectively, so
+\(h^0(Q\otimes L)\le3\). Thus the only remaining full-image possibility
+is coefficient rank three. Its Petri source has dimension at least six.
+If the inequality is strict, it cannot inject into
+\(\operatorname{Sym}^2(\mathbb C^3)\); in the equality case the map
+would be onto, while the evaluation construction supplies a nonzero
+reducible conic \(\operatorname{sym}(u_x\otimes\ell_x)\) in its
+zero-dimensional orthogonal. Thus this case is impossible as well. The
+saturated row again has coefficient rank at most one and yields three
+normalizer sections after the one-dimensional self-block loss.
+
+It remains to handle the degree-one saturation defect. Put \(R_0=G/W\).
+Then \(R_0\) has rank two, degree \(1-S\), and \(\mu_{\max}(R_0)\le0\).
+A rank-one residual bracket image has at most one coefficient section
+after twisting by \(L\). A full image has at most two coefficient
+sections by the same wedge argument, while coefficient rank two would
+inject a space of dimension
+
+\[h^0(R_0^\vee\otimes\omega_C)=5+S+h^0(R_0)\ge7\]
+
+into a three-dimensional symmetric square. Hence the residual
+coefficient rank is at most one.
+
+Suppose it is one and write \(\phi(v)=c(v)r\) with \(0\ne r:M\to R_0\).
+\v{C}ech symmetry gives \(\dim\ker r_*\ge4\). If \(I\) is the saturation of
+\(r(M)\) and \(d=\operatorname{length}(I/r(M))\), then \(0\le d\le2\).
+The quotient \(Q_r=R_0/r(M)\) fits into
+
+\[0\longrightarrow I/r(M)\longrightarrow Q_r
+\longrightarrow R_0/I\longrightarrow0,
+\qquad \deg(R_0/I)=3-S-d.\]
+
+For \(d=0,1,2\), the section bounds for \(R_0/I\) are \(1,1,0\), so
+\(h^0(Q_r)\le1,2,2\). The cohomology sequence therefore gives
+\(\dim\ker r_*\le2\), a contradiction. Thus the residual coefficient map
+vanishes.
+
+Finally, the length-one principal-part map \(W/F\simeq k(p)\) loses at
+most one of the five raw sections. If \(L\) is effective, extension
+compatibility and the degree-two divisor sequence lose at most one more.
+At least three generically independent sections remain in the quotient
+normalizer, which is impossible by the boundary-cocycle proposition. The
+canonical adjoint parahoric lattice is closed under bracket, so this
+calculation remains holomorphic even when the evaluation-defect point is
+a puncture.
+
+This eliminates every high-HN \(q=8\) row. The next layer is \(q=9\),
+which is also eliminated below; the remaining genus-four high-HN rows
+have \(q\ge10\).
+
+\subsection{\texorpdfstring{The high-HN \(q=9\) layer: an apparent
+self-block wall and its
+closure}{The high-HN q=9 layer: an apparent self-block wall and its closure}}\label{the-high-hn-q9-layer-an-apparent-self-block-wall-and-its-closure}
+
+The four high-HN rows at \(q=9\) are
+
+\begin{longtable}[]{@{}rrr@{}}
+\toprule\noalign{}
+\((t,y)\) & Weight condition & \((\operatorname{rk}H,\deg H)\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\((1,3)\) & \(S\ge4\) & \((6,0)\) \\
+\((1,4)\) & \(S\ge3\) & \((6,1)\) \\
+\((1,5)\) & \(S\ge2\) & \((6,2)\) \\
+\((2,11)\) & \(S\ge2\) & \((5,2)\) \\
+\end{longtable}
+
+Here again \(H=(A/N)^\vee\otimes\omega_C\), while
+
+\[\deg M=-3,\qquad \deg L=3,\qquad
+h^0(G)=h^1(M)=6,\qquad \deg G=3-S.\]
+
+The rank-five row \((2,11)\) is impossible. Every HN factor of \(H\) has
+nonnegative degree and the total degree is two. The small-slope bounds
+give at most its rank many sections for every degree-zero or degree-one
+factor and for every rank-at-least-two degree-two factor; a degree-two
+line has at most one section on the nonhyperelliptic fibre. Hence
+\(h^0(H)\le5\), contrary to \(h^0(H)=h^0(G)=6\).
+
+For the three \(t=1\) rows, put \(\delta=\deg H=0,1,2\). The six
+sections have full-rank raw evaluation
+
+\[F\simeq\mathcal O_C^6\longrightarrow H,
+\qquad \operatorname{length}(H/F)=\delta.\]
+
+The residual quotient line \(Q=G/H=N^\vee\otimes\omega_C\) has degree
+\(3-S-\delta\), so \(Q\otimes L\) has degree at most two. Its residual
+bracket coefficient therefore has rank at most one. If it had rank one,
+write it as \(\phi(v)=c(v)r\) with \(0\ne r:M\to Q\). \v{C}ech symmetry and
+the boundary isomorphism would give
+
+\[\dim\ker\bigl(H^1(M)\xrightarrow{r_*}H^1(Q)\bigr)\ge5.\]
+
+But \(Q/r(M)\) is torsion of length \(6-S-\delta\le2\), and
+\(H^0(Q)=0\). The cohomology sequence gives \(\dim\ker r_*\le2\), a
+contradiction. Thus the residual coefficient vanishes in all three rows.
+
+Only the principal parts and the degree-three self-block remain. Killing
+the \(\delta\) principal parts leaves at least \(6-\delta\) raw
+sections. If \(h^0(L)=0\), the self-block vanishes and the resulting
+normalizer ranks are \(6,5,4\); all three rows close. If \(h^0(L)=1\),
+multiplication \(H^1(M)\to H^1(\mathcal O_C)\) has a two-dimensional
+kernel. The guaranteed normalizer ranks are then
+
+\[(4,3,2)\qquad\text{for }\delta=(0,1,2).\]
+
+The first two rows close by this count. At this stage the row
+\((t,y)=(1,5)\) retains a maximal-defect possibility in which both the
+principal-part map and the self-block have rank two.
+
+If \(h^0(L)=2\), then \(L\) is a basepoint-free trigonal pencil. The
+combined compatibility map from a twelve-dimensional space to
+\(H^1(\mathcal O_C)\) is surjective and has kernel dimension eight. As
+in the no-high \(q=9\) branch, that kernel admits an injective
+six-dimensional matrix pencil, so the extension equations alone force no
+constant normalizer kernel. The earliest such wall is
+
+\[(t,y,q)=(1,3,9),\qquad S\ge4,\qquad h^0(L)=2.\]
+
+At the level of the extension equations this is a genuine method wall,
+not a geometric adjoint counterexample: generic Kirillov, trace, Jacobi,
+and orbit-type identities alone are not enough. The canonical local
+lattice supplies the additional input that closes it below.
+
+The sharp primitive pairing-ideal bound above removes every effective
+row, including the apparent defect-zero trigonal wall. The quadratic
+pushout first gives \(\operatorname{tr}(m^2)=0\), and the symmetric \v{C}ech
+identity gives \(P\subset M^\perp\). The global degree comparison then
+requires \(\deg D_b\ge S\), whereas the canonical local basis gives
+\(\deg D_b\le S/2\). Since every high-HN \(q=9\) row has \(S>0\), this
+is a contradiction. Together with the already closed ineffective-\(L\)
+subloci and the impossible rank-five row, \textbf{the entire genus-four
+high-HN \(q=9\) layer is impossible}. The remaining numerical rows are
+treated next.
+
+\subsection{All remaining high-HN rows are
+eliminated}\label{all-remaining-high-hn-rows-are-eliminated}
+
+After the preceding \(q\le9\) eliminations, the high-HN ledger contains
+only
+
+\begin{longtable}[]{@{}rrr@{}}
+\toprule\noalign{}
+\(q\) & \((t,y)\) & Weight condition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(10\) & \((1,4)\) & \(S\ge3\) \\
+\(10\) & \((1,5)\) & \(S\ge2\) \\
+\(11\) & \((1,5)\) & \(S\ge2\) \\
+\end{longtable}
+
+There are no high-HN rows with \(q\ge12\). These last rows have a common
+one-line contradiction. Dualizing the contraction sequence and the HN
+sequence gives
+
+\[0\longrightarrow M\longrightarrow E\longrightarrow
+A^\vee\otimes\omega_C\longrightarrow0,\]
+
+and
+
+\[0\longrightarrow(A/N)^\vee\otimes\omega_C
+\longrightarrow A^\vee\otimes\omega_C
+\longrightarrow Q:=N^\vee\otimes\omega_C\longrightarrow0.\]
+
+Thus \(Q\) is a genuine quotient line of \(E\), with no torsion
+correction, and
+
+\[\deg Q=6-S-y.\]
+
+Let \(a\) and \(b\) denote the numbers of type-\(2+1\) and full-flag
+nonscalar markings. Then \(S=2a+3b\). Scalar markings give quotient
+weight zero, while the induced quotient-line weight at every nonscalar
+marking lies in \([0,1)\). If \(w_Q\) is the total quotient weight, then
+
+\[w_Q<a+b,
+\qquad
+\operatorname{pardeg}Q
+<6-y-S+a+b=6-y-a-2b.\]
+
+For \(y=4\) the condition \(S\ge3\) implies \(a+2b\ge2\), so
+\(\operatorname{pardeg}Q<0\). For \(y=5\) the condition \(S\ge2\)
+implies \(a+2b\ge1\), and again \(\operatorname{pardeg}Q<0\). Parabolic
+stability of the degree-zero canonical adjoint bundle requires every
+proper quotient line to have strictly positive parabolic degree. Both
+possibilities are therefore impossible. Consequently \textbf{every
+genus-four high-HN row is eliminated}.
+
+\section{Proper projective-closure coefficients in genus
+four}\label{proper-projective-closure-coefficients-in-genus-four}
+
+The dense rank-eight calculation is not by itself enough. The projective
+closure alternatives in the companion manuscript \cite{SneidermanG5} also
+contain
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Projective closure & Adjoint constituents \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(\mathrm{PGL}_2\simeq\mathrm{SO}_3\) & \(U_5\oplus U_3\) \\
+monomial with component quotient \(S_3\) & \(U_6\oplus U_2\) \\
+monomial with component quotient \(C_3\) &
+\(U_3^+\oplus U_3^-\oplus\chi\oplus\chi^{-1}\) \\
+\end{longtable}
+
+The rank-three, rank-two, and rank-one constituents are already below
+the fixed-part threshold in genus four. It remains to exclude a rank-one
+fixed part for \(U_5\) and \(U_6\).
+
+\subsection{The symmetric universal-extension
+calculation}\label{the-symmetric-universal-extension-calculation}
+
+Both remaining coefficients carry an invariant symmetric form
+
+\[B:E\otimes E\longrightarrow\mathcal O_C\]
+
+which is holomorphic on the canonical Deligne lattice and nondegenerate
+over the function field. Reciprocal nonzero parabolic weights pair with
+one zero of \(B\) at a marking; this creates no pole or hidden
+\(\mathcal O_C(D)\) target.
+
+Suppose an inverse image \(P\subseteq E\) fits into
+
+\[0\longrightarrow M\longrightarrow P
+\longrightarrow V\otimes\mathcal O_C\longrightarrow0\]
+
+and its boundary \(e:V\to H^1(M)\) is an isomorphism. Put \(L=M^{-1}\).
+The restriction of the pairing is a morphism
+
+\[Q_2=B|_{M\otimes M}:M\longrightarrow L.\]
+
+Pairing \(P\) against \(M\) extends \(Q_2\), so the pushout of the
+extension along \(Q_2\) splits and
+
+\[(Q_2)_*e=0.\]
+
+Whenever \(H^0(\omega_C\otimes L^{-1})\ne0\), a nonzero \(Q_2\) would
+have injective Serre-dual multiplication
+
+\[H^0(\omega_C\otimes L^{-1})
+\xrightarrow{\,Q_2\,}H^0(\omega_C\otimes L),\]
+
+contradicting \((Q_2)_*=0\) and surjectivity of \(e\). Thus \(Q_2=0\) in
+all cases below. Pairing with \(M\) then descends on the trivial
+quotient to a map \(c:V\otimes\mathcal O_C\to L\). Comparing the pairing
+in local splittings of the extension gives the symmetric \v{C}ech identity
+
+\[c(v)_*e(u)+c(u)_*e(v)=0
+\quad\text{in }H^1(\mathcal O_C).\]
+
+This identity will force \(c=0\), or will identify the inverse image
+\(P\) with \(M^\perp\).
+
+\subsection{The rank-five orthogonal
+coefficient}\label{the-rank-five-orthogonal-coefficient}
+
+Here \(d=5=g+1\). The companion manuscript's first-super
+proposition \cite{SneidermanG5} excludes every total weight \(S\ne1\). Its weight-one
+classification leaves exactly
+
+\[0\longrightarrow M\longrightarrow E_5
+\longrightarrow\mathcal O_C^4\longrightarrow0,
+\qquad \deg M=-1,\]
+
+with \(e:\mathbb C^4\simeq H^1(M)\). The local \(U_5\) weights are
+\(0,\pm\alpha,\pm2\alpha\); total one occurs at a projective involution,
+with canonical weights \((0,0,0,\tfrac12,\tfrac12)\).
+
+The symmetric calculation gives \(Q_2=0\): Riemann--Roch gives
+
+\[h^0(\omega_C\otimes L^{-1})=2+h^0(L)\ge2.\]
+
+Since \(\deg L=1\), one has \(h^0(L)\le1\). If it is zero, the descended
+map \(c:\mathcal O_C^4\to L\) vanishes. If \(L\simeq\mathcal O_C(p)\)
+with section \(s\), then
+
+\[s_*:H^1(M)\longrightarrow H^1(\mathcal O_C)\]
+
+is an isomorphism by \(0\to M\xrightarrow{s}\mathcal O_C\to k(p)\to0\).
+The symmetric \v{C}ech identity therefore forces \(c=0\) again. Thus \(M\)
+lies in the generic radical of \(B\), contradicting generic
+nondegeneracy. Hence the rank-five constituent has no rank-one fixed
+part.
+
+\subsection{Exact rank-six monomial
+arithmetic}\label{exact-rank-six-monomial-arithmetic}
+
+For \(U_6\), the positive local total weights are
+
+\[\frac32,\quad2,\quad\frac52,\quad3,\]
+
+and the global total \(S\) is integral. If a rank-zero Hodge vector
+existed, put
+
+\[F=E_6^\vee\otimes\omega_C,
+\qquad \deg F=36+S,
+\qquad h^0(F)=18+S,\]
+
+and let \(A\subset F\) be its rank-five contraction kernel. Write
+\(q=\deg(F/A)=6-\deg M\ge7\).
+
+In the no-high case the exact inequalities are
+
+\[S\le\frac{24}{7},
+\qquad
+\max(7,6+S)\le q\le10-S.\]
+
+HN-piece section counting gives
+
+\begin{longtable}[]{@{}rrrrr@{}}
+\toprule\noalign{}
+\(S\) & \(q\) & \(\deg(E_6/M)\) & \(h^0(E_6/M)\) & HN upper bound \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(0\) & \(7\) & \(1\) & \(4\) & \(4\) \\
+\(0\) & \(8\) & \(2\) & \(5\) & \(4\) \\
+\(0\) & \(9\) & \(3\) & \(6\) & \(4\) \\
+\(0\) & \(10\) & \(4\) & \(7\) & \(5\) \\
+\(2\) & \(8\) & \(0\) & \(5\) & \(5\) \\
+\end{longtable}
+
+Thus only \((S,q)=(0,7)\) and \((2,8)\) remain. In the high-HN case the
+exact offsets are
+
+\[t=1:\ y=5,6,
+\qquad
+t=2:\ y=12,\]
+
+where \(y=\deg N-S\). At the top offsets \(y=6,12\), the genuine
+quotient \(Q=N^\vee\otimes\omega_C\) has ordinary degree \(-S\). Its
+induced quotient weight is at most the total coefficient weight \(S\),
+so \(\operatorname{pardeg}Q\le0\), contradicting stability. The sole
+strict row is
+
+\[(t,y,q)=(1,5,7),\qquad S\ge2.\]
+
+Here \(Q=N^\vee\otimes\omega_C\) is a genuine quotient line of \(E_6\)
+with \(\deg Q=1-S\). If \(m\) is the number of nonscalar markings, the
+local total list gives
+
+\[m\le\left\lfloor\frac{2S}{3}\right\rfloor\le S-1.\]
+
+The quotient weight is strictly below \(m\), so
+
+\[\operatorname{pardeg}Q<1-S+m\le0,\]
+
+contradicting parabolic stability. No high-HN row survives.
+
+\subsection{The two rank-six no-high
+rows}\label{the-two-rank-six-no-high-rows}
+
+For \((S,q)=(2,8)\), equality gives
+
+\[E_6/M\simeq\mathcal O_C^5,
+\qquad \deg M=-2,
+\qquad \mathbb C^5\simeq H^1(M).\]
+
+The symmetric calculation gives \(Q_2=0\), since
+\(h^0(\omega_C\otimes L^{-1})=1+h^0(L)>0\). On the nonhyperelliptic test
+fibre \(h^0(L)\le1\). If \(L\) is effective, multiplication
+\(H^1(M)\to H^1(\mathcal O_C)\) has one-dimensional kernel, whereas a
+nonzero cross term would put a four-dimensional subspace into that
+kernel. Thus the cross term vanishes. Since the quotient is globally
+generated, \(M\) would be in the generic radical of \(B\), a
+contradiction.
+
+For \((S,q)=(0,7)\), let \(R\subset G=E_6/M\) be proper. Its inverse
+image in \(E_6\) has degree \(\deg R-1\), so stability of the ordinary
+degree-zero coefficient gives \(\deg R\le0\). Hence \(G\) is stable of
+rank five and degree one. The saturation of its four-section evaluation
+is generically generated and has degree zero; all four sections force
+its rank to be four. It is therefore
+
+\[W=\mathcal O_C^4\subset G.\]
+
+Let \(P\subset E_6\) be its inverse image. Then \(H^0(P)=0\) and the
+boundary \(\mathbb C^4\simeq H^1(M)\) is an isomorphism. The symmetric
+calculation gives \(Q_2=0\) and kills the cross term on \(W\), so
+\(P\subseteq M^\perp\). Both bundles have rank five and degree minus
+one; hence
+
+\[P=M^\perp,
+\qquad M^\perp/M\simeq\mathcal O_C^4,
+\qquad \det E_6\simeq\mathcal O_C.\]
+
+This contradicts the determinant of the actual \(S_3\) monomial
+constituent. The diagonal torus factors on the six ordered roots
+multiply to one, while a transposition permutes them by three swaps.
+Consequently
+
+\[\det U_6=\operatorname{sgn}:S_3\longrightarrow\{\pm1\}.\]
+
+The component quotient is \(S_3\), so density makes this a nontrivial
+unitary determinant character. Its unpunctured holomorphic line cannot
+be trivial. This closes the last proper-closure coefficient.
+
+\section{Genus-four propagation}\label{genus-four-propagation}
+
+The preceding fixed-part vanishing holds on every connected finite-etale
+cover used in the companion manuscript \cite{SneidermanG5}. Projective
+finite-index descent and direct
+Artin devissage have no further genus restriction. The reducible
+nonscalar multiplicity comparisons remain strict at \(g=4\):
+
+\[(u,w)=(1,\le4),(2,\le3),(3,1),
+\qquad
+w<2g-2u=6,4,2.\]
+
+\begin{lemma}[The standard subsystem on a finite-index base]
+\label{lem:finite-index-standard}
+Let \(B\to\mathcal M_{g,n}\) be a connected base whose mapping-class-group
+image has finite index, with labeled marked sections, and put
+
+\[H=R^1\pi_*\mathbb C\subset R^1\pi_*^\circ\mathbb C.\]
+
+Then \(H\) is irreducible with Zariski-dense \(\Sp_{2g}\)-monodromy, and
+the quotient \(R^1\pi_*^\circ\mathbb C/H\) is constant.  Consequently
+every irreducible rank-\(2g\) sub-local system of
+\(R^1\pi_*^\circ\mathbb C\) equals \(H\), and \(H\) has no nonzero
+invariant symmetric bilinear form.
+\end{lemma}
+
+\begin{proof}
+The residue sequence identifies the quotient with the constant local system
+
+\[\ker\!\left(\mathbb C^n\xrightarrow{\sum}\mathbb C\right)(-1).\]
+
+The standard action of \(\Mod_{g,n}\) on \(H\) has image
+\(\Sp_{2g}(\mathbb Z)\).  The image of a finite-index subgroup is again
+finite index, hence Zariski dense in \(\Sp_{2g}\); the standard
+representation is therefore irreducible.
+
+Let \(I\) be an irreducible rank-\(2g\) sub-local system of the punctured
+cohomology.  If \(I\cap H=0\), then \(I\) injects into the constant residue
+quotient.  Its monodromy is then trivial, contradicting irreducibility and
+rank \(2g>1\).  Thus \(I\cap H\ne0\); irreducibility and equality of ranks
+give \(I=H\).  Finally, the standard \(\Sp_{2g}\)-representation preserves
+its alternating form and has no nonzero invariant symmetric form.
+\end{proof}
+
+The scalar residual case needs one new equality argument. The companion
+manuscript's exact trivial-coefficient gap \cite{SneidermanG5} says every nonzero
+sub-local system of \(R^1\pi_*^\circ\mathbb C\) has rank at least
+\(2g=8\). A first nonzero scalar Artin invariant has image \(I\) of rank
+at most eight, hence exactly eight and irreducible. By
+Lemma~\ref{lem:finite-index-standard},
+
+\[I=R^1\pi_*\mathbb C,
+\qquad (W^0)^\vee\simeq R^1\pi_*\mathbb C.\]
+
+The left side is an adjoint \(\mathfrak{sl}_3\) local system and therefore
+preserves its nondegenerate symmetric Killing form. The right side has
+Zariski-dense \(\Sp_8\)-monodromy and admits no invariant symmetric form.
+This contradiction closes the scalar equality case.
+
+The remaining propagation margins are still strict. The isomonodromy
+range is \(3<2\sqrt5\), and for a characteristic extension of total rank
+at most three,
+
+\[n_i d_i\le2<2g-2d_i,
+\qquad d_i\le2,\]
+
+because the right side is at least four. The projective/linear
+integrality, unitary-conjugate, and socle-induction arguments therefore
+carry over with the same cited inputs.
+
+\begin{proof}[Completion of Candidate theorem~\ref{cand:main}]
+A reducible semisimple rank-three representation has constituents of rank at
+most two, hence lies in the published strict range.  For an irreducible
+system with infinite projective image, the imported projective-closure
+classification leaves the four rows in \cref{sec:interfaces}.  All
+constituents of rank at most three are already below the fixed-part
+threshold.  The dense coefficient $U_8$ is eliminated by the no-high and
+high-HN arguments above; the proper-closure coefficients $U_5$ and $U_6$
+are eliminated in
+\cref{proper-projective-closure-coefficients-in-genus-four}.  Thus the
+required finite-cover adjoint fixed-part vanishing holds for every actual
+irreducible coefficient.
+
+Projective finite-index descent and direct Artin devissage import that
+vanishing to the dominant versal base.  Reducible nonscalar residual systems
+retain strict multiplicity margins.  The only scalar equality is excluded in
+\cref{genus-four-propagation} by the incompatibility between an adjoint
+symmetric Killing form and the standard $\Sp_8$ representation.  The
+remaining rigidity, integrality, unitary-conjugate, and semisimple
+nonabelian-Hodge steps are B5.  Finally, for a characteristic extension of
+total rank at most three, $n_i d_i\le2<2g-2d_i$ for $d_i\le2$ at $g=4$;
+the imported socle induction therefore handles the nonsemisimple case.
+This proves the stated conclusion conditional on B1--B5.
+\end{proof}
+
+\section{Status and remaining verification boundary}
+\label{sec:status}
+
+The status of Candidate theorem~\ref{cand:main} is \texttt{CANDIDATE}.  More precisely:
+\begin{itemize}
+\item The finite HN ledgers and the displayed dimension, determinant, and
+fibrewise Lie-algebra calculations are exact finite calculations recorded in
+this manuscript.
+\item The dense $U_8$ elimination is a proposed proof conditional on the
+fixed-part, canonical-lattice, parabolic, and extension interfaces B1--B4.
+The most sensitive new steps are the \v{C}ech--Petri symmetry, saturation of
+raw evaluation lattices, the Spin lift and parity comparison, the primitive
+pairing-ideal bound at punctures, and the equality analysis in the BPGN
+Clifford induction.
+\item The $U_5$ and $U_6$ eliminations additionally depend on the companion
+first-super classification and on the invariant symmetric form extending
+holomorphically on the canonical Deligne lattice.
+\item Formal propagation at scalar residual type uses the asserted
+Zariski-dense $\Sp_8$ monodromy on every finite-index mapping-class base and
+the absence of an invariant symmetric form on its standard representation.
+\item The conclusion also relies on B5: rigidity, integrality,
+isomonodromy, finite-cover descent, and socle induction.  Those steps are not
+reproved here.
+\end{itemize}
+
+Independent specialist reconstruction of these geometric steps remains
+necessary.  Finite scripts check only enumerations and selected linear
+algebra; the TeX build checks only the document.  Non-load-bearing
+countermodels and refuted side routes are intentionally omitted so that the
+shortest proof graph remains visible.
+No external referee acceptance, priority claim, or established theorem
+status is asserted.
+
+\paragraph{Assistance disclosure.}
+OpenAI Codex (GPT-5.6) assisted with preparation and internal checking of this
+manuscript.  The author reviewed the manuscript and is responsible for all
+statements, proofs, and errors.
+
+{\small
+\begin{thebibliography}{99}
+
+\bibitem{BPGN}
+L.~Brambila-Paz, I.~Grzegorczyk, and P.~E. Newstead,
+\emph{Geography of Brill--Noether loci for small slopes},
+J. Algebraic Geom. \textbf{6} (1997), 645--669.
+
+\bibitem{ChenSalter}
+L.~Chen and N.~Salter,
+\emph{The Birman exact sequence does not virtually split},
+Math. Res. Lett. \textbf{28} (2021), 383--413.
+
+\bibitem{EarleKra}
+C.~J. Earle and I.~Kra,
+\emph{On sections of some holomorphic families of closed Riemann surfaces},
+Acta Math. \textbf{137} (1976), 49--79.
+
+\bibitem{LLCan}
+A.~Landesman and D.~Litt,
+\emph{Canonical representations of surface groups},
+Ann. of Math. (2) \textbf{199} (2024), 823--897.
+
+\bibitem{LLGeo}
+A.~Landesman and D.~Litt,
+\emph{Geometric local systems on very general curves and isomonodromy},
+J. Amer. Math. Soc. \textbf{37} (2024), 683--729.
+
+\bibitem{SneidermanG5}
+R.~Sneiderman,
+\emph{Rank-Three Finite-Image Theorem for Surface Groups in Genus at Least
+Five}, companion candidate manuscript, version 0.1.5-candidate, 15 August
+2026, \url{https://github.com/Robby955/rank-three-mcg-finiteness}.
+
+\end{thebibliography}
+}
+
+\end{document}

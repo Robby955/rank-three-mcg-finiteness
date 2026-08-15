@@ -324,9 +324,8 @@ provide independent verification of the assembled theorem. The deterministic
 verifiers under [`verification/math`](verification/math) check only the finite
 HN arithmetic and `q = 9` fibre algebra.
 
-Genus three and four remain a separate method wall. The cocycle obstruction
-would eliminate a genus-four branch once a generically injective trivial
-rank-three quotient-normalizer subbundle is available, but the current
-genus-four HN analysis does not produce that compression across all surviving
-branches. Genus three loses an additional rank. Neither lower-genus theorem
-is claimed here.
+These genus-five notes do not establish a lower-genus theorem. The separate
+genus-four candidate manuscript uses additional no-high, high-HN,
+proper-projective-closure, and propagation arguments and is conditional on its
+stated interface package B1--B5; this audit does not independently verify that
+extension. Genus three remains open.

@@ -25,7 +25,7 @@ normalizer boundary-cocycle identity directly excludes the zero-weight
 kernels have generic rank at least three. The Pfaffian/spectral-projector and
 canonical-Deligne determinant arguments remain in the manuscript as separate
 reconstructions, but are no longer load-bearing for those
-two eliminations. This simplification was checked internally against the
+two eliminations. This simplification was checked directly against the
 generic orbit algebra and both bundle-theoretic applications. The theorem
 statement and `CANDIDATE` status are unchanged.
 
@@ -52,8 +52,13 @@ mathematical claim or dependency changes.
 The standalone `0.1.0-candidate` square-endpoint note extracts the
 general-rank equality argument already recorded in the manuscript and expands
 its terminal duality and finite-image splitting steps. It is a separate
-unrefereed candidate artifact and does not alter the rank-three theorem or the
-open status of genera three and four.
+unrefereed candidate artifact and does not alter the rank-three theorem.
+
+The standalone `0.1.1-candidate` genus-four manuscript records a separate
+rank-three extension for all puncture counts. Its proposed proof is conditional
+on the five imported interfaces B1--B5 stated in the manuscript and has not
+been independently refereed. It is therefore published here as a `CANDIDATE`,
+not as an established theorem. It does not make a genus-three claim.
 
 ## Canonical artifacts
 
@@ -62,15 +67,18 @@ open status of genera three and four.
 | `manuscript/rank3_genus5_reader.tex` | -- | `40d19d5abe1189c2c772b7da9ab5a83e1e6a65c77a5b75fd468516ed1a1f8da9` |
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
 | `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `3888bfe324f817a465867d9d6ab91ae4b32c7e2b083d339e168eb611aa911f56` |
-| `manuscript/general_rank_square_endpoint.tex` | -- | `e2295160831dd5202f428361061d0ea570442db585c72a7cfe6c32e92e0ad3a1` |
-| `output/pdf/general_rank_square_endpoint.pdf` | 6 | `9408716cdda4ec341dae63b757bb7d5adf7700916bd36581255f69dbd148b608` |
+| `manuscript/rank3_genus4_extension.tex` | -- | `2c0ddb951b07a97db92a87145077f5e2846a18debd4f897fa786942e59117388` |
+| `output/pdf/rank3_genus4_extension.pdf` | 30 | `c1362e6d4130b8c3e264a138f7787aebc9735441d0747bae20f2c69637a92a01` |
+| `manuscript/general_rank_square_endpoint.tex` | -- | `9be5e83a5c69dd0882f8c684e3e549cb5b235d48702d7fc06d5fbb3719622a2f` |
+| `output/pdf/general_rank_square_endpoint.pdf` | 6 | `e5ec46ed9de38335aae8189f76a38e882a6a422627e82d059d1edf0aa40a6abf` |
 
 The current sources and PDFs are recorded in `CHECKSUMS.sha256` and enforced
-by the two release verifiers. The `0.1.4-candidate` value identifies the fixed
+by the three artifact verifiers. The `0.1.4-candidate` value identifies the fixed
 historical release artifact.
 
 ## Scope
 
-This package is designed to let a reader audit the rank-three argument and the
-standalone general-rank square endpoint without navigating exploratory notes
-or alternate approaches.
+This package is designed to let a reader audit the rank-three genus-at-least-five
+argument, the separate conditional genus-four extension, and the standalone
+general-rank square endpoint without navigating genus-three working ledgers or
+alternate approaches.

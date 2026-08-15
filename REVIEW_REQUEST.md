@@ -2,8 +2,10 @@
 
 ## Status
 
-This repository contains a `CANDIDATE` manuscript proposing a new proof. It is
-not an established theorem. No claim is made in genus three or four.
+This file requests review of the genus-at-least-five `CANDIDATE` manuscript.
+It is not an established theorem and makes no genus-three or genus-four claim.
+A separate conditional genus-four candidate is listed in the repository
+README.
 
 ## Claim under review
 
@@ -47,7 +49,7 @@ A focused review of the following interfaces would be especially useful:
 The finite branch review should also use the explicit parabolic-stability
 bookkeeping in Section 2 when checking the genus-six and genus-five HN tables.
 
-The source-level internal reconstruction is recorded in
+The source-level audit is recorded in
 [LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md), and the downstream source map
 is in [PIPELINE_AUDIT.md](PIPELINE_AUDIT.md). These are navigation aids, not
 independent referee reports.

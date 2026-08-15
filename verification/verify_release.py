@@ -160,24 +160,27 @@ def verify_claim_boundaries() -> None:
     )
     require(
         "status-candidate" in readme
-        and "The manuscript proposes a proof that has not received" in readme
-        and "No claim is made for genus three or four" in readme
+        and "have not received independent mathematical review" in readme
+        and "Genus three remains open" in readme
         and "Aaron Landesman and Daniel Litt" in readme
         and "https://annals.math.princeton.edu/2024/199-2/p06" in readme
         and "https://arxiv.org/abs/2205.15352v4" in readme
         and "https://doi.org/10.1090/jams/1038" in readme
         and "https://arxiv.org/abs/2202.00039v3" in readme
-        and "current public review release" in readme
-        and "This branch prepares" in readme
+        and "current tagged public review release" in readme
+        and "contains the prepared `v0.1.5-candidate`" in readme
         and "v0.1.4-candidate" in readme
         and "v0.1.5-candidate" in readme
         and "archived and unchanged" in readme
-        and "rank3_genus5_reader-v0.1.5-candidate.pdf" in readme,
+        and "rank3_genus5_reader-v0.1.5-candidate.pdf" in readme
+        and "rank3_genus4_extension.pdf" in readme,
         "README claim boundary is missing",
     )
     require(
-        "Rank-three finite image for `g = 3, 4` | `OPEN`" in status,
-        "STATUS does not keep genus three and four open",
+        "Rank-three finite image for `g = 4`, all `n ≥ 0` | `CANDIDATE`"
+        in status
+        and "Rank-three finite image for `g = 3` | `OPEN`" in status,
+        "STATUS loses the genus-four candidate or genus-three open boundary",
     )
     require(
         "Copyright (c) 2026 Robert Sneiderman" in license_text
@@ -194,8 +197,9 @@ def verify_claim_boundaries() -> None:
         "candidate citation metadata is incomplete",
     )
     require(
-        "`CANDIDATE` manuscript proposing a new proof" in review_request
-        and "No claim is made in genus three or four" in review_request,
+        "genus-at-least-five `CANDIDATE` manuscript" in review_request
+        and "makes no genus-three or genus-four claim" in review_request
+        and "separate conditional genus-four candidate" in review_request,
         "focused review request loses the claim boundary",
     )
     require(

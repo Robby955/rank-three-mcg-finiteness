@@ -31,3 +31,5 @@ jobs:
         run: python3 verification/verify_release.py --compile --portable
       - name: Verify square-endpoint packet
         run: make verify-square-endpoint
+      - name: Verify genus-four candidate
+        run: make verify-genus4-candidate
