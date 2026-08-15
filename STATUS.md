@@ -1,6 +1,6 @@
 # Status
 
-Snapshot: 10 August 2026.
+Snapshot: 15 August 2026.
 
 Status vocabulary in this repository:
 
@@ -18,6 +18,8 @@ Status vocabulary in this repository:
 | Statement | Status | Boundary |
 |---|---|---|
 | Finite image for MCG-finite rank `r` when `r < √(g + 1)` | `PUBLISHED` | Landesman--Litt, Theorem 1.2.1 |
+| Finite image for MCG-finite rank `r` when `r² ≤ g + 1` | `CANDIDATE` | The new equality case `r² = g + 1` is a complete unrefereed standalone note |
+| Proposed sharper range `g ≥ r² − 4` | `OPEN` | No proof or counterexample is claimed here |
 | Rank-three finite image for `g ≥ 5`, all `n ≥ 0` | `CANDIDATE` | Complete unrefereed manuscript |
 | Rank-three finite image for `g = 3, 4` | `OPEN` | No claim and no counterexample |
 
@@ -32,10 +34,10 @@ subbundle
 inside the quotient normalizer, provided the full boundary
 `H⁰(C, E/M) → H¹(C, M)` is injective. This directly closes both the
 zero-weight `q = 9` branch and the final high-Harder--Narasimhan branch in
-genus five. The genus-four analysis still lacks the required bracket
-compression across its surviving branches; genus three loses an additional
-rank. These are method walls, not evidence that the theorem is false in those
-genera.
+genus five. The standalone square-endpoint note reaches rank three at genus
+eight; the specialized manuscript treats genera seven, six, and five. Neither
+public candidate makes a genus-three or genus-four claim. Those cases remain
+`OPEN` here.
 
 ## Current review state
 

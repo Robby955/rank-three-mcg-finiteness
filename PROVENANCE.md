@@ -49,6 +49,12 @@ of `0.1.4-candidate` unchanged and streamlines the public review package. The
 earlier versioned PDF remains fixed in its release. No mathematical claim or
 dependency changes.
 
+The standalone `0.1.0-candidate` square-endpoint note extracts the
+general-rank equality argument already recorded in the manuscript and expands
+its terminal duality and finite-image splitting steps. It is a separate
+unrefereed candidate artifact and does not alter the rank-three theorem or the
+open status of genera three and four.
+
 ## Canonical artifacts
 
 | Artifact | Pages | SHA-256 |
@@ -56,12 +62,15 @@ dependency changes.
 | `manuscript/rank3_genus5_reader.tex` | -- | `40d19d5abe1189c2c772b7da9ab5a83e1e6a65c77a5b75fd468516ed1a1f8da9` |
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
 | `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `3888bfe324f817a465867d9d6ab91ae4b32c7e2b083d339e168eb611aa911f56` |
+| `manuscript/general_rank_square_endpoint.tex` | -- | `e2295160831dd5202f428361061d0ea570442db585c72a7cfe6c32e92e0ad3a1` |
+| `output/pdf/general_rank_square_endpoint.pdf` | 6 | `9408716cdda4ec341dae63b757bb7d5adf7700916bd36581255f69dbd148b608` |
 
-The current source and `0.1.5-candidate` PDF values are recorded in
-`CHECKSUMS.sha256` and enforced by `verification/verify_release.py`. The
-`0.1.4-candidate` value identifies the fixed historical release artifact.
+The current sources and PDFs are recorded in `CHECKSUMS.sha256` and enforced
+by the two release verifiers. The `0.1.4-candidate` value identifies the fixed
+historical release artifact.
 
 ## Scope
 
-This package is designed to let a reader audit the rank-three argument without
-navigating exploratory notes, alternate approaches, or general-rank work.
+This package is designed to let a reader audit the rank-three argument and the
+standalone general-rank square endpoint without navigating exploratory notes
+or alternate approaches.

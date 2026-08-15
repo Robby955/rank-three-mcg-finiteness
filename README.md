@@ -35,6 +35,15 @@ hypotheses, and proof of `v0.1.4-candidate` unchanged while streamlining the
 public review package. Earlier releases remain available as fixed historical
 review copies.
 
+## Additional general-rank candidate
+
+A separate six-page note isolates a proposed extension of the published
+general-rank bound to the square endpoint `r² = g + 1`, equivalently
+`g ≥ r² − 1`. This endpoint statement remains `CANDIDATE`. The published
+strict range is due to Landesman--Litt. The note does not prove the proposed
+sharper range `g ≥ r² − 4`, and it does not change the open status of the
+rank-three genus-three and genus-four cases.
+
 ## Result under review
 
 For g ≥ 5 and n ≥ 0, consider a complex rank-three representation of the
@@ -52,6 +61,8 @@ genera 8, 7, 6, and 5.
 |---|---|
 | [Manuscript PDF](https://github.com/Robby955/rank-three-mcg-finiteness/releases/download/v0.1.5-candidate/rank3_genus5_reader-v0.1.5-candidate.pdf) | Version-specific current review copy |
 | [TeX source](manuscript/rank3_genus5_reader.tex) | Canonical source corresponding to the PDF |
+| [Square-endpoint note PDF](output/pdf/general_rank_square_endpoint.pdf) | Standalone general-rank candidate note |
+| [Square-endpoint note source](manuscript/general_rank_square_endpoint.tex) | Canonical source for the standalone note |
 | [Proof map](PROOF_MAP.md) | Suggested specialist review order |
 | [Pipeline audit](PIPELINE_AUDIT.md) | Exact substitutions in Landesman–Litt Sections 8.2–8.7 |
 | [Proof-interface notes](LOAD_BEARING_AUDIT.md) | Normalizer cocycle, fixed part, and Artin propagation expanded in order |
@@ -95,10 +106,18 @@ With TeX Live, Poppler, and Ghostscript installed:
 make verify-release
 ```
 
-The release check enforces the source and PDF hashes, claim-status language,
-page count, encryption state, embedded fonts, Ghostscript preflight, a clean
-fresh build, extracted-text equality, and a 120-DPI pixel comparison. GitHub
-Actions runs the portable subset on every push and pull request.
+The release check verifies both candidate notes. It enforces source and PDF
+hashes, claim-status language, page counts, encryption state, embedded fonts,
+Ghostscript preflight, clean fresh builds, extracted-text equality, and a
+120-DPI pixel comparison for the rank-three manuscript. GitHub Actions runs
+the portable rank-three gate and the standalone square-endpoint gate on every
+push and pull request.
+
+To check only the standalone note, run:
+
+```sh
+make verify-square-endpoint
+```
 
 The separate finite-mathematics checks are:
 
@@ -125,6 +144,7 @@ See [LICENSE](LICENSE) for the exact path mapping and terms.
 
 ## Scope
 
-This repository contains the rank-three manuscript and the review materials
-needed to evaluate it. General-rank work and exploratory notes are outside its
-scope.
+This repository contains the rank-three manuscript, the standalone
+general-rank square-endpoint note, and the review materials needed to evaluate
+them. Exploratory lower-genus work and internal working material are outside
+its scope.

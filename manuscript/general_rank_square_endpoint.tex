@@ -1,0 +1,497 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\hypersetup{
+  pdftitle={The General-Rank Square Endpoint for MCG-Finite Surface-Group Representations},
+  pdfauthor={Robert Sneiderman},
+  pdfsubject={New, unrefereed candidate note},
+  pdfkeywords={mapping class groups, surface groups, local systems, endpoint estimates}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbf C}
+\newcommand{\Ocal}{\mathcal O}
+\newcommand{\Vcal}{\mathcal V}
+\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\ad}{\operatorname{ad}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\title{The General-Rank Square Endpoint for\\
+MCG-Finite Surface-Group Representations}
+\author{Robert Sneiderman}
+\date{Version 0.1.0-candidate\\13 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Landesman--Litt prove that an MCG-finite representation of a punctured
+genus-$g$ surface group into $\GL_r(\C)$ has finite image when
+$r<\sqrt{g+1}$.  This note gives a candidate extension to the square
+endpoint $r^2=g+1$.  The new input is an equality-case refinement of their
+parabolic multiplication estimate.  It extends their Artin vanishing from
+coefficient rank strictly below $g$ through rank $g$.  We then audit the
+resulting substitutions in their rigidity, integrality, nonabelian-Hodge,
+characteristic-extension, and socle arguments.  This is a new, unrefereed
+candidate proof, not an established theorem.
+\end{abstract}
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{
+\textbf{Status and scope.}  The statement $g\ge r^2-1$ is
+\textbf{CANDIDATE}.  The published strict range is due to
+Landesman--Litt.  This note does not establish the sharper proposed range
+$g\ge r^2-4$, and it makes no new genus-three or genus-four rank-three
+claim.  Successful compilation and finite arithmetic checks do not replace
+independent mathematical review.}}
+\end{center}
+
+\begin{center}
+\small Copyright \textcopyright\ 2026 Robert Sneiderman.  Licensed under
+\href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}.
+\end{center}
+
+\tableofcontents
+
+\section{Statement and published inputs}\label{sec:inputs}
+
+Let $\Sigma_{g,n}$ be an orientable genus-$g$ surface with $n$ punctures.
+The mapping class group $\Mod_{g,n}$ acts by precomposition on conjugacy
+classes of representations of $\pi_1(\Sigma_{g,n})$.  A representation is
+\emph{MCG-finite} if its conjugacy class has finite orbit.
+
+\begin{theorem}[Square-endpoint finite-image theorem]
+\label{thm:square-endpoint}
+Let $g\ge3$, $n\ge0$, and $r^2\le g+1$.  Every MCG-finite representation
+\[
+ \rho:\pi_1(\Sigma_{g,n})\longrightarrow\GL_r(\C)
+\]
+has finite image.
+\end{theorem}
+
+The strict case $r^2<g+1$ is Landesman--Litt
+\cite[Theorem~1.2.1]{LLCan}.  Only $r^2=g+1$ is new here.  The proof uses the
+following published statements in their cited forms.
+
+\begin{enumerate}[label=\textup{(I\arabic*)},leftmargin=2.9em]
+\item\label{input:pairing}
+Landesman--Litt \cite[Proposition~5.2.3]{LLCan}: if $E_*$ is a semistable
+parabolic bundle of parabolic degree zero and rank $d$, and multiplication
+by a nonzero
+\[
+ v\in H^0(C,E\otimes\omega_C(D))
+\]
+has rank $s$ on $H^0(C,E^\vee\otimes\omega_C)$, then $d\ge g-s$.
+
+\item\label{input:hn}
+The proof of Landesman--Litt \cite[Proposition~6.3.6]{LLGeo}, together with
+\cite[Lemma~6.2.3]{LLGeo}: for the coparabolic bundle used in
+\cref{input:pairing}, a generically generated subbundle $A$ of corank $c$
+and section deficit $\delta$ gives $d\ge gc-\delta$.  After quotienting the
+HN part $N^t$ of slope greater than $2g-2$, the same proof gives
+\[
+ \rk(F/N^t)\ge gc-\delta.
+\]
+When $N^t=0$, its complete inequality chain is
+\begin{equation}
+ \deg F+(1-g)\rk F
+ \le \frac{\deg A}{2}+\rk A+\delta
+ \le \frac{\mu(F)\rk A}{2}+\rk A+\delta.
+ \label{eq:hn-chain}
+\end{equation}
+
+\item\label{input:hodge}
+Landesman--Litt \cite[Lemma~6.1.1 and Theorem~1.7.1]{LLCan}: if $U$ is an
+irreducible unitary fibral local system and
+$0\ne L\subset R^1\pi_*^\circ U$ is irreducible, then, after possible
+complex conjugation, a nonzero Hodge vector has multiplication rank at most
+$\rk L/2$; in rank one one has $\rk L\ge2g-2$.
+
+\item\label{input:artin}
+Landesman--Litt \cite[Lemma~2.4.2 and Theorem~6.2.1]{LLCan}: after a
+dominant etale base change, a free Artin local system whose fibral
+restriction is a constant deformation of a unitary system decomposes into
+terms
+\[
+ U_i\otimes\pi^*W_i,
+\]
+with $U_i$ irreducible unitary on the fibres and $W_i$ free over the Artin
+algebra.  Their fixed-part bound proves vanishing when the total coefficient
+rank is strictly less than $g$.
+
+\item\label{input:pipeline}
+Landesman--Litt \cite[Sections~8.2--8.5]{LLCan}: adjoint fixed-part
+vanishing gives strong cohomological rigidity and formal constancy.  The
+remaining projective and linear integrality, unitary finiteness, and
+nonabelian-Hodge steps use no further occurrence of
+$r<\sqrt{g+1}$; the PVHS-to-unitary input is available in the larger range
+$r<2\sqrt{g+1}$ \cite[Theorem~1.2.13]{LLGeo}.  The canonical-representations
+paper cites the earlier numbering Theorem~1.2.12.
+
+\item\label{input:socle}
+Landesman--Litt \cite[Theorem~7.2.1, Lemma~8.6.1, and
+Section~8.7]{LLCan}: for an irreducible finite-group representation
+$\sigma$, every nonzero finite-index-mapping-class-stable subspace of the
+relevant isotypic cohomology has dimension at least
+$2g-2\dim\sigma$.  Comparing this with characteristic extension support and
+then inducting on the socle filtration proves the non-semisimple case in
+the published range.
+\end{enumerate}
+
+For clarity about conventions, if $E_*$ has canonical weights in $[0,1)$,
+the parabolic bundle to which \cref{input:hn} is applied is
+\[
+ (E_*)^\vee\otimes\omega_C(D).
+\]
+Its coparabolic degree-zero underlying ordinary bundle is
+$F=E^\vee\otimes\omega_C$.  All ordinary section counts below concern this
+$F$.
+
+\section{The strict equality-case estimate}\label{sec:endpoint}
+
+\begin{proposition}[Strict stable pairing estimate]
+\label{prop:endpoint-pairing}
+Let $C$ be a smooth projective curve of genus $g\ge2$, let $D$ be reduced,
+and let $E_*$ be parabolically stable of parabolic degree zero and rank
+$d\ge2$.  For nonzero
+\[
+ v\in H^0(C,E\otimes\omega_C(D)),
+\]
+let $s$ be the rank of the multiplication map
+\[
+ H^0(C,E^\vee\otimes\omega_C)
+ \longrightarrow H^0(C,\omega_C^2(D)).
+\]
+Then
+\[
+ \boxed{d\ge g-s+1.}
+\]
+\end{proposition}
+
+\begin{proof}
+The assertion is automatic when $s\ge g$, so suppose $s<g$.  Input
+\ref{input:pairing} gives $d\ge g-s$.  Assume for contradiction that
+equality holds:
+\begin{equation}
+ d+s=g.
+ \label{eq:equality}
+\end{equation}
+
+Put $F=E^\vee\otimes\omega_C$.  Multiplication by $v$ gives a nonzero map
+from $F$ to the line bundle $\omega_C^2(D)$.  Let $K$ be its kernel.  The
+image is torsion-free, so $K$ is a saturated corank-one subbundle of $F$.
+Let $A\subset F$ be the saturation of the evaluation image of $H^0(C,K)$.
+Saturation stays in $K$ because $K$ is saturated.  Every section of $K$
+factors through the evaluation image, while $A\subset K$, so
+\[
+ H^0(C,A)=H^0(C,K).
+\]
+Consequently, with $c=d-\rk A$ and
+$\delta=h^0(C,F)-h^0(C,A)$,
+\[
+ \delta=h^0(C,F)-h^0(C,K)=s.
+\]
+
+Input \ref{input:hn} now gives
+\[
+ d\ge gc-s.
+\]
+Together with \eqref{eq:equality} and $c\ge1$, this forces $c=1$.
+
+Let $N^t$ be the sum of the HN pieces of $A$ with slope greater than
+$2g-2$.  The proof of Proposition 6.3.6 preserves the deficit because
+$H^1(C,N^t)=0$, and yields
+\[
+ \rk(F/N^t)\ge gc-s=g-s=d.
+\]
+Since $F$ has rank $d$, it follows that $N^t=0$.
+
+The intermediate inequality in the proof of Lemma 6.2.3 is therefore
+\begin{equation}
+ \mu(F)+2\le (2g-\mu(F))d+2s.
+ \label{eq:slope}
+\end{equation}
+The coparabolic quotient-slope lemma gives $\mu(F)\ge2g-2$.  At
+$\mu(F)=2g-2$, the two sides of \eqref{eq:slope} are equal by
+\eqref{eq:equality}.  Increasing $\mu(F)$ increases the left side and
+decreases the right side.  Hence
+\[
+ \mu(F)=2g-2.
+\]
+
+Write $S$ for the total canonical parabolic weight of $E_*$.  Since
+$\deg E=-S$,
+\[
+ \mu(F)=2g-2+\frac{S}{d}.
+\]
+Thus $S=0$.  The canonical weights are nonnegative, so every weight is zero.
+Because the weights in a parabolic flag are strictly increasing, each flag
+is the trivial one-step flag.  Parabolic stability is now ordinary
+stability of the degree-zero bundle $E$; dualizing and twisting show that
+$F$ is ordinary stable of slope $2g-2$.
+
+We may finally use the complete chain \eqref{eq:hn-chain}.  Here
+$\rk A=d-1$, $\delta=s$, and $\mu(F)=2g-2$, so it reads
+\[
+ \deg F+(1-g)d
+ \le \frac{\deg A}{2}+d-1+s
+ \le \frac{(2g-2)(d-1)}2+d-1+s.
+\]
+The leftmost term is $d(g-1)$, and the rightmost term is
+\[
+ g(d-1)+s=d(g-1)
+\]
+by \eqref{eq:equality}.  Equality therefore holds throughout.  In
+particular,
+\[
+ \deg A=(2g-2)(d-1),
+ \qquad \mu(A)=\mu(F).
+\]
+But $d\ge2$ makes $A$ a nonzero proper subbundle of the stable bundle $F$,
+a contradiction.
+\end{proof}
+
+\begin{remark}[The rank-one exception]
+The condition $d\ge2$ is necessary.  If $D=\varnothing$ and
+$E\in\operatorname{Pic}^0(C)$ is nontrivial, then
+$h^0(E\omega_C)=h^0(E^{-1}\omega_C)=g-1$.  Multiplication by a nonzero
+section of $E\omega_C$ is injective on $H^0(E^{-1}\omega_C)$, so
+$s=g-1$ and the published weak bound is sharp.
+\end{remark}
+
+\section{Fixed parts and Artin vanishing through rank
+\texorpdfstring{$g$}{g}}
+
+\begin{corollary}[Strict fixed-part estimate]
+\label{cor:fixed-part}
+Let $U$ be an irreducible unitary fibral local system of rank $d$ on a
+punctured versal genus-$g$ family.  Every nonzero irreducible sub-local
+system $L\subset R^1\pi_*^\circ U$ satisfies
+\[
+ \rk L\ge
+ \begin{cases}
+ 2g-2,&d=1,\\
+ 2g-2d+2,&d\ge2.
+ \end{cases}
+\]
+\end{corollary}
+
+\begin{proof}
+For $d=1$ this is input \ref{input:hodge}.  For $d\ge2$, that input produces
+a nonzero Hodge vector whose multiplication rank $s$ is at most
+$\rk L/2$.  Proposition~\ref{prop:endpoint-pairing} gives
+$s\ge g-d+1$, hence $\rk L\ge2g-2d+2$.
+\end{proof}
+
+\begin{corollary}[Artin vanishing through rank $g$]
+\label{cor:artin-endpoint}
+Let $g\ge3$.  In the setup of Landesman--Litt
+\cite[Theorem~6.2.1]{LLCan}, its conclusion remains valid when
+$\rk_A\Vcal\le g$.
+\end{corollary}
+
+\begin{proof}
+Use input \ref{input:artin}.  It suffices to treat a summand
+$U\otimes\pi^*W$, where $u=\rk U$, $w=\rk W$, and $uw\le g$.  The
+maximal-ideal filtration reduces to the complex residual coefficient
+$W_0$.  A nonzero invariant gives a nonzero morphism
+\[
+ W_0^\vee\longrightarrow R^1\pi_*^\circ U.
+\]
+Choose an irreducible sub-local system in its nonzero image.  Its rank is at
+most $w$, so \cref{cor:fixed-part} gives
+\[
+ w\ge
+ \begin{cases}
+ 2g-2,&u=1,\\
+ 2g-2u+2,&u\ge2.
+ \end{cases}
+\]
+
+If $w=1$, the displayed lower bound is at least two for every $u\le g$, a
+contradiction.  If $w\ge2$ and $u=1$, then
+$uw=w\ge2g-2>g$.  Finally, if $w\ge2$ and $u\ge2$, the constraint $uw\le g$
+gives $u\le g/2$, while
+\[
+ uw\ge2u(g-u+1)\ge2g>g.
+\]
+Every case contradicts $uw\le g$.
+\end{proof}
+
+\section{The square-endpoint pipeline}\label{sec:pipeline}
+
+We now prove \cref{thm:square-endpoint}.  The following table records the
+only substitutions in the published Landesman--Litt proof.
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.22\textwidth}
+                >{\raggedright\arraybackslash}p{0.31\textwidth}
+                >{\raggedright\arraybackslash}p{0.36\textwidth}}
+\toprule
+Published step & Strict-rank use & Endpoint replacement\\
+\midrule
+Proposition 8.2.1 & Theorem 6.2.1 for the rank-$r^2-1$ adjoint &
+\cref{cor:artin-endpoint}; Schur and Leray are unchanged\\
+Lemma 8.3.3 & Strong rigidity from Proposition 8.2.1 &
+Endpoint strong rigidity; no further rank estimate\\
+Lemma 8.3.4 & Projective integrality &
+Endpoint projective integrality; the finite-determinant lift is unchanged\\
+Proposition 8.4.1 & Rigidity, integrality, and the larger isomonodromy range &
+Endpoint rigidity and integrality; $r<2\sqrt{g+1}$ is automatic\\
+Lemma 8.5.1 & Theorem 6.2.1 on every Artin truncation of the adjoint &
+\cref{cor:artin-endpoint}\\
+Lemma 8.5.2 & Lemma 8.5.1 & No additional numerical hypothesis\\
+Lemma 8.6.1 & Strict AM--GM bound on extension support &
+The endpoint comparison in \cref{lem:extensions}\\
+Section 8.7 & Semisimple theorem and Lemma 8.6.1 &
+The same socle induction\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[Semisimple square endpoint]
+\label{prop:semisimple}
+Assume $r^2=g+1$.  Every semisimple MCG-finite rank-$r$ representation has
+finite image.
+\end{proposition}
+
+\begin{proof}
+If the representation is reducible, each irreducible summand has rank
+strictly less than $r=\sqrt{g+1}$.  Semisimple subquotients remain
+MCG-finite \cite[Proposition~2.1.1]{LLCan}, so the published strict theorem
+makes every summand finite.
+
+Assume the representation is irreducible.  Its trace-free adjoint has rank
+\[
+ r^2-1=g.
+\]
+Thus \cref{cor:artin-endpoint} replaces Theorem 6.2.1 in both strong
+cohomological rigidity \cite[Proposition~8.2.1]{LLCan} and formal constancy
+\cite[Lemma~8.5.1]{LLCan}.  The projective and linear integrality arguments,
+unitary finiteness, and passage from formal to global constancy then apply as
+in \cite[Sections~8.3--8.5]{LLCan}.  The nonabelian-Hodge deformation ends
+at a unitary system because the required inequality is
+\[
+ r<2\sqrt{g+1}=2r.
+\]
+The endpoint is therefore conjugate to a finite unitary representation.
+\end{proof}
+
+\begin{lemma}[Characteristic extensions at equality]
+\label{lem:extensions}
+Assume $r^2=g+1$.  Let an MCG-finite representation be an extension of two
+semisimple finite-image representations of positive ranks $a,b$ with
+$a+b\le r$, and suppose the subrepresentation is characteristic.  Then the
+extension splits and has finite image.
+\end{lemma}
+
+\begin{proof}
+Decompose the finite-image coefficient as
+\[
+ \rho_2^\vee\otimes\rho_1
+ =\bigoplus_i\sigma_i^{\oplus n_i},
+ \qquad d_i=\dim\sigma_i.
+\]
+The AM--GM inequality gives
+\[
+ n_i d_i\le ab
+ \le\frac{(a+b)^2}{4}
+ \le\frac{r^2}{4}
+ =\frac{g+1}{4}.
+\]
+In particular $d_i\le(g+1)/4<g$.  After passing to the finite Galois cover
+that trivializes both factors, the construction in
+\cite[Lemma~8.6.1]{LLCan} turns any nonzero projected extension into a
+finite-index-mapping-class-stable quotient of the relevant
+$\sigma_i$-isotypic homology component of dimension at most $n_i d_i$.
+Dualizing embeds the dual quotient as a stable subrepresentation of the
+dual $\sigma_i^\vee$-isotypic cohomology component, with the same dimension;
+here $\dim\sigma_i^\vee=d_i$.  Input \ref{input:socle} therefore gives the
+lower bound
+\[
+ 2g-2d_i
+ \ge 2g-\frac{g+1}{2}
+ =\frac{3g-1}{2}
+ >\frac{g+1}{4}
+ \ge n_i d_i,
+\]
+a contradiction.  Hence every projected map vanishes on the finite cover.
+The representation is therefore trivial on a finite-index subgroup and has
+finite image.  Over $\C$, Maschke semisimplicity then splits the extension.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:square-endpoint}]
+The strict case is published.  At equality, the semisimple case is
+\cref{prop:semisimple}.  For an arbitrary representation, apply the
+characteristic socle filtration exactly as in
+\cite[Section~8.7]{LLCan}.  Every proper factor has rank strictly less than
+$r=\sqrt{g+1}$ and is already finite by the published theorem; equivalently,
+one may induct on the length of the socle filtration.  Lemma
+\ref{lem:extensions} splits each characteristic extension.  The original
+representation therefore has finite image.
+\end{proof}
+
+\section{Audit boundary}
+
+The new mathematics in this note is concentrated in three places:
+
+\begin{enumerate}
+\item the equality case in \cref{prop:endpoint-pairing}, especially the
+deduction $N^t=0$, the forced vanishing of every parabolic weight, and the
+final equality-of-slopes contradiction;
+\item the rank-$g$ endpoint in \cref{cor:artin-endpoint}; and
+\item the strict support margin in \cref{lem:extensions}.
+\end{enumerate}
+
+The rest is a source-level substitution into the published pipeline.  This
+note accepts the cited Hodge, coparabolic, integrality, isomonodromy, and
+Putman--Wieland inputs in their published forms.  It neither reproves those
+theorems nor claims that an internal reconstruction is a substitute for
+specialist review.
+
+The first square pairs are
+\[
+ (g,r)=(3,2),(8,3),(15,4),(24,5),\ldots.
+\]
+The proof does not use a Spin lift and therefore includes even rank at the
+square endpoint.  It supplies no mechanism below $g=r^2-1$.
+
+\paragraph{Assistance disclosure.}
+OpenAI Codex (GPT-5.6) assisted with preparation and internal checking of this
+manuscript.  The author reviewed the manuscript and is responsible for all
+statements, proofs, and errors.
+
+\begin{thebibliography}{9}
+
+\bibitem{LLCan}
+A.~Landesman and D.~Litt,
+\emph{Canonical representations of surface groups},
+Ann. of Math. (2) \textbf{199} (2024), 823--897;
+\href{https://arxiv.org/abs/2205.15352}{arXiv:2205.15352v4}.
+
+\bibitem{LLGeo}
+A.~Landesman and D.~Litt,
+\emph{Geometric local systems on very general curves and isomonodromy},
+J. Amer. Math. Soc. \textbf{37} (2024), 683--729;
+\href{https://arxiv.org/abs/2202.00039}{arXiv:2202.00039v3}.
+
+\end{thebibliography}
+
+\end{document}
