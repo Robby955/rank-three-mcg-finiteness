@@ -1,7 +1,7 @@
 PYTHON ?= python3
 TEX := manuscript/rank3_genus5_reader.tex
 BUILD_DIR := build
-SOURCE_DATE_EPOCH ?= 1786320000
+SOURCE_DATE_EPOCH ?= 1786665600
 
 .PHONY: build verify verify-math verify-release clean
 

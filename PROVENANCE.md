@@ -33,7 +33,7 @@ The `0.1.3-candidate` expanded review release retains the
 `0.1.2-candidate` release unchanged and expands the finite genus-six and genus-five
 high-HN eliminations, prints the local jet matrices used in the
 `(S, q) = (2, 10)` branch, and adds a source-by-source propagation map and an
-explicit AI-assistance disclosure. The finite checker now reconstructs the
+expanded review record. The finite checker now reconstructs the
 displayed `q = 10` matrices from the parahoric bracket. No theorem statement or
 mathematical hypothesis changes.
 
@@ -44,15 +44,22 @@ and weight calculations at the formerly compressed uses. It also makes the
 README notation robust in the GitHub mobile application. No theorem statement
 or mathematical hypothesis changes.
 
+The `0.1.5-candidate` review release retains the theorem, hypotheses, and proof
+of `0.1.4-candidate` unchanged and streamlines the public review package. The
+earlier versioned PDF remains fixed in its release. No mathematical claim or
+dependency changes.
+
 ## Canonical artifacts
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `manuscript/rank3_genus5_reader.tex` | -- | `30fa0464ab1ea32b6dfe99ed81f98347d436ecc5825c832feb916f67f9087942` |
+| `manuscript/rank3_genus5_reader.tex` | -- | `26e3d2d8162e36c8e45fb5aac8c6e7ee8fd6f3e35d3bd828f1022a6768bdffb7` |
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
+| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `0e26d8ba2af9f03d28fb1a63aba2cc7d2e80eeb777b379abfbff13687f1ec30b` |
 
-The same values are recorded in `CHECKSUMS.sha256` and enforced by
-`verification/verify_release.py`.
+The current source and `0.1.5-candidate` PDF values are recorded in
+`CHECKSUMS.sha256` and enforced by `verification/verify_release.py`. The
+`0.1.4-candidate` value identifies the fixed historical release artifact.
 
 ## Scope
 

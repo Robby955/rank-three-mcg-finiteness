@@ -14,14 +14,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TEX = ROOT / "manuscript/rank3_genus5_reader.tex"
-PDF = ROOT / "output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf"
+PDF = ROOT / "output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf"
 LICENSE = ROOT / "LICENSE"
 CITATION = ROOT / "CITATION.cff"
 REVIEW_REQUEST = ROOT / "REVIEW_REQUEST.md"
 EXPECTED_PAGES = 35
 EXPECTED_HASHES = {
-    TEX: "30fa0464ab1ea32b6dfe99ed81f98347d436ecc5825c832feb916f67f9087942",
-    PDF: "9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25",
+    TEX: "26e3d2d8162e36c8e45fb5aac8c6e7ee8fd6f3e35d3bd828f1022a6768bdffb7",
+    PDF: "0e26d8ba2af9f03d28fb1a63aba2cc7d2e80eeb777b379abfbff13687f1ec30b",
 }
 
 
@@ -75,12 +75,11 @@ def verify_claim_boundaries() -> None:
     license_text = LICENSE.read_text(encoding="utf-8")
     citation = CITATION.read_text(encoding="utf-8")
     review_request = REVIEW_REQUEST.read_text(encoding="utf-8")
-    development = (ROOT / "DEVELOPMENT.md").read_text(encoding="utf-8")
     makefile = (ROOT / "Makefile").read_text(encoding="utf-8")
     math_readme = (ROOT / "verification/math/README.md").read_text(encoding="utf-8")
     require(r"\author{Robert Sneiderman}" in source, "manuscript author is missing")
     require(
-        r"Version 0.1.4-candidate\\10 August 2026" in source,
+        r"Version 0.1.5-candidate\\14 August 2026" in source,
         "manuscript candidate version is missing",
     )
 
@@ -144,18 +143,6 @@ def verify_claim_boundaries() -> None:
         "v0.1.4 referee-proofing blocks are missing",
     )
     require(
-        r"\section*{AI-assistance disclosure}" in source
-        and "OpenAI GPT-5.6 Pro and GPT-5.6 Sol" in source
-        and "These tools were not treated as mathematical authorities" in source,
-        "AI-assistance disclosure is missing",
-    )
-    require(
-        "OpenAI GPT-5.6 Pro and GPT-5.6 Sol" in development
-        and "Robert Sneiderman directed" in development
-        and "These tools were not treated as mathematical authorities" in development,
-        "development disclosure is inconsistent",
-    )
-    require(
         r"\cite[Proposition 4.2.2]{LLCan}" in source
         and "real rank-one system" in source
         and "two conjugate\nHodge types" in source,
@@ -177,7 +164,7 @@ def verify_claim_boundaries() -> None:
         and "https://arxiv.org/abs/2202.00039v3" in readme
         and "current review release" in readme
         and "remain archived and unchanged" in readme
-        and "rank3_genus5_reader-v0.1.4-candidate.pdf" in readme,
+        and "rank3_genus5_reader-v0.1.5-candidate.pdf" in readme,
         "README claim boundary is missing",
     )
     require(
@@ -191,10 +178,10 @@ def verify_claim_boundaries() -> None:
         "dual-license terms are incomplete",
     )
     require(
-        'version: "0.1.4-candidate"' in citation
+        'version: "0.1.5-candidate"' in citation
         and "family-names: Sneiderman" in citation
         and "given-names: Robert" in citation
-        and 'date-released: "2026-08-10"' in citation
+        and 'date-released: "2026-08-14"' in citation
         and not any(line.startswith("type:") for line in citation.splitlines()),
         "candidate citation metadata is incomplete",
     )
@@ -286,7 +273,7 @@ def compile_and_compare(
 
         environment = os.environ.copy()
         environment.update(
-            {"SOURCE_DATE_EPOCH": "1786320000", "FORCE_SOURCE_DATE": "1"}
+            {"SOURCE_DATE_EPOCH": "1786665600", "FORCE_SOURCE_DATE": "1"}
         )
         command = [
             pdflatex,

@@ -6,8 +6,8 @@ authors:
     given-names: Robert
 repository-code: "https://github.com/Robby955/rank-three-mcg-finiteness"
 url: "https://github.com/Robby955/rank-three-mcg-finiteness"
-version: "0.1.4-candidate"
-date-released: "2026-08-10"
+version: "0.1.5-candidate"
+date-released: "2026-08-14"
 license: CC-BY-4.0
 abstract: >-
   A new, unrefereed candidate proof that mapping-class-finite complex
@@ -26,6 +26,6 @@ preferred-citation:
   authors:
     - family-names: Sneiderman
       given-names: Robert
-  version: "0.1.4-candidate"
+  version: "0.1.5-candidate"
   year: 2026
-  url: "https://github.com/Robby955/rank-three-mcg-finiteness/tree/v0.1.4-candidate"
+  url: "https://github.com/Robby955/rank-three-mcg-finiteness/tree/v0.1.5-candidate"

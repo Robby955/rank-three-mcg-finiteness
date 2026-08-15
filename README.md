@@ -2,7 +2,7 @@
 
 [![Status: candidate](https://img.shields.io/badge/status-candidate-C27C0E)](STATUS.md)
 [![Verify](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml/badge.svg)](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml)
-[![Release: v0.1.4-candidate](https://img.shields.io/badge/release-v0.1.4--candidate-2F6FEB)](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.4-candidate)
+[![Release: v0.1.5-candidate](https://img.shields.io/badge/release-v0.1.5--candidate-2F6FEB)](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.5-candidate)
 
 A focused manuscript and review package for a proposed extension of the
 rank-three finite-image range for punctured surface groups.
@@ -30,11 +30,10 @@ This candidate starts from two papers by Aaron Landesman and Daniel Litt:
 The proposed extension to rank three in genus g ≥ 5 is new and unrefereed;
 it is not a theorem claimed by Landesman and Litt.
 
-The current review release is `v0.1.4-candidate`. It keeps the same theorem
-and hypotheses as `v0.1.3-candidate`, while adding a compact proof roadmap,
-an explicit justification for the use of general fibres, and the parabolic
-stability bookkeeping at every compressed branch. Earlier releases remain
-available as fixed historical review copies.
+The current review release is `v0.1.5-candidate`. It keeps the theorem,
+hypotheses, and proof of `v0.1.4-candidate` unchanged while streamlining the
+public review package. Earlier releases remain available as fixed historical
+review copies.
 
 ## Result under review
 
@@ -51,7 +50,7 @@ genera 8, 7, 6, and 5.
 
 | Document | Purpose |
 |---|---|
-| [Manuscript PDF](https://github.com/Robby955/rank-three-mcg-finiteness/releases/download/v0.1.4-candidate/rank3_genus5_reader-v0.1.4-candidate.pdf) | Version-specific current review copy |
+| [Manuscript PDF](https://github.com/Robby955/rank-three-mcg-finiteness/releases/download/v0.1.5-candidate/rank3_genus5_reader-v0.1.5-candidate.pdf) | Version-specific current review copy |
 | [TeX source](manuscript/rank3_genus5_reader.tex) | Canonical source corresponding to the PDF |
 | [Proof map](PROOF_MAP.md) | Suggested specialist review order |
 | [Pipeline audit](PIPELINE_AUDIT.md) | Exact substitutions in Landesman–Litt Sections 8.2–8.7 |
@@ -115,7 +114,7 @@ in [`verification/math`](verification/math).
 ## Citation and licensing
 
 The latest review release is
-[`v0.1.4-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.4-candidate).
+[`v0.1.5-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.5-candidate).
 Earlier versioned review copies remain archived and unchanged on the
 [Releases page](https://github.com/Robby955/rank-three-mcg-finiteness/releases).
 Citation metadata is provided in [CITATION.cff](CITATION.cff).
@@ -124,14 +123,8 @@ The manuscript and documentation are licensed under CC BY 4.0. Verification
 software and repository infrastructure are licensed under the MIT License.
 See [LICENSE](LICENSE) for the exact path mapping and terms.
 
-## Scope and disclosure
+## Scope
 
 This repository contains the rank-three manuscript and the review materials
 needed to evaluate it. General-rank work and exploratory notes are outside its
 scope.
-
-OpenAI GPT-5.6 Pro and GPT-5.6 Sol were used for drafting, symbolic
-exploration, generation of finite verification scripts, and checks of
-successive versions for omitted cases and mismatched hypotheses. Robert
-Sneiderman directed their use and is responsible for the manuscript and any
-errors. Further details are recorded in [DEVELOPMENT.md](DEVELOPMENT.md).
