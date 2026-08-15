@@ -23,6 +23,24 @@ together with the independent reconstructions in Sections 10.3 and 13, are
 recorded in
 [LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md).
 
+## Separate genus-four candidate
+
+The [genus-four manuscript](manuscript/rank3_genus4_extension.tex) is a
+separate conditional candidate, not a corollary certified by the map above.
+
+| Genus-four component | Role | Focused review question |
+|---|---|---|
+| Sections 1--2, statement and B1--B5 | Makes the imported dependency package part of the candidate statement | Are B1--B5 exactly the interfaces proved or proposed in the companion manuscript, with no hidden strict-genus use? |
+| Sections 4--5, finite frontiers | Records the no-high and high-HN survivor tables | Are the HN types, section bounds, parabolic weights, and degree inequalities exhaustive? |
+| Section 6, dense rank-eight coefficient | Proposes the fibrewise and global elimination of every remaining dense branch | Do the Cech--Petri symmetry, evaluation-lattice saturation, Killing/Spin comparison, primitive pairing bound, and BPGN equality cases hold as stated? |
+| Section 7, proper projective closures | Treats the rank-five orthogonal and rank-six monomial coefficients | Do the imported first-super classification, invariant form, and determinant-sign arguments exclude all proper-closure cases? |
+| Section 8, propagation | Handles the genus-four scalar equality and carries fixed-part vanishing to finite image | Is the standard rank-eight symplectic subsystem identified on every finite cover, and do the B5 descent and socle steps apply at equality? |
+| Section 9, verification boundary | Separates exact finite calculations from the unrefereed geometric argument | Are all conditional dependencies and nonclaims stated accurately? |
+
+For genus four, begin with Sections 1--2, then review Sections 6, 7, and 8 in
+that order. The `verify_genus4_candidate.py` gate checks the source/PDF
+identity and public claim boundary; it does not certify the proof.
+
 ## Suggested review order
 
 1. Read Sections 2 and 4 to fix conventions and the fixed-part interface.

@@ -58,10 +58,10 @@ periodic-chain no-pole determinant calculation have complete displayed
 arguments. They are retained as separate reconstructions, but
 neither is a dependency of the main elimination.
 
-## Separate open boundary
+## Separate lower-genus boundary
 
-Genus four and genus three are not consequences of this audit. The cocycle
-obstruction applies once a generically injective trivial rank-three
-quotient-normalizer subbundle is available, but the current genus-four HN
-analysis does not supply that compression across all surviving branches.
-Genus three loses an additional rank. New input is required for both genera.
+Genus four and genus three are not consequences of this audit. The separate
+genus-four candidate manuscript supplies additional no-high, high-HN,
+proper-projective-closure, and propagation arguments, conditional on its
+stated interface package B1--B5. This audit does not independently verify that
+extension. Genus three remains open and requires additional input.
