@@ -2,7 +2,6 @@
 
 [![Status: candidate](https://img.shields.io/badge/status-candidate-C27C0E)](STATUS.md)
 [![Verify](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml/badge.svg)](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml)
-[![Release: v0.1.5-candidate](https://img.shields.io/badge/release-v0.1.5--candidate-2F6FEB)](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.5-candidate)
 
 A focused manuscript and review package for a proposed extension of the
 rank-three finite-image range for punctured surface groups.
@@ -30,10 +29,10 @@ This candidate starts from two papers by Aaron Landesman and Daniel Litt:
 The proposed extension to rank three in genus g ≥ 5 is new and unrefereed;
 it is not a theorem claimed by Landesman and Litt.
 
-The current review release is `v0.1.5-candidate`. It keeps the theorem,
-hypotheses, and proof of `v0.1.4-candidate` unchanged while streamlining the
-public review package. Earlier releases remain available as fixed historical
-review copies.
+The current public review release is `v0.1.4-candidate`. This branch prepares
+`v0.1.5-candidate`, which keeps the theorem, hypotheses, and proof unchanged
+while streamlining the public review package. Earlier releases remain
+available as fixed historical review copies.
 
 ## Additional general-rank candidate
 
@@ -59,7 +58,7 @@ genera 8, 7, 6, and 5.
 
 | Document | Purpose |
 |---|---|
-| [Manuscript PDF](https://github.com/Robby955/rank-three-mcg-finiteness/releases/download/v0.1.5-candidate/rank3_genus5_reader-v0.1.5-candidate.pdf) | Version-specific current review copy |
+| [Manuscript PDF](output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf) | Prepared version-specific review copy |
 | [TeX source](manuscript/rank3_genus5_reader.tex) | Canonical source corresponding to the PDF |
 | [Square-endpoint note PDF](output/pdf/general_rank_square_endpoint.pdf) | Standalone general-rank candidate note |
 | [Square-endpoint note source](manuscript/general_rank_square_endpoint.tex) | Canonical source for the standalone note |
@@ -70,7 +69,7 @@ genera 8, 7, 6, and 5.
 | [Dependency ledger](DEPENDENCIES.md) | Published inputs and new interfaces |
 | [Status](STATUS.md) | Exact claim boundaries, including genera three and four |
 | [Provenance](PROVENANCE.md) | Source checkpoint and artifact hashes |
-| [Citation metadata](CITATION.cff) | Versioned citation for the candidate release |
+| [Citation metadata](CITATION.cff) | Versioned citation for the rank-three candidate |
 
 ## Main review points
 
@@ -132,11 +131,17 @@ in [`verification/math`](verification/math).
 
 ## Citation and licensing
 
-The latest review release is
-[`v0.1.5-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.5-candidate).
-Earlier versioned review copies remain archived and unchanged on the
+The current public review release is
+[`v0.1.4-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.4-candidate).
+This branch prepares `v0.1.5-candidate`; earlier versioned review copies remain
+archived and unchanged on the
 [Releases page](https://github.com/Robby955/rank-three-mcg-finiteness/releases).
-Citation metadata is provided in [CITATION.cff](CITATION.cff).
+The root [CITATION.cff](CITATION.cff) describes the rank-three candidate.
+
+The standalone note may be cited as:
+
+> Robert Sneiderman, *The General-Rank Square Endpoint for MCG-Finite
+> Surface-Group Representations*, version 0.1.0-candidate, 2026.
 
 The manuscript and documentation are licensed under CC BY 4.0. Verification
 software and repository infrastructure are licensed under the MIT License.

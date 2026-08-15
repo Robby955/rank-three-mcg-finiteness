@@ -167,8 +167,11 @@ def verify_claim_boundaries() -> None:
         and "https://arxiv.org/abs/2205.15352v4" in readme
         and "https://doi.org/10.1090/jams/1038" in readme
         and "https://arxiv.org/abs/2202.00039v3" in readme
-        and "current review release" in readme
-        and "remain archived and unchanged" in readme
+        and "current public review release" in readme
+        and "This branch prepares" in readme
+        and "v0.1.4-candidate" in readme
+        and "v0.1.5-candidate" in readme
+        and "archived and unchanged" in readme
         and "rank3_genus5_reader-v0.1.5-candidate.pdf" in readme,
         "README claim boundary is missing",
     )

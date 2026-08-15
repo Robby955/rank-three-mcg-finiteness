@@ -44,10 +44,10 @@ and weight calculations at the formerly compressed uses. It also makes the
 README notation robust in the GitHub mobile application. No theorem statement
 or mathematical hypothesis changes.
 
-The `0.1.5-candidate` review release retains the theorem, hypotheses, and proof
-of `0.1.4-candidate` unchanged and streamlines the public review package. The
-earlier versioned PDF remains fixed in its release. No mathematical claim or
-dependency changes.
+The prepared `0.1.5-candidate` review version retains the theorem, hypotheses,
+and proof of `0.1.4-candidate` unchanged and streamlines the public review
+package. The earlier versioned PDF remains fixed in its release. No
+mathematical claim or dependency changes.
 
 The standalone `0.1.0-candidate` square-endpoint note extracts the
 general-rank equality argument already recorded in the manuscript and expands
