@@ -29,3 +29,5 @@ jobs:
         run: make verify-math
       - name: Verify release
         run: python3 verification/verify_release.py --compile --portable
+      - name: Verify square-endpoint packet
+        run: make verify-square-endpoint

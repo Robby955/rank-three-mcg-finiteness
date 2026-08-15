@@ -2,7 +2,6 @@
 
 [![Status: candidate](https://img.shields.io/badge/status-candidate-C27C0E)](STATUS.md)
 [![Verify](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml/badge.svg)](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml)
-[![Release: v0.1.4-candidate](https://img.shields.io/badge/release-v0.1.4--candidate-2F6FEB)](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.4-candidate)
 
 A focused manuscript and review package for a proposed extension of the
 rank-three finite-image range for punctured surface groups.
@@ -30,11 +29,19 @@ This candidate starts from two papers by Aaron Landesman and Daniel Litt:
 The proposed extension to rank three in genus g ≥ 5 is new and unrefereed;
 it is not a theorem claimed by Landesman and Litt.
 
-The current review release is `v0.1.4-candidate`. It keeps the same theorem
-and hypotheses as `v0.1.3-candidate`, while adding a compact proof roadmap,
-an explicit justification for the use of general fibres, and the parabolic
-stability bookkeeping at every compressed branch. Earlier releases remain
+The current public review release is `v0.1.4-candidate`. This branch prepares
+`v0.1.5-candidate`, which keeps the theorem, hypotheses, and proof unchanged
+while streamlining the public review package. Earlier releases remain
 available as fixed historical review copies.
+
+## Additional general-rank candidate
+
+A separate six-page note isolates a proposed extension of the published
+general-rank bound to the square endpoint `r² = g + 1`, equivalently
+`g ≥ r² − 1`. This endpoint statement remains `CANDIDATE`. The published
+strict range is due to Landesman--Litt. The note does not prove the proposed
+sharper range `g ≥ r² − 4`, and it does not change the open status of the
+rank-three genus-three and genus-four cases.
 
 ## Result under review
 
@@ -51,8 +58,10 @@ genera 8, 7, 6, and 5.
 
 | Document | Purpose |
 |---|---|
-| [Manuscript PDF](https://github.com/Robby955/rank-three-mcg-finiteness/releases/download/v0.1.4-candidate/rank3_genus5_reader-v0.1.4-candidate.pdf) | Version-specific current review copy |
+| [Manuscript PDF](output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf) | Prepared version-specific review copy |
 | [TeX source](manuscript/rank3_genus5_reader.tex) | Canonical source corresponding to the PDF |
+| [Square-endpoint note PDF](output/pdf/general_rank_square_endpoint.pdf) | Standalone general-rank candidate note |
+| [Square-endpoint note source](manuscript/general_rank_square_endpoint.tex) | Canonical source for the standalone note |
 | [Proof map](PROOF_MAP.md) | Suggested specialist review order |
 | [Pipeline audit](PIPELINE_AUDIT.md) | Exact substitutions in Landesman–Litt Sections 8.2–8.7 |
 | [Proof-interface notes](LOAD_BEARING_AUDIT.md) | Normalizer cocycle, fixed part, and Artin propagation expanded in order |
@@ -60,7 +69,7 @@ genera 8, 7, 6, and 5.
 | [Dependency ledger](DEPENDENCIES.md) | Published inputs and new interfaces |
 | [Status](STATUS.md) | Exact claim boundaries, including genera three and four |
 | [Provenance](PROVENANCE.md) | Source checkpoint and artifact hashes |
-| [Citation metadata](CITATION.cff) | Versioned citation for the candidate release |
+| [Citation metadata](CITATION.cff) | Versioned citation for the rank-three candidate |
 
 ## Main review points
 
@@ -96,10 +105,18 @@ With TeX Live, Poppler, and Ghostscript installed:
 make verify-release
 ```
 
-The release check enforces the source and PDF hashes, claim-status language,
-page count, encryption state, embedded fonts, Ghostscript preflight, a clean
-fresh build, extracted-text equality, and a 120-DPI pixel comparison. GitHub
-Actions runs the portable subset on every push and pull request.
+The release check verifies both candidate notes. It enforces source and PDF
+hashes, claim-status language, page counts, encryption state, embedded fonts,
+Ghostscript preflight, clean fresh builds, extracted-text equality, and a
+120-DPI pixel comparison for the rank-three manuscript. GitHub Actions runs
+the portable rank-three gate and the standalone square-endpoint gate on every
+push and pull request.
+
+To check only the standalone note, run:
+
+```sh
+make verify-square-endpoint
+```
 
 The separate finite-mathematics checks are:
 
@@ -114,24 +131,25 @@ in [`verification/math`](verification/math).
 
 ## Citation and licensing
 
-The latest review release is
+The current public review release is
 [`v0.1.4-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.4-candidate).
-Earlier versioned review copies remain archived and unchanged on the
+This branch prepares `v0.1.5-candidate`; earlier versioned review copies remain
+archived and unchanged on the
 [Releases page](https://github.com/Robby955/rank-three-mcg-finiteness/releases).
-Citation metadata is provided in [CITATION.cff](CITATION.cff).
+The root [CITATION.cff](CITATION.cff) describes the rank-three candidate.
+
+The standalone note may be cited as:
+
+> Robert Sneiderman, *The General-Rank Square Endpoint for MCG-Finite
+> Surface-Group Representations*, version 0.1.0-candidate, 2026.
 
 The manuscript and documentation are licensed under CC BY 4.0. Verification
 software and repository infrastructure are licensed under the MIT License.
 See [LICENSE](LICENSE) for the exact path mapping and terms.
 
-## Scope and disclosure
+## Scope
 
-This repository contains the rank-three manuscript and the review materials
-needed to evaluate it. General-rank work and exploratory notes are outside its
-scope.
-
-OpenAI GPT-5.6 Pro and GPT-5.6 Sol were used for drafting, symbolic
-exploration, generation of finite verification scripts, and checks of
-successive versions for omitted cases and mismatched hypotheses. Robert
-Sneiderman directed their use and is responsible for the manuscript and any
-errors. Further details are recorded in [DEVELOPMENT.md](DEVELOPMENT.md).
+This repository contains the rank-three manuscript, the standalone
+general-rank square-endpoint note, and the review materials needed to evaluate
+them. Exploratory lower-genus work and internal working material are outside
+its scope.

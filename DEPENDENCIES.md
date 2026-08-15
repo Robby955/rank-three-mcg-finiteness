@@ -47,6 +47,7 @@ Society* 37 (2024), 683--729.
 | Interface | Status in this repository |
 |---|---|
 | Stable endpoint `d ≥ g − s + 1`, `d ≥ 2` | `PROVED CONDITIONAL ON` the cited HN/equality chain |
+| General-rank square endpoint `g ≥ r² − 1` | `CANDIDATE`; complete standalone note, not established literature |
 | Normalizer boundary-cocycle obstruction | `PROVED` as a Cech and `sl₃` normalizer calculation; its applications additionally use `H⁰(C, E) = 0` to make the full extension boundary injective |
 | Zero-weight genus-five `q = 9` elimination after closed descent | `CANDIDATE`; the direct boundary-cocycle route is displayed in full |
 | Zero-weight genus-five `q = 9`, `h = 2` Pfaffian and spectral reduction | `CANDIDATE`; included as a separate reconstruction and no longer load-bearing |
@@ -56,7 +57,8 @@ Society* 37 (2024), 683--729.
 | Pointed boundary descent for an effective degree-one Hodge line | `PROVED` only under the manuscript's `S = 0`, Zariski-dense adjoint hypotheses; Chen--Salter is used after that descent, and no general pointed-section exclusion is claimed |
 | Rank-three formal propagation | `PROVED CONDITIONAL ON` the specialized fixed-part and Artin substitutions in the cited pipeline |
 
-No published source listed here states the new `g ≥ 5` conclusion.
+No published source listed here states the new rank-three `g ≥ 5` conclusion
+or the equality extension `r² = g + 1`.
 
 The exact role of the published strict-rank hypothesis in Sections 8.2--8.7 is
 tracked in [PIPELINE_AUDIT.md](PIPELINE_AUDIT.md).
