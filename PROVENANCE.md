@@ -53,9 +53,9 @@ dependency changes.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `manuscript/rank3_genus5_reader.tex` | -- | `26e3d2d8162e36c8e45fb5aac8c6e7ee8fd6f3e35d3bd828f1022a6768bdffb7` |
+| `manuscript/rank3_genus5_reader.tex` | -- | `40d19d5abe1189c2c772b7da9ab5a83e1e6a65c77a5b75fd468516ed1a1f8da9` |
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
-| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `0e26d8ba2af9f03d28fb1a63aba2cc7d2e80eeb777b379abfbff13687f1ec30b` |
+| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `3888bfe324f817a465867d9d6ab91ae4b32c7e2b083d339e168eb611aa911f56` |
 
 The current source and `0.1.5-candidate` PDF values are recorded in
 `CHECKSUMS.sha256` and enforced by `verification/verify_release.py`. The

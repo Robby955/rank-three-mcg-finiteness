@@ -20,8 +20,8 @@ CITATION = ROOT / "CITATION.cff"
 REVIEW_REQUEST = ROOT / "REVIEW_REQUEST.md"
 EXPECTED_PAGES = 35
 EXPECTED_HASHES = {
-    TEX: "26e3d2d8162e36c8e45fb5aac8c6e7ee8fd6f3e35d3bd828f1022a6768bdffb7",
-    PDF: "0e26d8ba2af9f03d28fb1a63aba2cc7d2e80eeb777b379abfbff13687f1ec30b",
+    TEX: "40d19d5abe1189c2c772b7da9ab5a83e1e6a65c77a5b75fd468516ed1a1f8da9",
+    PDF: "3888bfe324f817a465867d9d6ab91ae4b32c7e2b083d339e168eb611aa911f56",
 }
 
 
@@ -86,6 +86,11 @@ def verify_claim_boundaries() -> None:
     require(
         "unrefereed candidate proof" in source,
         "manuscript candidate status is missing",
+    )
+    require(
+        "OpenAI Codex (GPT-5.6)" in source
+        and "responsible for all\nstatements, proofs, and errors" in source,
+        "concise assistance disclosure is missing",
     )
     require(
         r"Let $g\ge5$ and $n\ge0$" in source,
