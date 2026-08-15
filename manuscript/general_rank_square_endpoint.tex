@@ -315,7 +315,7 @@ $W_0$.  A nonzero invariant gives a nonzero morphism
  W_0^\vee\longrightarrow R^1\pi_*^\circ U.
 \]
 Choose an irreducible sub-local system in its nonzero image.  Its rank is at
-most $w$, so \cref{cor:fixed-part} gives
+most $w$, so Corollary~\ref{cor:fixed-part} gives
 \[
  w\ge
  \begin{cases}
@@ -336,7 +336,7 @@ Every case contradicts $uw\le g$.
 
 \section{The square-endpoint pipeline}\label{sec:pipeline}
 
-We now prove \cref{thm:square-endpoint}.  The following table records the
+We now prove Theorem~\ref{thm:square-endpoint}.  The following table records the
 only substitutions in the published Landesman--Litt proof.
 
 \begin{center}
@@ -348,7 +348,7 @@ only substitutions in the published Landesman--Litt proof.
 Published step & Strict-rank use & Endpoint replacement\\
 \midrule
 Proposition 8.2.1 & Theorem 6.2.1 for the rank-$r^2-1$ adjoint &
-\cref{cor:artin-endpoint}; Schur and Leray are unchanged\\
+Corollary~\ref{cor:artin-endpoint}; Schur and Leray are unchanged\\
 Lemma 8.3.3 & Strong rigidity from Proposition 8.2.1 &
 Endpoint strong rigidity; no further rank estimate\\
 Lemma 8.3.4 & Projective integrality &
@@ -356,10 +356,10 @@ Endpoint projective integrality; the finite-determinant lift is unchanged\\
 Proposition 8.4.1 & Rigidity, integrality, and the larger isomonodromy range &
 Endpoint rigidity and integrality; $r<2\sqrt{g+1}$ is automatic\\
 Lemma 8.5.1 & Theorem 6.2.1 on every Artin truncation of the adjoint &
-\cref{cor:artin-endpoint}\\
+Corollary~\ref{cor:artin-endpoint}\\
 Lemma 8.5.2 & Lemma 8.5.1 & No additional numerical hypothesis\\
 Lemma 8.6.1 & Strict AM--GM bound on extension support &
-The endpoint comparison in \cref{lem:extensions}\\
+The endpoint comparison in Lemma~\ref{lem:extensions}\\
 Section 8.7 & Semisimple theorem and Lemma 8.6.1 &
 The same socle induction\\
 \bottomrule
@@ -382,7 +382,7 @@ Assume the representation is irreducible.  Its trace-free adjoint has rank
 \[
  r^2-1=g.
 \]
-Thus \cref{cor:artin-endpoint} replaces Theorem 6.2.1 in both strong
+Thus Corollary~\ref{cor:artin-endpoint} replaces Theorem 6.2.1 in both strong
 cohomological rigidity \cite[Proposition~8.2.1]{LLCan} and formal constancy
 \cite[Lemma~8.5.1]{LLCan}.  The projective and linear integrality arguments,
 unitary finiteness, and passage from formal to global constancy then apply as
@@ -437,9 +437,9 @@ The representation is therefore trivial on a finite-index subgroup and has
 finite image.  Over $\C$, Maschke semisimplicity then splits the extension.
 \end{proof}
 
-\begin{proof}[Proof of \cref{thm:square-endpoint}]
+\begin{proof}[Proof of Theorem~\ref{thm:square-endpoint}]
 The strict case is published.  At equality, the semisimple case is
-\cref{prop:semisimple}.  For an arbitrary representation, apply the
+Proposition~\ref{prop:semisimple}.  For an arbitrary representation, apply the
 characteristic socle filtration exactly as in
 \cite[Section~8.7]{LLCan}.  Every proper factor has rank strictly less than
 $r=\sqrt{g+1}$ and is already finite by the published theorem; equivalently,
@@ -453,11 +453,11 @@ representation therefore has finite image.
 The new mathematics in this note is concentrated in three places:
 
 \begin{enumerate}
-\item the equality case in \cref{prop:endpoint-pairing}, especially the
+\item the equality case in Proposition~\ref{prop:endpoint-pairing}, especially the
 deduction $N^t=0$, the forced vanishing of every parabolic weight, and the
 final equality-of-slopes contradiction;
-\item the rank-$g$ endpoint in \cref{cor:artin-endpoint}; and
-\item the strict support margin in \cref{lem:extensions}.
+\item the rank-$g$ endpoint in Corollary~\ref{cor:artin-endpoint}; and
+\item the strict support margin in Lemma~\ref{lem:extensions}.
 \end{enumerate}
 
 The rest is a source-level substitution into the published pipeline.  This
