@@ -64,9 +64,9 @@ not as an established theorem. It does not make a genus-three claim.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `manuscript/rank3_genus5_reader.tex` | -- | `40d19d5abe1189c2c772b7da9ab5a83e1e6a65c77a5b75fd468516ed1a1f8da9` |
+| `manuscript/rank3_genus5_reader.tex` | -- | `73c86d7a158fb5d89cefd0adf0463fa4dd05bc34f77ad2670baa1e4ec1df8ace` |
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
-| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `3888bfe324f817a465867d9d6ab91ae4b32c7e2b083d339e168eb611aa911f56` |
+| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `ae30533bae960e1bdb6ec934f73006b86d117360c2c02a320a3d09badd6336b0` |
 | `manuscript/rank3_genus4_extension.tex` | -- | `2c0ddb951b07a97db92a87145077f5e2846a18debd4f897fa786942e59117388` |
 | `output/pdf/rank3_genus4_extension.pdf` | 30 | `c1362e6d4130b8c3e264a138f7787aebc9735441d0747bae20f2c69637a92a01` |
 | `manuscript/general_rank_square_endpoint.tex` | -- | `9be5e83a5c69dd0882f8c684e3e549cb5b235d48702d7fc06d5fbb3719622a2f` |

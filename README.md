@@ -30,10 +30,10 @@ This candidate starts from two papers by Aaron Landesman and Daniel Litt:
 The proposed rank-three extensions in genus at least five and genus four are
 new and unrefereed; neither is a theorem claimed by Landesman and Litt.
 
-The current tagged public review release is `v0.1.4-candidate`. The repository
-contains the prepared `v0.1.5-candidate` genus-at-least-five package together
-with the standalone square-endpoint and genus-four candidate notes. Earlier
-releases remain available as fixed historical review copies.
+The current tagged public review release is `v0.1.5-candidate`. It contains
+the genus-at-least-five package together with the standalone square-endpoint
+and genus-four candidate notes. Earlier releases remain available as fixed
+historical review copies, including `v0.1.4-candidate`.
 
 ## Additional general-rank candidate
 
@@ -160,9 +160,8 @@ in [`verification/math`](verification/math).
 ## Citation and licensing
 
 The current public review release is
-[`v0.1.4-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.4-candidate).
-The repository contains the prepared `v0.1.5-candidate` package; earlier
-versioned review copies remain
+[`v0.1.5-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.5-candidate).
+The `v0.1.4-candidate` and earlier versioned review copies remain
 archived and unchanged on the
 [Releases page](https://github.com/Robby955/rank-three-mcg-finiteness/releases).
 The root [CITATION.cff](CITATION.cff) describes the rank-three candidate.

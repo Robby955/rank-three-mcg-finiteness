@@ -7,7 +7,7 @@ authors:
 repository-code: "https://github.com/Robby955/rank-three-mcg-finiteness"
 url: "https://github.com/Robby955/rank-three-mcg-finiteness"
 version: "0.1.5-candidate"
-date-released: "2026-08-14"
+date-released: "2026-08-16"
 license: CC-BY-4.0
 abstract: >-
   A new, unrefereed candidate proof that mapping-class-finite complex

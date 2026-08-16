@@ -20,8 +20,8 @@ CITATION = ROOT / "CITATION.cff"
 REVIEW_REQUEST = ROOT / "REVIEW_REQUEST.md"
 EXPECTED_PAGES = 35
 EXPECTED_HASHES = {
-    TEX: "40d19d5abe1189c2c772b7da9ab5a83e1e6a65c77a5b75fd468516ed1a1f8da9",
-    PDF: "3888bfe324f817a465867d9d6ab91ae4b32c7e2b083d339e168eb611aa911f56",
+    TEX: "73c86d7a158fb5d89cefd0adf0463fa4dd05bc34f77ad2670baa1e4ec1df8ace",
+    PDF: "ae30533bae960e1bdb6ec934f73006b86d117360c2c02a320a3d09badd6336b0",
 }
 
 
@@ -79,7 +79,7 @@ def verify_claim_boundaries() -> None:
     math_readme = (ROOT / "verification/math/README.md").read_text(encoding="utf-8")
     require(r"\author{Robert Sneiderman}" in source, "manuscript author is missing")
     require(
-        r"Version 0.1.5-candidate\\14 August 2026" in source,
+        r"Version 0.1.5-candidate\\16 August 2026" in source,
         "manuscript candidate version is missing",
     )
 
@@ -168,9 +168,10 @@ def verify_claim_boundaries() -> None:
         and "https://doi.org/10.1090/jams/1038" in readme
         and "https://arxiv.org/abs/2202.00039v3" in readme
         and "current tagged public review release" in readme
-        and "contains the prepared `v0.1.5-candidate`" in readme
+        and "current tagged public review release is `v0.1.5-candidate`" in readme
         and "v0.1.4-candidate" in readme
         and "v0.1.5-candidate" in readme
+        and "releases/tag/v0.1.5-candidate" in readme
         and "archived and unchanged" in readme
         and "rank3_genus5_reader-v0.1.5-candidate.pdf" in readme
         and "rank3_genus4_extension.pdf" in readme,
@@ -192,7 +193,7 @@ def verify_claim_boundaries() -> None:
         'version: "0.1.5-candidate"' in citation
         and "family-names: Sneiderman" in citation
         and "given-names: Robert" in citation
-        and 'date-released: "2026-08-14"' in citation
+        and 'date-released: "2026-08-16"' in citation
         and not any(line.startswith("type:") for line in citation.splitlines()),
         "candidate citation metadata is incomplete",
     )
@@ -285,7 +286,7 @@ def compile_and_compare(
 
         environment = os.environ.copy()
         environment.update(
-            {"SOURCE_DATE_EPOCH": "1786665600", "FORCE_SOURCE_DATE": "1"}
+            {"SOURCE_DATE_EPOCH": "1786838400", "FORCE_SOURCE_DATE": "1"}
         )
         command = [
             pdflatex,

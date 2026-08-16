@@ -1,7 +1,7 @@
 PYTHON ?= python3
 TEX := manuscript/rank3_genus5_reader.tex
 BUILD_DIR := build
-SOURCE_DATE_EPOCH ?= 1786665600
+SOURCE_DATE_EPOCH ?= 1786838400
 GENUS4_TEX := manuscript/rank3_genus4_extension.tex
 GENUS4_BUILD_DIR := build/genus4
 GENUS4_SOURCE_DATE_EPOCH ?= 1786838400
