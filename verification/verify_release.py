@@ -20,8 +20,8 @@ CITATION = ROOT / "CITATION.cff"
 REVIEW_REQUEST = ROOT / "REVIEW_REQUEST.md"
 EXPECTED_PAGES = 35
 EXPECTED_HASHES = {
-    TEX: "73c86d7a158fb5d89cefd0adf0463fa4dd05bc34f77ad2670baa1e4ec1df8ace",
-    PDF: "ae30533bae960e1bdb6ec934f73006b86d117360c2c02a320a3d09badd6336b0",
+    TEX: "d4ef3e168dd779a50e9f0d2139c15e3729d1cab1b482147796477ac04b7f9022",
+    PDF: "b4ff93b2a6379c5a136d55575f2e65f58a85005ff35864a8e1d8a1d185f19eb4",
 }
 
 
@@ -79,7 +79,7 @@ def verify_claim_boundaries() -> None:
     math_readme = (ROOT / "verification/math/README.md").read_text(encoding="utf-8")
     require(r"\author{Robert Sneiderman}" in source, "manuscript author is missing")
     require(
-        r"Version 0.1.5-candidate\\16 August 2026" in source,
+        r"Version 0.1.5-candidate\\19 August 2026" in source,
         "manuscript candidate version is missing",
     )
 
@@ -128,10 +128,12 @@ def verify_claim_boundaries() -> None:
         "expanded genus-six/five HN tables are missing",
     )
     require(
-        r"T_{\mathrm{pure}}" in source
-        and r"T_{\mathrm{mixed}}" in source
-        and "Both have determinant one" in source,
-        "expanded q=10 jet matrices are missing",
+        r"s_*\circ e\circ A=0" in source
+        and r"\operatorname{rank}A\le1" in source
+        and "generically rank-four trivial subbundle" in source
+        and "without identifying the divisor of $L$ with $2p$" in source
+        and "can be supported only at the sole" not in source,
+        "repaired q=10 normalizer-naturality proof is missing",
     )
     require(
         r"\paragraph{Published propagation map.}" in source
@@ -168,10 +170,11 @@ def verify_claim_boundaries() -> None:
         and "https://doi.org/10.1090/jams/1038" in readme
         and "https://arxiv.org/abs/2202.00039v3" in readme
         and "current tagged public review release" in readme
-        and "current tagged public review release is `v0.1.5-candidate`" in readme
+        and "current tagged public review release is `v0.1.4-candidate`" in readme
+        and "repaired, untagged `v0.1.5-candidate` package" in readme
         and "v0.1.4-candidate" in readme
         and "v0.1.5-candidate" in readme
-        and "releases/tag/v0.1.5-candidate" in readme
+        and "releases/tag/v0.1.4-candidate" in readme
         and "archived and unchanged" in readme
         and "rank3_genus5_reader-v0.1.5-candidate.pdf" in readme
         and "rank3_genus4_extension.pdf" in readme,
@@ -193,7 +196,7 @@ def verify_claim_boundaries() -> None:
         'version: "0.1.5-candidate"' in citation
         and "family-names: Sneiderman" in citation
         and "given-names: Robert" in citation
-        and 'date-released: "2026-08-16"' in citation
+        and 'date-released: "2026-08-19"' in citation
         and not any(line.startswith("type:") for line in citation.splitlines()),
         "candidate citation metadata is incomplete",
     )
@@ -207,7 +210,7 @@ def verify_claim_boundaries() -> None:
         (ROOT / "verification/math/verify_q10_jet.py").is_file()
         and "verification/math/verify_q10_jet.py" in makefile
         and "`verify_q10_jet.py`" in math_readme,
-        "q=10 finite verifier is not wired into the release",
+        "non-load-bearing q=10 diagnostic is not wired into the release",
     )
 
     forbidden_markdown = ("$", "```math", r"\(", r"\)", r"\[", r"\]")
@@ -286,7 +289,7 @@ def compile_and_compare(
 
         environment = os.environ.copy()
         environment.update(
-            {"SOURCE_DATE_EPOCH": "1786838400", "FORCE_SOURCE_DATE": "1"}
+            {"SOURCE_DATE_EPOCH": "1787097600", "FORCE_SOURCE_DATE": "1"}
         )
         command = [
             pdflatex,

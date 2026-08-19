@@ -30,10 +30,10 @@ This candidate starts from two papers by Aaron Landesman and Daniel Litt:
 The proposed rank-three extensions in genus at least five and genus four are
 new and unrefereed; neither is a theorem claimed by Landesman and Litt.
 
-The current tagged public review release is `v0.1.5-candidate`. It contains
-the genus-at-least-five package together with the standalone square-endpoint
-and genus-four candidate notes. Earlier releases remain available as fixed
-historical review copies, including `v0.1.4-candidate`.
+The current tagged public review release is `v0.1.4-candidate`. The repository
+contains the repaired `v0.1.5-candidate` genus-at-least-five package together
+with the standalone square-endpoint and genus-four candidate notes. Earlier
+releases remain available as fixed historical review copies.
 
 ## Additional general-rank candidate
 
@@ -152,17 +152,18 @@ The separate finite-mathematics checks are:
 make verify-math
 ```
 
-They enumerate the displayed genus-six and genus-five HN arithmetic,
-reconstruct the q = 10 local jet matrices, and check the q = 9 fibre algebra
-with exact rational and polynomial arithmetic. Their precise scope is recorded
-in [`verification/math`](verification/math).
+They enumerate the displayed genus-six and genus-five HN arithmetic and check
+the q = 9 fibre algebra with exact rational and polynomial arithmetic. They
+also retain a non-load-bearing replay of the former q = 10 local jet
+calculation. Their precise scope is recorded in
+[`verification/math`](verification/math).
 
 ## Citation and licensing
 
 The current public review release is
-[`v0.1.5-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.5-candidate).
-The `v0.1.4-candidate` and earlier versioned review copies remain
-archived and unchanged on the
+[`v0.1.4-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.4-candidate).
+The repository contains the repaired, untagged `v0.1.5-candidate` package;
+earlier versioned review copies remain archived and unchanged on the
 [Releases page](https://github.com/Robby955/rank-three-mcg-finiteness/releases).
 The root [CITATION.cff](CITATION.cff) describes the rank-three candidate.
 

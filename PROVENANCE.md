@@ -31,11 +31,11 @@ statement and `CANDIDATE` status are unchanged.
 
 The `0.1.3-candidate` expanded review release retains the
 `0.1.2-candidate` release unchanged and expands the finite genus-six and genus-five
-high-HN eliminations, prints the local jet matrices used in the
+high-HN eliminations, prints the local jet matrices then used in the
 `(S, q) = (2, 10)` branch, and adds a source-by-source propagation map and an
-expanded review record. The finite checker now reconstructs the
-displayed `q = 10` matrices from the parahoric bracket. No theorem statement or
-mathematical hypothesis changes.
+expanded review record. The finite checker reconstructs those historical
+`q = 10` matrices from the parahoric bracket. No theorem statement or
+mathematical hypothesis changed in that release.
 
 The `0.1.4-candidate` review release retains `0.1.3-candidate` unchanged and
 adds a compact load-bearing dependency roadmap, an explicit general-fibre
@@ -44,10 +44,16 @@ and weight calculations at the formerly compressed uses. It also makes the
 README notation robust in the GitHub mobile application. No theorem statement
 or mathematical hypothesis changes.
 
-The prepared `0.1.5-candidate` review version retains the theorem, hypotheses,
-and proof of `0.1.4-candidate` unchanged and streamlines the public review
-package. The earlier versioned PDF remains fixed in its release. No
-mathematical claim or dependency changes.
+The repaired `0.1.5-candidate` review version corrects the
+`(S, q) = (2, 10)` proof. The earlier text incorrectly inferred that the
+unique effective divisor of a degree-two line bundle had to equal the double
+marked point. The replacement writes the bracket as a literal morphism of
+extensions, uses the degree-two divisor sequence to bound its self-block by
+rank one, and produces four independent quotient-normalizer sections. The
+normalizer boundary-cocycle proposition then eliminates the branch. The local
+jet matrices are no longer load-bearing, though their finite checker is
+retained as a diagnostic. The theorem statement and `CANDIDATE` status remain
+unchanged; earlier tagged PDFs remain fixed historical review copies.
 
 The standalone `0.1.0-candidate` square-endpoint note extracts the
 general-rank equality argument already recorded in the manuscript and expands
@@ -64,9 +70,9 @@ not as an established theorem. It does not make a genus-three claim.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `manuscript/rank3_genus5_reader.tex` | -- | `73c86d7a158fb5d89cefd0adf0463fa4dd05bc34f77ad2670baa1e4ec1df8ace` |
+| `manuscript/rank3_genus5_reader.tex` | -- | `d4ef3e168dd779a50e9f0d2139c15e3729d1cab1b482147796477ac04b7f9022` |
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
-| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `ae30533bae960e1bdb6ec934f73006b86d117360c2c02a320a3d09badd6336b0` |
+| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `b4ff93b2a6379c5a136d55575f2e65f58a85005ff35864a8e1d8a1d185f19eb4` |
 | `manuscript/rank3_genus4_extension.tex` | -- | `2c0ddb951b07a97db92a87145077f5e2846a18debd4f897fa786942e59117388` |
 | `output/pdf/rank3_genus4_extension.pdf` | 30 | `c1362e6d4130b8c3e264a138f7787aebc9735441d0747bae20f2c69637a92a01` |
 | `manuscript/general_rank_square_endpoint.tex` | -- | `9be5e83a5c69dd0882f8c684e3e549cb5b235d48702d7fc06d5fbb3719622a2f` |

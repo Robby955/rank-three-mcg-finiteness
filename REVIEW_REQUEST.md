@@ -28,7 +28,12 @@ A focused review of the following interfaces would be especially useful:
    then exclude every generically rank-three space of global sections? In
    both genus-five applications, does `H⁰(C, E) = 0` give exactly the required
    injectivity of `H⁰(C, E/M) → H¹(C, M)`?
-2. **Fixed part, boundary descent, and full finite cover:** Section 4 and the
+2. **Degree-two extension naturality:** Section 11. In the
+   `(S, q) = (2, 10)` branch, does the displayed morphism of extensions give
+   `s_* e A = 0` with zero on the kernel line? Does the degree-two divisor
+   sequence make `ker s_*` one-dimensional, leaving a generically rank-four
+   trivial subbundle in the quotient normalizer?
+3. **Fixed part, boundary descent, and full finite cover:** Section 4 and the
    fixed-part Hodge-section subsection of Section 10. Does the rank-one fixed
    part give a global rank-zero Hodge line on
    every connected finite-etale cover? In the dense `S = 0` branch, does the
@@ -37,11 +42,11 @@ A focused review of the following interfaces would be especially useful:
    Does generic degree-one effectivity then produce a section without
    shrinking the base? Does the general-fibre remark justify every later
    nonhyperelliptic, non-Weierstrass, and pointed nonspecial-divisor test?
-3. **Formal propagation:** Section 14. Does finite-cover adjoint vanishing
+4. **Formal propagation:** Section 14. Does finite-cover adjoint vanishing
    pass correctly to the dominant-etale Artin base for irreducible, reducible
    nonscalar, and scalar residual systems, and do the cited downstream
    Landesman--Litt arguments use no additional strict-rank hypothesis?
-4. **Optional separate reconstructions:** In the non-load-bearing `q = 9` and
+5. **Optional separate reconstructions:** In the non-load-bearing `q = 9` and
    canonical-Deligne sections, do the Pfaffian/spectral-projector and
    periodic-chain no-pole arguments separately recover their former
    endpoint contradictions?
@@ -62,10 +67,11 @@ Run:
 make verify-math
 ```
 
-This replays the displayed genus-six and genus-five HN arithmetic,
-reconstructs the `q = 10` local jet matrices, and checks the `q = 9` fibrewise
-linear algebra. Passing scripts do not certify Hodge theory, parabolic
-geometry, saturation, moduli descent, or mapping-class-group propagation.
+This replays the displayed genus-six and genus-five HN arithmetic and checks
+the `q = 9` fibrewise linear algebra. It also retains the former `q = 10`
+local jet calculation as a non-load-bearing diagnostic. Passing scripts do
+not certify extension naturality, Hodge theory, parabolic geometry,
+saturation, moduli descent, or mapping-class-group propagation.
 
 ## Most useful response
 

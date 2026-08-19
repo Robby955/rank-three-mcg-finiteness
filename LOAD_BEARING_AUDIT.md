@@ -94,6 +94,41 @@ Audit result: the Cech identity, the two normalizer calculations, and both
 application hypotheses pass. No no-pole determinant or spectral projector is
 used in these eliminations.
 
+### Degree-two application in `(S, q) = (2, 10)`
+
+The earlier localization of the unique effective degree-two divisor at the
+marked point was unjustified and is no longer used. Let `W` have dimension
+six, let `P` be its inverse image in `E`, and let `M` have degree `-2`.
+Parabolic stability gives `H0(E) = 0`, so the extension boundary
+
+```text
+e: W -> H1(M)
+```
+
+is injective. Riemann--Roch makes both spaces six-dimensional, hence `e` is
+an isomorphism. If `s` spans the unique section of the effective degree-two
+line `L`, the quotient bracket has kernel `W0` of dimension at least five and
+the remaining block is `sA` for a constant map `A: W0 -> W`.
+
+For the inverse image `P0` of `W0`, bracket with `M` gives a morphism from
+the extension `0 -> M -> P0 -> W0 -> 0` to the twist
+`0 -> O -> P tensor L -> W tensor L -> 0`. The kernel map is zero because
+`[M,M] = 0`, while the quotient map is `sA`. Naturality of extension classes
+therefore gives
+
+```text
+s_* e A = 0.
+```
+
+The divisor sequence `0 -> M -> O -> O_Z -> 0`, with `length(Z) = 2`, makes
+the kernel of `s_*: H1(M) -> H1(O)` one-dimensional. Thus `rank(A) <= 1`
+and at least four independent constant sections lie in `N_E(M)/M`. The full
+boundary is injective because `H0(E) = 0`, so the normalizer obstruction
+above eliminates the branch with one dimension to spare.
+
+Audit result: this replacement uses neither `L = O(2p)` nor the former local
+jet matrices. The finite jet checker is retained only as a local diagnostic.
+
 ## 2. Fixed part and the full-cover Hodge line
 
 Let a nonzero fixed vector span the trivial irreducible rank-one local system

@@ -56,7 +56,12 @@ The current manuscript explicitly addresses the following proof interfaces:
 - the ordinary-degree and induced-weight bookkeeping at each punctured
   stability contradiction;
 - the normalizer boundary-cocycle identity and its direct application to all
-  `q = 9` cases and the final high-HN branch;
+  `q = 9` cases, the repaired `(S, q) = (2, 10)` branch, and the final
+  high-HN branch;
+- the explicit morphism-of-extensions square in `(S, q) = (2, 10)`, which
+  bounds the effective degree-two self-block by rank one and produces four
+  independent quotient-normalizer sections without identifying its divisor
+  with the marked point;
 - the residue and point-pushing descent that moves the dense `S = 0` fixed part
   from a pointed family to a finite cover of the unpointed moduli space;
 - the full `q = 9`, `h = 2` Pfaffian, determinant, and spectral-projector
@@ -69,10 +74,12 @@ The current manuscript explicitly addresses the following proof interfaces:
   reconstruction;
 - the formal propagation and characteristic-socle steps.
 
-The boundary-cocycle, fixed-part/full-cover, and Artin-propagation interfaces,
+The boundary-cocycle, degree-two extension-naturality, fixed-part/full-cover,
+and Artin-propagation interfaces,
 together with the independent canonical-Deligne reconstruction, are recorded
-in [LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md). The finite HN, `q = 10` jet,
-and `q = 9` calculations are replayable with `make verify-math`.
+in [LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md). The finite HN and `q = 9`
+calculations are replayable with `make verify-math`; the retained `q = 10`
+jet script is a non-load-bearing local diagnostic.
 
 These interfaces are stated in full in the current source. Independent
 verification of the assembled argument remains outstanding, so the theorem

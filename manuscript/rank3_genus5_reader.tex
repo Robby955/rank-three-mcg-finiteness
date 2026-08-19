@@ -64,7 +64,7 @@
 for Rank-Three Surface-Group Representations\\
 in Genus at Least Five}
 \author{Robert Sneiderman}
-\date{Version 0.1.5-candidate\\16 August 2026}
+\date{Version 0.1.5-candidate\\19 August 2026}
 
 \begin{document}
 \maketitle
@@ -1921,112 +1921,83 @@ Here
 and $D=L(-2p)$.  If $h^0(L)=0$, then $h^0(G\otimes L)\le1$, whereas the
 ordinary quotient-adjoint map has rank at least three and restricts to rank
 at least two on a hyperplane.  Thus $L$ is effective.  On the
-nonhyperelliptic test fibre of Remark~\ref{rem:general-fibre}, its effective
-degree-two divisor is unique and can be supported only at the sole
-nonordinary point:
-\[
- L\simeq\Ocal_C(2p),
- \qquad D\simeq\Ocal_C.
-\]
-The six global bracket sections then have length-two jets spanning at most
-one complex dimension.
+nonhyperelliptic test fibre of Remark~\ref{rem:general-fibre}, one has
+$h^0(L)=1$.  Let $s$ span $H^0(L)$ and write $Z=(s)$, so
+$\operatorname{length}Z=2$.
 
-Let $W(z)$ be the local rank-six subbundle.  A one-dimensional jet image gives
-a five-dimensional kernel in the constant section space.  Because the global
-subbundle is trivial, evaluation identifies it with a five-dimensional
-subspace of $W_0$.  For a moving vector $v(z)=v_0+zv_1$, the vanishing jet
-equation is $B_0v_0=0$ and $B_1v_0+B_0v_1=0$; projection to
-$\coker B_0$ removes the moving-frame term $B_0v_1$.  Hence the induced map
-$T:\ker B_0\to\coker B_0$ must vanish on a five-dimensional subspace.
+Put $W=\C^6$, and let $P\subset E$ be the inverse image of
+$W\otimes\Ocal_C\subset G$.  Parabolic stability gives $H^0(E)=0$, hence
+$H^0(P)=0$.  Since $M=L^{-1}$ has degree $-2$, Riemann--Roch gives
+$h^1(M)=6$.  The boundary of
+\[
+ 0\longrightarrow M\longrightarrow P
+ \longrightarrow W\otimes\Ocal_C\longrightarrow0
+\]
+is therefore an isomorphism
+\[
+ e:W\xrightarrow{\sim}H^1(M).
+\]
 
-We now display the finite local calculation.  Put $R=\C[[z]]$ and use the
-canonical $2+1$ lattice frame
+Let $Q=G/(W\otimes\Ocal_C)=D$.  The line $Q\otimes L=L^2(-2p)$ has
+degree two, so nonhyperellipticity gives $h^0(Q\otimes L)\le1$.  For the
+quotient component
 \[
- (e_1,\ldots,e_8)
- =(H_1,H_2,E_{12},E_{21},zE_{13},zE_{23},E_{31},E_{32}),
+ \phi:W\longrightarrow H^0(Q\otimes L)
 \]
-where $H_1=\operatorname{diag}(1,-1,0)$ and
-$H_2=\operatorname{diag}(0,1,-1)$.  The special fibre is
-$\mathfrak{gl}_2\ltimes(V\oplus V^\vee)$.  A line with nonzero Levi part
-has quotient-bracket rank at least three.  For a radical vector $(u,v)$,
-the ranks at most two are exactly the pure case, in which one of $u,v$
-vanishes, and the mixed isotropic case $u,v\ne0$, $v(u)=0$.
+of bracket with $M$, put $W_0=\ker\phi$.  Then $\dim W_0\ge5$.
+On $W_0\otimes\Ocal_C$ the bracket lands in
+$W\otimes L$.  Since $H^0(L)=\C s$, it has the form
+\[
+ \beta|_{W_0}=sA
+ \qquad\text{for a constant map}\qquad A:W_0\longrightarrow W.
+\]
 
-In the pure normal form take
+The compatibility assertion is a literal morphism of extensions.  Let
+$P_0\subset P$ be the inverse image of $W_0\otimes\Ocal_C$.  Bracket with
+$M$, twisted by $L=M^{-1}$, gives the commutative diagram
 \[
- m=e_5+z\sum_{i=1}^8a_i e_i+O(z^2).
+\begin{array}{ccccccccc}
+0&\longrightarrow&M&\longrightarrow&P_0&\longrightarrow
+ &W_0\otimes\Ocal_C&\longrightarrow&0\\
+&&\downarrow 0&&\downarrow\widetilde\beta&&\downarrow sA\\
+0&\longrightarrow&\Ocal_C&\longrightarrow&P\otimes L&\longrightarrow
+ &W\otimes L&\longrightarrow&0.
+\end{array}
 \]
-On $G_0=\mathfrak p_R/\langle e_5\rangle$, the constant bracket has
-$B_0(e_4)=-e_6$ and vanishes on the other quotient basis vectors.  With
-ordered bases
+Indeed, $\phi|_{W_0}=0$ puts the middle image in $P\otimes L$, while
+$[M,M]=0$ makes the left vertical map zero.  Pulling back the lower
+extension by $sA$ and pushing out the upper extension by zero shows that its
+class vanishes.  In terms of the boundary map this is exactly
 \[
- \ker B_0=(e_1,e_2,e_3,e_6,e_7,e_8),
- \qquad
- \coker B_0=(e_1,e_2,e_3,e_4,e_7,e_8),
+ s_*\circ e\circ A=0:
+ W_0\longrightarrow H^1(\Ocal_C).
 \]
-the induced first-order map is
-\begingroup
-\scriptsize
-\[
-T_{\mathrm{pure}}=
-\begin{pmatrix}
-a_1&a_1&-a_4&0&1&0\\
-a_2&a_2&0&0&1&0\\
--a_3&2a_3&2a_1-a_2&0&0&1\\
-3a_4&0&0&0&0&0\\
-2a_7&2a_7&0&0&-a_1-a_2&-a_4\\
-0&3a_8&a_7&0&-a_3&a_1-2a_2
-\end{pmatrix}.
-\]
-\endgroup
-The $R$-linear Lie-lattice involution
-\[
- X\longmapsto-DX^{\mathsf t}D^{-1},
- \qquad D=\operatorname{diag}(z,z,1),
-\]
-exchanges $e_5$ with $-e_7$ and $e_6$ with $-e_8$, so this calculation
-covers both pure radical orbits, including arbitrary first-order
-corrections.
 
-In the mixed isotropic normal form take
+The divisor sequence
 \[
- m=e_5+e_8+z\sum_{i=1}^8a_i e_i+O(z^2).
+0\longrightarrow M\xrightarrow{s}\Ocal_C
+\longrightarrow\Ocal_Z\longrightarrow0
 \]
-Here $B_0(e_2)=3e_8$ and $B_0(e_4)=-e_6+e_7$.  Use
+shows that
 \[
- \ker B_0=(e_1,e_3,e_6,e_7,e_8),
- \qquad
- \coker B_0=(e_1,e_2,e_3,e_4,e_6),
+\dim\ker\bigl(s_*:H^1(M)\longrightarrow H^1(\Ocal_C)\bigr)=1:
 \]
-where $e_7=e_6$ and $e_8=0$ in the cokernel.  Then
-\begingroup
-\scriptsize
+the kernel is the cokernel of the constants
+$H^0(\Ocal_C)\to H^0(\Ocal_Z)$, whose dimensions are one and two.
+Since $e$ is an isomorphism, $\operatorname{rank}A\le1$, and hence
 \[
-T_{\mathrm{mixed}}=
-\begin{pmatrix}
-a_1&-a_4&0&1&0\\
-a_2&0&-1&1&0\\
--a_3&2a_1-a_2&0&0&1\\
-3a_4&0&0&0&0\\
-2a_6+2a_7&0&-a_1+2a_2&-a_1-a_2&-a_4
-\end{pmatrix}.
+ \dim\ker A\ge4.
 \]
-\endgroup
-The respective constant submatrices are
+The corresponding constant sections are generically independent in
+$W\otimes\Ocal_C\subset G$ and lie in
 \[
- (T_{\mathrm{pure}})_{\{1,3\},\{5,6\}}
- =\begin{pmatrix}1&0\\0&1\end{pmatrix},
- \qquad
- (T_{\mathrm{mixed}})_{\{1,2,3\},\{3,4,5\}}
- =\begin{pmatrix}0&1&0\\-1&1&0\\0&0&1\end{pmatrix}.
+ \ker\beta=N_E(M)/M.
 \]
-Both have determinant one.  Changing the moving frame replaces
-$B_1$ by $B_1+B_0U-VB_0$, and rescaling the line adds a multiple of $B_0$;
-neither operation changes the induced map
-$T:\ker B_0\to\coker B_0$.  Thus $T$ has rank at least two in the pure
-case and at least three in the mixed case for every first-order correction.
-A one-dimensional two-jet image would force $T$ to vanish on a
-five-dimensional subspace, impossible.
+Thus $N_E(M)/M$ contains a generically rank-four trivial subbundle.  The
+full boundary $H^0(G)\to H^1(M)$ is injective because $H^0(E)=0$, so
+Proposition~\ref{prop:normalizer-boundary} gives a contradiction.  This
+eliminates $(S,q)=(2,10)$ without identifying the divisor of $L$ with $2p$
+and without a local jet calculation.
 
 \section{The final high-HN branch}\label{sec:high}
 
