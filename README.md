@@ -28,7 +28,7 @@ This candidate starts from two papers by Aaron Landesman and Daniel Litt:
   rank-three analysis.
 
 The proposed rank-three extensions in genus at least five and genus four are
-new and unrefereed; neither is a theorem claimed by Landesman and Litt.
+new and unrefereed. They are not results of the two cited papers.
 
 The current tagged public review release is `v0.1.4-candidate`. The repository
 contains the repaired `v0.1.5-candidate` genus-at-least-five package together

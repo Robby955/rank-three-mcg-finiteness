@@ -1,6 +1,6 @@
 # Status
 
-Snapshot: 15 August 2026.
+Snapshot: 19 August 2026.
 
 Status vocabulary in this repository:
 
@@ -98,5 +98,5 @@ candidate as established literature solely because:
 - the TeX compiles;
 - the committed PDF passes preflight;
 - deterministic finite checks pass;
-- multiple non-referee reconstructions agree; or
+- several internal checks agree; or
 - no counterexample has been found.

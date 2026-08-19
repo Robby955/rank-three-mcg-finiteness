@@ -178,7 +178,7 @@ def verify_source_boundaries() -> None:
     )
     require(
         "exact finite calculations recorded in\nthis manuscript" in source
-        and "version 0.1.5-candidate, 15 August\n2026" in source,
+        and "version 0.1.5-candidate, 19 August\n2026" in source,
         "public manuscript provenance or finite-calculation boundary is missing",
     )
 

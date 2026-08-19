@@ -70,11 +70,11 @@ not as an established theorem. It does not make a genus-three claim.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `manuscript/rank3_genus5_reader.tex` | -- | `d4ef3e168dd779a50e9f0d2139c15e3729d1cab1b482147796477ac04b7f9022` |
+| `manuscript/rank3_genus5_reader.tex` | -- | `70516dbd23eb0f03611ea8bad133f195a318e6eff1815d8333b1aeeb847ffd0c` |
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
-| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `b4ff93b2a6379c5a136d55575f2e65f58a85005ff35864a8e1d8a1d185f19eb4` |
-| `manuscript/rank3_genus4_extension.tex` | -- | `2c0ddb951b07a97db92a87145077f5e2846a18debd4f897fa786942e59117388` |
-| `output/pdf/rank3_genus4_extension.pdf` | 30 | `c1362e6d4130b8c3e264a138f7787aebc9735441d0747bae20f2c69637a92a01` |
+| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `a0b35edce3094c9f33a1a96e7d6edb5377f9bee7e2e128599995168b3d245b78` |
+| `manuscript/rank3_genus4_extension.tex` | -- | `a97bed781793ef8249ce413515da6d04b5d1346d7d5d976c20043ff18214d1a5` |
+| `output/pdf/rank3_genus4_extension.pdf` | 30 | `fcdf504cf74c710bdc645b3d9fbb97df5b741e47aa159f1e061133f7009e4852` |
 | `manuscript/general_rank_square_endpoint.tex` | -- | `9be5e83a5c69dd0882f8c684e3e549cb5b235d48702d7fc06d5fbb3719622a2f` |
 | `output/pdf/general_rank_square_endpoint.pdf` | 6 | `e5ec46ed9de38335aae8189f76a38e882a6a422627e82d059d1edf0aa40a6abf` |
 
