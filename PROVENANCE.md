@@ -70,13 +70,13 @@ not as an established theorem. It does not make a genus-three claim.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `manuscript/rank3_genus5_reader.tex` | -- | `70516dbd23eb0f03611ea8bad133f195a318e6eff1815d8333b1aeeb847ffd0c` |
+| `manuscript/rank3_genus5_reader.tex` | -- | `4a0c3710810bce4f8ac32e91ad7e1f42af55edef8d9eeb3f465d732061a09505` |
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
-| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `a0b35edce3094c9f33a1a96e7d6edb5377f9bee7e2e128599995168b3d245b78` |
-| `manuscript/rank3_genus4_extension.tex` | -- | `a97bed781793ef8249ce413515da6d04b5d1346d7d5d976c20043ff18214d1a5` |
-| `output/pdf/rank3_genus4_extension.pdf` | 30 | `fcdf504cf74c710bdc645b3d9fbb97df5b741e47aa159f1e061133f7009e4852` |
-| `manuscript/general_rank_square_endpoint.tex` | -- | `9be5e83a5c69dd0882f8c684e3e549cb5b235d48702d7fc06d5fbb3719622a2f` |
-| `output/pdf/general_rank_square_endpoint.pdf` | 6 | `e5ec46ed9de38335aae8189f76a38e882a6a422627e82d059d1edf0aa40a6abf` |
+| `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `a51aa0ca10c138f186f24d72c8df1c62b507f7dce30558114c7ca71baf492faf` |
+| `manuscript/rank3_genus4_extension.tex` | -- | `58e8a9fb4b5cfa4b1ec350de1f9bdec7465f24a51a6170346c1780c82b72c412` |
+| `output/pdf/rank3_genus4_extension.pdf` | 30 | `916854494b3e7ec94a47fd163a3c3b7ffaca92ba676e07a48a8b29b00dc12f38` |
+| `manuscript/general_rank_square_endpoint.tex` | -- | `b5f9240fe5775dcac505c12683b0aeb2ef6cfc46c8115fc30479c0e7b2279743` |
+| `output/pdf/general_rank_square_endpoint.pdf` | 6 | `7a6a4020067d687dee7522019898520c952713d3e04219cc42c7143b54703478` |
 
 The current sources and PDFs are recorded in `CHECKSUMS.sha256` and enforced
 by the three artifact verifiers. The `0.1.4-candidate` value identifies the fixed
