@@ -19,6 +19,8 @@ LICENSE = ROOT / "LICENSE"
 CITATION = ROOT / "CITATION.cff"
 REVIEW_REQUEST = ROOT / "REVIEW_REQUEST.md"
 EXPECTED_PAGES = 35
+EXPECTED_SOURCE_DATE_EPOCH = "1787616000"
+EXPECTED_ISO_DATE = "2026-08-25T00:00:00Z"
 EXPECTED_HASHES = {
     TEX: "2cc61289a02074c4bd42cdbe337ca5dca922bc83299ccf56ca485d6b65f2d6c3",
     PDF: "2141f8c9c5a40577a39c338a29b964a67470efd82726e11e29a5f8179021c090",
@@ -253,6 +255,13 @@ def verify_pdf(pdfinfo: str, pdffonts: str, gs: str) -> None:
     require(f"Pages:           {EXPECTED_PAGES}" in info, "wrong PDF page count")
     require("Encrypted:       no" in info, "PDF is encrypted")
 
+    dated_info = run([pdfinfo, "-isodates", str(PDF)]).stdout
+    require(
+        f"CreationDate:    {EXPECTED_ISO_DATE}" in dated_info
+        and f"ModDate:         {EXPECTED_ISO_DATE}" in dated_info,
+        "PDF reproducible date metadata is stale",
+    )
+
     font_lines = run([pdffonts, str(PDF)]).stdout.splitlines()[2:]
     require(font_lines, "no fonts reported")
     for line in font_lines:
@@ -290,7 +299,7 @@ def compile_and_compare(
 
         environment = os.environ.copy()
         environment.update(
-            {"SOURCE_DATE_EPOCH": "1787097600", "FORCE_SOURCE_DATE": "1"}
+            {"SOURCE_DATE_EPOCH": EXPECTED_SOURCE_DATE_EPOCH, "FORCE_SOURCE_DATE": "1"}
         )
         command = [
             pdflatex,
