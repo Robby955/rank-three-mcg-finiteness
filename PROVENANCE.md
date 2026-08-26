@@ -83,10 +83,10 @@ not as an established theorem. It does not make a genus-three claim.
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
 | `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `a51aa0ca10c138f186f24d72c8df1c62b507f7dce30558114c7ca71baf492faf` |
 | `output/pdf/rank3_genus5_reader-v0.1.6-candidate.pdf` | 35 | `2141f8c9c5a40577a39c338a29b964a67470efd82726e11e29a5f8179021c090` |
-| `manuscript/rank3_genus4_extension.tex` | -- | `58e8a9fb4b5cfa4b1ec350de1f9bdec7465f24a51a6170346c1780c82b72c412` |
-| `output/pdf/rank3_genus4_extension.pdf` | 30 | `916854494b3e7ec94a47fd163a3c3b7ffaca92ba676e07a48a8b29b00dc12f38` |
-| `manuscript/general_rank_square_endpoint.tex` | -- | `b5f9240fe5775dcac505c12683b0aeb2ef6cfc46c8115fc30479c0e7b2279743` |
-| `output/pdf/general_rank_square_endpoint.pdf` | 6 | `7a6a4020067d687dee7522019898520c952713d3e04219cc42c7143b54703478` |
+| `manuscript/rank3_genus4_extension.tex` | -- | `e6719763c5fa10f0912d87f19f11ea9f440d03d60822112a4682e0084eee9736` |
+| `output/pdf/rank3_genus4_extension.pdf` | 30 | `c9280e8f7e26c7c859101b3568199c5c1d0c872358d21153fa1520faa99788bc` |
+| `manuscript/general_rank_square_endpoint.tex` | -- | `868391dd70d39b7d3a78194cf46df4ef3c522bfb7102ca6cb7ffcaa428c84f04` |
+| `output/pdf/general_rank_square_endpoint.pdf` | 6 | `3ad2764bbc091e462b7d895fdc6be2942bc2258ac63f970f383e51eaed3b2b20` |
 
 The current sources and PDFs are recorded in `CHECKSUMS.sha256` and enforced
 by the three artifact verifiers. The `0.1.4-candidate` value identifies the fixed
