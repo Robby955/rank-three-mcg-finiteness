@@ -55,6 +55,15 @@ jet matrices are no longer load-bearing, though their finite checker is
 retained as a diagnostic. The theorem statement and `CANDIDATE` status remain
 unchanged; earlier tagged PDFs remain fixed historical review copies.
 
+The `0.1.6-candidate` review version sharpens attribution and presentation
+without changing the theorem statement or its `CANDIDATE` status.  The
+abstract and opening architecture now identify the organizing rank-three
+refinement precisely: retain the Landesman--Litt rigidity, integrality, and
+deformation framework, then treat the only adjoint constituents not already
+covered by their strict-range theorem, of ranks eight, six, and five.  The
+assistance disclosure now identifies the affected proof-search areas and the
+author's responsibility without publishing prompts or private process logs.
+
 The standalone `0.1.0-candidate` square-endpoint note extracts the
 general-rank equality argument already recorded in the manuscript and expands
 its terminal duality and finite-image splitting steps. It is a separate
@@ -70,9 +79,10 @@ not as an established theorem. It does not make a genus-three claim.
 
 | Artifact | Pages | SHA-256 |
 |---|---:|---|
-| `manuscript/rank3_genus5_reader.tex` | -- | `4a0c3710810bce4f8ac32e91ad7e1f42af55edef8d9eeb3f465d732061a09505` |
+| `manuscript/rank3_genus5_reader.tex` | -- | `2cc61289a02074c4bd42cdbe337ca5dca922bc83299ccf56ca485d6b65f2d6c3` |
 | `output/pdf/rank3_genus5_reader-v0.1.4-candidate.pdf` | 35 | `9466b90ea13d51f7e3cb1203603c25170b4639ec2d41fc1b25224b7959191a25` |
 | `output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf` | 35 | `a51aa0ca10c138f186f24d72c8df1c62b507f7dce30558114c7ca71baf492faf` |
+| `output/pdf/rank3_genus5_reader-v0.1.6-candidate.pdf` | 35 | `2141f8c9c5a40577a39c338a29b964a67470efd82726e11e29a5f8179021c090` |
 | `manuscript/rank3_genus4_extension.tex` | -- | `58e8a9fb4b5cfa4b1ec350de1f9bdec7465f24a51a6170346c1780c82b72c412` |
 | `output/pdf/rank3_genus4_extension.pdf` | 30 | `916854494b3e7ec94a47fd163a3c3b7ffaca92ba676e07a48a8b29b00dc12f38` |
 | `manuscript/general_rank_square_endpoint.tex` | -- | `b5f9240fe5775dcac505c12683b0aeb2ef6cfc46c8115fc30479c0e7b2279743` |

@@ -27,13 +27,16 @@ This candidate starts from two papers by Aaron Landesman and Daniel Litt:
   its isomonodromy and Harder–Narasimhan estimates in the specialized
   rank-three analysis.
 
-The proposed rank-three extensions in genus at least five and genus four are
-new and unrefereed. They are not results of the two cited papers.
+The candidate arguments extend the framework of these papers; the rank-three
+projective-closure reduction and low-genus eliminations are developed here.
+The proposed extensions in genus at least five and genus four are new and
+unrefereed.
 
-The current tagged public review release is `v0.1.5-candidate`. It contains
-the repaired genus-at-least-five candidate package together with the
-standalone square-endpoint and genus-four candidate notes. Earlier releases
-remain available as fixed historical review copies.
+The current tagged public review release is `v0.1.5-candidate`. The repository
+contains a prepared `v0.1.6-candidate` genus-at-least-five manuscript with
+sharper attribution and presentation, together with the standalone
+square-endpoint and genus-four candidate notes. Earlier releases remain
+available as fixed historical review copies.
 
 ## Additional general-rank candidate
 
@@ -73,7 +76,7 @@ specialist reconstruction. It makes no genus-three claim.
 
 | Document | Purpose |
 |---|---|
-| [Genus-at-least-five manuscript PDF](output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf) | Prepared version-specific review copy |
+| [Genus-at-least-five manuscript PDF](output/pdf/rank3_genus5_reader-v0.1.6-candidate.pdf) | Prepared version-specific review copy |
 | [Genus-at-least-five source](manuscript/rank3_genus5_reader.tex) | Canonical source corresponding to the PDF |
 | [Genus-four candidate PDF](output/pdf/rank3_genus4_extension.pdf) | Standalone conditional candidate extension |
 | [Genus-four candidate source](manuscript/rank3_genus4_extension.tex) | Canonical source for the genus-four PDF |
@@ -162,7 +165,8 @@ calculation. Their precise scope is recorded in
 
 The current public review release is
 [`v0.1.5-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.5-candidate).
-Earlier versioned review copies remain archived and unchanged on the
+The repository contains the prepared, untagged `v0.1.6-candidate` manuscript;
+earlier versioned review copies remain archived and unchanged on the
 [Releases page](https://github.com/Robby955/rank-three-mcg-finiteness/releases).
 The root [CITATION.cff](CITATION.cff) describes the rank-three candidate.
 
