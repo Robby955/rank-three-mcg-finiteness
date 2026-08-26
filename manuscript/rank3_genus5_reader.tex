@@ -64,7 +64,7 @@
 for Rank-Three Surface-Group Representations\\
 in Genus at Least Five}
 \author{Robert Sneiderman}
-\date{Version 0.1.5-candidate\\19 August 2026}
+\date{Version 0.1.6-candidate\\25 August 2026}
 
 \begin{document}
 \maketitle
@@ -75,10 +75,15 @@ orientable genus-$g$ punctured surface group, whose conjugacy class has
 finite mapping-class-group orbit, has finite image whenever $g\ge5$.
 Landesman--Litt prove this under the strict inequality
 $r<\sqrt{g+1}$, which treats rank three directly only for $g\ge9$.
-The proof combines a corrected endpoint estimate, explicit
-Harder--Narasimhan analysis in genera six and five, universal-extension
-and boundary-cocycle obstructions for adjoint bundles, and a
-rank-three-specific formal-propagation argument.  Separate
+The organizing refinement retains their rigidity, integrality, and
+deformation framework while replacing the uniform adjoint-rank input by the
+classification of projective Zariski closures in rank three.  The only
+adjoint constituents not already covered by the published strict-range
+theorem have ranks eight, six, and five: the dense adjoint constituent, the
+$S_3$-monomial constituent, and the principal-$\PGL_2$ constituent.  An
+equality-case refinement of the Landesman--Litt estimate,
+Harder--Narasimhan analysis, and a normalizer boundary-cocycle obstruction
+eliminate the remaining cases.  Separate
 spectral-projector and canonical-Deligne determinant reconstructions are
 retained for auditability but are not needed for the main elimination.  The
 manuscript is unrefereed, and the assembled argument has not received
@@ -119,6 +124,15 @@ Landesman--Litt prove finite image when
 \]
 with strict inequality \cite[Theorem 1.2.1]{LLCan}.  Thus their theorem treats
 $r=3$ directly for $g\ge9$.  The new cases are $g=8,7,6,5$.
+
+The organizing idea is to retain the rigidity, integrality, and deformation
+framework of Landesman--Litt while replacing its uniform adjoint-rank input,
+in rank three, by the classification of projective Zariski closures.  The
+only resulting adjoint constituents not already covered by their strict-range
+theorem have ranks eight, six, and five: the dense adjoint constituent, the
+$S_3$-monomial constituent, and the principal-$\PGL_2$ constituent.  The new
+work is therefore concentrated in these cases and in the equality interface
+needed to re-enter the published propagation pipeline.
 
 The proof has eight layers.
 \begin{enumerate}[label=\textup{(\arabic*)}]
@@ -2611,9 +2625,13 @@ and fibrewise linear algebra; they do not verify the Hodge, parabolic, or
 deformation interfaces imported from Landesman--Litt.
 
 \paragraph{Assistance disclosure.}
-OpenAI Codex (GPT-5.6) assisted with preparation and internal checking of this
-manuscript.  The author reviewed the manuscript and is responsible for all
-statements, proofs, and errors.
+OpenAI Codex (GPT-5.6) was used during proof search, drafting, and internal
+error checking, including exploration and testing of the
+Harder--Narasimhan branch eliminations, the normalizer boundary-cocycle
+argument, and the formal-propagation interfaces.  The author formulated the
+research direction and rank-three projective-closure reduction, selected and
+revised the arguments, and is responsible for all statements, proofs,
+citations, and errors.
 
 \begin{thebibliography}{99}
 

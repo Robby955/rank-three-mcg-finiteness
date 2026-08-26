@@ -6,13 +6,14 @@ authors:
     given-names: Robert
 repository-code: "https://github.com/Robby955/rank-three-mcg-finiteness"
 url: "https://github.com/Robby955/rank-three-mcg-finiteness"
-version: "0.1.5-candidate"
-date-released: "2026-08-19"
+version: "0.1.6-candidate"
+date-released: "2026-08-25"
 license: CC-BY-4.0
 abstract: >-
   A new, unrefereed candidate proof that mapping-class-finite complex
   rank-three representations of punctured surface groups have finite image
-  in genus at least five.
+  in genus at least five, using a rank-three projective-closure reduction and
+  low-genus adjoint analysis.
 keywords:
   - mapping class groups
   - surface groups
@@ -26,6 +27,6 @@ preferred-citation:
   authors:
     - family-names: Sneiderman
       given-names: Robert
-  version: "0.1.5-candidate"
+  version: "0.1.6-candidate"
   year: 2026
   url: "https://github.com/Robby955/rank-three-mcg-finiteness"

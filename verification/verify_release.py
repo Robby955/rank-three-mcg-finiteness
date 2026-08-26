@@ -14,14 +14,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TEX = ROOT / "manuscript/rank3_genus5_reader.tex"
-PDF = ROOT / "output/pdf/rank3_genus5_reader-v0.1.5-candidate.pdf"
+PDF = ROOT / "output/pdf/rank3_genus5_reader-v0.1.6-candidate.pdf"
 LICENSE = ROOT / "LICENSE"
 CITATION = ROOT / "CITATION.cff"
 REVIEW_REQUEST = ROOT / "REVIEW_REQUEST.md"
 EXPECTED_PAGES = 35
 EXPECTED_HASHES = {
-    TEX: "4a0c3710810bce4f8ac32e91ad7e1f42af55edef8d9eeb3f465d732061a09505",
-    PDF: "a51aa0ca10c138f186f24d72c8df1c62b507f7dce30558114c7ca71baf492faf",
+    TEX: "2cc61289a02074c4bd42cdbe337ca5dca922bc83299ccf56ca485d6b65f2d6c3",
+    PDF: "2141f8c9c5a40577a39c338a29b964a67470efd82726e11e29a5f8179021c090",
 }
 
 
@@ -79,7 +79,7 @@ def verify_claim_boundaries() -> None:
     math_readme = (ROOT / "verification/math/README.md").read_text(encoding="utf-8")
     require(r"\author{Robert Sneiderman}" in source, "manuscript author is missing")
     require(
-        r"Version 0.1.5-candidate\\19 August 2026" in source,
+        r"Version 0.1.6-candidate\\25 August 2026" in source,
         "manuscript candidate version is missing",
     )
 
@@ -89,7 +89,9 @@ def verify_claim_boundaries() -> None:
     )
     require(
         "OpenAI Codex (GPT-5.6)" in source
-        and "responsible for all\nstatements, proofs, and errors" in source,
+        and "rank-three projective-closure reduction" in source
+        and "responsible for all statements, proofs,\ncitations, and errors"
+        in source,
         "concise assistance disclosure is missing",
     )
     require(
@@ -172,9 +174,10 @@ def verify_claim_boundaries() -> None:
         and "current tagged public review release" in readme
         and "current tagged public review release is `v0.1.5-candidate`" in readme
         and "v0.1.5-candidate" in readme
+        and "prepared `v0.1.6-candidate`" in readme
         and "releases/tag/v0.1.5-candidate" in readme
         and "archived and unchanged" in readme
-        and "rank3_genus5_reader-v0.1.5-candidate.pdf" in readme
+        and "rank3_genus5_reader-v0.1.6-candidate.pdf" in readme
         and "rank3_genus4_extension.pdf" in readme,
         "README claim boundary is missing",
     )
@@ -191,10 +194,10 @@ def verify_claim_boundaries() -> None:
         "dual-license terms are incomplete",
     )
     require(
-        'version: "0.1.5-candidate"' in citation
+        'version: "0.1.6-candidate"' in citation
         and "family-names: Sneiderman" in citation
         and "given-names: Robert" in citation
-        and 'date-released: "2026-08-19"' in citation
+        and 'date-released: "2026-08-25"' in citation
         and not any(line.startswith("type:") for line in citation.splitlines()),
         "candidate citation metadata is incomplete",
     )
