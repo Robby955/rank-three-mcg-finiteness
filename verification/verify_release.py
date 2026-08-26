@@ -170,11 +170,9 @@ def verify_claim_boundaries() -> None:
         and "https://doi.org/10.1090/jams/1038" in readme
         and "https://arxiv.org/abs/2202.00039v3" in readme
         and "current tagged public review release" in readme
-        and "current tagged public review release is `v0.1.4-candidate`" in readme
-        and "repaired, untagged `v0.1.5-candidate` package" in readme
-        and "v0.1.4-candidate" in readme
+        and "current tagged public review release is `v0.1.5-candidate`" in readme
         and "v0.1.5-candidate" in readme
-        and "releases/tag/v0.1.4-candidate" in readme
+        and "releases/tag/v0.1.5-candidate" in readme
         and "archived and unchanged" in readme
         and "rank3_genus5_reader-v0.1.5-candidate.pdf" in readme
         and "rank3_genus4_extension.pdf" in readme,
