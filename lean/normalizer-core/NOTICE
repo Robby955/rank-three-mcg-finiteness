@@ -1,0 +1,21 @@
+Normalizer boundary laws in Lean
+Copyright 2026 Robert Sneiderman
+
+This package is distributed under the Apache License, Version 2.0.
+
+Mathematical source: Robert Sneiderman, A Candidate Proof of Finite Image
+for Rank-Three Surface-Group Representations in Genus at Least Five,
+public manuscript at commit 12f81e2852e0a8e71f16777d9eb9c7bc8916e6df:
+https://github.com/Robby955/rank-three-mcg-finiteness
+
+The candidate builds on Aaron Landesman and Daniel Litt's published work,
+including Canonical representations of surface groups and Geometric local
+systems on very general curves and isomonodromy. The present package's
+scope and remaining interfaces are specified in OVERVIEW.md and
+CORRESPONDENCE.md; it does not formalize those papers in full.
+
+The formal proofs use Lean and mathlib. Mathlib is developed by the
+mathlib community and is distributed under Apache-2.0. Dependencies are
+fetched separately at the revisions in lake-manifest.json; their sources
+and licenses remain with those projects. No dependency sources are
+vendored in this package.

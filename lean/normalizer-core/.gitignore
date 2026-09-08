@@ -1,0 +1,4 @@
+/.lake/
+/receipts/
+__pycache__/
+*.pyc
