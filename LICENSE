@@ -1,5 +1,5 @@
-Dual-license notice
-===================
+License notice
+==============
 
 Copyright (c) 2026 Robert Sneiderman.
 
@@ -52,3 +52,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Lean normalizer package
+-----------------------
+
+The code, documentation, and package files under `lean/normalizer-core/`
+are licensed under the Apache License, Version 2.0. The full license and
+attribution notice are in `lean/normalizer-core/LICENSE` and
+`lean/normalizer-core/NOTICE`. This path-specific license takes precedence
+for those files. Separately fetched dependencies retain their own licenses.

@@ -161,6 +161,20 @@ also retain a non-load-bearing replay of the former q = 10 local jet
 calculation. Their precise scope is recorded in
 [`verification/math`](verification/math).
 
+## Lean normalizer core
+
+The [Lean package](lean/normalizer-core/README.md) proves the abstract
+boundary law, two explicit `sl₃` normalizer obstructions, and supporting
+sheaf and local-freeness results. Its
+[mathematical overview](lean/normalizer-core/OVERVIEW.md) and
+[theorem correspondence](lean/normalizer-core/CORRESPONDENCE.md) distinguish
+the proved statements from their remaining geometric applications.
+
+The package has pinned Lean and mathlib dependencies, compiled examples,
+and a dedicated build and axiom-audit workflow. It does not formally verify
+the complete rank-three finite-image candidate, the square endpoint, or
+a genus-three result. The manuscript claim labels above are unchanged.
+
 ## Citation and licensing
 
 The current public review release is
@@ -182,6 +196,7 @@ The genus-four extension may be cited as:
 
 The manuscript and documentation are licensed under CC BY 4.0. Verification
 software and repository infrastructure are licensed under the MIT License.
+The Lean package under `lean/normalizer-core/` is licensed under Apache-2.0.
 See [LICENSE](LICENSE) for the exact path mapping and terms.
 
 ## Scope
