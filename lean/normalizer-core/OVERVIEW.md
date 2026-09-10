@@ -34,6 +34,12 @@ does not export a classification of all abelian planes.
 distinguished line as kernel and preserve commutators. Thus the coordinate
 models are identified with the actual matrix quotients.
 
+The later `TracelessNormalizer` and `MatrixScalarExtension` results prove
+exhaustive algebraic reduction and the obstruction for all nonzero traceless
+3×3 matrices over characteristic-zero fields under their exact
+boundary-lift hypotheses. The geometric construction of that boundary law
+and its required section subspace is separate.
+
 ## How the parts fit
 
 ```mermaid
@@ -44,9 +50,13 @@ flowchart TD
   C --> E
   F[Local frames, quotient sheaf bracket and character: proved with explicit inputs] --> G[Actual curve normalizer application: incomplete]
   H[Finite presentation and free stalks imply local freeness: proved] --> G
-  I[Smooth-curve and saturated-quotient hypotheses: incomplete] --> G
-  G --> J[Global-to-generic passage and exhaustive orbit reduction: incomplete]
+  I[Smooth-curve saturated quotient criterion: proved] --> G
+  G --> J[Actual required section subspace: incomplete]
   J --> E
+  L[Exhaustive algebraic normalizer reduction: proved] --> E
+  M[Exterior line and stalk comparison: proved from actual bundle charts] --> N[Specified exterior section nonzero: proved from actual generic independence]
+  N --> O[Degree and nowhere vanishing argument: incomplete]
+  O --> J
   E --> K[Concrete geometric branches and finiteness arguments: incomplete]
 ```
 
@@ -62,18 +72,24 @@ completed Lean composition. The following module groups supply the pieces:
 | `SheafQuotientBracket`, `SheafQuotientLie`, `NormalizerKernel`, `NormalizerTensorKernel` and their support modules | Genuine local quotient lifts, descended Lie operations, and the kernel identification, including its tensor target. |
 | `AffineQuotient`, `IntegralSheafTorsion` and the stalk/neighborhood modules | Affine quotient comparison, torsion-freeness transport, and finite free neighborhoods. |
 | `LocallyFreeAssembly`, `StalkLocalFreeness` | Assembly into `IsLocallyFree` and the regular dimension-at-most-one torsion-free criterion. |
+| `SheafCokernelFinitePresentation`, `FiniteBundlePresentation`, `SaturatedStalkQuotient`, `SmoothSchemeStalks` | Actual cokernel finite presentation, finite presentation from finite bundle charts, saturation and smooth-stalk regularity give the smooth-curve quotient criterion. |
+| `ProperConstants`, `ScalarCharacter`, `ProperNormalizerCharacter` | Constancy of actual global regular functions under the stated properness or universal-closedness inputs, with actual scalar-character compatibility. |
+| `NormalizerStalkIntegration`, `GeometricNormalizerObstruction` | Actual quotient-stalk bracket and character comparison; the generic obstruction under an actual ambient sl3 identification and its compatibility. |
+| `ExteriorLineTrivialization`, `LocalFrameStalk`, `ExteriorStalkComparison` | Genuine bundle charts construct exterior-line charts, actual stalk bases and the canonical exterior-stalk equivalence with its pure-germ formula. |
+| `ExteriorNonzero`, `DeterminantGenericNonzero` | Actual generic independence proves the specified exterior section has nonzero generic germ and is globally nonzero. |
 
 ## Remaining geometric interfaces
 
-1. **Actual curve quotient.** Prove finite presentation of actual sheaf
-   cokernels and apply it to the bundle/line quotient. Derive regular local
-   rings of dimension at most one from the smooth integral curve, and
-   torsion-free quotient stalks from saturation. The general local-freeness
-   criterion is already proved. No affine PID cover of a smooth curve is
-   assumed.
+1. **Actual curve input.** Instantiate the proved smooth-curve saturated
+   quotient criterion on the actual representation-derived Lie bundle and
+   saturated line. Finite presentation from genuine finite bundle charts,
+   actual cokernel finite presentation, smooth-stalk regularity and
+   saturation-to-torsion-freeness are now proved. No affine PID cover of
+   a smooth curve is assumed.
 2. **Curve normalizer.** Instantiate the Lie bundle, saturated line and
-   local frames. Establish constancy of global character values on the
-   connected projective curve. The proved local-freeness theorem for the
+   local frames. Global-function constancy and its actual character
+   compatibility are now proved under the stated geometric inputs.
+   The proved local-freeness theorem for the
    quotient by a kernel does not automatically give local freeness of the
    kernel itself.
 3. **Global boundary law.** In the `H⁰(E)=0` applications, the direct
@@ -81,21 +97,28 @@ completed Lean composition. The following module groups supply the pieces:
    The alternative general injective-boundary route requires the actual
    connecting map and its Čech comparison. These are different routes;
    neither may assume its desired bracket identity.
-4. **Generic fibre and orbit reduction.** Construct the genuine generic
-   evaluation, preserve the required dimension, extend the bracket law
-   over the function field, and prove that the relevant cases reduce to
-   the analyzed representatives or other proved exclusions. The convenience
-   corollaries assuming an injective boundary on an entire algebraic
-   quotient do not establish this passage.
+4. **Required generic section subspace.** Actual generic evaluation,
+   scalar extension, bracket/character compatibility and exhaustive
+   algebraic reduction are proved. Dimension preservation is proved given
+   an actual free inclusion or genuinely trivialized subsheaf. Constructing
+   that input from the curve's specified sections remains unfinished.
+   The constructed exterior line and stalk comparison prove the specified
+   determinant section nonzero from actual function-field independence.
+   They do not prove it nonvanishing at every point.
 5. **Finiteness.** Supply the concrete extensions, section estimates,
    Harder–Narasimhan and boundary inputs for the genus-five branches, then
    the family, Hodge-theoretic, arithmetic and propagation arguments for
    the claimed representations, including nonsemisimple ones.
 
-The next targeted formal lemma is that the actual sheaf cokernel of a
-morphism between finitely presented scheme module sheaves is finitely
-presented. Finishing it would advance item 1; it would not finish items
-2–5.
+The next missing construction on the cited determinant proof route is the
+effective Cartier zero divisor of a regular specified section of an actual
+invertible sheaf, its associated invertible sheaf, and a section-preserving
+comparison. Actual degree theory and the divisor-degree comparison are
+then required for [Stacks Lemma 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40).
+The [precise gap note](DEGREE_NONVANISHING_GAP.md) explains why the existing
+module-length and abstract cohomology APIs do not yet prove that implication.
+The actual saturated evaluation subbundle and its degree zero, the rank-two
+section estimate, and the complete bound `h⁰(E/M) ≤ 4` remain unformalized.
 
 ## Claim boundary
 

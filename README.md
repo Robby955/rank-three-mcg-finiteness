@@ -164,8 +164,8 @@ calculation. Their precise scope is recorded in
 ## Lean normalizer core
 
 The [Lean package](lean/normalizer-core/README.md) proves the abstract
-boundary law, two explicit `sl₃` normalizer obstructions, and supporting
-sheaf and local-freeness results. Its
+boundary law, exhaustive algebraic `sl₃` normalizer reduction, and supporting
+sheaf, local-freeness and generic-stalk results. Its
 [mathematical overview](lean/normalizer-core/OVERVIEW.md) and
 [theorem correspondence](lean/normalizer-core/CORRESPONDENCE.md) distinguish
 the proved statements from their remaining geometric applications.
@@ -174,6 +174,13 @@ The package has pinned Lean and mathlib dependencies, compiled examples,
 and a dedicated build and axiom-audit workflow. It does not formally verify
 the complete rank-three finite-image candidate, the square endpoint, or
 a genus-three result. The manuscript claim labels above are unchanged.
+
+The local continuation checks 472 named theorems, 679 audited declarations
+and 48 examples. Genuine bundle charts give the exterior-stalk identification;
+actual generic independence proves the specified determinant section nonzero.
+The degree/nonvanishing implication remains unformalized. The
+[publication roadmap](PUBLICATION_ROADMAP.md) records the exact next
+geometric construction and the distinction between local and hosted checks.
 
 ## Citation and licensing
 
