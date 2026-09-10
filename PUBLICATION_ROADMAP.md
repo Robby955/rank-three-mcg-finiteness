@@ -1,11 +1,15 @@
 # Formalization and publication roadmap
 
-This continuation extends public commit
-`87cb21ff4f83d56d326793433ef6569a2d6e81bd`. The previous public milestone
-contained 233 theorems, 340 audited declarations and 35 examples. The current
-package contains 472 theorems, 679 audited declarations and 48 examples.
-These counts describe the scope of checked declarations, not completion
-of the candidate representation theorem.
+This checkpoint starts from merged public commit
+`a7544c5b9136dd88d6741188a7be531d49bbace2` (PR #7), whose package contained
+472 theorems, 679 audited declarations and 48 examples. The current
+package contains 591 theorems, 836 audited declarations and 54 examples.
+The local zero-ideal commit `d5cc96d0dcf8af6a42a047463a7a75c924680926`
+contained 547 theorems, 791 declarations and 52 examples. This finiteness
+step adds 44 theorems, one construction and two examples. Counts describe
+coverage, not completion of the candidate
+representation theorem. Local verification passed. Hosted verification of
+the source commit is recorded in the pull request checks and workflow runs.
 
 ## Completed formal interfaces
 
@@ -18,17 +22,32 @@ of the candidate representation theorem.
 | Exterior line | Genuine rank-n bundle charts construct rank-one charts of the actual top exterior sheaf. |
 | Exterior stalk | The canonical actual stalk comparison is an isomorphism on genuine rank-n charts and preserves the specified wedge of section germs. |
 | Specified determinant | Function-field independence of the actual generic germs proves the specified exterior section has nonzero generic germ and is globally nonzero. |
+| Zero subscheme | Finite genuine line charts with quasi-compact inclusions construct the global ideal and closed subscheme, with exact restrictions and cover independence. |
+| Regularity | On an integral scheme, nonzero generic germ proves regular local equations and actual monic dual evaluation. |
+| Inverse ideal module | The dual of the actual image ideal module is locally free, finitely presented and canonically isomorphic to the original line, carrying the inclusion section to the specified section. |
+| Global-to-generic injection | Genuine pointwise line charts on an integral scheme prove global section nonzeroness equivalent to nonzero generic germ. |
+| Finite charts and zero scheme | Proper curve and genuine pointwise line charts construct a finite quasi-compact chart cover. A nonzero specified section has an actual zero scheme finite over the field. |
+| Positive zero-scheme function dimension | A zero of the specified section gives nonempty D and positive finite dimension of Gamma(D,O_D), using the actual structure morphism. The determinant specialization is proved. |
 
 ## Next mathematical construction
 
-Formalize the effective Cartier zero divisor of a regular specified section
-of an actual invertible sheaf and construct the section-preserving
-identification of its associated invertible sheaf with the original one.
-This is the first missing construction on the proof route for
+Construct and prove the actual short exact sequence
+`0 -> O_X --s--> L -> i_*(L|D) -> 0` for the constructed zero scheme D.
+Then prove that its Euler-characteristic comparison identifies the
+established line-bundle degree with dim_k Gamma(D,O_D). The finiteness and
+positive function-dimension ingredients of
+[Stacks Lemma 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) are now
+formalized. The remaining degree comparison is required for the desired
+specified-section implication in
 [Stacks Lemma 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40).
-Then construct actual curve degree, prove its divisor-degree comparison,
-and derive that a nonzero section of a degree-zero line bundle has no zeros.
-See the [precise dependency gap](lean/normalizer-core/DEGREE_NONVANISHING_GAP.md).
+
+The current proofs construct the concrete zero ideal and inverse image-ideal
+module. They do not expose a general bundled effective-Cartier-divisor/O(D)
+API or prove the full equivalence and uniqueness statement of Stacks 31.15.10.
+The finite quasi-compact charts are now constructed from genuine pointwise
+line charts on the proper curve. The actual representation-derived bundle
+and curve still need to be instantiated. See the [exact gap](lean/normalizer-core/DEGREE_NONVANISHING_GAP.md)
+and [local checkpoint](lean/normalizer-core/ZERO_DIVISOR_CHECKPOINT.md).
 
 The construction of the actual saturated evaluation subbundle and its
 degree zero, the rank-two section estimate, the global boundary application

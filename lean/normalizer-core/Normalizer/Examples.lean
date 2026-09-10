@@ -16,6 +16,9 @@ import Normalizer.ProperConstants
 import Normalizer.GenericBoundary
 import Normalizer.ExteriorLineTrivialization
 import Normalizer.DeterminantGenericNonzero
+import Normalizer.SectionZeroDivisor
+import Normalizer.SectionZeroFinite
+import Mathlib.RingTheory.AdjoinRoot
 
 /-! Focused exact matrix tests. These are kernel-checked, symbolic over an
 arbitrary characteristic-zero field, rather than floating-point evaluations. -/
@@ -526,3 +529,72 @@ example {X : Scheme} (H : X.Modules) (s : Γ(H, ⊤)) :
     (i := 0) (j := 1) rfl (by decide), map_zero]
 
 end ExteriorGenericChecks
+
+section SectionZeroChecks
+open CategoryTheory AlgebraicGeometry Opposite
+set_option backward.isDefEq.respectTransparency false
+
+-- A zero specified section gives the zero ideal, including its scheme structure.
+example {X : Scheme} (V : X.Opens) :
+    Normalizer.schemeSectionImageIdeal
+      (Normalizer.schemeSectionDualEvaluation (SheafOfModules.unit X.ringCatSheaf) 0) V = ⊥ := by
+  rw [Normalizer.schemeSectionDualEvaluation_imageIdeal _ _ (Iso.refl
+    ((SheafOfModules.unit X.ringCatSheaf).over ⊤)) V le_top]
+  simp [Normalizer.sectionLocalEquation]
+
+-- The constant unit section gives the unit ideal, hence has no local zeros.
+example {X : Scheme} (V : X.Opens) :
+    Normalizer.schemeSectionImageIdeal
+      (Normalizer.schemeSectionDualEvaluation (SheafOfModules.unit X.ringCatSheaf)
+        (1 : Γ(X, ⊤))) V = ⊤ := by
+  rw [Normalizer.schemeSectionDualEvaluation_imageIdeal _ _ (Iso.refl
+    ((SheafOfModules.unit X.ringCatSheaf).over ⊤)) V le_top]
+  change Ideal.span {X.presheaf.map (homOfLE (show V ≤ ⊤ from le_top)).op
+    (1 : Γ(X, ⊤))} = ⊤
+  simp
+
+-- A regular equation can still vanish: regularity does not assert invertibility.
+example : IsRegular (Polynomial.X : Polynomial ℚ) ∧
+    ¬ IsUnit (Polynomial.X : Polynomial ℚ) := by
+  exact ⟨IsRegular.of_ne_zero Polynomial.X_ne_zero, Polynomial.not_isUnit_X⟩
+
+-- Principal zero ideals retain multiplicity; squaring is not silently reduced.
+example : (Polynomial.X : Polynomial ℚ) ∉
+    Ideal.span ({Polynomial.X ^ 2} : Set (Polynomial ℚ)) := by
+  rw [Ideal.mem_span_singleton]
+  intro h
+  have hd := Polynomial.natDegree_le_of_dvd h Polynomial.X_ne_zero
+  norm_num at hd
+
+end SectionZeroChecks
+
+section FiniteZeroSchemeChecks
+open CategoryTheory AlgebraicGeometry Opposite
+set_option backward.isDefEq.respectTransparency false
+
+-- The doubled point has a nonzero nilpotent. Its scheme structure must survive
+-- the finiteness and function-space arguments.
+example : ∃ a : AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2), a ≠ 0 ∧ a ^ 2 = 0 := by
+  refine ⟨AdjoinRoot.root _, ?_, ?_⟩
+  · exact AdjoinRoot.mk_ne_zero_of_natDegree_lt
+      (Polynomial.monic_X.pow 2) Polynomial.X_ne_zero (by norm_num)
+  · rw [← AdjoinRoot.mk_X, ← map_pow, AdjoinRoot.mk_self]
+
+-- Apply the actual finite-scheme function theorem to that nonreduced doubled point,
+-- with its field action induced by its actual structure morphism.
+example :
+    let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+    let p : Spec (CommRingCat.of R) ⟶ Spec (CommRingCat.of ℚ) :=
+      Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+    let := Normalizer.schemeGlobalFunctionsAlgebra p
+    0 < Module.finrank ℚ Γ(Spec (CommRingCat.of R), ⊤) := by
+  let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+  let p : Spec (CommRingCat.of R) ⟶ Spec (CommRingCat.of ℚ) :=
+    Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+  have : Nontrivial R := AdjoinRoot.nontrivial _ (by norm_num)
+  have : Module.Finite ℚ R := (Polynomial.monic_X.pow 2).finite_adjoinRoot
+  have : IsFinite p := (IsFinite.SpecMap_iff _).mpr
+    (RingHom.finite_algebraMap.mpr inferInstance)
+  exact Normalizer.finiteScheme_globalFunctions_finrank_pos p
+
+end FiniteZeroSchemeChecks

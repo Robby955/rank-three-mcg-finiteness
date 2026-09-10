@@ -55,7 +55,9 @@ flowchart TD
   J --> E
   L[Exhaustive algebraic normalizer reduction: proved] --> E
   M[Exterior line and stalk comparison: proved from actual bundle charts] --> N[Specified exterior section nonzero: proved from actual generic independence]
-  N --> O[Degree and nowhere vanishing argument: incomplete]
+  N --> P[Actual zero ideal and inverse image-ideal module: proved with finite quasi-compact charts]
+  P --> Q[Finite actual zero scheme and positive function dimension at a zero: proved]
+  Q --> O[Exact sequence, degree comparison and nowhere vanishing: incomplete]
   O --> J
   E --> K[Concrete geometric branches and finiteness arguments: incomplete]
 ```
@@ -77,6 +79,13 @@ completed Lean composition. The following module groups supply the pieces:
 | `NormalizerStalkIntegration`, `GeometricNormalizerObstruction` | Actual quotient-stalk bracket and character comparison; the generic obstruction under an actual ambient sl3 identification and its compatibility. |
 | `ExteriorLineTrivialization`, `LocalFrameStalk`, `ExteriorStalkComparison` | Genuine bundle charts construct exterior-line charts, actual stalk bases and the canonical exterior-stalk equivalence with its pure-germ formula. |
 | `ExteriorNonzero`, `DeterminantGenericNonzero` | Actual generic independence proves the specified exterior section has nonzero generic germ and is globally nonzero. |
+| `SectionLocalEquation`, `SectionDualEvaluation`, `SectionEvaluationMono`, `SectionZeroDivisor` | Actual local equations and dual evaluation; generic nonzeroness proves regularity and monicity. |
+| `SectionZeroIdeal`, `IdealSheafGluing`, `SectionZeroScheme`, `ZeroIdealUniqueness` | Actual global zero ideal and closed subscheme from finite quasi-compact charts, with exact chart restrictions and cover independence. |
+| `SectionImageSheaf`, `DualTransport`, `LineBidual`, `SectionIdealBundle` | Actual image ideal module, its dual and canonical bidual comparison; the inverse module recovers the original line and specified section. |
+| `DeterminantZeroDivisor` | Specialization to the actual specified determinant; exterior and dual charts are constructed from the original rank-n bundle charts. |
+| `LineGenericInjection`, `FiniteLineCharts` | Integral geometry and genuine pointwise line charts give global-to-generic injection; compactness and Noetherianity extract finite quasi-compact charts. |
+| `CurveClosedSubscheme`, `FiniteZeroDimensional`, `SectionZeroSupport` | Generic-point exclusion for the actual zero scheme, dimension at most zero, and finiteness of the actual structure morphism. |
+| `SectionZeroLocus`, `FiniteSchemeSections`, `SectionZeroFinite` | Actual support detects nonunit local equations. A zero of the specified section gives positive dimension of the actual finite zero-scheme global function space, including the determinant specialization. |
 
 ## Remaining geometric interfaces
 
@@ -110,13 +119,22 @@ completed Lean composition. The following module groups supply the pieces:
    the family, Hodge-theoretic, arithmetic and propagation arguments for
    the claimed representations, including nonsemisimple ones.
 
-The next missing construction on the cited determinant proof route is the
-effective Cartier zero divisor of a regular specified section of an actual
-invertible sheaf, its associated invertible sheaf, and a section-preserving
-comparison. Actual degree theory and the divisor-degree comparison are
-then required for [Stacks Lemma 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40).
-The [precise gap note](DEGREE_NONVANISHING_GAP.md) explains why the existing
-module-length and abstract cohomology APIs do not yet prove that implication.
+The zero-subscheme and inverse image-ideal module constructions are now proved
+under their explicit finite quasi-compact chart and integral-scheme inputs.
+The section-preserving comparison concerns the actual specified section.
+Finiteness of this actual zero scheme over the field is now proved on a
+proper integral curve. Genuine pointwise charts yield the finite
+quasi-compact cover, and global section nonzeroness yields generic
+nonzeroness. A zero gives positive dimension of the actual zero-scheme
+global functions. The next construction is the actual exact sequence
+`0 -> O_X --s--> L -> i_*(L|D) -> 0`. Actual Euler-characteristic degree and
+its comparison with that finite function space remain required for
+[Stacks Lemma 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40).
+No general bundled effective-Cartier-divisor/O(D) interface is claimed.
+The [precise gap note](DEGREE_NONVANISHING_GAP.md) distinguishes this concrete
+construction from the missing Euler-characteristic comparison and
+line-degree positivity. These missing results have not been assumed as new
+hypotheses in the proofs.
 The actual saturated evaluation subbundle and its degree zero, the rank-two
 section estimate, and the complete bound `h⁰(E/M) ≤ 4` remain unformalized.
 

@@ -1,8 +1,8 @@
 # Public manuscript-to-Lean correspondence
 
 All declaration names have the prefix `Normalizer.`. This table covers all
-472 named theorems and 207 named constructions;
-all 679 declarations are included in `AxiomAudit.lean`.
+591 named theorems and 245 named constructions;
+all 836 declarations are included in `AxiomAudit.lean`.
 
 The source is the public repository at commit
 `12f81e2852e0a8e71f16777d9eb9c7bc8916e6df`:
@@ -1222,3 +1222,276 @@ b64fe79e47d5862c0bf2b77ca3f3cb06bd6e1289ad6721e9b8d23b5305aa622b  LOAD_BEARING_A
 | General support; exact hypotheses in the linked declaration | [`exteriorTwo_injective_of_finrank_three`](Normalizer/WedgeThree.lean#L144) | theorem | Basis-free injectivity criterion from nonvanishing on nonzero exterior products. |
 | General support; exact hypotheses in the linked declaration | [`exteriorTwo_target_finrank_ge_three`](Normalizer/WedgeThree.lean#L151) | theorem | If no nonzero exterior product is killed, the target has dimension at least three. |
 | General support; exact hypotheses in the linked declaration | [`exists_independent_pair_in_wedge_kernel`](Normalizer/WedgeThree.lean#L161) | theorem | Any linear map from the actual second exterior power of a three-dimensional space to a space of dimension at most two kills the wedge of an independent pair; curve wedge and degree data are not constructed. |
+
+## Specified section zero ideal continuation
+
+The following additions supply constructions for the determinant route underlying
+the manuscript's section bound. Their immediate source is the regular-section
+construction of Stacks 31.15.10(2), not a new manuscript assertion. The global
+zero ideal uses finite genuine line charts with quasi-compact inclusions.
+Regularity is derived on integral schemes from nonzero generic germ.
+The inverse image-ideal module and its section-preserving comparison are actual
+module-sheaf constructions. A general bundled effective-Cartier-divisor/O(D)
+API, divisor finiteness and degree comparison are not asserted here.
+
+## SectionLocalEquation
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionLocalEquation`](Normalizer/SectionLocalEquation.lean#L18) | def | The actual local equation of the specified global section in a genuine line-bundle chart, evaluated on any smaller open. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionLocalEquation_restrict`](Normalizer/SectionLocalEquation.lean#L23) | theorem | The local equations are compatible with the actual restriction maps. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionLocalEquation_chart`](Normalizer/SectionLocalEquation.lean#L37) | theorem | The chart carries its actual scalar equation back to the specified section. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionLocalEquation_smul_frame`](Normalizer/SectionLocalEquation.lean#L44) | theorem | The actual section is its local equation times the actual chart frame. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionFrameTransition`](Normalizer/SectionLocalEquation.lean#L52) | def | The actual scalar transition from a second line chart to the first. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionFrameTransition_isUnit`](Normalizer/SectionLocalEquation.lean#L60) | theorem | Transition coefficients of genuine line charts are units, including on empty opens. Their inverses are derived from the inverse sheaf maps. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionLocalEquation_change_chart`](Normalizer/SectionLocalEquation.lean#L75) | theorem | The two local equations of the same specified section differ by the actual invertible transition coefficient. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionLocalEquation_ne_zero`](Normalizer/SectionLocalEquation.lean#L91) | theorem | A nonzero generic germ makes the equation in every nonempty line chart nonzero. Generic independence or global triviality is not inferred. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionLocalEquation_germ_ne_zero`](Normalizer/SectionLocalEquation.lean#L106) | theorem | The local equation has nonzero germ at every point of its chart. This is nonzeroness in the local ring, not in its residue field. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionLocalEquation_isRegular`](Normalizer/SectionLocalEquation.lean#L117) | theorem | The actual local equation is a non-zero-divisor on every nonempty chart, as required for its effective Cartier zero divisor. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`sectionLocalEquation_germ_isRegular`](Normalizer/SectionLocalEquation.lean#L124) | theorem | The same equation is a non-zero-divisor in each actual local ring. |
+
+## SectionDualEvaluation
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualSheaf`](Normalizer/SectionDualEvaluation.lean#L23) | def | The actual sheaf of local module morphisms into the structure sheaf. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluationAt`](Normalizer/SectionDualEvaluation.lean#L28) | def | Evaluation of a local dual section at the restriction of the prescribed global section, linear over the actual section ring. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation`](Normalizer/SectionDualEvaluation.lean#L40) | def | Evaluation at a specified global section is an actual morphism from the constructed dual sheaf to the structure sheaf. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_app`](Normalizer/SectionDualEvaluation.lean#L66) | theorem | The sheaf evaluation has its prescribed sectionwise value. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualFrameCoordinate`](Normalizer/SectionDualEvaluation.lean#L73) | def | A genuine local line chart gives coordinates of actual dual sections, by their evaluation on the actual line frame. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualFrameCoordinate_restrict`](Normalizer/SectionDualEvaluation.lean#L80) | theorem | The actual dual coordinates commute with restriction. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualLineFrameIso`](Normalizer/SectionDualEvaluation.lean#L115) | def | A genuine local line chart constructs a genuine chart of the actual dual sheaf. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualLineFrameIso_coordinate`](Normalizer/SectionDualEvaluation.lean#L124) | theorem | Coordinates of the constructed dual frame are exactly the supplied scalar. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_frame`](Normalizer/SectionDualEvaluation.lean#L133) | theorem | In a genuine line chart, evaluation is multiplication by the prescribed section's coordinate, with the dual coordinate derived from evaluation on the frame. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_frame_one`](Normalizer/SectionDualEvaluation.lean#L150) | theorem | The image of the constructed dual frame is the actual local equation of the specified global section in the original chart. |
+
+## SectionZeroIdeal
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdeal`](Normalizer/SectionZeroIdeal.lean#L21) | def | The actual image on sections of a map into the structure sheaf. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`mem_schemeSectionImageIdeal`](Normalizer/SectionZeroIdeal.lean#L25) | theorem | Membership means being the image of an actual section. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdeal_zero`](Normalizer/SectionZeroIdeal.lean#L29) | theorem | The zero map has the zero image ideal. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdeal_id`](Normalizer/SectionZeroIdeal.lean#L36) | theorem | The identity map has the unit image ideal. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageEquation`](Normalizer/SectionZeroIdeal.lean#L42) | def | The local equation obtained from an actual line frame and a sheaf map. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdeal_eq_span`](Normalizer/SectionZeroIdeal.lean#L48) | theorem | A genuine line frame proves that the actual image ideal is principal. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageEquation_restrict`](Normalizer/SectionZeroIdeal.lean#L66) | theorem | The frame image restricts as an actual structure-sheaf section. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdeal_map_of_chart`](Normalizer/SectionZeroIdeal.lean#L79) | theorem | Inside a genuine line chart, extension of the image ideal along restriction is exactly the image ideal on the smaller open. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdealOn`](Normalizer/SectionZeroIdeal.lean#L90) | def | The actual image ideals form ideal-sheaf data on any genuine line chart. The localization law is proved from that chart, not supplied as an assumption. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdealOn_ideal`](Normalizer/SectionZeroIdeal.lean#L101) | theorem | On every affine open in the chart this is exactly the image of the given sheaf map on the corresponding open of the original scheme. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdealOn_ideal_eq_span`](Normalizer/SectionZeroIdeal.lean#L108) | theorem | Each affine chart of the zero subscheme is cut out by the actual frame image. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdealOn_eq`](Normalizer/SectionZeroIdeal.lean#L116) | theorem | Changing the frame does not change the actual image ideal sheaf. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdealOn_comap`](Normalizer/SectionZeroIdeal.lean#L129) | theorem | The local image ideal sheaves agree under restriction to a smaller chart. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroSubschemeOn`](Normalizer/SectionZeroIdeal.lean#L144) | def | The actual zero subscheme on a genuine line chart. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroSubschemeOnι`](Normalizer/SectionZeroIdeal.lean#L149) | def | The zero subscheme is equipped with its closed immersion into the chart. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroSubschemeOn_isClosedImmersion`](Normalizer/SectionZeroIdeal.lean#L155) | theorem | The constructed morphism is a closed immersion, including nilpotent structure. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroSubschemeOnPullbackIso`](Normalizer/SectionZeroIdeal.lean#L163) | def | The zero subscheme on a smaller chart is the actual base change of the zero subscheme on the larger chart. |
+
+## IdealSheafGluing
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Exact finite quasi-compact open gluing supporting the zero-subscheme construction | [`idealSheaf_comap_iInf`](Normalizer/IdealSheafGluing.lean#L16) | theorem | Pulling back along an open immersion preserves finite intersections of ideal-sheaf data. |
+| Exact finite quasi-compact open gluing supporting the zero-subscheme construction | [`idealSheaf_ker_comap_of_isPullback`](Normalizer/IdealSheafGluing.lean#L26) | theorem | The kernel ideal of a quasi-compact morphism restricts exactly under an actual open pullback square. |
+| Exact finite quasi-compact open gluing supporting the zero-subscheme construction | [`idealSheaf_comap_map_open`](Normalizer/IdealSheafGluing.lean#L37) | theorem | An ideal pushed along a quasi-compact open immersion restricts back to the original ideal, rather than merely containing it. |
+| Exact finite quasi-compact open gluing supporting the zero-subscheme construction | [`idealSheaf_comap_map_open_baseChange`](Normalizer/IdealSheafGluing.lean#L46) | theorem | Pushforward of an ideal along a quasi-compact map commutes with restriction to an open subscheme, using the actual pullback. |
+| Exact finite quasi-compact open gluing supporting the zero-subscheme construction | [`finiteIdealSheafGlue`](Normalizer/IdealSheafGluing.lean#L62) | def | The global ideal obtained as the finite intersection of the actual pushforwards of local ideals. Exact restriction is proved separately. |
+| Exact finite quasi-compact open gluing supporting the zero-subscheme construction | [`idealSheaf_overlap_of_inf`](Normalizer/IdealSheafGluing.lean#L68) | theorem | Equality on the actual intersection of two opens gives compatibility on their categorical pullback. |
+| Exact finite quasi-compact open gluing supporting the zero-subscheme construction | [`finiteIdealSheafGlue_comap`](Normalizer/IdealSheafGluing.lean#L81) | theorem | Compatible local ideals on a finite family of quasi-compact open immersions have a global ideal whose restrictions are exactly the inputs. Compatibility is equality on the actual pairwise pullbacks. |
+| Exact finite quasi-compact open gluing supporting the zero-subscheme construction | [`exists_idealSheaf_of_finite_openCover`](Normalizer/IdealSheafGluing.lean#L100) | theorem | A finite open cover with quasi-compact inclusions glues compatible actual ideal-sheaf data to an actual global ideal with exact restrictions. |
+
+## SectionZeroScheme
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeLineChartRestrict`](Normalizer/SectionZeroScheme.lean#L16) | def | Restrict an actual local line chart to a smaller open. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageIdealOn_overlap`](Normalizer/SectionZeroScheme.lean#L27) | theorem | The actual local image ideals of the same sheaf map agree on an overlap. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroIdeal`](Normalizer/SectionZeroScheme.lean#L42) | def | The global ideal from a genuine line-chart cover. The actual cover is explicit; finiteness and quasi-compactness prove its exact chart restrictions. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroIdeal_comap`](Normalizer/SectionZeroScheme.lean#L48) | theorem | The constructed global ideal restricts to the actual section image ideal on every chart; its overlap compatibility follows from the given map. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroScheme`](Normalizer/SectionZeroScheme.lean#L58) | def | The actual zero subscheme determined by the prescribed sheaf map and its genuine line-chart cover. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroSchemeι`](Normalizer/SectionZeroScheme.lean#L62) | def | The inclusion of the actual global zero subscheme. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroScheme_isClosedImmersion`](Normalizer/SectionZeroScheme.lean#L68) | theorem | The global zero subscheme is a closed subscheme, with its full ideal structure rather than only a reduced zero set. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionZeroSchemeChartIso`](Normalizer/SectionZeroScheme.lean#L76) | def | Base change of the global zero subscheme to a chart is the local zero subscheme constructed directly from the original map. |
+
+## ZeroIdealUniqueness
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Open-cover locality and cover independence of the actual zero ideal | [`idealSheaf_eq_of_openCover`](Normalizer/ZeroIdealUniqueness.lean#L15) | theorem | Ideal-sheaf data agreeing on an actual open cover agree globally. No finiteness or quasi-compactness assumption is needed for uniqueness. |
+| Open-cover locality and cover independence of the actual zero ideal | [`schemeSectionZeroIdeal_cover_independent`](Normalizer/ZeroIdealUniqueness.lean#L45) | theorem | Two genuine finite line-chart covers give exactly the same global zero ideal for the same original sheaf map. |
+| Open-cover locality and cover independence of the actual zero ideal | [`schemeSectionZeroScheme_cover_independent`](Normalizer/ZeroIdealUniqueness.lean#L71) | theorem | The actual closed zero subscheme is independent of the finite genuine line-chart cover used to construct it. |
+| Open-cover locality and cover independence of the actual zero ideal | [`schemeSectionZeroSchemeCoverIso`](Normalizer/ZeroIdealUniqueness.lean#L80) | def | The canonical identification of the two constructed zero schemes. |
+| Open-cover locality and cover independence of the actual zero ideal | [`schemeSectionZeroSchemeCoverIso_hom_ι`](Normalizer/ZeroIdealUniqueness.lean#L95) | theorem | Cover independence preserves the actual closed immersion into the original scheme, not merely the abstract isomorphism type of its source. |
+
+## SectionEvaluationMono
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluationAt_injective_on_chart`](Normalizer/SectionEvaluationMono.lean#L18) | theorem | On a nonempty genuine line chart, dual evaluation is injective because the section coordinate is nonzero in the integral section ring. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluationAt_injective`](Normalizer/SectionEvaluationMono.lean#L40) | theorem | Genuine line charts covering the points make dual evaluation injective on sections of every open, including the empty open. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_mono`](Normalizer/SectionEvaluationMono.lean#L69) | theorem | Evaluation at a generically nonzero global section of an actual locally trivial line sheaf is monic as a morphism of actual module sheaves. |
+
+## SectionImageSheaf
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheaf`](Normalizer/SectionImageSheaf.lean#L16) | def | The actual categorical image module sheaf. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheafι`](Normalizer/SectionImageSheaf.lean#L19) | def | The actual image inclusion into the structure sheaf. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheafIso`](Normalizer/SectionImageSheaf.lean#L23) | def | A regular map identifies its line sheaf with its categorical image. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheafIso_hom`](Normalizer/SectionImageSheaf.lean#L27) | theorem | The comparison is the canonical factorization map through the image. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheafIso_hom_ι`](Normalizer/SectionImageSheaf.lean#L34) | theorem | Composing the canonical comparison with the image inclusion recovers exactly the original map. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheafIso_inv_comp`](Normalizer/SectionImageSheaf.lean#L39) | theorem | The inclusion composed with the inverse comparison gives the same map. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheaf_imageIdeal`](Normalizer/SectionImageSheaf.lean#L45) | theorem | The image sheaf inclusion has exactly the original sectionwise image ideal. Surjectivity here follows from the actual isomorphism on sections. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheafFrame`](Normalizer/SectionImageSheaf.lean#L64) | def | Every genuine local line frame transports to the actual image sheaf. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheafFrame_equation`](Normalizer/SectionImageSheaf.lean#L72) | theorem | The transported image frame has exactly the same local equation. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheaf_idealOn`](Normalizer/SectionImageSheaf.lean#L83) | theorem | The actual ideal-sheaf data are unchanged when formed from the image inclusion and its transported line frame. |
+
+## DualTransport
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualMapAt`](Normalizer/DualTransport.lean#L31) | def | Contravariant transport on actual dual sections is precomposition. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualMap`](Normalizer/DualTransport.lean#L49) | def | Canonical pullback of functionals along an actual module-sheaf morphism. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualMap_eval`](Normalizer/DualTransport.lean#L73) | theorem | Exact evaluation formula for contravariant dual transport. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualMap_id`](Normalizer/DualTransport.lean#L81) | theorem | Pulling a functional back along the identity leaves it unchanged. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualMap_comp`](Normalizer/DualTransport.lean#L93) | theorem | Dual transport reverses composition. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualIso`](Normalizer/DualTransport.lean#L111) | def | An actual sheaf isomorphism induces the actual contravariant dual isomorphism. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualSectionOfHom`](Normalizer/DualTransport.lean#L118) | def | A genuine sheaf morphism to the structure sheaf determines an actual global dual section. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualSectionOfHom_eval`](Normalizer/DualTransport.lean#L126) | theorem | The global dual section associated to a morphism evaluates by its actual components. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeDualMap_sectionOfHom`](Normalizer/DualTransport.lean#L132) | theorem | Contravariant transport of a morphism's dual section is actual precomposition. |
+
+## LineBidual
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeBidualAt`](Normalizer/LineBidual.lean#L47) | def | The canonical bidual map on actual sections. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeBidualMap`](Normalizer/LineBidual.lean#L85) | def | The canonical bidual sheaf morphism is evaluation of local functionals. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeBidualMap_eval`](Normalizer/LineBidual.lean#L109) | theorem | Exact evaluation formula for the canonical bidual image, on every smaller open. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeBidualMap_coordinate`](Normalizer/LineBidual.lean#L117) | theorem | In an actual line chart the bidual coordinate is precisely the original coordinate. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeBidualMap_bijective_of_chart`](Normalizer/LineBidual.lean#L139) | theorem | The canonical bidual map is bijective on every subopen of a genuine line chart. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeBidualMap_isIso`](Normalizer/LineBidual.lean#L172) | theorem | Genuine line charts covering the scheme prove canonical biduality globally. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeLineBidualIso`](Normalizer/LineBidual.lean#L180) | def | The canonical bidual equivalence of an actually locally trivial line sheaf. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeLineBidualIso_hom`](Normalizer/LineBidual.lean#L188) | theorem | The bidual equivalence uses the canonical map, independent of the covering choice. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeBidualMap_globalSection`](Normalizer/LineBidual.lean#L194) | theorem | The bidual image of a global section is the actual dual section of its evaluation morphism. |
+
+## SectionZeroDivisor
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_equation`](Normalizer/SectionZeroDivisor.lean#L20) | theorem | The image equation of actual dual evaluation is exactly the original specified section's local equation, in the constructed dual chart. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_imageIdeal`](Normalizer/SectionZeroDivisor.lean#L27) | theorem | The actual image ideal, rather than an unrelated principal ideal, is generated by the specified section's local equation. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_germ_imageIdeal`](Normalizer/SectionZeroDivisor.lean#L34) | theorem | The same equality after mapping to the actual local ring at a point. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_imageIdeal_eq_top_iff`](Normalizer/SectionZeroDivisor.lean#L44) | theorem | The local image ideal is the unit ideal exactly where the equation is invertible. This is stronger than its nonzeroness in a domain. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_germ_imageIdeal_eq_top_iff`](Normalizer/SectionZeroDivisor.lean#L52) | theorem | The actual local-ring image ideal detects zeros by noninvertibility of the specified equation in that local ring. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionDualEvaluation_germ_imageIdeal_regular`](Normalizer/SectionZeroDivisor.lean#L63) | theorem | The actual local-ring image ideal has a non-zero-divisor generator when the prescribed section has nonzero generic germ on an integral scheme. |
+
+## SectionIdealBundle
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionInverseIdealBundle`](Normalizer/SectionIdealBundle.lean#L21) | def | The inverse ideal module is the actual dual of the categorical image of evaluation at the specified section. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionInverseIdealSection`](Normalizer/SectionIdealBundle.lean#L26) | def | The canonical section of the inverse ideal module is its actual ideal inclusion, viewed as a local functional on that ideal. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionInverseIdealFrame`](Normalizer/SectionIdealBundle.lean#L31) | def | Genuine line charts and monic evaluation construct actual line charts of the inverse ideal module. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionInverseIdealIso`](Normalizer/SectionIdealBundle.lean#L55) | def | The inverse of the actual section image ideal is canonically the original line module. Monicity is proved from generic nonzeroness. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionInverseIdealIso_section`](Normalizer/SectionIdealBundle.lean#L62) | theorem | The actual canonical inclusion section of the inverse image ideal maps to the specified original section, not just to some nonzero section. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionImageSheaf_zeroIdeal_comap`](Normalizer/SectionIdealBundle.lean#L82) | theorem | The actual image ideal module has the actual global zero ideal as its chart ideal data. This exposes the sheaf/subscheme linkage explicitly. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionInverseIdealBundle_isLocallyFree`](Normalizer/SectionIdealBundle.lean#L104) | theorem | The constructed inverse ideal module is locally free in mathlib's actual sheaf sense, as witnessed by the constructed rank-one charts. |
+| Support for the specified-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`schemeSectionInverseIdealBundle_isFinitePresentation`](Normalizer/SectionIdealBundle.lean#L116) | theorem | The same constructed rank-one charts prove finite presentation of the actual inverse ideal module. |
+
+## DeterminantZeroDivisor
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantDualEvaluation_mono`](Normalizer/DeterminantZeroDivisor.lean#L23) | theorem | Actual rank-n charts and independence of the specified generic germs make evaluation against their actual determinant section monic. |
+| Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantLocalEquation_germ_isRegular`](Normalizer/DeterminantZeroDivisor.lean#L38) | theorem | The equation of the specified determinant in the chart induced by an actual rank-n frame is regular in every actual local ring on that chart. |
+| Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantInverseIdealIso`](Normalizer/DeterminantZeroDivisor.lean#L51) | def | The inverse ideal module of the actual specified determinant is the actual exterior line, using only genuine rank-n charts and generic independence. |
+| Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantInverseIdealIso_section`](Normalizer/DeterminantZeroDivisor.lean#L63) | theorem | This isomorphism carries the canonical inclusion section to the specified determinant section built from the original section family. |
+| Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantZeroIdeal`](Normalizer/DeterminantZeroDivisor.lean#L82) | def | The actual global zero ideal of the specified exterior section, built from the genuine rank-n cover and its induced dual determinant charts. |
+| Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantZeroIdeal_comap`](Normalizer/DeterminantZeroDivisor.lean#L90) | theorem | The global determinant zero ideal restricts exactly to the actual local image ideal; compatibility is derived from the same evaluation map. |
+| Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantZeroIdeal_chart_ideal`](Normalizer/DeterminantZeroDivisor.lean#L100) | theorem | Each affine open of a chart has the actual specified determinant equation as generator of the restriction of the global zero ideal. |
+| Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantZeroIdeal_chart_germ_regular`](Normalizer/DeterminantZeroDivisor.lean#L111) | theorem | Generic independence gives a regular generator for the actual local ring image of the global determinant zero ideal on every affine chart. |
+
+## CurveClosedSubscheme
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Topological support for finite zero schemes in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`topologicalKrullDim_nonpos_of_closedEmbedding`](Normalizer/CurveClosedSubscheme.lean#L15) | theorem | A nonsurjective closed embedding into an irreducible space of dimension at most one has zero-dimensional source, including the empty case. |
+| Topological support for finite zero schemes in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`closedSubscheme_dimension_nonpos`](Normalizer/CurveClosedSubscheme.lean#L43) | theorem | An actual closed subscheme omitting the generic point of an integral scheme of dimension at most one has topological dimension at most zero. |
+
+## FiniteZeroDimensional
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_isArtinian_of_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L18) | theorem | A quasi-compact locally Noetherian scheme of dimension at most zero is an actual Artinian scheme. The empty scheme is included. |
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_finite_points_of_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L24) | theorem | The underlying point set of such a scheme is finite; the conclusion does not discard its possibly nonreduced scheme structure. |
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_isFinite_of_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L33) | theorem | A quasi-compact finite-type morphism to a field with zero-dimensional source is finite as an actual scheme morphism. Properness is unnecessary. |
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_isFinite_of_compact_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L44) | theorem | Compactness of the source suffices in place of an explicit quasi-compactness hypothesis on its finite-type structure morphism. |
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_isFinite_of_proper_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L50) | theorem | A proper scheme over a field whose dimension is at most zero is finite over that field, including its full nilpotent structure. |
+
+## SectionZeroSupport
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionImageIdealOn_genericPoint_not_mem`](Normalizer/SectionZeroSupport.lean#L19) | theorem | The actual local zero ideal of the specified section excludes the generic point of every nonempty genuine line chart. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroIdeal_genericPoint_not_mem`](Normalizer/SectionZeroSupport.lean#L56) | theorem | A section with nonzero generic germ has an actual zero ideal whose support excludes the generic point; no support condition is assumed. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroScheme_genericPoint_not_mem_range`](Normalizer/SectionZeroSupport.lean#L75) | theorem | The generic point is not in the range of the actual zero-scheme immersion. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroIdeal_support_ne_top`](Normalizer/SectionZeroSupport.lean#L86) | theorem | The support of the actual zero ideal is a proper closed subset. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroIdeal_support_interior_eq_empty`](Normalizer/SectionZeroSupport.lean#L96) | theorem | The actual zero support has empty interior. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroIdeal_support_isNowhereDense`](Normalizer/SectionZeroSupport.lean#L110) | theorem | The closed support of the actual zero ideal is nowhere dense. |
+
+## FiniteLineCharts
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Proper-curve chart extraction supporting the constructed section zero ideal | [`exists_finite_lineCharts`](Normalizer/FiniteLineCharts.lean#L16) | theorem | Compactness extracts finitely many genuine charts from pointwise local line triviality, without assuming a finite cover. |
+| Proper-curve chart extraction supporting the constructed section zero ideal | [`exists_finite_quasiCompact_lineCharts`](Normalizer/FiniteLineCharts.lean#L33) | theorem | On a noetherian scheme the finite genuine line charts have quasi-compact inclusions, as required by the actual ideal-sheaf gluing construction. |
+
+## FiniteSchemeSections
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`schemeGlobalFunctionsAlgebra`](Normalizer/FiniteSchemeSections.lean#L19) | def | The actual base-field algebra structure on global functions. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`schemeGlobalFunctionsAlgebra_map`](Normalizer/FiniteSchemeSections.lean#L23) | theorem | The scalar structure is induced by the specified structure morphism. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_constantMap_finite`](Normalizer/FiniteSchemeSections.lean#L28) | theorem | A finite scheme morphism induces a finite map on actual global functions. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_globalFunctions_finite`](Normalizer/FiniteSchemeSections.lean#L34) | theorem | Global functions are a finite module for the actual structure-map action. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_globalFunctions_finiteDimensional`](Normalizer/FiniteSchemeSections.lean#L39) | theorem | Over a field, the actual global function module is finite-dimensional. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`schemeGlobalFunctions_nontrivial`](Normalizer/FiniteSchemeSections.lean#L45) | theorem | Nonempty schemes have nontrivial global function rings, as witnessed by the germ map into a nontrivial local ring at an actual point. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_globalFunctions_finrank_pos`](Normalizer/FiniteSchemeSections.lean#L50) | theorem | The global function space of a nonempty finite scheme has positive dimension. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`schemeGlobalFunctions_subsingleton_of_isEmpty`](Normalizer/FiniteSchemeSections.lean#L59) | theorem | An empty scheme has only one global regular function. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_globalFunctions_finrank_eq_zero_iff`](Normalizer/FiniteSchemeSections.lean#L69) | theorem | For an actual finite scheme over the field, vanishing of the dimension of its global function space is equivalent to emptiness of the scheme. |
+
+## SectionZeroLocus
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionImageIdealOn_mem_support_iff`](Normalizer/SectionZeroLocus.lean#L17) | theorem | On an affine open inside a genuine line chart, the actual local image ideal contains a point in its support exactly when the equation germ is a nonunit. |
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionZeroIdeal_mem_support_iff_affine`](Normalizer/SectionZeroLocus.lean#L38) | theorem | The global zero ideal has the exact nonunit-germ support test on each actual affine chart; global support is derived from exact ideal restriction. |
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionZeroIdeal_mem_support_iff`](Normalizer/SectionZeroLocus.lean#L52) | theorem | On every open inside a genuine chart, support membership of the actual global zero ideal is equivalent to noninvertibility of the original equation germ. |
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionZeroScheme_nonempty_of_nonunit_affine`](Normalizer/SectionZeroLocus.lean#L77) | theorem | A nonunit equation germ yields an actual point of the constructed global zero scheme, preserving its complete scheme structure. |
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionZeroScheme_nonempty_of_nonunit`](Normalizer/SectionZeroLocus.lean#L92) | theorem | A zero of the prescribed section, expressed by a nonunit equation germ on any genuine chart, supplies a point of its actual global zero scheme. |
+
+## LineGenericInjection
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_eq_zero_of_genericGerm_eq_zero`](Normalizer/LineGenericInjection.lean#L18) | theorem | Vanishing of the generic germ forces the actual global section of a genuinely locally trivial line sheaf to vanish. |
+| Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_genericGerm_injective`](Normalizer/LineGenericInjection.lean#L45) | theorem | The actual global-section generic-germ map is injective, derived from line charts rather than an assumed torsion condition. |
+| Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_genericGerm_ne_zero_iff`](Normalizer/LineGenericInjection.lean#L55) | theorem | For an actual locally trivial line sheaf, nonzero global section and nonzero generic germ are equivalent. |
+
+## SectionZeroFinite
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`closedSubscheme_isFinite_of_genericPoint_not_mem`](Normalizer/SectionZeroFinite.lean#L23) | theorem | A closed subscheme omitting the generic point of a finite-type integral curve is finite over the base field. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_dimension_nonpos`](Normalizer/SectionZeroFinite.lean#L39) | theorem | The actual zero scheme of the specified section has dimension at most zero. Its generic-point exclusion is derived from the specified section. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_isFinite`](Normalizer/SectionZeroFinite.lean#L50) | theorem | The actual section zero scheme, with all of its nilpotent structure, is finite over the base field on a finite-type integral curve. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`properCurve_sectionZeroScheme_isFinite`](Normalizer/SectionZeroFinite.lean#L63) | theorem | In particular, the actual specified section zero scheme on a proper integral curve is finite over the base field. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_globalFunctions_finiteDimensional`](Normalizer/SectionZeroFinite.lean#L72) | theorem | The actual global functions on the constructed zero scheme are finite-dimensional under the action of the actual structure morphism. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_globalFunctions_finrank_eq_zero_iff`](Normalizer/SectionZeroFinite.lean#L86) | theorem | The actual zero-scheme function dimension vanishes exactly when the constructed zero scheme is empty. This is not a line-bundle degree formula. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_globalFunctions_pos_of_zero`](Normalizer/SectionZeroFinite.lean#L102) | theorem | A zero of the specified nonzero section gives a positive-dimensional actual zero-scheme function space. No line-bundle degree is introduced. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`properCurve_exists_finite_sectionZeroScheme`](Normalizer/SectionZeroFinite.lean#L119) | theorem | On a proper integral curve, genuine pointwise line charts suffice: the finite quasi-compact cover and finite actual zero scheme are constructed. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_isFinite_of_ne_zero`](Normalizer/SectionZeroFinite.lean#L139) | theorem | Global nonzeroness suffices for the actual zero scheme to be finite: the required generic nonzeroness is derived from the given covering charts. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_globalFunctions_pos_of_ne_zero`](Normalizer/SectionZeroFinite.lean#L155) | theorem | A zero of a globally nonzero section gives a positive-dimensional actual zero-scheme function space, with generic nonzeroness derived. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`properCurve_exists_finite_sectionZeroScheme_of_ne_zero`](Normalizer/SectionZeroFinite.lean#L171) | theorem | A nonzero global section and genuine pointwise line charts on a proper integral curve construct a finite cover and an actual finite zero scheme. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeDeterminantZeroScheme_isFinite`](Normalizer/SectionZeroFinite.lean#L191) | theorem | The actual determinant zero scheme is finite over the field; its generic nonzeroness and line charts are derived from the specified family and genuine rank-n charts. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeDeterminantZeroScheme_globalFunctions_pos_of_zero`](Normalizer/SectionZeroFinite.lean#L204) | theorem | A zero of the actual specified determinant gives positive dimension of the global functions on its actual finite zero scheme. The comparison with the established line-bundle degree remains a separate theorem. |
