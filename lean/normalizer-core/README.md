@@ -1,11 +1,11 @@
 # Normalizer boundary laws in Lean
 
-This package proves boundary-cocycle algebra, two explicit `sl₃` normalizer
-obstructions, and supporting sheaf and local-freeness results in Lean 4.
+This package proves boundary-cocycle algebra, exhaustive algebraic `sl₃`
+normalizer reduction, and supporting sheaf and generic-stalk results in Lean 4.
 It does not formally verify the candidate rank-three finite-image theorem,
 the square endpoint, or a genus-three result.
 
-The core has 233 named theorems, 340 audited named declarations, and 35
+The core has 472 named theorems, 679 audited named declarations, and 48
 examples. The proofs use only `propext`, `Classical.choice`, and `Quot.sound`.
 There are no proof placeholders or custom axioms in this package.
 See the [verification record](VERIFICATION.md) for the scope of the checks.
@@ -36,15 +36,38 @@ in `sl₃(F)`, over a characteristic-zero field `F`.
    torsion-free stalks suffice. The open cover and local generators are
    constructed in the proof.
 
-The matrix results concern the two displayed representatives. Exhaustive
-orbit reduction and the realization of the required subspace in the
-curve's generic fibre are separate geometric obligations.
+6. **Exhaustive algebraic reduction.** Every nonzero traceless rank-three
+   matrix over a characteristic-zero field satisfies the proved obstruction
+   under the precise boundary-lift hypotheses. The Jordan reductions,
+   conjugacy and field-extension passage are proved.
+7. **Curve support.** Actual finite-presentation, saturation and smooth-curve
+   data give local freeness of the actual quotient. Global regular functions
+   give constant scalar characters under the stated properness hypotheses.
+   Actual generic quotient comparisons preserve bracket and character.
+8. **Exterior stalks.** A genuine rank-n bundle chart gives an actual
+   rank-one chart of the top exterior sheaf and an isomorphism between its
+   stalk and the top exterior power of the original stalk. The isomorphism
+   sends the specified exterior section germ to the wedge of its germs.
+9. **Specified section.** Independence of the actual generic germs over the
+   function field implies that their specified exterior section is nonzero.
+   This does not infer generic independence from base-field independence or
+   prove nonvanishing at every point.
+
+The degree/nonvanishing implication is still unformalized. The first missing
+construction on the cited proof route is the effective Cartier zero divisor
+of the specified regular section, with its associated invertible sheaf and
+section-preserving comparison. Actual degree theory and its divisor-degree
+comparison must follow. See [the exact gap](DEGREE_NONVANISHING_GAP.md).
+The required curve sections and representation-derived geometric data remain
+application obligations. Overall formalization verdict: **PARTIAL**.
 
 ## Read and check
 
 Start with [Flagship.lean](Normalizer/Flagship.lean) for the matrix quotient
 obstructions and [Boundary.lean](Normalizer/Boundary.lean) for the abstract
-boundary law. [OVERVIEW.md](OVERVIEW.md) explains the dependency structure
+boundary law. [ExteriorStalkComparison.lean](Normalizer/ExteriorStalkComparison.lean)
+and [DeterminantGenericNonzero.lean](Normalizer/DeterminantGenericNonzero.lean)
+contain the new determinant interfaces. [OVERVIEW.md](OVERVIEW.md) explains the dependency structure
 and the remaining proof obligations. [CORRESPONDENCE.md](CORRESPONDENCE.md)
 maps every named theorem to its mathematical role in the public manuscript.
 

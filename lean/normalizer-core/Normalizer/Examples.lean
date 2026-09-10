@@ -9,6 +9,13 @@ import Normalizer.LineTensor
 import Normalizer.AffineLocallyFree
 import Normalizer.AffinePresentedNeighborhood
 import Normalizer.StalkLocalFreeness
+import Normalizer.SheafCokernelFinitePresentation
+import Normalizer.SaturatedStalkQuotient
+import Normalizer.SmoothSchemeStalks
+import Normalizer.ProperConstants
+import Normalizer.GenericBoundary
+import Normalizer.ExteriorLineTrivialization
+import Normalizer.DeterminantGenericNonzero
 
 /-! Focused exact matrix tests. These are kernel-checked, symbolic over an
 arbitrary characteristic-zero field, rather than floating-point evaluations. -/
@@ -379,3 +386,143 @@ example : IsPrincipalIdealRing ℚ := by
   exact zero_le_one
 
 end LocallyFreeAssemblyChecks
+
+section CokernelPresentationChecks
+open CategoryTheory Limits AlgebraicGeometry
+set_option backward.isDefEq.respectTransparency false
+
+-- Multiplication by two on the integer structure sheaf has a finitely
+-- presented actual cokernel, without requiring its stalks to be free.
+example :
+    (cokernel ((tilde.functor (CommRingCat.of ℤ)).map
+      (ModuleCat.ofHom (2 • (LinearMap.id : ℤ →ₗ[ℤ] ℤ))))).IsFinitePresentation := by
+  let M := ModuleCat.of ℤ ℤ
+  let : ((tilde.functor (CommRingCat.of ℤ)).obj (ModuleCat.of ℤ ℤ)).IsFinitePresentation :=
+    Normalizer.tilde_isFinitePresentation (A := CommRingCat.of ℤ) M
+  exact Normalizer.sheaf_cokernel_isFinitePresentation _
+
+end CokernelPresentationChecks
+
+section SaturatedStalkChecks
+open CategoryTheory Limits AlgebraicGeometry
+set_option backward.isDefEq.respectTransparency false
+
+-- Quotienting any actual sheaf by itself gives torsion-free stalks,
+-- even when the original sheaf has torsion. No ambient freeness is used.
+example {X : Scheme} [IsIntegral X] (E : X.Modules) (x : X) :
+    Module.IsTorsionFree (X.presheaf.stalk x)
+      ((cokernel (𝟙 E)).presheaf.stalk x) := by
+  apply Normalizer.sheaf_cokernel_stalk_isTorsionFree_of_saturated
+  intro r hr v hv
+  refine ⟨v, ?_⟩
+  obtain ⟨U, hxU, a, rfl⟩ := E.presheaf.exists_germ_eq v
+  rw [Normalizer.schemeModuleStalkMap_germ]
+  simp
+
+-- The stalk quotient comparison respects actual germs and the actual
+-- sheaf projection, rather than only giving an abstract linear equivalence.
+example {X : Scheme} {M E : X.Modules} (f : M ⟶ E) [Mono f]
+    (x : X) (U : X.Opens) (hxU : x ∈ U) (s : Γ(E, U)) :
+    Normalizer.sheafCokernelStalkEquiv f x
+        (Submodule.Quotient.mk (E.presheaf.germ U x hxU s)) =
+      (cokernel f).presheaf.germ U x hxU ((cokernel.π f).app U s) := by
+  rw [Normalizer.sheafCokernelStalkEquiv_mk, Normalizer.schemeModuleStalkMap_germ]
+
+end SaturatedStalkChecks
+
+section SmoothRegularityChecks
+open CategoryTheory AlgebraicGeometry
+
+-- The algebra result covers every prime of a polynomial algebra, including
+-- non-maximal primes; it imposes no characteristic-zero restriction.
+example (k : Type*) [Field k] (p : Ideal (MvPolynomial (Fin 2) k)) [p.IsPrime] :
+    IsRegularLocalRing (Localization.AtPrime p) := by
+  let : Algebra.Smooth k (MvPolynomial (Fin 2) k) := {}
+  exact Normalizer.regularLocal_localization_of_smooth k (MvPolynomial (Fin 2) k) p
+
+-- The geometric result acts on the actual structure-sheaf stalk, including
+-- the dimension-zero smooth case.
+example (x : Spec (CommRingCat.of ℚ)) :
+    IsRegularLocalRing ((Spec (CommRingCat.of ℚ)).presheaf.stalk x) :=
+  Normalizer.smoothScheme_stalk_isRegularLocalRing ℚ (𝟙 _) x
+
+end SmoothRegularityChecks
+
+-- The constants map need not be surjective for an affine polynomial
+-- algebra. Properness cannot be discarded from the geometric result.
+example (k : Type*) [Field k] :
+    ¬ Function.Surjective (Polynomial.C : k →+* Polynomial k) := by
+  intro h
+  obtain ⟨c, hc⟩ := h Polynomial.X
+  have he := congrArg (fun p : Polynomial k ↦ p.coeff 1) hc
+  simp at he
+
+section GenericFibreChecks
+open CategoryTheory AlgebraicGeometry TensorProduct
+set_option backward.isDefEq.respectTransparency false
+
+-- Three genuine free-sheaf generators remain independent over the actual
+-- function field, without assuming generic independence separately.
+example {X : Scheme} [IsIntegral X] :
+    LinearIndependent X.functionField (Normalizer.freeSheafGenericGenerators
+      (X := X) (I := Fin 3)) :=
+  Normalizer.freeSheafGenericGenerators_linearIndependent (Fin 3)
+
+-- Any actual rank-three free-sheaf inclusion has a three-dimensional
+-- generic image. This exercises the inclusion-to-dimension interface.
+example {X : Scheme} [IsIntegral X] (K : X.Modules)
+    (f : (SheafOfModules.free (R := X.ringCatSheaf) (Fin 3) : X.Modules) ⟶ K)
+    [Mono f] :
+    Module.finrank X.functionField (Submodule.span X.functionField
+      (Set.range (fun i : Fin 3 ↦ K.presheaf.germ ⊤ (genericPoint X) (by trivial)
+        (f.val.app (Opposite.op ⊤) (Normalizer.freeSheafGenerator i))))) = 3 := by
+  simpa only [Fintype.card_fin] using
+    Normalizer.freeSheaf_mono_generic_span_finrank (Fin 3) f
+
+-- The scalar-extended character uses the actual tensor construction.
+example {F Ω V : Type*} [Field F] [Field Ω] [Algebra F Ω]
+    [AddCommGroup V] [Module F V] (χ : V →ₗ[F] F) (v : V) :
+    Normalizer.boundaryCharacterBaseChange (Ω := Ω) χ ((1 : Ω) ⊗ₜ[F] v) =
+      algebraMap F Ω (χ v) := by
+  simp [Normalizer.boundaryCharacterBaseChange_tmul]
+
+end GenericFibreChecks
+
+section ExteriorLineChecks
+open CategoryTheory AlgebraicGeometry
+set_option backward.isDefEq.respectTransparency false
+
+-- Rank zero is included: the zeroth exterior sheaf of the zero bundle
+-- is a line, without a positive-rank assumption.
+example {X : Scheme} : Nonempty
+    (SheafOfModules.unit X.ringCatSheaf ≅
+      Normalizer.schemeExteriorSheaf (Normalizer.schemeTrivialBundle X (Fin 0)) 0) :=
+  ⟨Normalizer.bundleTopExteriorSheafIso (Equiv.refl (Fin 0)) (Iso.refl _)⟩
+
+-- A rank-two frame gives the actual exterior line on any open,
+-- including the empty open; this checks the restriction construction.
+example {X : Scheme} (U : X.Opens) : Nonempty
+    ((SheafOfModules.unit X.ringCatSheaf).over U ≅
+      (Normalizer.schemeExteriorSheaf (Normalizer.schemeTrivialBundle X (Fin 2)) 2).over U) :=
+  ⟨Normalizer.bundleTopExteriorSheafIsoOver (Equiv.refl (Fin 2)) (Iso.refl _)⟩
+
+end ExteriorLineChecks
+
+section ExteriorGenericChecks
+open CategoryTheory AlgebraicGeometry
+set_option backward.isDefEq.respectTransparency false
+
+-- The empty family has nonzero exterior section on every integral scheme,
+-- including for sheaves with no chosen bundle chart.
+example {X : Scheme} [IsIntegral X] (H : X.Modules) :
+    Normalizer.schemeExteriorGlobalSection H 0 (fun i ↦ Fin.elim0 i) ≠ 0 :=
+  Normalizer.schemeExteriorGlobalSection_ne_zero H 0 _ (linearIndependent_empty_type)
+
+-- Repeated actual global sections give zero, so independence is essential.
+example {X : Scheme} (H : X.Modules) (s : Γ(H, ⊤)) :
+    Normalizer.schemeExteriorGlobalSection H 2 (fun _ ↦ s) = 0 := by
+  unfold Normalizer.schemeExteriorGlobalSection Normalizer.schemeExteriorPure
+  rw [(exteriorPower.ιMulti _ 2).map_eq_zero_of_eq (fun _ ↦ s)
+    (i := 0) (j := 1) rfl (by decide), map_zero]
+
+end ExteriorGenericChecks

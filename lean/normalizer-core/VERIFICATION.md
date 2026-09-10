@@ -1,10 +1,14 @@
 # Verification record
 
-The public package was checked locally on 8 September 2026.
+This continuation was checked locally on 9 September 2026. It extends public
+commit `87cb21ff4f83d56d326793433ef6569a2d6e81bd`. The local evidence below
+is supplemented by the pull request's hosted checks and
+[workflow runs](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/lean-normalizer.yml),
+which record their own source commit and outcome.
 
 | Check | Result |
 |---|---|
-| `python3 scripts/verify.py` | **PASS**: complete library and audit build, 233 named theorems, 340 audited named declarations, 35 compiled examples. |
+| `python3 scripts/verify.py` | **PASS**: complete library and audit build, 472 named theorems, 679 audited named declarations, 48 compiled examples. |
 | `#print axioms` for every audited name | Only `propext`, `Classical.choice`, and `Quot.sound`. |
 | Proof placeholders and custom axioms | None in the proved core. |
 | `python3 scripts/check_correspondence.py` | Checks every named declaration link, its source line, and local package documentation links. |
