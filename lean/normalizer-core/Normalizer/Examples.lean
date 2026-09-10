@@ -16,6 +16,7 @@ import Normalizer.ProperConstants
 import Normalizer.GenericBoundary
 import Normalizer.ExteriorLineTrivialization
 import Normalizer.DeterminantGenericNonzero
+import Normalizer.SectionZeroDivisor
 
 /-! Focused exact matrix tests. These are kernel-checked, symbolic over an
 arbitrary characteristic-zero field, rather than floating-point evaluations. -/
@@ -526,3 +527,41 @@ example {X : Scheme} (H : X.Modules) (s : Γ(H, ⊤)) :
     (i := 0) (j := 1) rfl (by decide), map_zero]
 
 end ExteriorGenericChecks
+
+section SectionZeroChecks
+open CategoryTheory AlgebraicGeometry Opposite
+set_option backward.isDefEq.respectTransparency false
+
+-- A zero specified section gives the zero ideal, including its scheme structure.
+example {X : Scheme} (V : X.Opens) :
+    Normalizer.schemeSectionImageIdeal
+      (Normalizer.schemeSectionDualEvaluation (SheafOfModules.unit X.ringCatSheaf) 0) V = ⊥ := by
+  rw [Normalizer.schemeSectionDualEvaluation_imageIdeal _ _ (Iso.refl
+    ((SheafOfModules.unit X.ringCatSheaf).over ⊤)) V le_top]
+  simp [Normalizer.sectionLocalEquation]
+
+-- The constant unit section gives the unit ideal, hence has no local zeros.
+example {X : Scheme} (V : X.Opens) :
+    Normalizer.schemeSectionImageIdeal
+      (Normalizer.schemeSectionDualEvaluation (SheafOfModules.unit X.ringCatSheaf)
+        (1 : Γ(X, ⊤))) V = ⊤ := by
+  rw [Normalizer.schemeSectionDualEvaluation_imageIdeal _ _ (Iso.refl
+    ((SheafOfModules.unit X.ringCatSheaf).over ⊤)) V le_top]
+  change Ideal.span {X.presheaf.map (homOfLE (show V ≤ ⊤ from le_top)).op
+    (1 : Γ(X, ⊤))} = ⊤
+  simp
+
+-- A regular equation can still vanish: regularity does not assert invertibility.
+example : IsRegular (Polynomial.X : Polynomial ℚ) ∧
+    ¬ IsUnit (Polynomial.X : Polynomial ℚ) := by
+  exact ⟨IsRegular.of_ne_zero Polynomial.X_ne_zero, Polynomial.not_isUnit_X⟩
+
+-- Principal zero ideals retain multiplicity; squaring is not silently reduced.
+example : (Polynomial.X : Polynomial ℚ) ∉
+    Ideal.span ({Polynomial.X ^ 2} : Set (Polynomial ℚ)) := by
+  rw [Ideal.mem_span_singleton]
+  intro h
+  have hd := Polynomial.natDegree_le_of_dvd h Polynomial.X_ne_zero
+  norm_num at hd
+
+end SectionZeroChecks

@@ -1,55 +1,73 @@
 # Exact remaining degree/nonvanishing interface
 
-The requested theorem is the implication in
+The target is the specified-section implication of
 [Stacks Lemma 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40): on a
 proper curve, a nonzero section of an invertible sheaf that vanishes at a
-point forces its degree to be positive. Its degree-zero contrapositive
-must concern the specified determinant section, not merely the existence
-of some abstract trivialization of its line bundle.
+point forces positive degree. Its degree-zero contrapositive must concern
+the specified determinant section.
 
-## First missing construction on the cited proof route
+## The concrete construction now proved
 
-Given an actual invertible module sheaf L and a regular specified global
-section s, construct its effective Cartier zero divisor D = Z(s), the
-actual invertible module O(D), and an isomorphism O(D) ≅ L carrying the
-canonical section to s. This is the construction in
+For an actual module sheaf L with genuine line charts, the core constructs
+the actual dual evaluation L-dual -> O at a specified global section s.
+On an integral scheme, nonzero generic germ proves this map monic and its
+actual local equations regular. Here regular means a non-zero-divisor;
+it does not mean invertible or nonzero in the residue field.
+
+Finite line-chart covers with quasi-compact inclusions construct an actual
+global ideal and closed zero subscheme D, with exact chart restrictions and
+cover independence. The actual image module I is identified with L-dual.
+Its dual Hom(I,O) is locally free and finitely presented, and a constructed
+isomorphism Hom(I,O) -> L carries the inclusion I -> O, viewed as a global
+dual section, to the specified s. The image module and global ideal are
+explicitly linked by their actual affine-chart ideal data.
+
+The determinant application supplies these line charts from the original
+rank-n bundle charts and supplies generic nonzeroness from independence of
+the actual specified generic germs. See
+[DeterminantZeroDivisor.lean](Normalizer/DeterminantZeroDivisor.lean) and
+[SectionIdealBundle.lean](Normalizer/SectionIdealBundle.lean).
+
+This supplies concrete ingredients of
 [Stacks Lemma 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0).
+It is not a general bundled effective-Cartier-divisor/O(D) API, nor a proof
+of the full two-way correspondence and uniqueness assertion on arbitrary
+schemes. No global IdealSheafData-to-Modules functor is supplied; the ideal
+module of this constructed D is linked by the proved chart comparisons.
 
-The pinned mathlib has ideal-sheaf and subscheme constructions, but this
-audit found no effective-Cartier-divisor/O(D) interface connecting them to
-the actual invertible module and its specified section. Local equations
-alone do not supply that missing global construction and comparison.
+## Exact next geometric lemma
 
-Next one must construct actual curve degree and prove
-deg L = deg D, and that a nonempty effective divisor has positive degree.
-The established degree is the Euler-characteristic difference in
-[Stacks Definition 33.44.1](https://stacks.math.columbia.edu/tag/0AYR), and
-the line-bundle/divisor equality is
-[Stacks Lemma 33.44.9](https://stacks.math.columbia.edu/tag/0AYY).
-Defining degree as the total length of the cokernel of this chosen section
-would omit the substantive comparison with that established degree.
+Let p : X -> Spec(k) be a proper integral curve, let s have nonzero generic
+germ in a line bundle, and let i : D -> X be its constructed zero subscheme.
+Prove that the actual composite i followed by p is finite.
 
-## Why the Euler-characteristic route does not yet close it
+This is the finiteness step of
+[Stacks Lemma 33.44.9](https://stacks.math.columbia.edu/tag/0AYY). It requires
+proving that the constructed zero scheme has dimension at most zero and
+using properness. Neither conclusion is currently a formal theorem for
+this constructed D. The finite quasi-compact chart inputs also need to be
+obtained from the actual curve and bundle data when applying this core.
 
-The library contains additive sheaf cohomology (`Sheaf.H`), module length
-and exact-sequence length formulas. A generic complex Euler-characteristic
-definition also exists. The audit found no assembled proper-coherent
-cohomology finiteness, dimension-one vanishing, coherent Euler additivity
-and zero-dimensional-support comparison applicable to these actual scheme
-module sheaves. Those are needed for the alternative proof through
-0 → O → L → coker(s) → 0.
+## Degree and positivity remain after finiteness
 
-The cited steps are [coherent Euler additivity](https://stacks.math.columbia.edu/tag/08AA)
-and [zero-dimensional support](https://stacks.math.columbia.edu/tag/0AYT).
-These are exact mathematical dependencies, not new formal hypotheses in
-the proved core. This is a missing formalization, not a refutation of the
-published degree lemma or of the manuscript's written implication.
+One must construct actual curve degree, prove that the line bundle degree
+equals the degree of this zero scheme, and show that a nonempty finite
+zero scheme has positive degree. The established line degree is the
+Euler-characteristic difference in
+[Stacks Definition 33.44.1](https://stacks.math.columbia.edu/tag/0AYR).
+Defining it as the length of the cokernel of this chosen section would
+omit the required comparison with that established degree.
 
-## Fail-closed boundary
+The pinned library has additive sheaf cohomology, module length and
+exact-sequence length formulas. The current core has not assembled proper
+coherent cohomology finiteness, dimension-one vanishing, coherent Euler
+additivity and the zero-dimensional-support comparison for these actual
+scheme module sheaves. The cited comparison uses
+[coherent Euler additivity](https://stacks.math.columbia.edu/tag/08AA) and
+[zero-dimensional support](https://stacks.math.columbia.edu/tag/0AYT).
 
-The exterior comparison and generic nonzeroness are separate from this
-degree argument. No degree function with a tailored definition, positivity
-axiom, arbitrary cohomology dimensions or substitute nonvanishing assumption
-has been added. The complete degree/nonvanishing theorem remains unformalized.
-The requested sequence therefore cannot yet be described as completed or
-published as a completed determinant argument.
+These are missing formalizations of written mathematical dependencies.
+No degree function tailored to the conclusion, positivity assumption,
+abstract cohomology dimensions or replacement nonvanishing assumption has
+been inserted into the proved core. The complete degree/nonvanishing
+theorem and section bound h0(E/M) <= 4 remain unformalized.

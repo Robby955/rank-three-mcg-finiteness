@@ -1,31 +1,33 @@
 # Verification record
 
-This continuation was checked locally on 9 September 2026. It extends public
-commit `87cb21ff4f83d56d326793433ef6569a2d6e81bd`. The local evidence below
-is supplemented by the pull request's hosted checks and
-[workflow runs](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/lean-normalizer.yml),
-which record their own source commit and outcome.
+This continuation was checked locally on 10 September 2026. It starts from
+public PR #7's merged commit `a7544c5b9136dd88d6741188a7be531d49bbace2`.
+The base package's hosted Linux checks passed. The new zero-ideal continuation
+has only been checked locally and has not been pushed or run by hosted CI.
 
 | Check | Result |
 |---|---|
-| `python3 scripts/verify.py` | **PASS**: complete library and audit build, 472 named theorems, 679 audited named declarations, 48 compiled examples. |
+| `python3 scripts/verify.py` | **PASS**: complete library and audit build, 547 named theorems, 791 audited named declarations, 52 compiled examples. |
 | `#print axioms` for every audited name | Only `propext`, `Classical.choice`, and `Quot.sound`. |
 | Proof placeholders and custom axioms | None in the proved core. |
-| `python3 scripts/check_correspondence.py` | Checks every named declaration link, its source line, and local package documentation links. |
+| `python3 scripts/check_correspondence.py` | **PASS**: 791 accurate declaration links and package documentation links. |
 | Source manifest | `SHA256SUMS` identifies the exact distributed package files, excluding itself and generated outputs. |
 
-The project build started without project build outputs or a receipts
-directory. It used existing compiled dependency caches at the pinned
-revisions. The run used Lean `4.34.0-rc2` on macOS ARM64, Lean commit
-`6a10ac8c22beadecabdbb0919c2b50214762f91d`, and mathlib commit
-`7974e751bece493b6ff508039423ca9fa2452fa8`.
+The isolated worktree reused the pinned dependency cache and a copied cache
+of the verified base package's build outputs. Base proof hashes were compared
+before reuse. Lake rebuilt the changed modules and their dependents, and the
+full library and regenerated declaration audit passed. This continuation does
+not claim a clean-from-zero project or dependency build.
 
-This is a local build of the public package, not independent external
-reproduction or a build of all dependencies from source. Hosted Linux CI
-has not been run as part of this local preparation. The dedicated workflow
-fetches the pinned toolchain and mathlib cache, rebuilds the package,
-checks the source manifest and correspondence, and uploads the generated
-logs and hashes.
+The run used Lean `4.34.0-rc2` on macOS ARM64, Lean commit
+`6a10ac8c22beadecabdbb0919c2b50214762f91d`, and mathlib commit
+`7974e751bece493b6ff508039423ca9fa2452fa8`. The base and new continuation have
+the same pins. This local run is not independent external reproduction.
+
+The dedicated workflow downloads the pinned toolchain and mathlib cache,
+builds the package, checks the source manifest and correspondence, and uploads
+logs and hashes. Hosted results must be checked for the new source commit
+before claiming hosted verification of this continuation.
 
 ## Reproduce the evidence
 

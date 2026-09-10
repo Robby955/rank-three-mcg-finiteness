@@ -67,3 +67,16 @@ import Normalizer.LocalFrameStalk
 import Normalizer.ExteriorStalkComparison
 import Normalizer.ExteriorNonzero
 import Normalizer.DeterminantGenericNonzero
+import Normalizer.SectionLocalEquation
+import Normalizer.SectionDualEvaluation
+import Normalizer.SectionZeroIdeal
+import Normalizer.IdealSheafGluing
+import Normalizer.SectionZeroScheme
+import Normalizer.ZeroIdealUniqueness
+import Normalizer.SectionEvaluationMono
+import Normalizer.SectionImageSheaf
+import Normalizer.DualTransport
+import Normalizer.LineBidual
+import Normalizer.SectionZeroDivisor
+import Normalizer.SectionIdealBundle
+import Normalizer.DeterminantZeroDivisor

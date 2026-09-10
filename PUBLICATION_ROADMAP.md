@@ -1,11 +1,13 @@
 # Formalization and publication roadmap
 
-This continuation extends public commit
-`87cb21ff4f83d56d326793433ef6569a2d6e81bd`. The previous public milestone
-contained 233 theorems, 340 audited declarations and 35 examples. The current
-package contains 472 theorems, 679 audited declarations and 48 examples.
-These counts describe the scope of checked declarations, not completion
-of the candidate representation theorem.
+This local continuation starts from merged public commit
+`a7544c5b9136dd88d6741188a7be531d49bbace2` (PR #7), whose package contained
+472 theorems, 679 audited declarations and 48 examples. The current local
+package contains 547 theorems, 791 audited declarations and 52 examples.
+The 75 new theorems concern actual zero ideals, inverse ideal modules and
+specified sections. Counts describe coverage, not completion of the candidate
+representation theorem. The new continuation has not been pushed or tested
+by hosted CI.
 
 ## Completed formal interfaces
 
@@ -18,17 +20,28 @@ of the candidate representation theorem.
 | Exterior line | Genuine rank-n bundle charts construct rank-one charts of the actual top exterior sheaf. |
 | Exterior stalk | The canonical actual stalk comparison is an isomorphism on genuine rank-n charts and preserves the specified wedge of section germs. |
 | Specified determinant | Function-field independence of the actual generic germs proves the specified exterior section has nonzero generic germ and is globally nonzero. |
+| Zero subscheme | Finite genuine line charts with quasi-compact inclusions construct the global ideal and closed subscheme, with exact restrictions and cover independence. |
+| Regularity | On an integral scheme, nonzero generic germ proves regular local equations and actual monic dual evaluation. |
+| Inverse ideal module | The dual of the actual image ideal module is locally free, finitely presented and canonically isomorphic to the original line, carrying the inclusion section to the specified section. |
 
 ## Next mathematical construction
 
-Formalize the effective Cartier zero divisor of a regular specified section
-of an actual invertible sheaf and construct the section-preserving
-identification of its associated invertible sheaf with the original one.
-This is the first missing construction on the proof route for
+Prove that the constructed zero scheme D is finite over the base field when
+X is a proper integral curve and the specified section has nonzero generic
+germ. This is the finiteness step in
+[Stacks Lemma 33.44.9](https://stacks.math.columbia.edu/tag/0AYY).
+Then establish actual curve degree and prove the comparison between the
+line bundle's Euler-characteristic degree and the degree of D; prove that
+nonempty D has positive degree. These are prerequisites for the desired
+specified-section implication in
 [Stacks Lemma 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40).
-Then construct actual curve degree, prove its divisor-degree comparison,
-and derive that a nonzero section of a degree-zero line bundle has no zeros.
-See the [precise dependency gap](lean/normalizer-core/DEGREE_NONVANISHING_GAP.md).
+
+The current proofs construct the concrete zero ideal and inverse image-ideal
+module. They do not expose a general bundled effective-Cartier-divisor/O(D)
+API or prove the full equivalence and uniqueness statement of Stacks 31.15.10.
+The finite quasi-compact chart inputs also need to be instantiated on the
+actual curve. See the [exact gap](lean/normalizer-core/DEGREE_NONVANISHING_GAP.md)
+and [local checkpoint](lean/normalizer-core/ZERO_DIVISOR_CHECKPOINT.md).
 
 The construction of the actual saturated evaluation subbundle and its
 degree zero, the rank-two section estimate, the global boundary application

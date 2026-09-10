@@ -5,7 +5,7 @@ normalizer reduction, and supporting sheaf and generic-stalk results in Lean 4.
 It does not formally verify the candidate rank-three finite-image theorem,
 the square endpoint, or a genus-three result.
 
-The core has 472 named theorems, 679 audited named declarations, and 48
+The core has 547 named theorems, 791 audited named declarations, and 52
 examples. The proofs use only `propext`, `Classical.choice`, and `Quot.sound`.
 There are no proof placeholders or custom axioms in this package.
 See the [verification record](VERIFICATION.md) for the scope of the checks.
@@ -53,11 +53,21 @@ in `sl₃(F)`, over a characteristic-zero field `F`.
    This does not infer generic independence from base-field independence or
    prove nonvanishing at every point.
 
-The degree/nonvanishing implication is still unformalized. The first missing
-construction on the cited proof route is the effective Cartier zero divisor
-of the specified regular section, with its associated invertible sheaf and
-section-preserving comparison. Actual degree theory and its divisor-degree
-comparison must follow. See [the exact gap](DEGREE_NONVANISHING_GAP.md).
+10. **Zero ideal and inverse module.** Finite genuine line-chart covers with
+    quasi-compact inclusions construct the actual global zero ideal and closed
+    subscheme, independent of the chosen cover. On an integral scheme, generic
+    nonzeroness gives regular local equations and monic dual evaluation.
+    The dual of its actual image ideal module is identified with the original
+    line module, carrying the canonical inclusion section to the specified
+    section. The determinant specialization constructs its line charts from
+    actual rank-n bundle charts.
+
+The degree/nonvanishing implication is still unformalized. The next geometric
+lemma is finiteness of the constructed zero scheme over the field for a proper
+integral curve. Actual curve degree, its divisor comparison and positivity
+must follow. These results are not a general bundled effective-Cartier-divisor
+or O(D) API. See [the exact gap](DEGREE_NONVANISHING_GAP.md) and
+[the current checkpoint](ZERO_DIVISOR_CHECKPOINT.md).
 The required curve sections and representation-derived geometric data remain
 application obligations. Overall formalization verdict: **PARTIAL**.
 
@@ -67,7 +77,8 @@ Start with [Flagship.lean](Normalizer/Flagship.lean) for the matrix quotient
 obstructions and [Boundary.lean](Normalizer/Boundary.lean) for the abstract
 boundary law. [ExteriorStalkComparison.lean](Normalizer/ExteriorStalkComparison.lean)
 and [DeterminantGenericNonzero.lean](Normalizer/DeterminantGenericNonzero.lean)
-contain the new determinant interfaces. [OVERVIEW.md](OVERVIEW.md) explains the dependency structure
+contain the exterior interfaces. [DeterminantZeroDivisor.lean](Normalizer/DeterminantZeroDivisor.lean)
+connects their specified section to the new zero-ideal and inverse-module constructions. [OVERVIEW.md](OVERVIEW.md) explains the dependency structure
 and the remaining proof obligations. [CORRESPONDENCE.md](CORRESPONDENCE.md)
 maps every named theorem to its mathematical role in the public manuscript.
 
