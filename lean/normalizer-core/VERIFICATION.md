@@ -1,9 +1,10 @@
 # Verification record
 
-This continuation was checked locally on 9 September 2026. It is prepared
-on a new branch above public commit
-`87cb21ff4f83d56d326793433ef6569a2d6e81bd` and has not been pushed or tested
-by hosted CI.
+This continuation was checked locally on 9 September 2026. It extends public
+commit `87cb21ff4f83d56d326793433ef6569a2d6e81bd`. The local evidence below
+is supplemented by the pull request's hosted checks and
+[workflow runs](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/lean-normalizer.yml),
+which record their own source commit and outcome.
 
 | Check | Result |
 |---|---|

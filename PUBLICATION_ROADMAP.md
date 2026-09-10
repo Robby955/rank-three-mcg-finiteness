@@ -1,6 +1,6 @@
 # Formalization and publication roadmap
 
-This continuation is prepared locally above public commit
+This continuation extends public commit
 `87cb21ff4f83d56d326793433ef6569a2d6e81bd`. The previous public milestone
 contained 233 theorems, 340 audited declarations and 35 examples. The current
 package contains 472 theorems, 679 audited declarations and 48 examples.
@@ -39,11 +39,12 @@ fixed-part, descent, HN, Hodge-theoretic, arithmetic and finiteness arguments.
 ## Verification and release boundary
 
 The local checks and their reproducible commands are in the
-[verification record](lean/normalizer-core/VERIFICATION.md). The current
-continuation has not been pushed or tested by hosted CI. The existing CI
-workflow will regenerate the axiom audit and check hashes and correspondence
-when a branch is published. Passing it would establish replay of the listed
-formal propositions, not missing geometric hypotheses or external review.
+[verification record](lean/normalizer-core/VERIFICATION.md). The CI workflow
+regenerates the axiom audit and checks hashes and correspondence. Its hosted
+results are recorded in the pull request checks and
+[workflow runs](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/lean-normalizer.yml).
+Those checks establish replay of the listed formal propositions. The missing
+geometric hypotheses and external mathematical review remain separate.
 
 The degree/nonvanishing step is not a completed formal theorem. This update
 is a **PARTIAL formalization milestone**. The manuscript labels stay fixed:
