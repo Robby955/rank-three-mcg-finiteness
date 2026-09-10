@@ -17,6 +17,8 @@ import Normalizer.GenericBoundary
 import Normalizer.ExteriorLineTrivialization
 import Normalizer.DeterminantGenericNonzero
 import Normalizer.SectionZeroDivisor
+import Normalizer.SectionZeroFinite
+import Mathlib.RingTheory.AdjoinRoot
 
 /-! Focused exact matrix tests. These are kernel-checked, symbolic over an
 arbitrary characteristic-zero field, rather than floating-point evaluations. -/
@@ -565,3 +567,34 @@ example : (Polynomial.X : Polynomial ℚ) ∉
   norm_num at hd
 
 end SectionZeroChecks
+
+section FiniteZeroSchemeChecks
+open CategoryTheory AlgebraicGeometry Opposite
+set_option backward.isDefEq.respectTransparency false
+
+-- The doubled point has a nonzero nilpotent. Its scheme structure must survive
+-- the finiteness and function-space arguments.
+example : ∃ a : AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2), a ≠ 0 ∧ a ^ 2 = 0 := by
+  refine ⟨AdjoinRoot.root _, ?_, ?_⟩
+  · exact AdjoinRoot.mk_ne_zero_of_natDegree_lt
+      (Polynomial.monic_X.pow 2) Polynomial.X_ne_zero (by norm_num)
+  · rw [← AdjoinRoot.mk_X, ← map_pow, AdjoinRoot.mk_self]
+
+-- Apply the actual finite-scheme function theorem to that nonreduced doubled point,
+-- with its field action induced by its actual structure morphism.
+example :
+    let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+    let p : Spec (CommRingCat.of R) ⟶ Spec (CommRingCat.of ℚ) :=
+      Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+    let := Normalizer.schemeGlobalFunctionsAlgebra p
+    0 < Module.finrank ℚ Γ(Spec (CommRingCat.of R), ⊤) := by
+  let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+  let p : Spec (CommRingCat.of R) ⟶ Spec (CommRingCat.of ℚ) :=
+    Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+  have : Nontrivial R := AdjoinRoot.nontrivial _ (by norm_num)
+  have : Module.Finite ℚ R := (Polynomial.monic_X.pow 2).finite_adjoinRoot
+  have : IsFinite p := (IsFinite.SpecMap_iff _).mpr
+    (RingHom.finite_algebraMap.mpr inferInstance)
+  exact Normalizer.finiteScheme_globalFunctions_finrank_pos p
+
+end FiniteZeroSchemeChecks

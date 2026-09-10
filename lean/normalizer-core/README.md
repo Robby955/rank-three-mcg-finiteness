@@ -5,7 +5,7 @@ normalizer reduction, and supporting sheaf and generic-stalk results in Lean 4.
 It does not formally verify the candidate rank-three finite-image theorem,
 the square endpoint, or a genus-three result.
 
-The core has 547 named theorems, 791 audited named declarations, and 52
+The core has 591 named theorems, 836 audited named declarations, and 54
 examples. The proofs use only `propext`, `Classical.choice`, and `Quot.sound`.
 There are no proof placeholders or custom axioms in this package.
 See the [verification record](VERIFICATION.md) for the scope of the checks.
@@ -62,10 +62,17 @@ in `sl₃(F)`, over a characteristic-zero field `F`.
     section. The determinant specialization constructs its line charts from
     actual rank-n bundle charts.
 
+11. **Finite zero scheme.** On a proper integral curve, a nonzero global
+    line-bundle section and genuine pointwise charts construct a finite
+    quasi-compact cover and a finite actual zero scheme D. A zero of the
+    specified section gives positive dimension of Gamma(D,O_D), with its
+    actual base-field action and full nilpotent structure retained.
+
 The degree/nonvanishing implication is still unformalized. The next geometric
-lemma is finiteness of the constructed zero scheme over the field for a proper
-integral curve. Actual curve degree, its divisor comparison and positivity
-must follow. These results are not a general bundled effective-Cartier-divisor
+construction is the actual sequence `0 -> O_X --s--> L -> i_*(L|D) -> 0`,
+followed by its Euler-characteristic comparison with line-bundle degree.
+The proved dimension of Gamma(D,O_D) is not a definition of line degree.
+These results are not a general bundled effective-Cartier-divisor
 or O(D) API. See [the exact gap](DEGREE_NONVANISHING_GAP.md) and
 [the current checkpoint](ZERO_DIVISOR_CHECKPOINT.md).
 The required curve sections and representation-derived geometric data remain
@@ -78,7 +85,9 @@ obstructions and [Boundary.lean](Normalizer/Boundary.lean) for the abstract
 boundary law. [ExteriorStalkComparison.lean](Normalizer/ExteriorStalkComparison.lean)
 and [DeterminantGenericNonzero.lean](Normalizer/DeterminantGenericNonzero.lean)
 contain the exterior interfaces. [DeterminantZeroDivisor.lean](Normalizer/DeterminantZeroDivisor.lean)
-connects their specified section to the new zero-ideal and inverse-module constructions. [OVERVIEW.md](OVERVIEW.md) explains the dependency structure
+connects their specified section to the zero-ideal and inverse-module constructions.
+[SectionZeroFinite.lean](Normalizer/SectionZeroFinite.lean) proves actual
+finiteness and positive zero-scheme function dimension. [OVERVIEW.md](OVERVIEW.md) explains the dependency structure
 and the remaining proof obligations. [CORRESPONDENCE.md](CORRESPONDENCE.md)
 maps every named theorem to its mathematical role in the public manuscript.
 

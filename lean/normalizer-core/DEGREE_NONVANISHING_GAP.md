@@ -10,7 +10,9 @@ the specified determinant section.
 
 For an actual module sheaf L with genuine line charts, the core constructs
 the actual dual evaluation L-dual -> O at a specified global section s.
-On an integral scheme, nonzero generic germ proves this map monic and its
+On an integral scheme, genuine pointwise line charts prove that the global
+section map into the generic stalk is injective. Thus a nonzero global
+section has nonzero generic germ. That proves dual evaluation monic and its
 actual local equations regular. Here regular means a non-zero-divisor;
 it does not mean invertible or nonzero in the residue field.
 
@@ -35,25 +37,59 @@ of the full two-way correspondence and uniqueness assertion on arbitrary
 schemes. No global IdealSheafData-to-Modules functor is supplied; the ideal
 module of this constructed D is linked by the proved chart comparisons.
 
-## Exact next geometric lemma
+## Actual finiteness and positive function dimension now proved
 
-Let p : X -> Spec(k) be a proper integral curve, let s have nonzero generic
-germ in a line bundle, and let i : D -> X be its constructed zero subscheme.
-Prove that the actual composite i followed by p is finite.
+For a proper integral curve p : X -> Spec(k), a nonzero global section s
+and genuine pointwise line charts, the core constructs a finite
+quasi-compact chart cover and proves its actual zero scheme D finite over k.
+The proof derives generic-point exclusion, dimension at most zero, and
+finiteness of the actual morphism D -> Spec(k). It retains nilpotents and
+includes the empty zero scheme. Properness is sufficient; the fixed-cover
+finiteness result only needs X of finite type over k and dimension at most one.
 
-This is the finiteness step of
-[Stacks Lemma 33.44.9](https://stacks.math.columbia.edu/tag/0AYY). It requires
-proving that the constructed zero scheme has dimension at most zero and
-using properness. Neither conclusion is currently a formal theorem for
-this constructed D. The finite quasi-compact chart inputs also need to be
-obtained from the actual curve and bundle data when applying this core.
+Under the scalar action induced by that actual morphism, Gamma(D,O_D) is
+finite-dimensional, its dimension is zero exactly when D is empty, and a
+zero of the specified section gives strictly positive dimension. The zero
+condition is noninvertibility of the actual local equation in the local
+ring. Its equivalence with membership in the constructed support is proved.
+The determinant specialization constructs its line charts and generic
+nonzeroness from the actual rank-n charts and generic independence. See
+[SectionZeroFinite.lean](Normalizer/SectionZeroFinite.lean),
+[SectionZeroLocus.lean](Normalizer/SectionZeroLocus.lean) and
+[LineGenericInjection.lean](Normalizer/LineGenericInjection.lean).
 
-## Degree and positivity remain after finiteness
+These are finiteness and function-dimension ingredients of
+[Stacks Lemma 33.44.9](https://stacks.math.columbia.edu/tag/0AYY).
+They do not yet identify a line-bundle degree with this dimension.
 
-One must construct actual curve degree, prove that the line bundle degree
-equals the degree of this zero scheme, and show that a nonempty finite
-zero scheme has positive degree. The established line degree is the
-Euler-characteristic difference in
+## Exact next geometric lemma and degree comparison
+
+For the actual closed immersion i : D -> X, construct the restriction and
+direct-image module sheaves and prove the actual short exact sequence
+
+```text
+0 -> O_X --s--> L -> i_*(L|D) -> 0.
+```
+
+The next implementation entry point is the scalar comparison
+`cokernel (schemeSectionDualEvaluation L s) ≅ i_* O_D`, compatible with
+the actual quotient maps. The canonical map O_X -> i_* O_D already exists
+as `SheafOfModules.unitToPushforwardObjUnit i.toRingCatSheafHom`.
+Mathlib's `IdealSheafData.subschemeι_app_surjective` and
+`ker_subschemeι_app`, together with the proved section ideal chart
+comparisons, supply the local quotient-ring data. The remaining work is
+to assemble that data into the actual module-sheaf cokernel comparison.
+
+For L, the canonical map to i_*(L|D) is already the unit of
+`Scheme.Modules.pullbackPushforwardAdjunction i`. Its identification as
+the cokernel of `schemeSectionHom L s` has not been proved. Genuine line
+frames should transport the scalar comparison locally. Categorical
+cokernel exactness alone does not establish this geometric identification.
+
+Then prove that its Euler-characteristic comparison identifies the
+established degree of L with dim_k Gamma(D,O_D). This is the missing bridge
+from the proved positive function dimension to positive line-bundle degree.
+The established line degree is the Euler-characteristic difference in
 [Stacks Definition 33.44.1](https://stacks.math.columbia.edu/tag/0AYR).
 Defining it as the length of the cokernel of this chosen section would
 omit the required comparison with that established degree.
@@ -67,7 +103,7 @@ scheme module sheaves. The cited comparison uses
 [zero-dimensional support](https://stacks.math.columbia.edu/tag/0AYT).
 
 These are missing formalizations of written mathematical dependencies.
-No degree function tailored to the conclusion, positivity assumption,
+No degree function tailored to the conclusion, line-degree positivity assumption,
 abstract cohomology dimensions or replacement nonvanishing assumption has
 been inserted into the proved core. The complete degree/nonvanishing
 theorem and section bound h0(E/M) <= 4 remain unformalized.

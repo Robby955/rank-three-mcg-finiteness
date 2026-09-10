@@ -1,8 +1,8 @@
 # Public manuscript-to-Lean correspondence
 
 All declaration names have the prefix `Normalizer.`. This table covers all
-547 named theorems and 244 named constructions;
-all 791 declarations are included in `AxiomAudit.lean`.
+591 named theorems and 245 named constructions;
+all 836 declarations are included in `AxiomAudit.lean`.
 
 The source is the public repository at commit
 `12f81e2852e0a8e71f16777d9eb9c7bc8916e6df`:
@@ -1410,3 +1410,88 @@ API, divisor finiteness and degree comparison are not asserted here.
 | Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantZeroIdeal_comap`](Normalizer/DeterminantZeroDivisor.lean#L90) | theorem | The global determinant zero ideal restricts exactly to the actual local image ideal; compatibility is derived from the same evaluation map. |
 | Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantZeroIdeal_chart_ideal`](Normalizer/DeterminantZeroDivisor.lean#L100) | theorem | Each affine open of a chart has the actual specified determinant equation as generator of the restriction of the global zero ideal. |
 | Specified determinant application of the regular-section construction; not the degree implication | [`schemeDeterminantZeroIdeal_chart_germ_regular`](Normalizer/DeterminantZeroDivisor.lean#L111) | theorem | Generic independence gives a regular generator for the actual local ring image of the global determinant zero ideal on every affine chart. |
+
+## CurveClosedSubscheme
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Topological support for finite zero schemes in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`topologicalKrullDim_nonpos_of_closedEmbedding`](Normalizer/CurveClosedSubscheme.lean#L15) | theorem | A nonsurjective closed embedding into an irreducible space of dimension at most one has zero-dimensional source, including the empty case. |
+| Topological support for finite zero schemes in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`closedSubscheme_dimension_nonpos`](Normalizer/CurveClosedSubscheme.lean#L43) | theorem | An actual closed subscheme omitting the generic point of an integral scheme of dimension at most one has topological dimension at most zero. |
+
+## FiniteZeroDimensional
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_isArtinian_of_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L18) | theorem | A quasi-compact locally Noetherian scheme of dimension at most zero is an actual Artinian scheme. The empty scheme is included. |
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_finite_points_of_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L24) | theorem | The underlying point set of such a scheme is finite; the conclusion does not discard its possibly nonreduced scheme structure. |
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_isFinite_of_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L33) | theorem | A quasi-compact finite-type morphism to a field with zero-dimensional source is finite as an actual scheme morphism. Properness is unnecessary. |
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_isFinite_of_compact_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L44) | theorem | Compactness of the source suffices in place of an explicit quasi-compactness hypothesis on its finite-type structure morphism. |
+| Finite-type dimension-zero support for [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`scheme_isFinite_of_proper_dim_le_zero`](Normalizer/FiniteZeroDimensional.lean#L50) | theorem | A proper scheme over a field whose dimension is at most zero is finite over that field, including its full nilpotent structure. |
+
+## SectionZeroSupport
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionImageIdealOn_genericPoint_not_mem`](Normalizer/SectionZeroSupport.lean#L19) | theorem | The actual local zero ideal of the specified section excludes the generic point of every nonempty genuine line chart. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroIdeal_genericPoint_not_mem`](Normalizer/SectionZeroSupport.lean#L56) | theorem | A section with nonzero generic germ has an actual zero ideal whose support excludes the generic point; no support condition is assumed. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroScheme_genericPoint_not_mem_range`](Normalizer/SectionZeroSupport.lean#L75) | theorem | The generic point is not in the range of the actual zero-scheme immersion. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroIdeal_support_ne_top`](Normalizer/SectionZeroSupport.lean#L86) | theorem | The support of the actual zero ideal is a proper closed subset. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroIdeal_support_interior_eq_empty`](Normalizer/SectionZeroSupport.lean#L96) | theorem | The actual zero support has empty interior. |
+| Actual generic-point exclusion supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionZeroIdeal_support_isNowhereDense`](Normalizer/SectionZeroSupport.lean#L110) | theorem | The closed support of the actual zero ideal is nowhere dense. |
+
+## FiniteLineCharts
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Proper-curve chart extraction supporting the constructed section zero ideal | [`exists_finite_lineCharts`](Normalizer/FiniteLineCharts.lean#L16) | theorem | Compactness extracts finitely many genuine charts from pointwise local line triviality, without assuming a finite cover. |
+| Proper-curve chart extraction supporting the constructed section zero ideal | [`exists_finite_quasiCompact_lineCharts`](Normalizer/FiniteLineCharts.lean#L33) | theorem | On a noetherian scheme the finite genuine line charts have quasi-compact inclusions, as required by the actual ideal-sheaf gluing construction. |
+
+## FiniteSchemeSections
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`schemeGlobalFunctionsAlgebra`](Normalizer/FiniteSchemeSections.lean#L19) | def | The actual base-field algebra structure on global functions. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`schemeGlobalFunctionsAlgebra_map`](Normalizer/FiniteSchemeSections.lean#L23) | theorem | The scalar structure is induced by the specified structure morphism. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_constantMap_finite`](Normalizer/FiniteSchemeSections.lean#L28) | theorem | A finite scheme morphism induces a finite map on actual global functions. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_globalFunctions_finite`](Normalizer/FiniteSchemeSections.lean#L34) | theorem | Global functions are a finite module for the actual structure-map action. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_globalFunctions_finiteDimensional`](Normalizer/FiniteSchemeSections.lean#L39) | theorem | Over a field, the actual global function module is finite-dimensional. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`schemeGlobalFunctions_nontrivial`](Normalizer/FiniteSchemeSections.lean#L45) | theorem | Nonempty schemes have nontrivial global function rings, as witnessed by the germ map into a nontrivial local ring at an actual point. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_globalFunctions_finrank_pos`](Normalizer/FiniteSchemeSections.lean#L50) | theorem | The global function space of a nonempty finite scheme has positive dimension. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`schemeGlobalFunctions_subsingleton_of_isEmpty`](Normalizer/FiniteSchemeSections.lean#L59) | theorem | An empty scheme has only one global regular function. |
+| Actual finite-scheme function dimension supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no line-degree comparison | [`finiteScheme_globalFunctions_finrank_eq_zero_iff`](Normalizer/FiniteSchemeSections.lean#L69) | theorem | For an actual finite scheme over the field, vanishing of the dimension of its global function space is equivalent to emptiness of the scheme. |
+
+## SectionZeroLocus
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionImageIdealOn_mem_support_iff`](Normalizer/SectionZeroLocus.lean#L17) | theorem | On an affine open inside a genuine line chart, the actual local image ideal contains a point in its support exactly when the equation germ is a nonunit. |
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionZeroIdeal_mem_support_iff_affine`](Normalizer/SectionZeroLocus.lean#L38) | theorem | The global zero ideal has the exact nonunit-germ support test on each actual affine chart; global support is derived from exact ideal restriction. |
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionZeroIdeal_mem_support_iff`](Normalizer/SectionZeroLocus.lean#L52) | theorem | On every open inside a genuine chart, support membership of the actual global zero ideal is equivalent to noninvertibility of the original equation germ. |
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionZeroScheme_nonempty_of_nonunit_affine`](Normalizer/SectionZeroLocus.lean#L77) | theorem | A nonunit equation germ yields an actual point of the constructed global zero scheme, preserving its complete scheme structure. |
+| Actual section zero-locus support for [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionZeroScheme_nonempty_of_nonunit`](Normalizer/SectionZeroLocus.lean#L92) | theorem | A zero of the prescribed section, expressed by a nonunit equation germ on any genuine chart, supplies a point of its actual global zero scheme. |
+
+## LineGenericInjection
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_eq_zero_of_genericGerm_eq_zero`](Normalizer/LineGenericInjection.lean#L18) | theorem | Vanishing of the generic germ forces the actual global section of a genuinely locally trivial line sheaf to vanish. |
+| Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_genericGerm_injective`](Normalizer/LineGenericInjection.lean#L45) | theorem | The actual global-section generic-germ map is injective, derived from line charts rather than an assumed torsion condition. |
+| Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_genericGerm_ne_zero_iff`](Normalizer/LineGenericInjection.lean#L55) | theorem | For an actual locally trivial line sheaf, nonzero global section and nonzero generic germ are equivalent. |
+
+## SectionZeroFinite
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`closedSubscheme_isFinite_of_genericPoint_not_mem`](Normalizer/SectionZeroFinite.lean#L23) | theorem | A closed subscheme omitting the generic point of a finite-type integral curve is finite over the base field. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_dimension_nonpos`](Normalizer/SectionZeroFinite.lean#L39) | theorem | The actual zero scheme of the specified section has dimension at most zero. Its generic-point exclusion is derived from the specified section. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_isFinite`](Normalizer/SectionZeroFinite.lean#L50) | theorem | The actual section zero scheme, with all of its nilpotent structure, is finite over the base field on a finite-type integral curve. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`properCurve_sectionZeroScheme_isFinite`](Normalizer/SectionZeroFinite.lean#L63) | theorem | In particular, the actual specified section zero scheme on a proper integral curve is finite over the base field. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_globalFunctions_finiteDimensional`](Normalizer/SectionZeroFinite.lean#L72) | theorem | The actual global functions on the constructed zero scheme are finite-dimensional under the action of the actual structure morphism. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_globalFunctions_finrank_eq_zero_iff`](Normalizer/SectionZeroFinite.lean#L86) | theorem | The actual zero-scheme function dimension vanishes exactly when the constructed zero scheme is empty. This is not a line-bundle degree formula. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_globalFunctions_pos_of_zero`](Normalizer/SectionZeroFinite.lean#L102) | theorem | A zero of the specified nonzero section gives a positive-dimensional actual zero-scheme function space. No line-bundle degree is introduced. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`properCurve_exists_finite_sectionZeroScheme`](Normalizer/SectionZeroFinite.lean#L119) | theorem | On a proper integral curve, genuine pointwise line charts suffice: the finite quasi-compact cover and finite actual zero scheme are constructed. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_isFinite_of_ne_zero`](Normalizer/SectionZeroFinite.lean#L139) | theorem | Global nonzeroness suffices for the actual zero scheme to be finite: the required generic nonzeroness is derived from the given covering charts. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeSectionZeroScheme_globalFunctions_pos_of_ne_zero`](Normalizer/SectionZeroFinite.lean#L155) | theorem | A zero of a globally nonzero section gives a positive-dimensional actual zero-scheme function space, with generic nonzeroness derived. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`properCurve_exists_finite_sectionZeroScheme_of_ne_zero`](Normalizer/SectionZeroFinite.lean#L171) | theorem | A nonzero global section and genuine pointwise line charts on a proper integral curve construct a finite cover and an actual finite zero scheme. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeDeterminantZeroScheme_isFinite`](Normalizer/SectionZeroFinite.lean#L191) | theorem | The actual determinant zero scheme is finite over the field; its generic nonzeroness and line charts are derived from the specified family and genuine rank-n charts. |
+| Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeDeterminantZeroScheme_globalFunctions_pos_of_zero`](Normalizer/SectionZeroFinite.lean#L204) | theorem | A zero of the actual specified determinant gives positive dimension of the global functions on its actual finite zero scheme. The comparison with the established line-bundle degree remains a separate theorem. |

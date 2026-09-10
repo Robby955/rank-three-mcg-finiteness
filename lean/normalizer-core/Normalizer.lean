@@ -80,3 +80,11 @@ import Normalizer.LineBidual
 import Normalizer.SectionZeroDivisor
 import Normalizer.SectionIdealBundle
 import Normalizer.DeterminantZeroDivisor
+import Normalizer.CurveClosedSubscheme
+import Normalizer.FiniteZeroDimensional
+import Normalizer.SectionZeroSupport
+import Normalizer.FiniteLineCharts
+import Normalizer.FiniteSchemeSections
+import Normalizer.SectionZeroLocus
+import Normalizer.SectionZeroFinite
+import Normalizer.LineGenericInjection
