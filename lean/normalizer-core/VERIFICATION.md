@@ -1,12 +1,13 @@
 # Verification record
 
-This continuation was checked locally on 10 September 2026. It starts from
+This checkpoint was checked locally on 10 September 2026. It starts from
 public PR #7's merged commit `a7544c5b9136dd88d6741188a7be531d49bbace2`.
 The base package's hosted Linux checks passed. The local zero-ideal step
 ended at `d5cc96d0dcf8af6a42a047463a7a75c924680926` with 547 theorems,
 791 audited declarations and 52 examples. The finiteness continuation adds
-44 theorems, one named construction and two examples. These local steps
-have not been pushed or run by hosted CI.
+44 theorems, one named construction and two examples. The results below
+record local verification. Hosted verification of the source commit is
+recorded in its pull request checks and workflow runs.
 
 | Check | Result |
 |---|---|

@@ -2,11 +2,12 @@
 
 Verdict: **PARTIAL** for the geometric section bound and representation
 campaign. The listed formal propositions are proved with their displayed
-hypotheses. This local continuation starts from public PR #7's merged
+hypotheses. This checkpoint starts from public PR #7's merged
 commit `a7544c5b9136dd88d6741188a7be531d49bbace2`. The present finiteness
 step extends the clean local zero-ideal commit
-`d5cc96d0dcf8af6a42a047463a7a75c924680926`. Neither local continuation has
-been pushed or tested by hosted CI.
+`d5cc96d0dcf8af6a42a047463a7a75c924680926`. Local verification passed;
+hosted verification of the source commit is recorded in its pull request
+checks and workflow runs.
 
 ## New mathematical content
 

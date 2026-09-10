@@ -1,15 +1,15 @@
 # Formalization and publication roadmap
 
-This local continuation starts from merged public commit
+This checkpoint starts from merged public commit
 `a7544c5b9136dd88d6741188a7be531d49bbace2` (PR #7), whose package contained
-472 theorems, 679 audited declarations and 48 examples. The current local
+472 theorems, 679 audited declarations and 48 examples. The current
 package contains 591 theorems, 836 audited declarations and 54 examples.
 The local zero-ideal commit `d5cc96d0dcf8af6a42a047463a7a75c924680926`
 contained 547 theorems, 791 declarations and 52 examples. This finiteness
 step adds 44 theorems, one construction and two examples. Counts describe
 coverage, not completion of the candidate
-representation theorem. The new continuation has not been pushed or tested
-by hosted CI.
+representation theorem. Local verification passed. Hosted verification of
+the source commit is recorded in the pull request checks and workflow runs.
 
 ## Completed formal interfaces
 

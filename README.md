@@ -175,14 +175,15 @@ and a dedicated build and axiom-audit workflow. It does not formally verify
 the complete rank-three finite-image candidate, the square endpoint, or
 a genus-three result. The manuscript claim labels above are unchanged.
 
-The local continuation checks 591 named theorems, 836 audited declarations
+The checkpoint checks 591 named theorems, 836 audited declarations
 and 54 examples. Genuine bundle charts give the exterior-stalk identification;
 actual generic independence proves the specified determinant section nonzero.
 Finite quasi-compact line charts now construct its actual zero ideal and closed
 subscheme, and the inverse image-ideal module recovers the exterior line with
 its specified section. On a proper integral curve the actual zero scheme is
 now proved finite; a zero of the specified section gives positive dimension
-of its actual global function space. These changes are verified locally only.
+of its actual global function space. Local verification passed; hosted
+verification is recorded in the pull request checks and workflow runs.
 The comparison with line-bundle degree and the degree/nonvanishing
 implication remain unformalized. The
 [publication roadmap](PUBLICATION_ROADMAP.md) records the exact next
