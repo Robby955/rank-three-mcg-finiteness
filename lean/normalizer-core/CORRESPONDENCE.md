@@ -1,8 +1,8 @@
 # Public manuscript-to-Lean correspondence
 
 All declaration names have the prefix `Normalizer.`. This table covers all
-591 named theorems and 245 named constructions;
-all 836 declarations are included in `AxiomAudit.lean`.
+855 named theorems and 355 named constructions;
+all 1210 declarations are included in `AxiomAudit.lean`.
 
 The source is the public repository at commit
 `12f81e2852e0a8e71f16777d9eb9c7bc8916e6df`:
@@ -1474,7 +1474,7 @@ API, divisor finiteness and degree comparison are not asserted here.
 
 | Source / mathematical role | Lean declaration | Kind | Exact coverage |
 |---|---|---|---|
-| Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_eq_zero_of_genericGerm_eq_zero`](Normalizer/LineGenericInjection.lean#L18) | theorem | Vanishing of the generic germ forces the actual global section of a genuinely locally trivial line sheaf to vanish. |
+| Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_eq_zero_of_genericGerm_eq_zero`](Normalizer/LineGenericInjection.lean#L18) | theorem | Vanishing of the generic germ forces the actual global section of a locally trivial line sheaf to vanish. |
 | Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_genericGerm_injective`](Normalizer/LineGenericInjection.lean#L45) | theorem | The actual global-section generic-germ map is injective, derived from line charts rather than an assumed torsion condition. |
 | Integral line-sheaf generic injectivity supporting regular-section construction in [Stacks 31.15.10(2)](https://stacks.math.columbia.edu/tag/01X0) | [`lineSheaf_genericGerm_ne_zero_iff`](Normalizer/LineGenericInjection.lean#L55) | theorem | For an actual locally trivial line sheaf, nonzero global section and nonzero generic germ are equivalent. |
 
@@ -1495,3 +1495,764 @@ API, divisor finiteness and degree comparison are not asserted here.
 | Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`properCurve_exists_finite_sectionZeroScheme_of_ne_zero`](Normalizer/SectionZeroFinite.lean#L171) | theorem | A nonzero global section and genuine pointwise line charts on a proper integral curve construct a finite cover and an actual finite zero scheme. |
 | Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeDeterminantZeroScheme_isFinite`](Normalizer/SectionZeroFinite.lean#L191) | theorem | The actual determinant zero scheme is finite over the field; its generic nonzeroness and line charts are derived from the specified family and genuine rank-n charts. |
 | Actual finite zero scheme and function-dimension ingredients of [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40); not the degree implication | [`schemeDeterminantZeroScheme_globalFunctions_pos_of_zero`](Normalizer/SectionZeroFinite.lean#L204) | theorem | A zero of the actual specified determinant gives positive dimension of the global functions on its actual finite zero scheme. The comparison with the established line-bundle degree remains a separate theorem. |
+
+## ClosedSubschemeModules
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual structure-module quotient supporting the zero-scheme sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`closedSubschemeStructureSheaf`](Normalizer/ClosedSubschemeModules.lean#L17) | def | The structure sheaf of the actual closed subscheme, pushed forward as a module sheaf on the ambient scheme. |
+| Actual structure-module quotient supporting the zero-scheme sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`closedSubschemeStructureMap`](Normalizer/ClosedSubschemeModules.lean#L23) | def | The actual quotient map from the ambient structure module to the pushforward of the closed subscheme's structure module. |
+| Actual structure-module quotient supporting the zero-scheme sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`closedSubschemeStructureMap_app`](Normalizer/ClosedSubschemeModules.lean#L29) | theorem | On sections, the module quotient map is the actual closed-immersion map on regular functions. |
+| Actual structure-module quotient supporting the zero-scheme sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`closedSubschemeStructureMap_affine_surjective`](Normalizer/ClosedSubschemeModules.lean#L33) | theorem | On an actual affine open, the structure-module quotient is surjective. |
+| Actual structure-module quotient supporting the zero-scheme sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`closedSubschemeStructureMap_affine_eq_zero_iff`](Normalizer/ClosedSubschemeModules.lean#L39) | theorem | On an actual affine open, vanishing under the structure-module quotient is exactly membership in the defining ideal. |
+| Actual structure-module quotient supporting the zero-scheme sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`closedSubschemeStructureMap_stalk_surjective`](Normalizer/ClosedSubschemeModules.lean#L47) | theorem | The actual closed-subscheme quotient is surjective on every ambient module stalk, including at points outside the closed subscheme. |
+
+## SectionZeroIdealAffine
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual affine ideal/image comparison supporting the specified-section zero scheme; not a degree formula | [`schemeSectionZeroIdeal_ideal_image`](Normalizer/SectionZeroIdealAffine.lean#L18) | theorem | On an affine open of a genuine chart, the glued ideal is exactly the actual sectionwise image of the original module-sheaf morphism. |
+| Actual affine ideal/image comparison supporting the specified-section zero scheme; not a degree formula | [`schemeSectionZeroIdeal_ideal_of_le`](Normalizer/SectionZeroIdealAffine.lean#L29) | theorem | On every actual affine subopen of a chosen genuine chart, the global zero ideal is the image of the actual section map. |
+| Actual affine ideal/image comparison supporting the specified-section zero scheme; not a degree formula | [`schemeSectionZeroSchemeι_app_ker`](Normalizer/SectionZeroIdealAffine.lean#L46) | theorem | The kernel of the actual zero-subscheme ring map is exactly the sectionwise image ideal on affine subopens of genuine charts. |
+| Actual affine ideal/image comparison supporting the specified-section zero scheme; not a degree formula | [`schemeSectionZeroSchemeι_app_eq_zero_iff`](Normalizer/SectionZeroIdealAffine.lean#L56) | theorem | A scalar restricts to zero on the actual zero subscheme exactly when it is the image of an actual section of the source line sheaf. |
+
+## SheafCokernelComparison
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| General actual-stalk criterion used to assemble the scalar sheaf cokernel; geometric hypotheses are proved in SectionZeroCokernel | [`sheaf_cokernel_desc_stalk_comp`](Normalizer/SheafCokernelComparison.lean#L19) | theorem | The canonical comparison has the prescribed effect on actual stalk elements represented through the actual cokernel projection. |
+| General actual-stalk criterion used to assemble the scalar sheaf cokernel; geometric hypotheses are proved in SectionZeroCokernel | [`sheaf_cokernel_desc_stalk_bijective`](Normalizer/SheafCokernelComparison.lean#L29) | theorem | Actual stalk exactness and surjectivity make the canonical cokernel comparison bijective on that stalk. Monicity of the first map is unnecessary. |
+| General actual-stalk criterion used to assemble the scalar sheaf cokernel; geometric hypotheses are proved in SectionZeroCokernel | [`sheaf_cokernel_desc_isIso`](Normalizer/SheafCokernelComparison.lean#L53) | theorem | Exactness and surjectivity on every actual stalk identify the actual sheaf cokernel with the proposed target by its canonical comparison map. |
+| General actual-stalk criterion used to assemble the scalar sheaf cokernel; geometric hypotheses are proved in SectionZeroCokernel | [`sheafCokernelComparisonIso`](Normalizer/SheafCokernelComparison.lean#L62) | def | The canonical actual sheaf-cokernel isomorphism produced from the verified stalk conditions. |
+| General actual-stalk criterion used to assemble the scalar sheaf cokernel; geometric hypotheses are proved in SectionZeroCokernel | [`sheafCokernelComparisonIso_π_hom`](Normalizer/SheafCokernelComparison.lean#L71) | theorem | The comparison isomorphism preserves the actual quotient map. |
+
+## SectionZeroCokernel
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual scalar zero-scheme cokernel supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); not the line-degree implication | [`schemeSectionZeroQuotient_stalk_comp`](Normalizer/SectionZeroCokernel.lean#L21) | theorem | The original line map followed by restriction to its actual zero scheme vanishes on every actual stalk. |
+| Actual scalar zero-scheme cokernel supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); not the line-degree implication | [`schemeSectionZeroQuotient_comp`](Normalizer/SectionZeroCokernel.lean#L42) | theorem | The original line map vanishes under the actual closed-subscheme structure quotient as a morphism of sheaves. |
+| Actual scalar zero-scheme cokernel supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); not the line-degree implication | [`schemeSectionZeroQuotient_stalk_exact`](Normalizer/SectionZeroCokernel.lean#L62) | theorem | Every actual stalk element killed by the closed-subscheme quotient comes from the original line sheaf. Affine refinement proves the lift. |
+| Actual scalar zero-scheme cokernel supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); not the line-degree implication | [`schemeSectionZeroQuotient_stalk_ker_eq_range`](Normalizer/SectionZeroCokernel.lean#L103) | theorem | The kernel of the actual zero-scheme quotient on every stalk is the image of the original line map, with no exactness hypothesis supplied. |
+| Actual scalar zero-scheme cokernel supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); not the line-degree implication | [`schemeSectionZeroCokernelIso`](Normalizer/SectionZeroCokernel.lean#L115) | def | The actual cokernel of a line map is the pushed-forward structure module of its actual zero scheme. No integrality or monicity is required. |
+| Actual scalar zero-scheme cokernel supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); not the line-degree implication | [`schemeSectionZeroCokernelIso_π_hom`](Normalizer/SectionZeroCokernel.lean#L122) | theorem | The actual cokernel isomorphism preserves the canonical quotient map. |
+
+## SectionHomMono
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual nonzero-section monicity supporting [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionHom_apply`](Normalizer/SectionHomMono.lean#L18) | theorem | The sheaf map represented by the specified section is actual scalar multiplication by its restriction on each open. |
+| Actual nonzero-section monicity supporting [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionHom_coordinate`](Normalizer/SectionHomMono.lean#L27) | theorem | In a genuine line chart, the actual section map is multiplication by the actual local equation of the given section. |
+| Actual nonzero-section monicity supporting [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionHom_injective_on_chart`](Normalizer/SectionHomMono.lean#L40) | theorem | A nonzero generic germ makes the actual section map injective on every nonempty genuine line chart. |
+| Actual nonzero-section monicity supporting [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionHom_injective`](Normalizer/SectionHomMono.lean#L54) | theorem | Genuine pointwise line charts make the section map injective on all opens, including the empty open, by the actual sheaf separation property. |
+| Actual nonzero-section monicity supporting [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionHom_mono_of_generic_ne_zero`](Normalizer/SectionHomMono.lean#L82) | theorem | A generically nonzero actual line section induces a monomorphism of actual module sheaves. |
+| Actual nonzero-section monicity supporting [Stacks 33.44.12(2)](https://stacks.math.columbia.edu/tag/0B40) | [`schemeSectionHom_mono`](Normalizer/SectionHomMono.lean#L93) | theorem | A nonzero global section of a locally trivial line sheaf on an integral scheme induces the actual monomorphism `O_X → L`. |
+
+## SectionZeroExact
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual scalar short exact sequence supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); the line sequence and degree comparison remain separate | [`schemeSectionZeroComplex`](Normalizer/SectionZeroExact.lean#L25) | def | The actual line map and actual closed-subscheme structure quotient, with their zero composite already proved on actual stalks. |
+| Actual scalar short exact sequence supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); the line sequence and degree comparison remain separate | [`schemeSectionZeroQuotient_epi`](Normalizer/SectionZeroExact.lean#L31) | theorem | The actual closed-subscheme quotient is an epimorphism, because the constructed cokernel isomorphism identifies it with the cokernel projection. |
+| Actual scalar short exact sequence supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); the line sequence and degree comparison remain separate | [`schemeSectionZeroComplex_exact`](Normalizer/SectionZeroExact.lean#L38) | theorem | The actual zero-scheme scalar complex is exact for every line map, including maps that are not monic. |
+| Actual scalar short exact sequence supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); the line sequence and degree comparison remain separate | [`schemeSectionZeroComplex_shortExact`](Normalizer/SectionZeroExact.lean#L48) | theorem | For a monic line map, its actual zero-scheme scalar sequence is short exact. |
+| Actual scalar short exact sequence supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); the line sequence and degree comparison remain separate | [`schemeSectionDualZeroComplex`](Normalizer/SectionZeroExact.lean#L58) | def | The actual scalar zero-scheme sequence associated to the specified section uses its genuine dual sheaf and its actual evaluation map. |
+| Actual scalar short exact sequence supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); the line sequence and degree comparison remain separate | [`schemeSectionDualZeroComplex_shortExact`](Normalizer/SectionZeroExact.lean#L64) | theorem | A nonzero section in genuine line charts on an integral scheme gives the actual short exact sequence `0 → L∨ → O_X → i_*O_D → 0`. |
+| Actual scalar short exact sequence supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); the line sequence and degree comparison remain separate | [`schemeDeterminantDualZeroComplex_shortExact`](Normalizer/SectionZeroExact.lean#L79) | theorem | The specified determinant section gives the same actual short exact sequence when its chosen section germs are independent over the function field. |
+
+## LineRestrictionComparison
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual local line pullback/pushforward comparisons supporting the line sequence; complete specified-map compatibility is proved in LineRestrictionCompatibility | [`schemePullbackRestrictIso`](Normalizer/LineRestrictionComparison.lean#L16) | def | Restricting an actual pullback to the inverse-image open is the pullback of the actual restriction along the restricted scheme morphism. |
+| Actual local line pullback/pushforward comparisons supporting the line sequence; complete specified-map compatibility is proved in LineRestrictionCompatibility | [`schemeLineChartOnRestriction`](Normalizer/LineRestrictionComparison.lean#L27) | def | Convert a genuine over-site line chart to the actual open-subscheme restriction. |
+| Actual local line pullback/pushforward comparisons supporting the line sequence; complete specified-map compatibility is proved in LineRestrictionCompatibility | [`schemePullbackLineChart`](Normalizer/LineRestrictionComparison.lean#L37) | def | A genuine local line chart pulls back to a genuine chart on the actual inverse-image open, for an arbitrary scheme morphism. |
+| Actual local line pullback/pushforward comparisons supporting the line sequence; complete specified-map compatibility is proved in LineRestrictionCompatibility | [`schemePushforwardOverMap`](Normalizer/LineRestrictionComparison.lean#L57) | def | A morphism over the actual inverse-image open induces a morphism between the pushforwards over the original open, by actual scalar restriction. |
+| Actual local line pullback/pushforward comparisons supporting the line sequence; complete specified-map compatibility is proved in LineRestrictionCompatibility | [`schemePushforwardOverIso`](Normalizer/LineRestrictionComparison.lean#L81) | def | Genuine inverse-image charts induce actual isomorphisms between the pushforwards over the original open. |
+| Actual local line pullback/pushforward comparisons supporting the line sequence; complete specified-map compatibility is proved in LineRestrictionCompatibility | [`schemeLineRestrictionComparison`](Normalizer/LineRestrictionComparison.lean#L108) | def | A genuine line chart identifies the actual pushforward of its pullback with the actual pushed-forward structure sheaf on that same chart. |
+| Actual local line pullback/pushforward comparisons supporting the line sequence; complete specified-map compatibility is proved in LineRestrictionCompatibility | [`schemePullbackUnit_unit_compatibility`](Normalizer/LineRestrictionComparison.lean#L116) | theorem | The canonical identification of the pullback of the unit sheaf preserves the actual structure-sheaf restriction map under adjunction. |
+| Actual local line pullback/pushforward comparisons supporting the line sequence; complete specified-map compatibility is proved in LineRestrictionCompatibility | [`schemeOpenRestriction_unit_compatibility`](Normalizer/LineRestrictionComparison.lean#L127) | theorem | The comparison between actual open restriction and categorical pullback preserves their adjunction units. |
+
+## LineRestrictionUnit
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| General adjunction-unit coherence supporting the line sequence; these individual identities do not prove the full local comparison diagram | [`schemePullbackComp_unit_compatibility`](Normalizer/LineRestrictionUnit.lean#L12) | theorem | The canonical pullback-composition comparison has the unit compatibility specified by its actual conjugate pushforward-composition map. |
+| General adjunction-unit coherence supporting the line sequence; these individual identities do not prove the full local comparison diagram | [`schemeOpenRestriction_inv_unit_compatibility`](Normalizer/LineRestrictionUnit.lean#L29) | theorem | The inverse open-restriction comparison also preserves the actual unit. |
+| General adjunction-unit coherence supporting the line sequence; these individual identities do not prove the full local comparison diagram | [`schemePullbackCongr_unit_compatibility`](Normalizer/LineRestrictionUnit.lean#L40) | theorem | Transport along equal scheme morphisms preserves the actual pullback adjunction unit and its corresponding pushforward transport. |
+
+## PullbackRestrictionUnit
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual adjunction and restriction coherence supporting the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemePullbackComp_hom_unit_compatibility`](Normalizer/PullbackRestrictionUnit.lean#L26) | theorem | The forward pullback-composition comparison transports the composed actual adjunction unit to the unit for the composite scheme morphism. |
+| Actual adjunction and restriction coherence supporting the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemePushforwardRestrictionSquareIso`](Normalizer/PullbackRestrictionUnit.lean#L43) | def | The canonical pushforward isomorphism around the actual open-restriction square. |
+| Actual adjunction and restriction coherence supporting the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemePushforwardRestrictionSquareIso_hom_app`](Normalizer/PullbackRestrictionUnit.lean#L52) | theorem | The canonical pushforward square comparison transports actual sections along the proved equality of the two inverse-image opens. |
+| Actual adjunction and restriction coherence supporting the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemePullbackRestrictIso_unit_compatibility`](Normalizer/PullbackRestrictionUnit.lean#L64) | theorem | The actual pullback/restriction comparison transports the actual composite adjunction units around the commuting scheme square. |
+| Actual adjunction and restriction coherence supporting the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemePullbackRestrictIso_unit_app`](Normalizer/PullbackRestrictionUnit.lean#L135) | theorem | On every actual open of the restricted scheme, the comparison takes the transported pullback-unit section to the actual local pullback-unit section. |
+
+## LineRestrictionCompatibility
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Compatibility with the specified line-section maps supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemePullbackLineChart_overEquiv`](Normalizer/LineRestrictionCompatibility.lean#L14) | theorem | The constructed inverse-image line chart agrees with its actual restricted-scheme chart under the equivalence of sites. |
+| Compatibility with the specified line-section maps supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeLineChartOnRestriction_hom_app`](Normalizer/LineRestrictionCompatibility.lean#L30) | theorem | The actual restricted line chart has the original chart coordinates. |
+| Compatibility with the specified line-section maps supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeLineIso_unit_compatibility`](Normalizer/LineRestrictionCompatibility.lean#L40) | theorem | A genuine global line trivialization intertwines the actual adjunction unit with the actual structure-sheaf map. |
+| Compatibility with the specified line-section maps supporting [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeLineRestrictionComparison_unit_compatibility`](Normalizer/LineRestrictionCompatibility.lean#L61) | theorem | The genuine local line comparison carries the actual adjunction unit to the actual structure-sheaf map, with the original line chart. |
+
+## DiscreteSheafCohomology
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Intrinsic higher-cohomology vanishing on discrete spaces, supporting the zero-dimensional scheme argument of [Stacks Tag 0AYT](https://stacks.math.columbia.edu/tag/0AYT) | [`discreteSheaf_epi_globalSections_surjective`](Normalizer/DiscreteSheafCohomology.lean#L28) | theorem | An epimorphism of actual abelian sheaves on a discrete space is surjective on actual global sections. The lifts are glued from singleton open sets. |
+| Intrinsic higher-cohomology vanishing on discrete spaces, supporting the zero-dimensional scheme argument of [Stacks Tag 0AYT](https://stacks.math.columbia.edu/tag/0AYT) | [`discreteSheaf_constantInteger_projective`](Normalizer/DiscreteSheafCohomology.lean#L75) | theorem | The actual constant integer sheaf is projective on a discrete space. |
+| Intrinsic higher-cohomology vanishing on discrete spaces, supporting the zero-dimensional scheme argument of [Stacks Tag 0AYT](https://stacks.math.columbia.edu/tag/0AYT) | [`discreteSheaf_positiveCohomology_subsingleton`](Normalizer/DiscreteSheafCohomology.lean#L95) | theorem | Positive-degree cohomology of any actual abelian sheaf on a discrete space vanishes. This uses no reducedness or finiteness assumption on a scheme. |
+
+## FiniteSchemeCohomology
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Intrinsic higher-cohomology vanishing on the actual finite zero scheme, supporting [Stacks Tag 0AYT](https://stacks.math.columbia.edu/tag/0AYT); ambient pushforward comparison remains separate | [`finiteScheme_discreteTopology`](Normalizer/FiniteSchemeCohomology.lean#L17) | theorem | Actual finiteness over a field implies discreteness of the scheme's underlying space, without removing its nilpotents. |
+| Intrinsic higher-cohomology vanishing on the actual finite zero scheme, supporting [Stacks Tag 0AYT](https://stacks.math.columbia.edu/tag/0AYT); ambient pushforward comparison remains separate | [`finiteScheme_positiveCohomology_subsingleton`](Normalizer/FiniteSchemeCohomology.lean#L24) | theorem | Every actual abelian sheaf on a finite scheme over a field has vanishing intrinsic positive-degree cohomology. |
+| Intrinsic higher-cohomology vanishing on the actual finite zero scheme, supporting [Stacks Tag 0AYT](https://stacks.math.columbia.edu/tag/0AYT); ambient pushforward comparison remains separate | [`schemeSectionZeroScheme_positiveCohomology_subsingleton`](Normalizer/FiniteSchemeCohomology.lean#L41) | theorem | Intrinsic positive-degree cohomology vanishes for every abelian sheaf on the actual zero scheme of the specified section on a finite-type integral curve. |
+| Intrinsic higher-cohomology vanishing on the actual finite zero scheme, supporting [Stacks Tag 0AYT](https://stacks.math.columbia.edu/tag/0AYT); ambient pushforward comparison remains separate | [`properCurve_sectionZeroScheme_positiveCohomology_subsingleton`](Normalizer/FiniteSchemeCohomology.lean#L56) | theorem | In particular, intrinsic positive-degree cohomology vanishes on the actual specified zero scheme on a proper integral curve. |
+
+## SectionLineExact
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeLocalStalkMap_square`](Normalizer/SectionLineExact.lean#L19) | theorem | An actual commutative square of local sheaf maps gives the corresponding commutative square on the actual stalk, by the germ formulas. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionHom_dualEvaluation_chart`](Normalizer/SectionLineExact.lean#L37) | theorem | In the same genuine chart, multiplication by the prescribed section and dual evaluation have the same scalar expression. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionHom_dualEvaluation_stalk`](Normalizer/SectionLineExact.lean#L59) | theorem | The actual line-chart square relating section multiplication and dual evaluation commutes on the ambient stalk. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineRestrictionSheaf`](Normalizer/SectionLineExact.lean#L74) | def | The actual restriction of the line bundle to its section's zero scheme, pushed forward to the ambient scheme. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineRestrictionMap`](Normalizer/SectionLineExact.lean#L82) | def | The actual restriction map is the unit of the pullback-pushforward adjunction for the actual zero-scheme closed immersion. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineRestriction_chart`](Normalizer/SectionLineExact.lean#L133) | theorem | The actual restriction map has the scalar quotient expression in any genuine line chart, by the proved adjunction compatibility. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineRestriction_stalk_surjective`](Normalizer/SectionLineExact.lean#L166) | theorem | Restriction of the line sheaf to the actual zero scheme is surjective on each actual stalk. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineRestriction_stalk_comp`](Normalizer/SectionLineExact.lean#L172) | theorem | Section multiplication followed by actual zero-scheme restriction vanishes on every actual stalk. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineRestriction_stalk_ker_eq_range`](Normalizer/SectionLineExact.lean#L179) | theorem | The actual kernel of line restriction on a stalk is exactly the image of multiplication by the specified section. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineRestriction_comp`](Normalizer/SectionLineExact.lean#L190) | theorem | The specified section vanishes after actual restriction to its zero scheme as a morphism of sheaves. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineCokernelIso`](Normalizer/SectionLineExact.lean#L213) | def | The actual cokernel of section multiplication is the actual pushforward of the line bundle restricted to its zero scheme. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineCokernelIso_π_hom`](Normalizer/SectionLineExact.lean#L221) | theorem | The cokernel comparison preserves the canonical quotient map and the actual adjunction restriction map. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineRestriction_epi`](Normalizer/SectionLineExact.lean#L229) | theorem | The actual zero-scheme restriction map is an epimorphism of sheaves. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineComplex`](Normalizer/SectionLineExact.lean#L234) | def | The actual section-multiplication and zero-scheme restriction complex. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineComplex_exact`](Normalizer/SectionLineExact.lean#L240) | theorem | The actual line restriction sequence is exact even without a nonzero-section or integrality hypothesis. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeSectionLineComplex_shortExact`](Normalizer/SectionLineExact.lean#L251) | theorem | A nonzero line section on an integral scheme gives the actual short exact sequence `0 → O_X → L → i_*i^*L → 0` for its constructed zero scheme. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`schemeDeterminantLineComplex_shortExact`](Normalizer/SectionLineExact.lean#L268) | theorem | The specified determinant section produces the actual line restriction short exact sequence when its chosen generic germs are independent. |
+| Actual specified-section short exact sequence in the degree proof of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); no Euler or degree comparison is claimed | [`properScheme_exists_sectionLine_shortExact`](Normalizer/SectionLineExact.lean#L282) | theorem | On an integral proper scheme over a field, pointwise genuine line charts suffice: the finite quasi-compact cover and the actual line restriction short exact sequence are constructed. No dimension hypothesis is needed. |
+
+## AbelianSheafPullbackExact
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Exact inverse image supporting the closed-embedding comparison in [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`abelianSheafPullback_preservesFiniteLimits`](Normalizer/AbelianSheafPullbackExact.lean#L19) | theorem | Inverse image of abelian sheaves preserves finite limits: inverse image on opens is representably flat, and the actual site pullback is left exact. |
+| Exact inverse image supporting the closed-embedding comparison in [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`abelianSheafPullback_preservesFiniteColimits`](Normalizer/AbelianSheafPullbackExact.lean#L27) | theorem | Inverse image preserves finite colimits by its actual pushforward adjunction. |
+| Exact inverse image supporting the closed-embedding comparison in [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`abelianSheafPullback_additive`](Normalizer/AbelianSheafPullbackExact.lean#L32) | theorem | The actual inverse-image functor on abelian sheaves is additive. |
+| Exact inverse image supporting the closed-embedding comparison in [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`abelianSheafPullback_shortExact`](Normalizer/AbelianSheafPullbackExact.lean#L40) | theorem | A short exact sequence of abelian sheaves remains short exact under the actual inverse-image functor of any continuous map. |
+
+## ClosedPushforwardExact
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Exactness part of [Stacks 17.6.1](https://stacks.math.columbia.edu/tag/01AX); no full-faithfulness or essential-image assertion | [`abelianSheafPushforward_additive`](Normalizer/ClosedPushforwardExact.lean#L26) | theorem | Actual abelian-sheaf direct image is additive for every continuous map. |
+| Exactness part of [Stacks 17.6.1](https://stacks.math.columbia.edu/tag/01AX); no full-faithfulness or essential-image assertion | [`closedPushforward_map_epi`](Normalizer/ClosedPushforwardExact.lean#L34) | theorem | Direct image along an actual closed embedding preserves epimorphisms of abelian sheaves. The proof uses local lifts, not surjectivity on fixed opens. |
+| Exactness part of [Stacks 17.6.1](https://stacks.math.columbia.edu/tag/01AX); no full-faithfulness or essential-image assertion | [`closedPushforward_preservesEpimorphisms`](Normalizer/ClosedPushforwardExact.lean#L75) | theorem | Epimorphism preservation for the actual closed direct-image functor. |
+| Exactness part of [Stacks 17.6.1](https://stacks.math.columbia.edu/tag/01AX); no full-faithfulness or essential-image assertion | [`closedPushforward_preservesHomology`](Normalizer/ClosedPushforwardExact.lean#L80) | theorem | Closed direct image preserves homology, hence exactness of actual short complexes. |
+| Exactness part of [Stacks 17.6.1](https://stacks.math.columbia.edu/tag/01AX); no full-faithfulness or essential-image assertion | [`closedPushforward_preservesFiniteColimits`](Normalizer/ClosedPushforwardExact.lean#L86) | theorem | Closed direct image of actual abelian sheaves preserves finite colimits. |
+
+## ConstantSheafPullback
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Canonical constant-sheaf and global-section comparison supporting [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`abelianSheafPushforwardSectionsIso`](Normalizer/ConstantSheafPullback.lean#L17) | def | Global sections of an actual direct image are the original global sections. |
+| Canonical constant-sheaf and global-section comparison supporting [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`abelianSheafPullbackConstantIso`](Normalizer/ConstantSheafPullback.lean#L24) | def | The actual pullback of constant abelian sheaves, naturally in their values. |
+| Canonical constant-sheaf and global-section comparison supporting [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`abelianSheafPullbackConstant_homEquiv`](Normalizer/ConstantSheafPullback.lean#L34) | theorem | The constant-sheaf comparison agrees with the actual global-section adjunction. |
+
+## ClosedPushforwardCohomology
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual abelian-sheaf cohomology comparison of [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`closedPushforwardCohomologyEquiv`](Normalizer/ClosedPushforwardCohomology.lean#L22) | def | Cohomology of an actual closed direct image agrees with intrinsic cohomology, in every degree. This is an additive equivalence. |
+| Actual abelian-sheaf cohomology comparison of [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`closedPushforwardCohomologyEquiv_naturality`](Normalizer/ClosedPushforwardCohomology.lean#L35) | theorem | The comparison preserves cohomology maps of actual sheaf morphisms. |
+| Actual abelian-sheaf cohomology comparison of [Stacks 20.20.1](https://stacks.math.columbia.edu/tag/02UV) | [`closedPushforwardCohomologyEquiv_equiv₀`](Normalizer/ClosedPushforwardCohomology.lean#L55) | theorem | The constructed comparison in degree zero is the actual identification of global sections of direct image, under mathlib's `H.equiv₀`. |
+
+## ModuleAbelianPushforward
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeModulesToAbelianSheaves`](Normalizer/ModuleAbelianPushforward.lean#L14) | def | The existing module-sheaf forgetful functor, specialized to a scheme. |
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeModulesToAbelianSheaves_obj_presheaf`](Normalizer/ModuleAbelianPushforward.lean#L19) | theorem | Its underlying presheaf is the actual scheme-module additive presheaf. |
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeModulesToAbelianSheaves_map`](Normalizer/ModuleAbelianPushforward.lean#L23) | theorem | On morphisms it is the actual scheme-module additive presheaf map. |
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeModuleAbelianPushforwardIso`](Normalizer/ModuleAbelianPushforward.lean#L30) | def | Actual scheme-module pushforward commutes with forgetting to abelian sheaves. Scalar restriction does not alter the underlying additive sheaf. |
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeModuleAbelianPushforwardIso_app`](Normalizer/ModuleAbelianPushforward.lean#L36) | theorem | The canonical comparison is identity on actual sections on every open. |
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeModuleAbelianPushforwardIso_naturality`](Normalizer/ModuleAbelianPushforward.lean#L41) | theorem | The comparison commutes with every actual module-sheaf morphism. |
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeModuleAbelianPushforward_map_app`](Normalizer/ModuleAbelianPushforward.lean#L51) | theorem | Pushforward of a module morphism acts on underlying abelian sections by that same morphism on the actual inverse-image open. |
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionLineRestrictionAbelianIso`](Normalizer/ModuleAbelianPushforward.lean#L63) | def | The actual line-restriction cokernel, viewed as an abelian sheaf, is the ordinary abelian-sheaf pushforward of the actual pulled-back line bundle. |
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionLineCokernelAbelianIso`](Normalizer/ModuleAbelianPushforward.lean#L80) | def | The underlying abelian sheaf of the actual section cokernel is the ordinary pushforward of the actual restricted line bundle. |
+| Actual module-to-abelian comparison for the line sequence in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY) | [`schemeSectionLineCokernelAbelianIso_π_hom`](Normalizer/ModuleAbelianPushforward.lean#L96) | theorem | The abelian-sheaf cokernel identification preserves the actual cokernel projection and the actual adjunction restriction map. |
+
+## SectionCokernelCohomology
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Constructed-cokernel vanishing ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); no Euler or rank formula is claimed | [`schemeClosedPushforwardCohomologyEquiv`](Normalizer/SectionCokernelCohomology.lean#L20) | def | Cohomology of actual module-sheaf direct image along a closed immersion, computed on the underlying abelian sheaves, agrees with source cohomology. |
+| Constructed-cokernel vanishing ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); no Euler or rank formula is claimed | [`finiteClosedPushforward_positiveCohomology_subsingleton`](Normalizer/SectionCokernelCohomology.lean#L31) | theorem | Direct image of an actual module sheaf on a finite closed subscheme has vanishing ambient positive-degree cohomology. |
+| Constructed-cokernel vanishing ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); no Euler or rank formula is claimed | [`schemeSectionLineCokernelCohomologyEquiv`](Normalizer/SectionCokernelCohomology.lean#L47) | def | The actual section cokernel has the cohomology of the actual restricted line bundle on the constructed zero scheme, in every degree. |
+| Constructed-cokernel vanishing ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); no Euler or rank formula is claimed | [`schemeSectionLineRestriction_positiveCohomology_subsingleton`](Normalizer/SectionCokernelCohomology.lean#L71) | theorem | Positive ambient cohomology of the actual line-restriction quotient vanishes on a finite-type integral curve. Finiteness of its zero scheme is derived. |
+| Constructed-cokernel vanishing ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); no Euler or rank formula is claimed | [`schemeSectionLineCokernel_positiveCohomology_subsingleton`](Normalizer/SectionCokernelCohomology.lean#L88) | theorem | Positive ambient cohomology of the actual cokernel of the specified section vanishes on a finite-type integral curve. |
+| Constructed-cokernel vanishing ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); no Euler or rank formula is claimed | [`properCurve_sectionLineCokernel_positiveCohomology_subsingleton`](Normalizer/SectionCokernelCohomology.lean#L103) | theorem | On a proper integral curve, a nonzero global line section has an acyclic actual cokernel. Both the finite chart cover and generic nonzeroness are derived from genuine pointwise line trivializations. |
+| Constructed-cokernel vanishing ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); no Euler or rank formula is claimed | [`properCurve_determinantCokernel_positiveCohomology_subsingleton`](Normalizer/SectionCokernelCohomology.lean#L121) | theorem | The specified determinant cokernel is acyclic on a proper integral curve. Pointwise rank-n charts construct the exterior line charts, and independence of the actual generic germs supplies nonzeroness of the specified section. |
+
+## SectionCohomologyExact
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeModulesToAbelianSheaves_additive`](Normalizer/SectionCohomologyExact.lean#L18) | theorem | The actual forgetful functor is additive. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeModulesToAbelianSheaves_preservesFiniteLimits`](Normalizer/SectionCohomologyExact.lean#L24) | theorem | The actual forgetful functor preserves finite limits. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeModulesToAbelianSheaves_map_epi`](Normalizer/SectionCohomologyExact.lean#L35) | theorem | Forgetting module structure preserves epimorphisms: cokernel projections are locally surjective and every epimorphism is its coimage projection followed by an isomorphism. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeModulesToAbelianSheaves_preservesEpimorphisms`](Normalizer/SectionCohomologyExact.lean#L46) | theorem | The actual module-to-abelian-sheaf forgetful functor preserves epis. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeModulesToAbelianSheaves_preservesHomology`](Normalizer/SectionCohomologyExact.lean#L51) | theorem | Forgetting module structure preserves homology, hence exactness. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeModulesToAbelianSheaves_shortExact`](Normalizer/SectionCohomologyExact.lean#L58) | theorem | Every actual short exact sequence of scheme-module sheaves gives a short exact sequence of its actual underlying abelian sheaves. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeSectionLineAbelianComplex_shortExact`](Normalizer/SectionCohomologyExact.lean#L74) | theorem | The actual sequence O → L → i_*i^*L, with its actual section and restriction maps, remains short exact as abelian sheaves. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeSectionLineCohomologyδ`](Normalizer/SectionCohomologyExact.lean#L82) | def | The canonical connecting map of the actual section short exact sequence, defined by its extension class. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeSectionLineCohomologySequence`](Normalizer/SectionCohomologyExact.lean#L93) | def | The six-object segment H⁰(O) → H⁰(L) → H⁰(i_*i^*L) → H¹(O) → H¹(L) → H¹(i_*i^*L), with the actual section and restriction maps. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeSectionLineCohomologySequence_exact`](Normalizer/SectionCohomologyExact.lean#L110) | theorem | The actual six-object sheaf-cohomology segment is exact at its four interior terms. This assertion does not assume cohomology finiteness. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeSectionLine_H0_injective`](Normalizer/SectionCohomologyExact.lean#L120) | theorem | The actual first map on H⁰ is injective, as required at the left endpoint of the section cohomology sequence. |
+| Actual cohomology exact sequence underlying the degree argument in [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); numerical Euler comparison remains separate | [`schemeSectionLine_H1_surjective`](Normalizer/SectionCohomologyExact.lean#L130) | theorem | On a finite-type integral curve the actual H¹ section map is surjective, because the actual line-restriction quotient has vanishing H¹. |
+
+
+## DiscreteLineTrivialization
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Rank-one finite-scheme ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); support for P 1440 | [`discreteLineSheafIso`](Normalizer/DiscreteLineTrivialization.lean#L101) | def | Genuine pointwise line charts on a discrete scheme construct an actual global trivialization. Empty and disconnected schemes and nilpotents are allowed. |
+
+
+## FiniteLineSections
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Rank-one finite-scheme ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); support for P 1440 | [`finiteLineSheafIso`](Normalizer/FiniteLineSections.lean#L23) | def | A line bundle on a finite scheme is globally trivial. Discreteness is obtained from the actual finite structure morphism and charts are glued. |
+| Rank-one finite-scheme ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); support for P 1440 | [`finiteLineSectionsEquiv`](Normalizer/FiniteLineSections.lean#L29) | def | The constructed line trivialization gives an equivalence between actual sections and global functions, linear for the specified base-field actions. |
+| Rank-one finite-scheme ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); support for P 1440 | [`finiteLineSections_finite`](Normalizer/FiniteLineSections.lean#L40) | theorem | Actual sections of a genuine line bundle on a finite scheme form a finite module over the base field. |
+| Rank-one finite-scheme ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); support for P 1440 | [`finiteLineSections_finrank_eq`](Normalizer/FiniteLineSections.lean#L51) | theorem | The line's actual section dimension equals the dimension of actual global functions; no dimension comparison is supplied as a hypothesis. |
+| Rank-one finite-scheme ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); support for P 1440 | [`finiteLineSections_finrank_pos`](Normalizer/FiniteLineSections.lean#L61) | theorem | A line bundle on a nonempty finite scheme has positive section dimension. |
+| Rank-one finite-scheme ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); support for P 1440 | [`finiteLineSections_finrank_eq_zero_iff`](Normalizer/FiniteLineSections.lean#L72) | theorem | Zero section dimension of a line bundle on a finite scheme detects exactly when the actual scheme is empty. |
+| Rank-one finite-scheme ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); support for P 1440 | [`schemePullback_lineCharts`](Normalizer/FiniteLineSections.lean#L83) | theorem | Pointwise line charts pull back along an arbitrary actual scheme morphism. |
+| Rank-one finite-scheme ingredient of [Stacks 33.33.3](https://stacks.math.columbia.edu/tag/0AYT); support for P 1440 | [`finitePullbackLineSections_finrank_eq`](Normalizer/FiniteLineSections.lean#L95) | theorem | Restricting a genuine line bundle to an actual finite scheme preserves the section-dimension formula, using the constructed pullback line charts. |
+
+
+## ModulePushforwardSections
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual scalar comparison supporting the line sequence and P 1440 | [`schemeConstantMap_comp`](Normalizer/ModulePushforwardSections.lean#L18) | theorem | Base constants pull back along the actual scheme morphism, agreeing with the constants induced by the composite structure morphism. |
+| Actual scalar comparison supporting the line sequence and P 1440 | [`schemeModulePushforwardGlobalSectionsEquiv`](Normalizer/ModulePushforwardSections.lean#L23) | def | Actual global sections of direct image agree linearly over the base field with global sections on the source. No finiteness or integrality is needed. |
+| Actual scalar comparison supporting the line sequence and P 1440 | [`schemeModulePushforwardGlobalSectionsEquiv_apply`](Normalizer/ModulePushforwardSections.lean#L35) | theorem | The global comparison is the actual identity on sections over the inverse image of the top open, which is definitionally the source's top open. |
+| Actual scalar comparison supporting the line sequence and P 1440 | [`schemeModulePushforwardGlobalSectionsEquiv_restrict`](Normalizer/ModulePushforwardSections.lean#L41) | theorem | The global comparison preserves restrictions to every actual inverse-image open; it does not replace the sheaf by an abstract isomorphic vector space. |
+| Actual scalar comparison supporting the line sequence and P 1440 | [`schemeModulePushforwardGlobalSectionsEquiv_naturality`](Normalizer/ModulePushforwardSections.lean#L49) | theorem | The comparison commutes with actual module-sheaf maps. |
+
+
+## ModuleSheafCohomologyScalars
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual cohomology scalar support for P 924–971 and the determinant degree argument | [`schemeConstantAt_restrict`](Normalizer/ModuleSheafCohomologyScalars.lean#L19) | theorem | Constants on opens commute with actual restriction maps. |
+| Actual cohomology scalar support for P 924–971 and the determinant degree argument | [`schemeModuleScalarEnd`](Normalizer/ModuleSheafCohomologyScalars.lean#L27) | def | Multiplication by a base scalar is an actual endomorphism of the underlying abelian sheaf, with scalars restricted from the structure morphism. |
+| Actual cohomology scalar support for P 924–971 and the determinant degree argument | [`schemeModuleCohomologyModule`](Normalizer/ModuleSheafCohomologyScalars.lean#L71) | def | The cohomology scalar action is induced by actual scalar endomorphisms, not a chosen vector-space structure on the underlying additive group. |
+| Actual cohomology scalar support for P 924–971 and the determinant degree argument | [`schemeModuleScalarEnd_naturality`](Normalizer/ModuleSheafCohomologyScalars.lean#L96) | theorem | Actual module-sheaf morphisms commute with actual scalar endomorphisms. |
+| Actual cohomology scalar support for P 924–971 and the determinant degree argument | [`schemeModuleCohomologyMap`](Normalizer/ModuleSheafCohomologyScalars.lean#L105) | def | Actual cohomology maps induced by module-sheaf morphisms are base-field linear. |
+| Actual cohomology scalar support for P 924–971 and the determinant degree argument | [`schemeModuleCohomology_smul`](Normalizer/ModuleSheafCohomologyScalars.lean#L123) | theorem | The cohomology scalar is the map induced by multiplication on the sheaf. |
+| Actual cohomology scalar support for P 924–971 and the determinant degree argument | [`schemeModuleCohomologyEquiv₀`](Normalizer/ModuleSheafCohomologyScalars.lean#L130) | def | The degree-zero cohomology comparison is linear for the actual base-field actions on cohomology and global sections. |
+
+
+## SectionCohomologyLinear
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Extension-class scalar naturality supporting actual boundary maps and the line sequence | [`schemeModuleShortExact_extClass_scalar`](Normalizer/SectionCohomologyLinear.lean#L16) | theorem | The extension class of an actual short exact module-sheaf sequence commutes with the actual scalar endomorphisms on its underlying abelian sheaves. |
+| Extension-class scalar naturality supporting actual boundary maps and the line sequence | [`schemeSectionLineCohomologyδLinear`](Normalizer/SectionCohomologyLinear.lean#L41) | def | The actual connecting homomorphism of the specified-section sequence is linear over the base field, by naturality of its actual extension class. |
+
+
+## SectionCokernelSections
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`schemeSectionLineCokernelSectionsEquiv`](Normalizer/SectionCokernelSections.lean#L39) | def | The actual cokernel's global sections agree over the base field with sections of the actual line restricted to its constructed zero scheme. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`schemeSectionLineCokernelFunctionsEquiv`](Normalizer/SectionCokernelSections.lean#L56) | def | Actual cokernel sections are linearly equivalent to functions on the actual zero scheme. Finiteness and the restricted line's trivialization are constructed from the curve and genuine line charts. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`schemeSectionLineCokernelSections_finite`](Normalizer/SectionCokernelSections.lean#L70) | theorem | The actual cokernel has a finite-dimensional space of global sections. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`schemeSectionLineCokernelSections_finrank_eq`](Normalizer/SectionCokernelSections.lean#L82) | theorem | The actual cokernel section dimension equals the actual zero-scheme function dimension under their structure-morphism scalar actions. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`schemeSectionLineCokernelSections_finrank_eq_zero_iff`](Normalizer/SectionCokernelSections.lean#L93) | theorem | The actual section cokernel has zero global-section dimension exactly when its constructed zero scheme is empty. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`schemeSectionLineCokernelSections_pos_of_zero`](Normalizer/SectionCokernelSections.lean#L105) | theorem | A zero of the specified nonzero section forces positive dimension of the actual cokernel's sections. The zero is tested by its nonunit local germ. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`properCurve_sectionLineCokernelSections_finite`](Normalizer/SectionCokernelSections.lean#L120) | theorem | Proper curve hypotheses and genuine pointwise charts construct finite actual cokernel sections, without supplying a finite cover or generic germ. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`schemeSectionLineCokernelH0FunctionsEquiv`](Normalizer/SectionCokernelSections.lean#L134) | def | Degree-zero cohomology of the actual cokernel is linearly equivalent to functions on the actual zero scheme under the geometrically induced scalars. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`schemeSectionLineCokernelH0_finrank_eq`](Normalizer/SectionCokernelSections.lean#L148) | theorem | Actual H⁰ of the section cokernel has the actual zero-scheme function dimension. This is the zero-dimensional quotient term for Euler additivity. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`schemeSectionLineCokernelH0_pos_of_zero`](Normalizer/SectionCokernelSections.lean#L160) | theorem | A zero of the prescribed nonzero section gives positive dimension of actual H⁰ of its actual cokernel, with all scalar structures constructed. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`properCurve_sectionLineCokernel_cohomology_finite`](Normalizer/SectionCokernelSections.lean#L176) | theorem | Every actual cohomology group of the section cokernel on a proper integral curve is finite over the base field. Degree zero uses constructed finite-zero-scheme sections; positive degrees use proved ambient vanishing. |
+| Finite-quotient dimension ingredient of [Stacks 33.44.9](https://stacks.math.columbia.edu/tag/0AYY); support for P 1440, not line degree positivity | [`properCurve_determinantCokernel_cohomology_finite`](Normalizer/SectionCokernelSections.lean#L198) | theorem | The specified determinant cokernel has finite-dimensional actual cohomology. Genuine rank-n charts construct the line, and independence of the actual generic germs proves the required section is nonzero. |
+
+
+## ProperLineSectionsFinite
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Proper-curve line H⁰ finiteness support for the degree argument; algebraically closed base, not full proper coherent cohomology | [`sectionCokernel_globalSections_ker_eq_range`](Normalizer/ProperLineSectionsFinite.lean#L25) | theorem | The actual global-section sequence is exact at the line's section space. This does not assert surjectivity onto global sections of the sheaf cokernel. |
+| Proper-curve line H⁰ finiteness support for the degree argument; algebraically closed base, not full proper coherent cohomology | [`properCurve_lineSections_finite`](Normalizer/ProperLineSectionsFinite.lean#L48) | theorem | On a proper integral curve over an algebraically closed field, a genuine line bundle with a nonzero global section has finite-dimensional actual global sections. Neither H¹ finiteness nor sectionwise surjectivity is an input. |
+| Proper-curve line H⁰ finiteness support for the degree argument; algebraically closed base, not full proper coherent cohomology | [`properCurve_lineSections_finite_of_lineCharts`](Normalizer/ProperLineSectionsFinite.lean#L72) | theorem | Every genuine line bundle on a proper integral curve over an algebraically closed field has finite-dimensional actual global sections. A nonzero section is not an input: when none exists the section space is zero. |
+| Proper-curve line H⁰ finiteness support for the degree argument; algebraically closed base, not full proper coherent cohomology | [`properCurve_lineH0_finite_of_lineCharts`](Normalizer/ProperLineSectionsFinite.lean#L91) | theorem | Actual H⁰ of a genuine line bundle on a proper integral curve is finite for the cohomology scalar action induced by the actual structure morphism. |
+
+## SectionCohomologyDimension
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Cohomological support for P 1434–1443; no degree identification | [`schemeSectionLineH1_ker_eq_rangeδ`](Normalizer/SectionCohomologyDimension.lean#L30) | theorem | The actual H¹ section-map kernel equals the range of the actual connecting map, as submodules for the structure-morphism field action. |
+| Cohomological support for P 1434–1443; no degree identification | [`schemeSectionLineδ_ker_eq_range`](Normalizer/SectionCohomologyDimension.lean#L53) | theorem | The actual connecting-map kernel equals the range of the actual H⁰ restriction map, over the base field. |
+| Cohomological support for P 1434–1443; no degree identification | [`schemeSectionLineH0_ker_eq_range`](Normalizer/SectionCohomologyDimension.lean#L77) | theorem | The actual H⁰ restriction-map kernel equals the range of the actual H⁰ section map. |
+| Cohomological support for P 1434–1443; no degree identification | [`properScheme_structureH0_finrank`](Normalizer/SectionCohomologyDimension.lean#L100) | theorem | For integral X universally closed over an algebraically closed field, actual H⁰(O_X) has dimension one for the actual cohomology field action. |
+| Cohomological support for P 1434–1443; no degree identification | [`schemeSectionLineRestrictionH0FunctionsEquiv`](Normalizer/SectionCohomologyDimension.lean#L127) | def | On a finite-type integral curve with nonzero line section and finite quasi-compact line charts, actual H⁰(i_*i^*L) is linearly equivalent to functions on its constructed finite zero scheme. |
+| Cohomological support for P 1434–1443; no degree identification | [`schemeSectionLineRestrictionH0_finite`](Normalizer/SectionCohomologyDimension.lean#L142) | theorem | Actual H⁰ of the line-restriction term is finite-dimensional, derived from the constructed finite zero scheme. |
+| Cohomological support for P 1434–1443; no degree identification | [`schemeSectionLineH1_kernel_finite`](Normalizer/SectionCohomologyDimension.lean#L155) | theorem | The actual H¹ section map has finite-dimensional kernel on the finite-type integral curve; neither whole H¹ space is assumed finite. |
+| Cohomological support for P 1434–1443; no degree identification | [`schemeSectionLineH1_finite_iff`](Normalizer/SectionCohomologyDimension.lean#L171) | theorem | The actual H¹(O_X) and H¹(L) finiteness assertions are equivalent for the specified nonzero section. Neither absolute assertion is proved. |
+| Cohomological support for P 1434–1443; no degree identification | [`properCurve_sectionH0_add_H1_kernel_finrank`](Normalizer/SectionCohomologyDimension.lean#L201) | theorem | For a proper integral curve over an algebraically closed field, h⁰(L) plus the actual H¹ section-map kernel dimension equals one plus the function dimension of the actual finite zero scheme. It is not a degree formula. |
+
+## SheafCohomologyTerminal
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| General cohomology support for P 1434–1443; not affine acyclicity or proper finiteness | [`terminalFreeAbelianPresheafIso`](Normalizer/SheafCohomologyTerminal.lean#L15) | def | The free abelian presheaf represented by a terminal object is canonically isomorphic to the constant lifted-integer presheaf, sending every generator to one. |
+| General cohomology support for P 1434–1443; not affine acyclicity or proper finiteness | [`terminalFreeAbelianSheafIso`](Normalizer/SheafCohomologyTerminal.lean#L37) | def | Sheafification constructs the corresponding canonical free-representable/constant-integer sheaf isomorphism. |
+| General cohomology support for P 1434–1443; not affine acyclicity or proper finiteness | [`sheafCohomologyTerminalEquiv`](Normalizer/SheafCohomologyTerminal.lean#L46) | def | On a general site with the standard sheafification and Ext infrastructure, actual H'(F,T,n) at terminal T is additively equivalent to actual H(F,n). |
+| General cohomology support for P 1434–1443; not affine acyclicity or proper finiteness | [`sheafCohomologyTerminalEquiv_naturality`](Normalizer/SheafCohomologyTerminal.lean#L52) | theorem | The terminal cohomology comparison commutes with maps induced by actual sheaf morphisms. |
+| General cohomology support for P 1434–1443; not affine acyclicity or proper finiteness | [`terminalFreeAbelianPresheafIso_inv_one`](Normalizer/SheafCohomologyTerminal.lean#L63) | theorem | The inverse canonical presheaf comparison sends the integer one to the actual identity generator at the terminal object. |
+| General cohomology support for P 1434–1443; not affine acyclicity or proper finiteness | [`sheafCohomologyTerminalEquiv_equiv₀`](Normalizer/SheafCohomologyTerminal.lean#L72) | theorem | In degree zero the actual H-to-sections comparison agrees with evaluation on the sheafification of the represented identity generator. |
+
+## OverAbelianExtension
+
+General cohomological support for the determinant step at P 1434–1443.
+This is a constructed library interface, not a proof of the manuscript's
+full degree or section-bound argument. The site is small; sheafification and
+Ext instances are the standard categorical infrastructure, not geometric inputs.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianExtensionObj`](Normalizer/OverAbelianExtension.lean#L40) | def | Extension of an abelian presheaf from the slice, by the direct sum over all arrows into the sliced object. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianExtensionMap`](Normalizer/OverAbelianExtension.lean#L72) | def | A morphism of slice presheaves acts on each direct-sum coefficient. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianExtension`](Normalizer/OverAbelianExtension.lean#L94) | def | The direct-sum extension functor on actual abelian presheaves. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianExtensionAdjunction`](Normalizer/OverAbelianExtension.lean#L152) | def | The direct-sum construction is left adjoint to actual slice restriction of abelian presheaves. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianExtension_preservesMonomorphisms`](Normalizer/OverAbelianExtension.lean#L207) | theorem | Extension preserves injections because it acts coefficientwise. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianExtension_additive`](Normalizer/OverAbelianExtension.lean#L223) | theorem | Extension respects addition of presheaf morphisms. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianSheafExtension`](Normalizer/OverAbelianExtension.lean#L234) | def | The actual left extension of abelian sheaves on the slice site. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianSheafExtensionAdjunction`](Normalizer/OverAbelianExtension.lean#L241) | def | Sheafification promotes the constructed presheaf adjunction to an adjunction with mathlib's actual slice restriction functor. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianSheafExtension_additive`](Normalizer/OverAbelianExtension.lean#L250) | theorem | The sheaf extension is additive. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianSheafExtension_preservesHomology`](Normalizer/OverAbelianExtension.lean#L261) | theorem | The actual sheaf extension is exact; no exactness hypothesis is imposed. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianRestriction_preservesEpimorphisms`](Normalizer/OverAbelianExtension.lean#L274) | theorem | Slice restriction preserves epimorphisms: cocontinuity supplies its right adjoint by right Kan extension on the small slice site. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianRestriction_additive`](Normalizer/OverAbelianExtension.lean#L282) | theorem | Slice restriction is additive. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianRestriction_preservesHomology`](Normalizer/OverAbelianExtension.lean#L289) | theorem | Actual restriction of abelian sheaves to the slice site is exact. |
+
+## OverSheafCohomology
+
+General cohomological support for the determinant step at P 1434–1443.
+This is a constructed library interface, not a proof of the manuscript's
+full degree or section-bound argument. The site is small; sheafification and
+Ext instances are the standard categorical infrastructure, not geometric inputs.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Support for P 1434–1443; exact hypotheses in declaration | [`freeAbelianSheafEvaluation`](Normalizer/OverSheafCohomology.lean#L20) | def | The actual sheafified free representable corepresents evaluation of abelian sheaves at the specified object. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`freeAbelianSheafEvaluation_apply`](Normalizer/OverSheafCohomology.lean#L33) | theorem | Evaluation of a morphism out of the represented abelian sheaf is its value on the sheafified identity generator. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`extendedIntegerSheafEvaluation`](Normalizer/OverSheafCohomology.lean#L45) | def | Extending the constant integer sheaf from the slice corepresents the same evaluation functor, using the actual restriction adjunction. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianExtensionIntegerIso`](Normalizer/OverSheafCohomology.lean#L61) | def | The extension of the actual constant integer sheaf is canonically the actual free abelian sheaf represented by the sliced object. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overAbelianExtensionIntegerIso_evaluation`](Normalizer/OverSheafCohomology.lean#L69) | theorem | The canonical comparison of representing objects preserves evaluation on the distinguished generator. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overSheafCohomologyEquiv`](Normalizer/OverSheafCohomology.lean#L98) | def | Evaluation of the actual cohomology presheaf at an object agrees, in every degree, with intrinsic cohomology of the actual restricted sheaf. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overSheafCohomologyEquiv_naturality`](Normalizer/OverSheafCohomology.lean#L105) | theorem | The slice cohomology comparison commutes with maps of actual sheaves. |
+| Support for P 1434–1443; exact hypotheses in declaration | [`overSheafCohomologyEquiv_equiv₀`](Normalizer/OverSheafCohomology.lean#L119) | theorem | In degree zero the slice comparison gives the actual section obtained by evaluating on the sheafified identity generator at the sliced object. |
+
+## AffinePrincipalLocalization
+
+Localization lemmas used in the affine H¹ proof, supporting the determinant
+step at P 1434–1443. These concern the actual principal-open restrictions.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Degree-one affine support for P 1434–1443 | [`localizedModuleAway_cancel_left`](Normalizer/AffinePrincipalLocalization.lean#L15) | theorem | Compatible localization maps M to N at a and M to P at a*b force N to P to be localization at b; both denominator lifting and annihilator conditions are proved. |
+| Degree-one affine support for P 1434–1443 | [`localizingSheaf_principalRestriction`](Normalizer/AffinePrincipalLocalization.lean#L65) | theorem | For a localizing R-module sheaf on Spec R, the actual D(a)-to-D(a)-intersect-D(b) restriction localizes at b. |
+| Degree-one affine support for P 1434–1443 | [`tilde_principalRestriction`](Normalizer/AffinePrincipalLocalization.lean#L87) | theorem | The actual associated sheaf satisfies the principal-restriction localization theorem without a supplied localization premise. |
+
+## AffineCechOne
+
+The degree-one standard-cover instance of
+[Stacks 30.2.1](https://stacks.math.columbia.edu/tag/01X9), proved here by
+denominator clearing on actual sections. Higher degrees are not claimed.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Degree-one affine support for P 1434–1443 | [`affineModuleRestrict`](Normalizer/AffineCechOne.lean#L16) | abbrev | The actual restriction in an R-module sheaf, retained as an R-linear map. |
+| Degree-one affine support for P 1434–1443 | [`affineModuleRestrict_comp`](Normalizer/AffineCechOne.lean#L22) | theorem | Composing actual R-linear restrictions agrees with restriction along the composite inclusion. |
+| Degree-one affine support for P 1434–1443 | [`localizingSheaf_cechOne_eq_coboundary`](Normalizer/AffineCechOne.lean#L35) | theorem | Every degree-one cocycle of actual sections on a finite principal affine cover of a localizing module sheaf is a coboundary. Two denominator clearings and a partition of unity construct the correction. |
+| Degree-one affine support for P 1434–1443 | [`tilde_cechOne_eq_coboundary`](Normalizer/AffineCechOne.lean#L127) | theorem | The finite-principal-cover cocycle result for the actual associated sheaf of any module over any commutative ring. |
+
+## AffineSheafLifting
+
+The gluing step supporting P 1434–1443. Local lifts in arbitrary abelian
+sheaves are corrected using the proved finite-cover cocycle theorem.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Degree-one affine support for P 1434–1443 | [`affineModuleAbelianSheaf`](Normalizer/AffineSheafLifting.lean#L17) | def | The standard scalar-forgetting functor applied to an actual R-module sheaf on Spec R. |
+| Degree-one affine support for P 1434–1443 | [`affineSheaf_epi_finitePrincipal_lifts`](Normalizer/AffineSheafLifting.lean#L24) | theorem | Local surjectivity of an abelian-sheaf epimorphism and compactness of Spec R construct a finite principal cover with actual lifts of the specified global section. |
+| Degree-one affine support for P 1434–1443 | [`abelianSheaf_shortExact_sections_exact`](Normalizer/AffineSheafLifting.lean#L61) | theorem | An actual short exact sequence of abelian sheaves is exact on sections at its middle term on every open, using preservation of kernels by evaluation. |
+| Degree-one affine support for P 1434–1443 | [`localizingSheaf_extension_globalSections_surjective`](Normalizer/AffineSheafLifting.lean#L105) | theorem | Every quotient global section lifts in an arbitrary abelian-sheaf extension with a localizing module sheaf as kernel. The difference cocycle and corrected gluing are constructed. |
+
+## AffineH1Vanishing
+
+The degree-one Spec R instance of
+[Stacks 30.2.2](https://stacks.math.columbia.edu/tag/01XB), using an actual
+injective presentation. This supports P 1434–1443; the all-degree theorem,
+proper-curve finiteness and the determinant conclusion remain separate.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Degree-one affine support for P 1434–1443 | [`localizingSheaf_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L18) | theorem | The actual Ext-defined first cohomology of a localizing module sheaf vanishes, using the proved lifting theorem on its canonical injective presentation. |
+| Degree-one affine support for P 1434–1443 | [`tilde_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L43) | theorem | Actual H¹(Spec R, tilde M) is zero for every commutative ring and every module. No noetherian, finite-generation, characteristic or acyclicity hypothesis. |
+| Degree-one affine support for P 1434–1443 | [`tilde_H1_eq_zero`](Normalizer/AffineH1Vanishing.lean#L51) | theorem | Every element of the actual first cohomology of the associated sheaf is zero. |
+| Degree-one affine support for P 1434–1443 | [`quasicoherent_Spec_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L59) | theorem | Actual H¹ of every quasicoherent module sheaf on Spec R is zero. The localization input is derived from mathlib quasicoherence, not supplied separately. |
+
+## OpenSheafCohomology
+
+Support for the determinant degree argument in P 1434–1443. These are
+cohomological constructions, not the manuscript degree conclusion.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual-open cohomology support for P 1434–1443 | [`openOverInverseSectionsIso`](Normalizer/OpenSheafCohomology.lean#L23) | def | Global sections commute with the inverse of the actual open-site equivalence. |
+| Actual-open cohomology support for P 1434–1443 | [`openOverConstantIso`](Normalizer/OpenSheafCohomology.lean#L34) | def | The actual open-site equivalence transports constant sheaves, by the evaluation adjunctions. |
+| Actual-open cohomology support for P 1434–1443 | [`openOverCohomologyEquiv`](Normalizer/OpenSheafCohomology.lean#L50) | def | All-degree cohomology comparison from the small slice site to the actual open subspace. |
+| Actual-open cohomology support for P 1434–1443 | [`openOverCohomologyEquiv_naturality`](Normalizer/OpenSheafCohomology.lean#L63) | theorem | The open-site comparison commutes with every actual abelian-sheaf morphism. |
+| Actual-open cohomology support for P 1434–1443 | [`openSheafCohomologyEquiv`](Normalizer/OpenSheafCohomology.lean#L87) | def | All-degree comparison of ambient-open cohomology-presheaf evaluation with actual topological open restriction. |
+| Actual-open cohomology support for P 1434–1443 | [`openSheafCohomologyEquiv_naturality`](Normalizer/OpenSheafCohomology.lean#L94) | theorem | The ambient-open comparison is natural in the original abelian sheaf. |
+
+## SchemeOpenCohomology
+
+The actual scheme restriction, affine-coordinate transport and scalar
+compatibility complete the degree-one affine-open input.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual-open cohomology support for P 1434–1443 | [`schemeOpenAbelianRestrictionIso`](Normalizer/SchemeOpenCohomology.lean#L16) | def | Forgetting the module structure commutes with actual scheme open restriction. |
+| Actual-open cohomology support for P 1434–1443 | [`schemeOpenCohomologyEquiv`](Normalizer/SchemeOpenCohomology.lean#L23) | def | Actual module restriction to the open subscheme gives the ambient-open cohomology comparison in every degree. |
+| Actual-open cohomology support for P 1434–1443 | [`schemeOpenCohomologyEquiv_apply`](Normalizer/SchemeOpenCohomology.lean#L31) | theorem | The module comparison agrees with the actual abelian open comparison on cohomology classes. |
+| Actual-open cohomology support for P 1434–1443 | [`schemeIsoRestriction_unit_isIso`](Normalizer/SchemeOpenCohomology.lean#L39) | theorem | The canonical restriction/direct-image adjunction unit is an isomorphism along a scheme isomorphism. |
+| Actual-open cohomology support for P 1434–1443 | [`quasicoherent_affine_H1_subsingleton`](Normalizer/SchemeOpenCohomology.lean#L56) | theorem | Actual H1 vanishes for every quasicoherent module sheaf on any affine scheme, via its canonical Spec coordinate isomorphism. |
+| Actual-open cohomology support for P 1434–1443 | [`quasicoherent_affineOpen_H1_subsingleton`](Normalizer/SchemeOpenCohomology.lean#L72) | theorem | Actual ambient H-prime in degree one vanishes on every affine open for a quasicoherent module sheaf on the ambient scheme. |
+| Actual-open cohomology support for P 1434–1443 | [`schemeConstantAt_open`](Normalizer/SchemeOpenCohomology.lean#L81) | theorem | The composite structure morphism on an actual open subscheme gives precisely the restricted ambient base constants. |
+| Actual-open cohomology support for P 1434–1443 | [`schemeModuleScalarEnd_open`](Normalizer/SchemeOpenCohomology.lean#L90) | theorem | Scalar endomorphisms commute with the actual open restriction functor. |
+| Actual-open cohomology support for P 1434–1443 | [`schemeModuleOpenCohomologyModule`](Normalizer/SchemeOpenCohomology.lean#L105) | def | The ambient-open cohomology module action is constructed directly from actual scalar endomorphisms, independently of the comparison. |
+| Actual-open cohomology support for P 1434–1443 | [`schemeModuleOpenCohomology_smul`](Normalizer/SchemeOpenCohomology.lean#L131) | theorem | The ambient-open scalar action is exactly the map induced on the actual cohomology presheaf. |
+| Actual-open cohomology support for P 1434–1443 | [`schemeOpenCohomologyLinearEquiv`](Normalizer/SchemeOpenCohomology.lean#L141) | def | The actual geometric open comparison is linear for the independently constructed structure-morphism scalar actions. |
+
+## TwoAffineCohomology
+
+For a supplied two-affine cover, the actual Mayer-Vietoris sequence
+constructs the global H1 quotient. Its finite dimension remains unproved.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual-open cohomology support for P 1434–1443 | [`twoOpenCoverSquare`](Normalizer/TwoAffineCohomology.lean#L18) | def | The actual two-open cover determines its Mayer-Vietoris square with ambient top as the final corner. |
+| Actual-open cohomology support for P 1434–1443 | [`twoOpenCohomologyδ`](Normalizer/TwoAffineCohomology.lean#L27) | def | The original Mayer-Vietoris boundary is transported to actual global H1 by the natural terminal comparison. |
+| Actual-open cohomology support for P 1434–1443 | [`quasicoherent_twoAffine_δ_surjective`](Normalizer/TwoAffineCohomology.lean#L35) | theorem | For a supplied actual two-affine cover and quasicoherent module sheaf, the original boundary onto global H1 is surjective; both local vanishings are derived. |
+| Actual-open cohomology support for P 1434–1443 | [`twoOpenCohomologyδ_eq_zero_iff`](Normalizer/TwoAffineCohomology.lean#L61) | theorem | The kernel of the actual boundary consists exactly of differences of degree-zero restrictions; no affine or finiteness condition is needed for exactness. |
+| Actual-open cohomology support for P 1434–1443 | [`twoOpenCohomologyδLinear`](Normalizer/TwoAffineCohomology.lean#L85) | def | The original two-open boundary is linear for the actual structure-morphism scalar actions. |
+| Actual-open cohomology support for P 1434–1443 | [`twoAffineH1QuotientEquiv`](Normalizer/TwoAffineCohomology.lean#L109) | def | A supplied actual two-affine cover gives a linear quotient presentation of global H1. The kernel is identified with restriction differences above. The cover is not constructed and quotient finiteness is not asserted. |
+
+## CurveFiniteMap
+
+Support for the determinant degree step in P 1434–1443.
+The last theorem is the integral, nonconstant specialization of
+[Stacks Lemma 53.2.4](https://stacks.math.columbia.edu/tag/0CCL).
+This module does not assert proper-curve H1 finiteness or the degree conclusion.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Finite-map route support for P 1434–1443 | [`curve_closedPoint_of_ne_generic`](Normalizer/CurveFiniteMap.lean#L29) | theorem | Every nongeneric point of a sober irreducible T0 space of dimension at most one is closed. |
+| Finite-map route support for P 1434–1443 | [`noetherian_dimZero_finite`](Normalizer/CurveFiniteMap.lean#L46) | theorem | A Noetherian T0 space of dimension at most zero has finitely many points, via its finitely many irreducible components. |
+| Finite-map route support for P 1434–1443 | [`curve_properClosedSubset_finite`](Normalizer/CurveFiniteMap.lean#L64) | theorem | A closed subset different from the whole Noetherian irreducible T0 curve is finite. |
+| Finite-map route support for P 1434–1443 | [`curve_closedMap_fibres_finite`](Normalizer/CurveFiniteMap.lean#L78) | theorem | A nonconstant continuous closed map from a Noetherian sober irreducible curve has finite fibres, including fibres over nonclosed points. |
+| Finite-map route support for P 1434–1443 | [`curve_nonconstant_proper_isFinite`](Normalizer/CurveFiniteMap.lean#L103) | theorem | A nonconstant proper morphism from an integral Noetherian scheme of dimension at most one is finite; the fibre condition is derived. |
+| Integral case of Stacks 53.2.4; support for P 1434–1443 | [`properCurve_nonconstant_map_isFinite`](Normalizer/CurveFiniteMap.lean#L114) | theorem | For a given nonconstant morphism from a proper integral curve over a field to a separated scheme over that field, derive Noetherianity and properness and prove the morphism finite. This does not construct the morphism. |
+
+## LaurentCechFinite
+
+Support for the determinant degree step in P 1434–1443.
+This is the algebraic finite-window argument for a proposed two-chart route.
+This module does not assert proper-curve H1 finiteness or the degree conclusion.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Finite-map route support for P 1434–1443 | [`laurentSpan`](Normalizer/LaurentCechFinite.lean#L18) | def | The coefficient-ring span of the specified integer Laurent translates of a family. |
+| Finite-map route support for P 1434–1443 | [`laurentSpan_generator`](Normalizer/LaurentCechFinite.lean#L22) | theorem | Each indicated translate belongs to the defined coefficient-ring span. |
+| Finite-map route support for P 1434–1443 | [`laurentSpan_univ`](Normalizer/LaurentCechFinite.lean#L35) | theorem | The span of all integer translates equals restriction of scalars of the original Laurent-ring span. |
+| Finite-map route support for P 1434–1443 | [`laurent_span_eventually_nonpositive`](Normalizer/LaurentCechFinite.lean#L68) | theorem | Every element in a Laurent-ring span has all sufficiently negative translates in the nonpositive-power span of the given family. |
+| Finite-map route support for P 1434–1443 | [`laurent_twoChart_window`](Normalizer/LaurentCechFinite.lean#L98) | theorem | Finite Laurent generators, nonnegative-power containment and a uniform negative-tail bound construct an explicit finite interval of translates spanning the quotient. |
+| Finite-map route support for P 1434–1443 | [`laurent_twoChart_quotient_finite`](Normalizer/LaurentCechFinite.lean#L132) | theorem | Two families generating the same Laurent module, with the first family finite, give a quotient finite over the coefficient ring by their nonnegative and nonpositive power spans. No quotient finiteness is assumed. |
+
+## CurveRationalExtension
+
+The normal-curve extension step of [Stacks Lemma 53.2.2](https://stacks.math.columbia.edu/tag/0BXZ). The source is integral and locally Noetherian of dimension at most one, with integrally closed actual stalks. Local valuation lifts, neighbourhood representatives and the unique global map are constructed. This does not extend arbitrary rational functions on singular curves.
+
+These are supporting results for the determinant degree step at P 1434–1443, not a proof of that manuscript step.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Stacks 53.2.2 extension support; P 1434–1443 | [`normalCurve_stalk_valuationRing`](Normalizer/CurveRationalExtension.lean#L19) | theorem | A Noetherian integral scheme of dimension at most one has valuation local rings at every point where its actual stalk is integrally closed. This includes the generic field stalk. |
+| Stacks 53.2.2 extension support; P 1434–1443 | [`partialMap_genericRestriction_eq_stalkRestriction`](Normalizer/CurveRationalExtension.lean#L35) | theorem | Restricting a partial map to the generic point agrees with first restricting to an actual stalk and then to its fraction field. |
+| Stacks 53.2.2 extension support; P 1434–1443 | [`genericMap_lift_to_valuationStalk`](Normalizer/CurveRationalExtension.lean#L47) | theorem | Properness extends an actual generic map to any valuation stalk. The source, fraction field, structural square and its lift are constructed. |
+| Stacks 53.2.2 extension support; P 1434–1443 | [`genericMap_mem_domain_of_valuationStalk`](Normalizer/CurveRationalExtension.lean#L80) | theorem | The rational map supplied by an actual generic map is defined at every valuation stalk of the source. The local representative is spread out from the valuative lift, and agreement at the generic point is proved. |
+| Stacks 53.2.2 extension support; P 1434–1443 | [`rationalMap_exists_hom_of_domain_eq_top`](Normalizer/CurveRationalExtension.lean#L99) | theorem | A rational map defined everywhere on a reduced source, with separated target, is represented by an actual global morphism. |
+| Stacks 53.2.2 extension support; P 1434–1443 | [`schemeHom_eq_of_genericRestriction`](Normalizer/CurveRationalExtension.lean#L116) | theorem | Two morphisms from an integral scheme to a separated scheme agreeing on the actual generic field are equal. |
+| Stacks 53.2.2 extension support; P 1434–1443 | [`valuationStalks_genericMap_existsUnique`](Normalizer/CurveRationalExtension.lean#L132) | theorem | On an integral scheme with valuation stalks, any generic map to a proper target extends uniquely to an actual morphism over the base. Local lifts and spreading out prove that its rational-map domain is all X. |
+| Stacks 53.2.2 extension support; P 1434–1443 | [`normalCurve_genericMap_existsUnique`](Normalizer/CurveRationalExtension.lean#L162) | theorem | Normal integral curves have unique extensions of generic maps into proper targets. The valuation property is derived from Noetherianity, dimension at most one and integral closedness of the actual stalks. |
+
+## ProjectiveLine
+
+The actual projective line is Proj of the standard grading on k[X0,X1]. Its degree-zero ring, structure map, properness, two affine charts and cover are constructed. The map [1:t] from an actual global section preserves the base morphism and has the stated chart pullbacks. The polynomial and Laurent identifications are supplied by the later ProjectiveCoordinates module.
+
+These are supporting results for the determinant degree step at P 1434–1443, not a proof of that manuscript step.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLine`](Normalizer/ProjectiveLine.lean#L17) | def | The projective line is the actual Proj scheme of the standard graded polynomial ring in two variables. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineZeroConstants`](Normalizer/ProjectiveLine.lean#L21) | def | Constants identify the coefficient ring with the degree-zero ring of the standard homogeneous polynomial grading. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineZeroConstants_bijective`](Normalizer/ProjectiveLine.lean#L30) | theorem | The actual constants map to degree zero is bijective. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineZeroEquiv`](Normalizer/ProjectiveLine.lean#L41) | def | The canonical isomorphism from constants to the actual degree-zero ring. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineToSpec`](Normalizer/ProjectiveLine.lean#L45) | def | The structure morphism of the actual Proj model over its coefficient ring. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineChart`](Normalizer/ProjectiveLine.lean#L50) | def | The standard homogeneous-coordinate open D₊(X_i). |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineChart_isAffine`](Normalizer/ProjectiveLine.lean#L54) | theorem | Each standard coordinate open of the actual projective line is affine. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLine_adjoin_variables`](Normalizer/ProjectiveLine.lean#L59) | theorem | The two variables generate the graded polynomial algebra over its actual degree-zero ring. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLine_finiteType`](Normalizer/ProjectiveLine.lean#L72) | theorem | Finite type over degree zero, with the two homogeneous variables as generators. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineToSpec_isProper`](Normalizer/ProjectiveLine.lean#L80) | theorem | The structure map of the actual projective line is proper. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineChart_cover`](Normalizer/ProjectiveLine.lean#L88) | theorem | The two standard affine opens cover the actual projective line. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineChartIsoSpec`](Normalizer/ProjectiveLine.lean#L93) | def | The actual standard chart has the homogeneous-localization coordinate ring. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineSectionEval`](Normalizer/ProjectiveLine.lean#L103) | def | Homogeneous coordinates `[1:t]`, evaluated in the actual global sections of a scheme over the coefficient ring. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineSectionEval_irrelevant`](Normalizer/ProjectiveLine.lean#L109) | theorem | The coordinate `X₀` maps to one, so the evaluated irrelevant ideal is the unit ideal. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineOfSection`](Normalizer/ProjectiveLine.lean#L120) | def | The actual morphism to Proj defined by the coordinates `[1:t]`. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineOfSection_comp`](Normalizer/ProjectiveLine.lean#L126) | theorem | The section-defined projective-line morphism is over the original base. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineOfSection_preimage_zero`](Normalizer/ProjectiveLine.lean#L143) | theorem | The zero-coordinate chart contains the whole image of `[1:t]`. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineOfSection_preimage_one`](Normalizer/ProjectiveLine.lean#L151) | theorem | The other standard chart pulls back to the invertibility locus of the specified section. |
+
+## TwoAffineSections
+
+For an actual two-affine cover, this identifies actual first cohomology with the quotient of actual overlap sections. Field actions and restriction compatibility are proved. The boundary kernel is exactly the differences of actual restrictions. No finite dimension is concluded.
+
+These are supporting results for the determinant degree step at P 1434–1443, not a proof of that manuscript step.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual chart/cohomology support for P 1434–1443 | [`schemeOpenSectionsModule`](Normalizer/TwoAffineSections.lean#L16) | def | The actual module of sections on an open, with scalars from the base field. |
+| Actual chart/cohomology support for P 1434–1443 | [`schemeModuleOpenCohomologyEquiv₀`](Normalizer/TwoAffineSections.lean#L21) | def | Degree-zero cohomology of an actual open is its actual section module, with the base-field action on both sides proved compatible. |
+| Actual chart/cohomology support for P 1434–1443 | [`schemeModuleOpenCohomologyEquiv₀_apply`](Normalizer/TwoAffineSections.lean#L52) | theorem | The comparison evaluates the cohomology class on the actual identity generator. |
+| Actual chart/cohomology support for P 1434–1443 | [`schemeModuleOpenCohomologyEquiv₀_restrict`](Normalizer/TwoAffineSections.lean#L63) | theorem | The degree-zero comparison commutes with the actual open restriction map. |
+| Actual chart/cohomology support for P 1434–1443 | [`twoOpenSectionδ`](Normalizer/TwoAffineSections.lean#L99) | def | The actual section boundary on the overlap, with the original Mayer-Vietoris connecting map and its structure-field action. |
+| Actual chart/cohomology support for P 1434–1443 | [`twoOpenSectionδ_surjective`](Normalizer/TwoAffineSections.lean#L111) | theorem | The actual section boundary is onto on a two-affine cover of a quasicoherent sheaf; the local vanishing is derived. |
+| Actual chart/cohomology support for P 1434–1443 | [`twoOpenSectionδ_eq_zero_iff`](Normalizer/TwoAffineSections.lean#L118) | theorem | A section on the overlap has zero boundary exactly when it is a difference of actual sections restricted from the two opens. |
+| Actual chart/cohomology support for P 1434–1443 | [`twoAffineSectionH1QuotientEquiv`](Normalizer/TwoAffineSections.lean#L166) | def | First cohomology is the quotient of actual overlap sections by the kernel proved above to be precisely actual restriction differences. |
+
+## CurveProjectiveLine
+
+A specified element of the generic stalk constructs a unique actual map from a normal curve to the actual projective line. Its base and generic restrictions are proved. Finiteness still requires proved nonconstancy. For any finite map to this projective line, actual pullback charts and finite coordinate modules are constructed; for an affine map and quasicoherent sheaf, their section quotient computes actual H1. The final chart constructions require no source integrality or normality.
+
+These are supporting results for the determinant degree step at P 1434–1443, not a proof of that manuscript step.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual chart/cohomology support for P 1434–1443 | [`curveGenericProjectiveLineMap`](Normalizer/CurveProjectiveLine.lean#L20) | def | The actual generic-stalk map with homogeneous coordinates `[1:t]`. |
+| Actual chart/cohomology support for P 1434–1443 | [`curveGenericProjectiveLineMap_comp`](Normalizer/CurveProjectiveLine.lean#L26) | theorem | The specified generic map is over the original base field. |
+| Actual chart/cohomology support for P 1434–1443 | [`normalCurve_projectiveLine_existsUnique`](Normalizer/CurveProjectiveLine.lean#L33) | theorem | A specified rational function on a normal curve gives a unique actual projective-line morphism with those generic coordinates. |
+| Actual chart/cohomology support for P 1434–1443 | [`normalCurveProjectiveLineMap`](Normalizer/CurveProjectiveLine.lean#L44) | def | The projective-line morphism constructed by extension of `[1:t]`. |
+| Actual chart/cohomology support for P 1434–1443 | [`normalCurveProjectiveLineMap_comp`](Normalizer/CurveProjectiveLine.lean#L51) | theorem | The constructed morphism respects the original structure map. |
+| Actual chart/cohomology support for P 1434–1443 | [`normalCurveProjectiveLineMap_generic`](Normalizer/CurveProjectiveLine.lean#L59) | theorem | The generic restriction is the originally specified `[1:t]` map. |
+| Actual chart/cohomology support for P 1434–1443 | [`normalCurveProjectiveLineMap_isFinite_of_nonconstant`](Normalizer/CurveProjectiveLine.lean#L69) | theorem | Nonconstancy of the constructed morphism, when established, makes it finite. The normality input is used only in constructing this particular morphism. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLinePullbackChart`](Normalizer/CurveProjectiveLine.lean#L83) | def | The actual inverse image of a standard projective-line chart. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLinePullbackChart_cover`](Normalizer/CurveProjectiveLine.lean#L87) | theorem | The two pulled-back coordinate opens cover the source scheme. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLinePullbackChart_isAffine`](Normalizer/CurveProjectiveLine.lean#L102) | theorem | Under an affine morphism, in particular a finite one, the actual inverse-image coordinate opens are affine. No normality is needed here. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLinePullbackChartAlgebra`](Normalizer/CurveProjectiveLine.lean#L109) | def | The actual coordinate-ring action on the inverse-image chart sections, induced by the original morphism's sheaf map. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLinePullbackChart_finite`](Normalizer/CurveProjectiveLine.lean#L116) | theorem | A finite map supplies finite actual chart modules over the corresponding projective-line chart rings. Polynomial-coordinate identification is separate. |
+| Actual chart/cohomology support for P 1434–1443 | [`projectiveLineChartSectionH1QuotientEquiv`](Normalizer/CurveProjectiveLine.lean#L126) | def | The actual inverse-image chart section quotient computes actual H¹ for an affine morphism to the projective line. In particular this applies to a finite morphism. No cohomology dimension is supplied or concluded. |
+
+## ProjectiveCoordinates
+
+The dimension-one chart calculation underlying [Stacks Lemma 27.13.3](https://stacks.math.columbia.edu/tag/01NG), constructed here for Proj of k[X0,X1] over any commutative coefficient ring. Both actual chart section rings are polynomial rings; the actual overlap section ring is a Laurent polynomial ring. The actual restrictions are polynomial inclusion and inclusion followed by Laurent inversion. Constants in the homogeneous-localization maps are fixed. These are ring isomorphisms; the later FiniteMapLaurent and FiniteMapH1 modules construct the scalar/localization comparisons for actual pulled-back chart modules.
+
+These support the cohomology route behind P 1434–1443; the manuscript degree step remains unformalized.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartCoordinate`](Normalizer/ProjectiveCoordinates.lean#L17) | def | The actual ratio X_rev(i)/X_i in the standard homogeneous-localization chart. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartFromPolynomial`](Normalizer/ProjectiveCoordinates.lean#L23) | def | Polynomial evaluation at the actual chart ratio, with actual constant coefficients. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartPolynomialEval`](Normalizer/ProjectiveCoordinates.lean#L29) | def | Dehomogenization of the homogeneous polynomial ring on the chosen chart. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartToPolynomial`](Normalizer/ProjectiveCoordinates.lean#L33) | def | The actual chart maps to polynomials by setting its denominator coordinate to one. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartToPolynomial_mk`](Normalizer/ProjectiveCoordinates.lean#L40) | theorem | A homogeneous fraction p/X_i^n dehomogenizes to p with X_i set to one. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartToPolynomial_coordinate`](Normalizer/ProjectiveCoordinates.lean#L51) | theorem | The actual coordinate ratio is sent to the polynomial variable. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartToPolynomial_from_C`](Normalizer/ProjectiveCoordinates.lean#L57) | theorem | The composite chart evaluation fixes every coefficient polynomial. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartToPolynomial_leftInverse`](Normalizer/ProjectiveCoordinates.lean#L68) | theorem | Dehomogenization is a left inverse of evaluation at the actual chart ratio. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChart_monomial_fraction`](Normalizer/ProjectiveCoordinates.lean#L79) | theorem | Every homogeneous monomial fraction on the chart is a power of its actual ratio. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartFromPolynomial_surjective`](Normalizer/ProjectiveCoordinates.lean#L96) | theorem | The actual chart ratio generates every homogeneous-localization element as a polynomial. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartToPolynomial_bijective`](Normalizer/ProjectiveCoordinates.lean#L131) | theorem | Dehomogenization is bijective on the actual chart ring. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartPolynomialEquiv`](Normalizer/ProjectiveCoordinates.lean#L143) | def | The explicit polynomial coordinate isomorphism on either actual standard chart. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveOverlapRing`](Normalizer/ProjectiveCoordinates.lean#L148) | abbrev | The actual homogeneous localization on the intersection of the standard charts. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveOverlap_product`](Normalizer/ProjectiveCoordinates.lean#L153) | theorem | The product defining the overlap can be ordered from either chart. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartToOverlap`](Normalizer/ProjectiveCoordinates.lean#L159) | def | The actual homogeneous-localization restriction from either chart to the overlap. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveOverlap_isLocalization`](Normalizer/ProjectiveCoordinates.lean#L165) | theorem | The overlap is the localization of either actual chart at its coordinate ratio. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartPolynomialEquiv_powers`](Normalizer/ProjectiveCoordinates.lean#L173) | theorem | The chart coordinate isomorphism sends the inverted powers to powers of the polynomial variable. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveOverlapLaurentEquiv`](Normalizer/ProjectiveCoordinates.lean#L182) | def | The overlap is the actual Laurent polynomial ring, oriented by X_1/X_0. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveOverlapLaurentEquiv_restrict_zero`](Normalizer/ProjectiveCoordinates.lean#L189) | theorem | Restriction from the first chart is the usual inclusion of polynomials into Laurent polynomials. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveOverlap_coordinate_mul`](Normalizer/ProjectiveCoordinates.lean#L198) | theorem | The two actual chart ratios multiply to one after restriction to their overlap. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveOverlapLaurentEquiv_coordinate_one`](Normalizer/ProjectiveCoordinates.lean#L211) | theorem | The second chart coordinate restricts to the inverse Laurent variable. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveChartToOverlap_from_C`](Normalizer/ProjectiveCoordinates.lean#L228) | theorem | Both chart restrictions agree on their actual constant coefficients. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveOverlapLaurentEquiv_from_one`](Normalizer/ProjectiveCoordinates.lean#L235) | theorem | Restricting a polynomial from the second chart replaces its variable by the inverse Laurent variable. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveOverlapLaurentEquiv_restrict_one`](Normalizer/ProjectiveCoordinates.lean#L256) | theorem | Restriction from the second actual chart is polynomial inclusion followed by Laurent inversion. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineOverlap`](Normalizer/ProjectiveCoordinates.lean#L267) | def | The actual open underlying the Laurent overlap. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineOverlap_eq_inf`](Normalizer/ProjectiveCoordinates.lean#L272) | theorem | The Laurent overlap open is the intersection of the two standard chart opens. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineOverlap_le`](Normalizer/ProjectiveCoordinates.lean#L277) | theorem | The actual overlap inclusion into either standard chart. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineChartSectionsEquiv`](Normalizer/ProjectiveCoordinates.lean#L282) | def | The actual chart sections are the homogeneous-localization ring. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineOverlapSectionsEquiv`](Normalizer/ProjectiveCoordinates.lean#L289) | def | The actual overlap sections are the homogeneous localization at X_0 X_1. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineSections_restrict`](Normalizer/ProjectiveCoordinates.lean#L296) | theorem | Actual sheaf restriction agrees with the homogeneous-localization restriction map. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineChartSectionsPolynomialEquiv`](Normalizer/ProjectiveCoordinates.lean#L317) | def | Polynomial coordinates on the actual section ring of either chart. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineOverlapSectionsLaurentEquiv`](Normalizer/ProjectiveCoordinates.lean#L322) | def | Laurent coordinates on the actual section ring of the chart intersection. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineSections_restrict_zero`](Normalizer/ProjectiveCoordinates.lean#L327) | theorem | In actual section coordinates, the first restriction is the usual polynomial inclusion. |
+| Projective-coordinate support for P 1434–1443 | [`projectiveLineSections_restrict_one`](Normalizer/ProjectiveCoordinates.lean#L337) | theorem | In actual section coordinates, the second restriction inverts the Laurent variable. |
+
+## ProjectiveLineCohomology
+
+The n=1, d=0, q=1, field-base special case of [Stacks Lemma 30.8.1](https://stacks.math.columbia.edu/tag/01XS): actual H1(P1_k,O) vanishes. Every actual overlap section is a difference of actual chart sections, so the actual Mayer-Vietoris boundary is both zero and surjective. This is an unconditional cohomology calculation on the actual Proj scheme over a field, not a proper-curve finiteness interface. The coordinate and section-difference calculations work over arbitrary commutative rings. The general structure-sheaf local-freeness lemma is support for quasicoherence.
+
+These support the cohomology route behind P 1434–1443; the manuscript degree step remains unformalized.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual projective-line cohomology support for P 1434–1443 | [`laurentPolynomial_twoChart_difference`](Normalizer/ProjectiveLineCohomology.lean#L16) | theorem | Every Laurent polynomial is a difference of polynomials in the two opposite coordinates. |
+| Actual projective-line cohomology support for P 1434–1443 | [`projectiveLineOverlap_sections_difference`](Normalizer/ProjectiveLineCohomology.lean#L31) | theorem | Every actual overlap section is a difference of sections from the two actual charts. |
+| Actual projective-line cohomology support for P 1434–1443 | [`schemeUnit_isLocallyFree`](Normalizer/ProjectiveLineCohomology.lean#L47) | theorem | The actual structure sheaf is locally free of rank one, via the one-generator free sheaf. |
+| Actual projective-line cohomology support for P 1434–1443 | [`projectiveLineChart_sup`](Normalizer/ProjectiveLineCohomology.lean#L53) | theorem | The standard two-chart cover expressed as a binary union. |
+| Actual projective-line cohomology support for P 1434–1443 | [`projectiveLine_unit_H1_subsingleton`](Normalizer/ProjectiveLineCohomology.lean#L64) | theorem | The first cohomology of the actual structure sheaf of the actual Proj projective line vanishes. |
+| Actual projective-line cohomology support for P 1434–1443 | [`projectiveLine_unit_H1_finite`](Normalizer/ProjectiveLineCohomology.lean#L94) | theorem | Actual structure-sheaf H¹ on the projective line is finite over the structure field. |
+
+## FiniteChartGeometry
+
+Actual principal-open and localization construction. The invertibility locus of the specified Proj chart ratio is its actual overlap; pullback identifies the source overlap with the principal open of the actual pulled-back ratio. An affine morphism therefore gives the actual ring localization. No source normality or cohomology hypothesis is used.
+
+Supporting construction for the cohomology route behind P 1434–1443; the manuscript degree step remains unformalized.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveLineChartRatio`](Normalizer/FiniteChartGeometry.lean#L18) | def | The coordinate ratio as an actual section of a projective-line chart. |
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveLineChartRatio_basicOpen`](Normalizer/FiniteChartGeometry.lean#L22) | theorem | The invertibility locus of the actual chart ratio is exactly the chart overlap. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapOverlap`](Normalizer/FiniteChartGeometry.lean#L55) | def | The actual inverse image of the projective overlap. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapOverlap_le`](Normalizer/FiniteChartGeometry.lean#L59) | theorem | The inverse-image overlap lies in either actual inverse-image chart. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapOverlap_eq_basicOpen`](Normalizer/FiniteChartGeometry.lean#L64) | theorem | The pulled-back overlap is the principal open of the pulled-back coordinate ratio. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapChartRestriction`](Normalizer/FiniteChartGeometry.lean#L69) | def | The actual ring restriction from an inverse-image chart to the overlap. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapChartRestriction_isLocalization`](Normalizer/FiniteChartGeometry.lean#L74) | theorem | For an affine morphism, actual overlap restriction is localization at the actual chart ratio. |
+
+## ProjectiveChartScalars
+
+Actual scalar compatibility. The Proj chart structure morphism and homogeneous-localization constants agree; actual polynomial coordinates send the base constants to coefficient polynomials. Constants on inverse-image opens agree with pullback along the original morphism.
+
+Supporting construction for the cohomology route behind P 1434–1443; the manuscript degree step remains unformalized.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveLineChart_structure`](Normalizer/ProjectiveChartScalars.lean#L16) | theorem | The structure morphism on a standard chart is induced by the actual constant-coefficient map. |
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveLineChart_constant`](Normalizer/ProjectiveChartScalars.lean#L27) | theorem | Actual base-field constants on a chart are the constants of its homogeneous-localization ring. |
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveLineChart_polynomial_constant`](Normalizer/ProjectiveChartScalars.lean#L50) | theorem | In actual polynomial chart coordinates, constants from the structure morphism are coefficient polynomials. |
+| Actual finite-map cohomology support for P 1434–1443 | [`schemeConstantAt_comp`](Normalizer/ProjectiveChartScalars.lean#L61) | theorem | Base constants on actual inverse-image opens agree with pullback of the original constants. |
+
+## LaurentChartModules
+
+Module support for the two-affine cohomology calculation. Actual denominator identities promote images of chart generators to generators over the Laurent ring. A specified polynomial scalar map identifies the restriction range with the coefficient span of oriented powers. A surjective coefficient-linear boundary killed by the two tails has finite target, via the proved Laurent quotient theorem. These are explicit module identities, not existence of geometric data.
+
+Supporting construction for the cohomology route behind P 1434–1443; the manuscript degree step remains unformalized.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual finite-map cohomology support for P 1434–1443 | [`laurentChart_image_mem_span`](Normalizer/LaurentChartModules.lean#L21) | theorem | Images of chart generators span every restricted chart section over the Laurent ring. |
+| Actual finite-map cohomology support for P 1434–1443 | [`laurentChart_span_eq_top`](Normalizer/LaurentChartModules.lean#L35) | theorem | Clearing a Laurent-power denominator proves the images of chart generators span the whole overlap. |
+| Actual finite-map cohomology support for P 1434–1443 | [`laurentChart_range_eq_span`](Normalizer/LaurentChartModules.lean#L50) | theorem | A chart restriction image is exactly the coefficient span of its generator translates, when the chart scalars have the stated polynomial coordinate. |
+| Actual finite-map cohomology support for P 1434–1443 | [`laurentChart_boundary_finite`](Normalizer/LaurentChartModules.lean#L105) | theorem | A surjective coefficient-linear boundary killed by the two Laurent tails has finite target. |
+
+## FiniteMapLaurent
+
+Constructed geometric instantiation of those module identities. The actual Laurent action uses the original f.app; Laurent constants equal constants from the composed structure morphism. Actual restriction is semilinear, and actual localization clears denominators by powers of the oriented Laurent coordinate.
+
+Supporting construction for the cohomology route behind P 1434–1443; the manuscript degree step remains unformalized.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveChartExponent`](Normalizer/FiniteMapLaurent.lean#L17) | def | The two projective coordinates have Laurent exponents 1 and -1. |
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveChartLaurentHom`](Normalizer/FiniteMapLaurent.lean#L20) | def | Actual chart restriction expressed in the overlap's Laurent coordinates. |
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveChartLaurentHom_eval`](Normalizer/FiniteMapLaurent.lean#L26) | theorem | The actual Laurent-coordinate restriction is evaluation in the appropriate oriented variable. |
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveChartLaurentHom_ratio`](Normalizer/FiniteMapLaurent.lean#L47) | theorem | The actual ratio restricts to its oriented Laurent monomial. |
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveLineOverlap_laurent_constant`](Normalizer/FiniteMapLaurent.lean#L60) | theorem | Constants of the actual overlap agree with coefficients in its Laurent coordinates. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapLaurentHom`](Normalizer/FiniteMapLaurent.lean#L71) | def | The Laurent ring acts on actual overlap sections by the original morphism's sheaf map. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapLaurentAlgebra`](Normalizer/FiniteMapLaurent.lean#L77) | def | The actual Laurent-ring algebra structure on overlap sections. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapOverlapFieldAlgebra`](Normalizer/FiniteMapLaurent.lean#L82) | def | The actual coefficient-field algebra structure on overlap sections. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapLaurentHom_C`](Normalizer/FiniteMapLaurent.lean#L86) | theorem | Laurent constants pull back to precisely the constants of the original structure morphism. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapOverlap_scalarTower`](Normalizer/FiniteMapLaurent.lean#L98) | theorem | The overlap's two actual scalar actions form a scalar tower. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapChartAlgebra`](Normalizer/FiniteMapLaurent.lean#L110) | def | The actual chart-ring action on inverse-image chart sections. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapChartSemilinear`](Normalizer/FiniteMapLaurent.lean#L115) | def | Actual restriction is semilinear for the actual chart-to-Laurent scalar map. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapOverlap_clearDenominator`](Normalizer/FiniteMapLaurent.lean#L137) | theorem | Actual localization clears denominators by a power of the corresponding Laurent monomial. |
+
+## FiniteMapH1
+
+Actual H1(X,O_X) finiteness for any finite f:X -> P1_k, over every field k. This is a special case of [Stacks Lemma 30.19.2](https://stacks.math.columbia.edu/tag/02O6), proved here through actual two-affine sections and the Laurent quotient, without importing the general coherent higher-direct-image theorem. The source need not be integral, normal, smooth or reduced. A proper-integral-curve corollary derives finiteness of a supplied nonconstant P1 map by the existing [Stacks 53.2.4](https://stacks.math.columbia.edu/tag/0CCL) specialization, and then proves actual H1 finite. Map existence remains separate.
+
+Supporting construction for the cohomology route behind P 1434–1443; the manuscript degree step remains unformalized.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Actual finite-map cohomology support for P 1434–1443 | [`schemeUnitBoundaryOnOverlap`](Normalizer/FiniteMapH1.lean#L17) | def | The actual section boundary on any open equal to the intersection of a two-open cover. |
+| Actual finite-map cohomology support for P 1434–1443 | [`schemeUnitBoundaryOnOverlap_surjective`](Normalizer/FiniteMapH1.lean#L27) | theorem | The actual boundary on the specified overlap is onto for an affine cover. |
+| Actual finite-map cohomology support for P 1434–1443 | [`schemeUnitBoundaryOnOverlap_eq_zero_iff`](Normalizer/FiniteMapH1.lean#L36) | theorem | The original boundary kernel consists exactly of actual restriction differences. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapOverlap_eq_inf`](Normalizer/FiniteMapH1.lean#L49) | theorem | The actual pulled-back overlap is the intersection used by the cohomology boundary. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapChart_module_finite`](Normalizer/FiniteMapH1.lean#L55) | theorem | Finite morphisms give finite actual chart modules, with the original sheaf-map action. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapChart_generators_span`](Normalizer/FiniteMapH1.lean#L62) | theorem | Images of actual chart generators generate the actual overlap over the Laurent ring. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMapChart_restriction_image`](Normalizer/FiniteMapH1.lean#L76) | theorem | Each actual chart restriction image equals the coefficient span of the corresponding oriented Laurent powers of its restricted generators. |
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveChartExponent_range_zero`](Normalizer/FiniteMapH1.lean#L95) | theorem | The first chart's oriented exponents are precisely the nonnegative integers. |
+| Actual finite-map cohomology support for P 1434–1443 | [`projectiveChartExponent_range_one`](Normalizer/FiniteMapH1.lean#L104) | theorem | The second chart's oriented exponents are precisely the nonpositive integers. |
+| Actual finite-map cohomology support for P 1434–1443 | [`finiteMap_projectiveLine_unit_H1_finite`](Normalizer/FiniteMapH1.lean#L115) | theorem | For any actual finite morphism to P1, actual structure-sheaf H1 is finite over the original field. |
+| Actual finite-map cohomology support for P 1434–1443 | [`properCurve_unit_H1_finite_of_projectiveMap`](Normalizer/FiniteMapH1.lean#L164) | theorem | A nonconstant projective-line map on a proper integral curve suffices: its finiteness and actual H1 finiteness are both derived. |
+
+## CurveMapExistence
+
+Finite-map existence on proper normal integral curves, with smoothness-to-normality derived for the smooth branch. Dimension zero is proved without integrality or reducedness. Local nonconstancy is constructed from an actual affine basic open; extension uses the valuative method in [Stacks 53.2.1–2](https://stacks.math.columbia.edu/tag/0BXX) and finiteness uses the earlier [Stacks 53.2.4](https://stacks.math.columbia.edu/tag/0CCL) specialization. Actual H1 finiteness uses the proved actual Laurent-chart comparison. This is not a formalization of unrestricted curve projectivity [Stacks 33.43.4](https://stacks.math.columbia.edu/tag/0A26).
+
+Supporting cohomology construction for P 1434–1443. The Euler/degree implication itself remains unformalized.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Finite-map existence supporting P 1434–1443 | [`proper_dimZero_isFinite`](Normalizer/CurveMapExistence.lean#L18) | theorem | A proper zero-dimensional scheme over a field is finite, with no integrality or reducedness requirement. |
+| Finite-map existence supporting P 1434–1443 | [`finiteScheme_map_isFinite`](Normalizer/CurveMapExistence.lean#L30) | theorem | Every morphism over a field from a finite scheme to a separated scheme is finite; the finiteness of its point fibres is derived. |
+| Finite-map existence supporting P 1434–1443 | [`proper_dimZero_exists_finite_projectiveLine`](Normalizer/CurveMapExistence.lean#L49) | theorem | The zero-dimensional branch has an actual finite map to the projective line, obtained from the constant homogeneous coordinates `[1:0]`. |
+| Finite-map existence supporting P 1434–1443 | [`proper_dimZero_positiveCohomology_subsingleton`](Normalizer/CurveMapExistence.lean#L59) | theorem | All positive-degree abelian-sheaf cohomology vanishes on a proper zero-dimensional scheme over a field. |
+| Finite-map existence supporting P 1434–1443 | [`partialMap_eq_restriction_of_generic`](Normalizer/CurveMapExistence.lean#L68) | theorem | Generic agreement with a global map forces agreement on the entire specified partial-map domain, for an integral source and separated target. |
+| Finite-map existence supporting P 1434–1443 | [`partialMap_extends_of_valuationOutside`](Normalizer/CurveMapExistence.lean#L80) | theorem | A partial map extends into a proper target when every stalk outside its actual domain is a valuation ring. Stalks inside that domain need not be normal: the already-defined map is retained there. |
+| Finite-map existence supporting P 1434–1443 | [`normalCurve_partialMap_extends`](Normalizer/CurveMapExistence.lean#L119) | theorem | A specified partial map on a normal integral curve extends to a global map into a proper target over the original base. Its restriction is proved, not supplied as a further geometric hypothesis. |
+| Finite-map existence supporting P 1434–1443 | [`affineIntegral_exists_nonconstant_projectiveLineMap`](Normalizer/CurveMapExistence.lean#L131) | theorem | On an affine integral scheme with at least two points, an actual global section defines a nonconstant projective-line map. The section is chosen with a proper nonempty invertibility locus. |
+| Finite-map existence supporting P 1434–1443 | [`integral_exists_nontrivial_affineOpen`](Normalizer/CurveMapExistence.lean#L159) | theorem | An integral scheme with at least two points contains an actual affine open with at least two points. |
+| Finite-map existence supporting P 1434–1443 | [`normalCurve_exists_nonconstant_projectiveLineMap`](Normalizer/CurveMapExistence.lean#L175) | theorem | A normal integral curve with at least two points has an actual nonconstant projective-line map over its original field. No rational function or nonconstancy certificate is supplied as an input. |
+| Finite-map existence supporting P 1434–1443 | [`proper_finiteSpace_isFinite`](Normalizer/CurveMapExistence.lean#L197) | theorem | A proper morphism with a finite source space is finite. |
+| Finite-map existence supporting P 1434–1443 | [`properNormalCurve_exists_finite_projectiveLine`](Normalizer/CurveMapExistence.lean#L206) | theorem | A proper normal integral curve of dimension at most one admits an actual finite projective-line map over its original field. Normality is explicit; this theorem includes the zero-dimensional case. |
+| Finite-map existence supporting P 1434–1443 | [`properNormalCurve_unit_H1_finite`](Normalizer/CurveMapExistence.lean#L226) | theorem | Actual structure-sheaf H1 is finite-dimensional on a proper normal integral curve. The finite map and its scalar compatibility are constructed. |
+| Finite-map existence supporting P 1434–1443 | [`smoothCurve_stalk_isIntegrallyClosed`](Normalizer/CurveMapExistence.lean#L239) | theorem | Smooth integral curves have integrally closed actual stalks. Smoothness supplies regularity; dimension at most one supplies the principal ideal property. |
+| Finite-map existence supporting P 1434–1443 | [`properSmoothCurve_exists_finite_projectiveLine`](Normalizer/CurveMapExistence.lean#L253) | theorem | A proper smooth integral curve admits an actual finite projective-line map, with no supplied rational function, local normality or nonconstancy. |
+| Finite-map existence supporting P 1434–1443 | [`properSmoothCurve_unit_H1_finite`](Normalizer/CurveMapExistence.lean#L261) | theorem | Actual structure-sheaf H1 finiteness for a proper smooth integral curve. Normality and the finite projective-line map are derived from these hypotheses. |
+
+## CurveMapSingular
+
+Constructed finite maps for proper integral curves normal outside a supplied nontrivial affine open, and for curves normal away from one specified point where that open is constructed. The exceptional point may be singular. The general affine neighborhood of the entire nonnormal locus remains unformalized. No arbitrary singular-curve H1 theorem is claimed.
+
+Supporting cohomology construction for P 1434–1443. The Euler/degree implication itself remains unformalized.
+
+| Source / mathematical role | Lean declaration | Kind | Exact coverage |
+|---|---|---|---|
+| Finite-map existence supporting P 1434–1443 | [`integral_exists_nontrivial_affineOpen_at`](Normalizer/CurveMapSingular.lean#L17) | theorem | Every point of a nontrivial integral scheme lies in an actual affine open with at least two points. For the generic point, choose a neighborhood of another point, which necessarily also contains the generic point. |
+| Finite-map existence supporting P 1434–1443 | [`properCurve_exists_finite_projectiveLine_of_normalOutsideAffine`](Normalizer/CurveMapSingular.lean#L38) | theorem | A proper integral curve admits a finite projective-line map if an actual nontrivial affine open contains all its nonnormal points. The map, its extension across the complementary points, and nonconstancy are derived. |
+| Finite-map existence supporting P 1434–1443 | [`properCurve_exists_finite_projectiveLine_of_normalAwayPoint`](Normalizer/CurveMapSingular.lean#L64) | theorem | A proper integral curve normal away from one specified point has an actual finite projective-line map. No normality at that point or affine neighborhood containing it is assumed. |
+| Finite-map existence supporting P 1434–1443 | [`properCurve_unit_H1_finite_of_normalAwayPoint`](Normalizer/CurveMapSingular.lean#L88) | theorem | Actual structure-sheaf H1 finiteness when the proper integral curve is normal away from one point. The exceptional point may be singular. |

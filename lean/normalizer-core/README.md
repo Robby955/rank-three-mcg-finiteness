@@ -5,10 +5,25 @@ normalizer reduction, and supporting sheaf and generic-stalk results in Lean 4.
 It does not formally verify the candidate rank-three finite-image theorem,
 the square endpoint, or a genus-three result.
 
-The core has 591 named theorems, 836 audited named declarations, and 54
+The core has 875 named theorems, 1230 audited named declarations, and 84
 examples. The proofs use only `propext`, `Classical.choice`, and `Quot.sound`.
 There are no proof placeholders or custom axioms in this package.
-See the [verification record](VERIFICATION.md) for the scope of the checks.
+See the [verification record](VERIFICATION.md) for the scope of the checks
+and the [cohomology review guide](COHOMOLOGY_REVIEW.md) for the new proof chain.
+
+The latest slice constructs an actual finite map X -> P1_k on proper
+normal integral curves of dimension at most one, and hence proves actual
+H1(X,O_X) finite-dimensional over the original field. The smooth case
+derives stalk normality. Curves normal away from one possibly singular
+point are covered as well, and dimension zero is proved without reducedness.
+No rational function, nonconstancy or cohomology dimension is supplied.
+The earlier actual chart/Laurent comparison proves H1 finiteness for any
+finite map, without source normality or integrality.
+
+The unrestricted singular integral case still needs an affine neighborhood
+containing its whole nonnormal locus, or normalization and cohomology
+transfer. Higher vanishing and Euler/degree comparison remain separate.
+See the [exact gap](DEGREE_NONVANISHING_GAP.md).
 
 ## Main results
 
@@ -68,9 +83,87 @@ in `sl₃(F)`, over a characteristic-zero field `F`.
     specified section gives positive dimension of Gamma(D,O_D), with its
     actual base-field action and full nilpotent structure retained.
 
-The degree/nonvanishing implication is still unformalized. The next geometric
-construction is the actual sequence `0 -> O_X --s--> L -> i_*(L|D) -> 0`,
-followed by its Euler-characteristic comparison with line-bundle degree.
+12. **Actual scalar exact sequence.** The cokernel of the actual dual
+    evaluation is identified with the actual pushed-forward structure module
+    of D, preserving the quotient map. For a nonzero line section on an
+    integral scheme, this gives `0 -> L-dual -> O_X -> i_*O_D -> 0` in
+    mathlib's `ShortComplex.ShortExact`. The determinant specialization is
+    included; affine exactness and stalk surjectivity are derived.
+
+13. **Actual line exact sequence.** The original restriction map is identified
+    as the cokernel of multiplication by the specified section. For nonzero s
+    on an integral scheme, `0 -> O_X -> L -> i_*(L restricted to D) -> 0`
+    is short exact. The determinant case is included; on a proper scheme,
+    the finite chart cover is constructed from pointwise line charts.
+
+14. **Intrinsic zero-scheme cohomology.** Every abelian sheaf on a discrete
+    space has zero higher cohomology. Actual finiteness of the zero scheme
+    supplies discreteness, so this applies to the constructed D, including
+    its nonreduced structure.
+
+15. **Ambient cokernel cohomology.** Closed direct image has the same actual
+    abelian cohomology as its source, naturally and compatibly with global
+    sections in degree zero. Thus the specified line-section cokernel on a
+    proper integral curve has zero positive-degree cohomology. Its finite
+    chart cover and zero-scheme finiteness are derived; the determinant
+    specialization uses actual generic independence and pointwise bundle charts.
+
+16. **Actual cohomology sequence.** Forgetting module structure preserves
+    the section short exact sequence. Its extension class gives the canonical
+    connecting map, and the six-object H⁰-to-H¹ segment is exact at its four
+    interior terms, with the actual section and restriction maps. H⁰
+    injectivity and H¹ surjectivity on the finite-type integral curve are proved.
+
+17. **Restricted-line dimension.** Genuine line charts on a finite scheme
+    construct a global trivialization, including on nonreduced and disconnected
+    schemes. Its actual section dimension equals the global-function dimension,
+    with the specified base-field action. The actual section cokernel and its
+    H⁰ inherit this comparison; a zero gives positive dimension. All its
+    cohomology groups are finite, with positive degrees zero.
+
+18. **Cohomology scalars and line H⁰.** Actual scalar endomorphisms construct
+    the base-field action on sheaf cohomology. The induced maps, H⁰-to-sections
+    comparison and actual connecting map are linear. On a proper integral
+    curve over an algebraically closed field, every genuine line bundle has
+    finite-dimensional actual sections and H⁰, without supplying a nonzero section.
+
+19. **Finite H¹ kernel and dimension balance.** The actual H¹ section map
+    has finite kernel; finiteness of H¹(O_X) and H¹(L) is equivalent. On the
+    proper integral curve over an algebraically closed field, the exact
+    balance is h⁰(L) + dim ker(H¹(O_X) -> H¹(L)) = 1 + dim Gamma(D,O_D).
+    Neither whole H¹ space is assumed finite.
+
+20. **Terminal cohomology comparison.** The actual cohomology presheaf at a
+    terminal object is naturally equivalent to sheaf cohomology in every
+    degree, with the specified degree-zero evaluation formula.
+
+21. **Slice cohomology comparison.** On a small Grothendieck site,
+    `F.H' n U ≃+ (F.over U).H n` is constructed in every degree. The actual
+    direct-sum extension, sheaf adjunction and exactness are proved. Naturality
+    and degree-zero evaluation on the identity generator are proved; examples
+    specialize to scheme opens and compare with the terminal result.
+
+22. **Actual affine H¹ vanishing.** Every associated module sheaf on
+    `Spec R` has zero first cohomology in the category of all abelian sheaves,
+    for every commutative ring and every module. The same holds for every
+    actual quasicoherent module sheaf on `Spec R`. The proof solves finite
+    principal-open difference cocycles, glues corrected local lifts, and uses
+    the canonical injective presentation and Ext exact sequence. No
+    noetherian, finite-generation or characteristic hypothesis is needed.
+
+23. **Actual affine opens.** Ambient-open cohomology agrees in every degree
+    with cohomology of the actual restricted module, linearly over the
+    structure field. Every quasicoherent module sheaf has zero H1 on each
+    actual affine open. The cokernel example derives quasicoherence from
+    finite presentation.
+24. **Two-affine presentation.** A supplied actual cover by two affine opens
+    gives a linear quotient presentation of global H1 through the original
+    Mayer-Vietoris boundary. Its kernel consists of restriction differences.
+    This constructs neither a curve cover nor quotient finiteness.
+
+The degree/nonvanishing implication is still unformalized. Actual H¹(O_X)
+finiteness, the remaining curve vanishing and Euler comparison with established
+line-bundle degree remain to be formalized.
 The proved dimension of Gamma(D,O_D) is not a definition of line degree.
 These results are not a general bundled effective-Cartier-divisor
 or O(D) API. See [the exact gap](DEGREE_NONVANISHING_GAP.md) and
@@ -87,7 +180,9 @@ and [DeterminantGenericNonzero.lean](Normalizer/DeterminantGenericNonzero.lean)
 contain the exterior interfaces. [DeterminantZeroDivisor.lean](Normalizer/DeterminantZeroDivisor.lean)
 connects their specified section to the zero-ideal and inverse-module constructions.
 [SectionZeroFinite.lean](Normalizer/SectionZeroFinite.lean) proves actual
-finiteness and positive zero-scheme function dimension. [OVERVIEW.md](OVERVIEW.md) explains the dependency structure
+finiteness and positive zero-scheme function dimension.
+[SectionZeroExact.lean](Normalizer/SectionZeroExact.lean) contains the actual
+scalar short exact sequence. [OVERVIEW.md](OVERVIEW.md) explains the dependency structure
 and the remaining proof obligations. [CORRESPONDENCE.md](CORRESPONDENCE.md)
 maps every named theorem to its mathematical role in the public manuscript.
 
