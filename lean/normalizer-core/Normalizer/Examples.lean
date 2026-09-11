@@ -1,3 +1,15 @@
+import Normalizer.CurveMapSingular
+import Normalizer.FiniteMapH1
+import Mathlib.Algebra.Field.ZMod
+import Normalizer.ProjectiveLineCohomology
+import Normalizer.CurveProjectiveLine
+import Normalizer.AffineH1Vanishing
+import Normalizer.TwoAffineCohomology
+import Normalizer.LaurentCechFinite
+import Normalizer.OverSheafCohomology
+import Normalizer.SheafCohomologyTerminal
+import Normalizer.FiniteLineSections
+import Normalizer.ClosedPushforwardCohomology
 import Normalizer.SheafQuotientLie
 import Normalizer.TrivializedCharacter
 import Normalizer.NormalizerSheaf
@@ -18,6 +30,8 @@ import Normalizer.ExteriorLineTrivialization
 import Normalizer.DeterminantGenericNonzero
 import Normalizer.SectionZeroDivisor
 import Normalizer.SectionZeroFinite
+import Normalizer.FiniteSchemeCohomology
+import Normalizer.SectionZeroCokernel
 import Mathlib.RingTheory.AdjoinRoot
 
 /-! Focused exact matrix tests. These are kernel-checked, symbolic over an
@@ -598,3 +612,475 @@ example :
   exact Normalizer.finiteScheme_globalFunctions_finrank_pos p
 
 end FiniteZeroSchemeChecks
+
+noncomputable section ClosedSubschemeQuotientChecks
+open CategoryTheory AlgebraicGeometry Opposite Limits
+set_option backward.isDefEq.respectTransparency false
+
+-- The actual sheaf cokernel comparison also applies to the zero map;
+-- it does not impose the regular-section hypothesis needed for a left injection.
+example {X : Scheme} {ι : Type} [Finite ι] (U : ι → X.Opens)
+    [∀ i, QuasiCompact (U i).ι] (hU : iSup U = ⊤) :
+    cokernel (0 : SheafOfModules.unit X.ringCatSheaf ⟶
+      SheafOfModules.unit X.ringCatSheaf) ≅
+      Normalizer.closedSubschemeStructureSheaf
+        (Normalizer.schemeSectionZeroIdeal
+          (0 : SheafOfModules.unit X.ringCatSheaf ⟶ SheafOfModules.unit X.ringCatSheaf)
+          U (fun _ ↦ Iso.refl _) hU) :=
+  Normalizer.schemeSectionZeroCokernelIso _ U _ hU
+
+-- The actual closed-subscheme structure quotient retains the nonzero
+-- square-zero coordinate of the doubled point, rather than reducing it.
+example :
+    let X := Spec (CommRingCat.of (Polynomial ℚ))
+    let e := (Scheme.ΓSpecIso (CommRingCat.of (Polynomial ℚ))).commRingCatIsoToRingEquiv
+    let a : Γ(X, ⊤) := e.symm Polynomial.X
+    let I : X.IdealSheafData := Scheme.IdealSheafData.ofIdealTop (Ideal.span {a ^ 2})
+    (I.subschemeι.app ⊤ a) ≠ 0 ∧ (I.subschemeι.app ⊤ a) ^ 2 = 0 := by
+  let X := Spec (CommRingCat.of (Polynomial ℚ))
+  let e := (Scheme.ΓSpecIso (CommRingCat.of (Polynomial ℚ))).commRingCatIsoToRingEquiv
+  let a : Γ(X, ⊤) := e.symm Polynomial.X
+  let I : X.IdealSheafData := Scheme.IdealSheafData.ofIdealTop (Ideal.span {a ^ 2})
+  change I.subschemeι.app ⊤ a ≠ 0 ∧ (I.subschemeι.app ⊤ a) ^ 2 = 0
+  have hI : I.ideal ⟨⊤, isAffineOpen_top X⟩ = Ideal.span {a ^ 2} := by
+    simp [I]
+  have hzero (r : Γ(X, ⊤)) : I.subschemeι.app ⊤ r = 0 ↔ r ∈ Ideal.span {a ^ 2} := by
+    have h := Normalizer.closedSubschemeStructureMap_affine_eq_zero_iff
+      I ⟨⊤, isAffineOpen_top X⟩ r
+    change I.subschemeι.app ⊤ r = 0 ↔ r ∈ I.ideal ⟨⊤, isAffineOpen_top X⟩ at h
+    rwa [hI] at h
+  constructor
+  · intro hz
+    have ha := (hzero a).mp hz
+    rw [Ideal.mem_span_singleton] at ha
+    have hd : (Polynomial.X : Polynomial ℚ) ^ 2 ∣ Polynomial.X := by
+      have hd := map_dvd e ha
+      change e (a ^ 2) ∣ e a at hd
+      rw [map_pow] at hd
+      have hea : e a = Polynomial.X := e.apply_symm_apply _
+      rwa [hea] at hd
+    have hn := Polynomial.natDegree_le_of_dvd hd Polynomial.X_ne_zero
+    norm_num at hn
+  · have hz := (hzero (a ^ 2)).mpr (Ideal.subset_span (by simp))
+    exact ((I.subschemeι.app ⊤).hom.map_pow a 2).symm.trans hz
+
+end ClosedSubschemeQuotientChecks
+
+section FiniteSchemeCohomologyChecks
+open CategoryTheory AlgebraicGeometry
+set_option backward.isDefEq.respectTransparency false
+
+-- Every abelian sheaf on the actual doubled point has zero positive-degree
+-- intrinsic cohomology; the nonzero nilpotent checked above is retained.
+example
+    (F : TopCat.Sheaf AddCommGrpCat
+      (Spec (CommRingCat.of (AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)))).toTopCat)
+    (n : ℕ) (hn : 0 < n) : Subsingleton (CategoryTheory.Sheaf.H F n) := by
+  let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+  let p : Spec (CommRingCat.of R) ⟶ Spec (CommRingCat.of ℚ) :=
+    Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+  have : Module.Finite ℚ R := (Polynomial.monic_X.pow 2).finite_adjoinRoot
+  have : IsFinite p := (IsFinite.SpecMap_iff _).mpr
+    (RingHom.finite_algebraMap.mpr inferInstance)
+  cases n with
+  | zero => exact (Nat.lt_irrefl 0 hn).elim
+  | succ n => exact Normalizer.finiteScheme_positiveCohomology_subsingleton p F n
+
+end FiniteSchemeCohomologyChecks
+
+section ClosedPushforwardCohomologyChecks
+open CategoryTheory AlgebraicGeometry
+set_option backward.isDefEq.respectTransparency false
+
+-- Higher cohomology of the direct image from the doubled point vanishes
+-- on the affine line. Both the closed embedding and finiteness are derived
+-- from the actual quotient presentation, retaining the nonzero nilpotent.
+example
+    (F : TopCat.Sheaf AddCommGrpCat
+      (Spec (CommRingCat.of (AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)))).toTopCat)
+    (n : ℕ) (hn : 0 < n) :
+    let i := Spec.map (CommRingCat.ofHom
+      (AdjoinRoot.mk ((Polynomial.X : Polynomial ℚ) ^ 2)))
+    Subsingleton (CategoryTheory.Sheaf.H
+      ((TopCat.Sheaf.pushforward AddCommGrpCat i.base).obj F) n) := by
+  let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+  let i := Spec.map (CommRingCat.ofHom
+    (AdjoinRoot.mk ((Polynomial.X : Polynomial ℚ) ^ 2)))
+  let p : Spec (CommRingCat.of R) ⟶ Spec (CommRingCat.of ℚ) :=
+    Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+  have : IsClosedImmersion i :=
+    IsClosedImmersion.spec_of_surjective _ AdjoinRoot.mk_surjective
+  have : Module.Finite ℚ R := (Polynomial.monic_X.pow 2).finite_adjoinRoot
+  have : IsFinite p := (IsFinite.SpecMap_iff _).mpr
+    (RingHom.finite_algebraMap.mpr inferInstance)
+  cases n with
+  | zero => exact (Nat.lt_irrefl 0 hn).elim
+  | succ n =>
+    have := Normalizer.finiteScheme_positiveCohomology_subsingleton p F n
+    exact (Normalizer.closedPushforwardCohomologyEquiv i.base i.isClosedEmbedding F
+      (n + 1)).injective.subsingleton
+
+end ClosedPushforwardCohomologyChecks
+
+section FiniteLineSectionsChecks
+open CategoryTheory AlgebraicGeometry Opposite
+set_option backward.isDefEq.respectTransparency false
+
+private noncomputable def specGlobalFunctionsEquiv (A : Type) [CommRing A] [Algebra ℚ A] :
+    let p := Spec.map (CommRingCat.ofHom (algebraMap ℚ A))
+    let := Normalizer.schemeGlobalFunctionsAlgebra p
+    Γ(Spec (CommRingCat.of A), ⊤) ≃ₗ[ℚ] A := by
+  let p := Spec.map (CommRingCat.ofHom (algebraMap ℚ A))
+  let := Normalizer.schemeGlobalFunctionsAlgebra p
+  let e := (Scheme.ΓSpecIso (CommRingCat.of A)).commRingCatIsoToRingEquiv
+  have he (a : ℚ) : e (Normalizer.schemeConstantMap p a) = algebraMap ℚ A a := by
+    change ((Scheme.ΓSpecIso (CommRingCat.of ℚ)).inv ≫
+      p.appTop ≫ (Scheme.ΓSpecIso (CommRingCat.of A)).hom) a = _
+    rw [Scheme.ΓSpecIso_naturality, Iso.inv_hom_id_assoc]
+    rfl
+  exact {
+    __ := e.toAddEquiv
+    map_smul' := by
+      intro a s
+      change e (Normalizer.schemeConstantMap p a * s) = a • e s
+      rw [map_mul, he, Algebra.smul_def] }
+
+-- An arbitrary genuine line sheaf on the doubled point has a finite space of
+-- global sections of dimension two. Its nonreduced scheme structure is retained.
+example
+    (L : (Spec (CommRingCat.of (AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)))).Modules)
+    (hL : ∀ x, ∃ U, x ∈ U ∧
+      Nonempty ((SheafOfModules.unit
+        (Spec (CommRingCat.of (AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)))).ringCatSheaf).over U ≅
+        L.over U)) :
+    let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+    let p := Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+    let := Normalizer.schemeGlobalSectionsModuleOfMorphism p L
+    Module.Finite ℚ Γ(L, ⊤) ∧ Module.finrank ℚ Γ(L, ⊤) = 2 := by
+  let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+  let p := Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+  let := Normalizer.schemeGlobalSectionsModuleOfMorphism p L
+  have : Module.Finite ℚ R := (Polynomial.monic_X.pow 2).finite_adjoinRoot
+  have : IsFinite p := (IsFinite.SpecMap_iff _).mpr
+    (RingHom.finite_algebraMap.mpr inferInstance)
+  let := Normalizer.schemeGlobalFunctionsAlgebra p
+  refine ⟨Normalizer.finiteLineSections_finite p L hL, ?_⟩
+  rw [Normalizer.finiteLineSections_finrank_eq p L hL,
+    (specGlobalFunctionsEquiv R).finrank_eq]
+  change Module.finrank ℚ (Polynomial ℚ ⧸ Ideal.span {(Polynomial.X : Polynomial ℚ) ^ 2}) = 2
+  rw [finrank_quotient_span_eq_natDegree]
+  norm_num
+
+-- The same theorem applies to a disconnected finite scheme: no connectedness
+-- or single chosen global frame is an input to this example.
+example (L : (Spec (CommRingCat.of (ℚ × ℚ))).Modules)
+    (hL : ∀ x, ∃ U, x ∈ U ∧
+      Nonempty ((SheafOfModules.unit (Spec (CommRingCat.of (ℚ × ℚ))).ringCatSheaf).over U ≅
+        L.over U)) :
+    let p := Spec.map (CommRingCat.ofHom (algebraMap ℚ (ℚ × ℚ)))
+    let := Normalizer.schemeGlobalSectionsModuleOfMorphism p L
+    Module.Finite ℚ Γ(L, ⊤) ∧ Module.finrank ℚ Γ(L, ⊤) = 2 := by
+  let p := Spec.map (CommRingCat.ofHom (algebraMap ℚ (ℚ × ℚ)))
+  let := Normalizer.schemeGlobalSectionsModuleOfMorphism p L
+  have : IsFinite p := (IsFinite.SpecMap_iff _).mpr
+    (RingHom.finite_algebraMap.mpr inferInstance)
+  let := Normalizer.schemeGlobalFunctionsAlgebra p
+  refine ⟨Normalizer.finiteLineSections_finite p L hL, ?_⟩
+  rw [Normalizer.finiteLineSections_finrank_eq p L hL,
+    (specGlobalFunctionsEquiv (ℚ × ℚ)).finrank_eq]
+  simp [Module.finrank_prod]
+
+end FiniteLineSectionsChecks
+
+section TerminalCohomologyChecks
+open CategoryTheory AlgebraicGeometry Limits
+set_option backward.isDefEq.respectTransparency false
+
+-- The alternate cohomology-presheaf API has the same positive-degree
+-- vanishing at the whole doubled point. This exercises the terminal
+-- comparison on an actual nonreduced scheme and arbitrary abelian sheaf.
+example
+    (F : TopCat.Sheaf AddCommGrpCat
+      (Spec (CommRingCat.of (AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)))).toTopCat)
+    (n : ℕ) : Subsingleton (F.H' (n + 1) ⊤) := by
+  let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+  let p : Spec (CommRingCat.of R) ⟶ Spec (CommRingCat.of ℚ) :=
+    Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+  have : Module.Finite ℚ R := (Polynomial.monic_X.pow 2).finite_adjoinRoot
+  have : IsFinite p := (IsFinite.SpecMap_iff _).mpr
+    (RingHom.finite_algebraMap.mpr inferInstance)
+  have := Normalizer.finiteScheme_positiveCohomology_subsingleton p F n
+  exact (Normalizer.sheafCohomologyTerminalEquiv _ isTerminalTop F (n + 1)).injective.subsingleton
+
+end TerminalCohomologyChecks
+
+section OverCohomologyChecks
+open CategoryTheory AlgebraicGeometry Limits TopologicalSpace
+set_option backward.isDefEq.respectTransparency false
+
+-- The slice comparison specializes to every actual open of a scheme;
+-- neither a supplied exactness instance nor cohomology vanishing is an input.
+noncomputable example (X : Scheme.{u}) (U : X.Opens)
+    (F : TopCat.Sheaf AddCommGrpCat.{u} X.toTopCat) (n : ℕ) :
+    F.H' n U ≃+ (F.over U).H n :=
+  Normalizer.overSheafCohomologyEquiv _ U F n
+
+-- At the whole space, the new slice comparison and the previously checked
+-- terminal-object comparison give exactly the same actual section.
+example (X : TopCat.{u}) (F : TopCat.Sheaf AddCommGrpCat.{u} X) (x : F.H' 0 ⊤) :
+    Sheaf.H.equiv₀ (F.over ⊤) Over.mkIdTerminal
+      (Normalizer.overSheafCohomologyEquiv _ ⊤ F 0 x) =
+    Sheaf.H.equiv₀ F isTerminalTop
+      (Normalizer.sheafCohomologyTerminalEquiv _ isTerminalTop F 0 x) := by
+  rw [Normalizer.overSheafCohomologyEquiv_equiv₀,
+    Normalizer.sheafCohomologyTerminalEquiv_equiv₀]
+
+end OverCohomologyChecks
+
+section AffineH1Checks
+open CategoryTheory AlgebraicGeometry
+set_option backward.isDefEq.respectTransparency false
+
+-- The affine theorem retains nilpotents and applies in positive characteristic.
+example : Subsingleton (Sheaf.H
+    ((Normalizer.schemeModulesToAbelianSheaves (Spec (CommRingCat.of (ZMod 4)))).obj
+      (tilde (ModuleCat.of (ZMod 4) (ZMod 4)))) 1) :=
+  Normalizer.tilde_H1_subsingleton _
+
+-- No finite generation of the module is required.
+example : Subsingleton (Sheaf.H
+    ((Normalizer.schemeModulesToAbelianSheaves (Spec (CommRingCat.of ℤ))).obj
+      (tilde (ModuleCat.of ℤ (ℕ →₀ ℤ)))) 1) :=
+  Normalizer.tilde_H1_subsingleton _
+
+-- The actual structure sheaf of an arbitrary affine scheme is covered by
+-- the quasicoherent-sheaf corollary, without a supplied localization proof.
+example (R : CommRingCat.{u}) : Subsingleton (Sheaf.H
+    ((Normalizer.schemeModulesToAbelianSheaves (Spec R)).obj
+      (SheafOfModules.unit (Spec R).ringCatSheaf)) 1) :=
+  by
+    have : (SheafOfModules.unit (Spec R).ringCatSheaf).IsQuasicoherent :=
+      (isQuasicoherent_iff_isIso_fromTildeΓ _).mpr inferInstance
+    exact Normalizer.quasicoherent_Spec_H1_subsingleton _
+
+-- The zero ring is allowed; the theorem includes the empty affine scheme.
+example : Subsingleton (Sheaf.H
+    ((Normalizer.schemeModulesToAbelianSheaves (Spec (CommRingCat.of (ZMod 1)))).obj
+      (tilde (ModuleCat.of (ZMod 1) (ZMod 1)))) 1) :=
+  Normalizer.tilde_H1_subsingleton _
+
+end AffineH1Checks
+
+section AffineOpenChecks
+open CategoryTheory AlgebraicGeometry Limits TopologicalSpace
+set_option backward.isDefEq.respectTransparency false
+
+-- This composes actual cokernel finite presentation with the new affine-open
+-- vanishing theorem. No separate quasicoherence of the quotient is supplied.
+example (X : Scheme.{u}) (U : X.Opens) (hU : IsAffineOpen U)
+    (E L : X.Modules) [E.IsFinitePresentation] [L.IsFinitePresentation] (f : E ⟶ L) :
+    Subsingleton (((Normalizer.schemeModulesToAbelianSheaves X).obj (cokernel f)).H' 1 U) := by
+  have := Normalizer.sheaf_cokernel_isFinitePresentation f
+  exact Normalizer.quasicoherent_affineOpen_H1_subsingleton U hU (cokernel f)
+
+-- A genuine principal open in a nonreduced ring, with an infinitely generated
+-- associated module, exercises the ambient cohomology-presheaf conclusion.
+example : Subsingleton
+    (((Normalizer.schemeModulesToAbelianSheaves (Spec (CommRingCat.of (ZMod 12)))).obj
+      (tilde (ModuleCat.of (ZMod 12) (ℕ →₀ ZMod 12)))).H' 1
+        (PrimeSpectrum.basicOpen (3 : ZMod 12))) :=
+  Normalizer.quasicoherent_affineOpen_H1_subsingleton _ (IsAffineOpen.Spec_basicOpen _) _
+
+end AffineOpenChecks
+
+section LaurentQuotientChecks
+open LaurentPolynomial
+open scoped LaurentPolynomial
+
+private theorem monomial_generates (R : Type*) [CommRing R] (m : ℤ) :
+    Submodule.span R[T;T⁻¹] (Set.range (fun _ : Unit => (T m : R[T;T⁻¹]))) = ⊤ := by
+  rw [Set.range_const, Submodule.span_singleton_eq_top_iff]
+  intro p
+  refine ⟨p * T (-m), ?_⟩
+  simp only [smul_eq_mul, mul_assoc, ← T_add, neg_add_cancel, T_zero, mul_one]
+
+-- The algebraic finiteness result works over a coefficient ring that is
+-- not a field, and allows any integer shift between the two chart families.
+example (d : ℤ) : Module.Finite ℤ (ℤ[T;T⁻¹] ⧸
+    (Normalizer.laurentSpan ℤ (fun _ : Unit => (T 0 : ℤ[T;T⁻¹])) (Set.Ici 0) ⊔
+      Normalizer.laurentSpan ℤ (fun _ : Unit => (T d : ℤ[T;T⁻¹])) (Set.Iic 0))) :=
+  Normalizer.laurent_twoChart_quotient_finite ℤ _ (monomial_generates ℤ 0)
+    _ (monomial_generates ℤ d)
+
+-- Finiteness does not imply vanishing: T^(-1) survives the quotient by
+-- nonnegative powers and powers at most -2. Its coefficient detects it.
+example : (Submodule.Quotient.mk (T (-1) : ℚ[T;T⁻¹]) : ℚ[T;T⁻¹] ⧸
+    (Normalizer.laurentSpan ℚ (fun _ : Unit => (T 0 : ℚ[T;T⁻¹])) (Set.Ici 0) ⊔
+      Normalizer.laurentSpan ℚ (fun _ : Unit => (T (-2) : ℚ[T;T⁻¹])) (Set.Iic 0))) ≠ 0 := by
+  let c : ℚ[T;T⁻¹] →ₗ[ℚ] ℚ :=
+    { toFun := fun p => p.coeff (-1)
+      map_add' := fun _ _ => rfl
+      map_smul' := fun _ _ => rfl }
+  have hleft : Normalizer.laurentSpan ℚ
+      (fun _ : Unit => (T 0 : ℚ[T;T⁻¹])) (Set.Ici 0) ≤ c.ker := by
+    apply Submodule.span_le.mpr
+    rintro x ⟨i, n, hn, rfl⟩
+    change ((T n : ℚ[T;T⁻¹]) • T 0).coeff (-1) = 0
+    simp only [smul_eq_mul, ← T_add, add_zero, T_apply]
+    exact ite_eq_right (by change 0 ≤ n at hn; omega)
+  have hright : Normalizer.laurentSpan ℚ
+      (fun _ : Unit => (T (-2) : ℚ[T;T⁻¹])) (Set.Iic 0) ≤ c.ker := by
+    apply Submodule.span_le.mpr
+    rintro x ⟨i, n, hn, rfl⟩
+    change ((T n : ℚ[T;T⁻¹]) • T (-2)).coeff (-1) = 0
+    simp only [smul_eq_mul, ← T_add, T_apply]
+    exact ite_eq_right (by change n ≤ 0 at hn; omega)
+  intro hz
+  have hm := (Submodule.Quotient.mk_eq_zero _).mp hz
+  have hc := sup_le hleft hright hm
+  change (T (-1) : ℚ[T;T⁻¹]).coeff (-1) = 0 at hc
+  norm_num at hc
+
+end LaurentQuotientChecks
+
+
+section ProjectiveChartChecks
+set_option backward.isDefEq.respectTransparency false
+set_option backward.isDefEq.respectTransparency.types false
+open Normalizer AlgebraicGeometry CategoryTheory TopologicalSpace
+
+-- The specified zero section gives an empty second chart, so the
+-- construction does not accidentally assert every chosen function is nonconstant.
+example : projectiveLineOfSection (𝟙 (Spec (.of ℚ))) 0 ⁻¹ᵁ
+    projectiveLineChart ℚ 1 = ⊥ := by
+  rw [projectiveLineOfSection_preimage_one]
+  exact Scheme.basicOpen_zero _ _
+
+-- The unit section lands in both actual homogeneous-coordinate charts.
+example : projectiveLineOfSection (𝟙 (Spec (.of ℚ))) 1 ⁻¹ᵁ
+    (projectiveLineChart ℚ 0 ⊓ projectiveLineChart ℚ 1) = ⊤ := by
+  rw [Scheme.Hom.preimage_inf, projectiveLineOfSection_preimage_zero,
+    projectiveLineOfSection_preimage_one]
+  simp
+
+-- Actual chart sections give zero cohomology classes on their overlap.
+example (F : (projectiveLine ℚ).Modules)
+    (s : Γ(F, projectiveLinePullbackChart (𝟙 (projectiveLine ℚ)) 0))
+    (t : Γ(F, projectiveLinePullbackChart (𝟙 (projectiveLine ℚ)) 1)) :
+    twoOpenSectionδ (projectiveLineToSpec ℚ) _ _
+      (projectiveLinePullbackChart_cover (𝟙 (projectiveLine ℚ))) F
+      (F.val.map (homOfLE inf_le_left).op s -
+        F.val.map (homOfLE inf_le_right).op t) = 0 :=
+  (twoOpenSectionδ_eq_zero_iff _ _ _ _ _ _).mpr ⟨s, t, rfl⟩
+
+end ProjectiveChartChecks
+
+section ProjectiveCoordinateChecks
+attribute [local instance] MvPolynomial.gradedAlgebra
+local instance : Fact (Nat.Prime 5) := ⟨by decide⟩
+open Normalizer AlgebraicGeometry CategoryTheory
+set_option backward.isDefEq.respectTransparency false
+set_option backward.isDefEq.respectTransparency.types false
+
+-- The actual inverse coordinate works over a ring with zero divisors.
+example : projectiveOverlapLaurentEquiv (ZMod 4)
+    (projectiveChartToOverlap (ZMod 4) 1 (projectiveChartCoordinate (ZMod 4) 1 ^ 3)) =
+      LaurentPolynomial.T (-3) := by
+  rw [map_pow, map_pow, projectiveOverlapLaurentEquiv_coordinate_one, LaurentPolynomial.T_pow]
+  norm_num
+
+-- A polynomial section on the second actual chart acquires negative powers on the overlap.
+example : projectiveLineOverlapSectionsLaurentEquiv ℤ
+    ((projectiveLine ℤ).presheaf.map (homOfLE (projectiveLineOverlap_le ℤ 1)).op
+      ((projectiveLineChartSectionsPolynomialEquiv ℤ 1).symm
+        (Polynomial.X ^ 2 + Polynomial.C 3))) =
+      LaurentPolynomial.T (-2) + LaurentPolynomial.C 3 := by
+  rw [projectiveLineSections_restrict_one, RingEquiv.apply_symm_apply]
+  simp only [map_add, map_pow, Polynomial.toLaurent_X, Polynomial.toLaurent_C,
+    LaurentPolynomial.invert_C, LaurentPolynomial.invert_T, LaurentPolynomial.T_pow]
+  norm_num
+
+-- Actual sheaf cohomology vanishes without assuming it in a comparison interface.
+example : Subsingleton (Sheaf.H
+    ((schemeModulesToAbelianSheaves (projectiveLine ℚ)).obj
+      (SheafOfModules.unit (projectiveLine ℚ).ringCatSheaf)) 1) :=
+  projectiveLine_unit_H1_subsingleton ℚ
+
+-- The cohomology result includes positive characteristic with the actual structure-field action.
+example :
+    letI := schemeModuleCohomologyModule (k := ZMod 5) (projectiveLineToSpec (ZMod 5))
+      (SheafOfModules.unit (projectiveLine (ZMod 5)).ringCatSheaf) 1
+    Module.Finite (ZMod 5) (Sheaf.H
+      ((schemeModulesToAbelianSheaves (projectiveLine (ZMod 5))).obj
+        (SheafOfModules.unit (projectiveLine (ZMod 5)).ringCatSheaf)) 1) :=
+  projectiveLine_unit_H1_finite (ZMod 5)
+
+end ProjectiveCoordinateChecks
+
+section FiniteMapCohomologyChecks
+open Normalizer AlgebraicGeometry CategoryTheory LaurentPolynomial
+set_option backward.isDefEq.respectTransparency false
+set_option backward.isDefEq.respectTransparency.types false
+
+-- Actual Laurent coefficients pull back through the original structure map.
+example {X : Scheme} (f : X ⟶ projectiveLine ℚ) :
+    finiteMapLaurentHom f (C (3 / 2 : ℚ)) =
+      schemeConstantAt (f ≫ projectiveLineToSpec ℚ) (finiteMapOverlap f) (3 / 2) :=
+  finiteMapLaurentHom_C f _
+
+-- No reducedness or integrality is required, including for a closed subscheme of P1.
+example {X : Scheme} (f : X ⟶ projectiveLine ℚ) [IsClosedImmersion f] :
+    letI := schemeModuleCohomologyModule (f ≫ projectiveLineToSpec ℚ)
+      (SheafOfModules.unit X.ringCatSheaf) 1
+    Module.Finite ℚ (Sheaf.H ((schemeModulesToAbelianSheaves X).obj
+      (SheafOfModules.unit X.ringCatSheaf)) 1) :=
+  finiteMap_projectiveLine_unit_H1_finite f
+
+-- The finite-map argument recovers finiteness on the actual projective line itself.
+example :
+    letI := schemeModuleCohomologyModule (projectiveLineToSpec ℚ)
+      (SheafOfModules.unit (projectiveLine ℚ).ringCatSheaf) 1
+    Module.Finite ℚ (Sheaf.H ((schemeModulesToAbelianSheaves (projectiveLine ℚ)).obj
+      (SheafOfModules.unit (projectiveLine ℚ).ringCatSheaf)) 1) := by
+  simpa only [Category.id_comp] using finiteMap_projectiveLine_unit_H1_finite (𝟙 (projectiveLine ℚ))
+
+end FiniteMapCohomologyChecks
+
+section CurveMapExistenceChecks
+open Normalizer AlgebraicGeometry CategoryTheory
+set_option backward.isDefEq.respectTransparency false
+set_option backward.isDefEq.respectTransparency.types false
+
+-- The constant finite-map construction retains the doubled point's nilpotent.
+example :
+    let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+    let p := Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+    ∃ f : Spec (.of R) ⟶ projectiveLine ℚ,
+      f ≫ projectiveLineToSpec ℚ = p ∧ IsFinite f := by
+  let R := AdjoinRoot ((Polynomial.X : Polynomial ℚ) ^ 2)
+  let p : Spec (.of R) ⟶ Spec (.of ℚ) := Spec.map (CommRingCat.ofHom (algebraMap ℚ R))
+  have : Module.Finite ℚ R := (Polynomial.monic_X.pow 2).finite_adjoinRoot
+  have : IsFinite p := (IsFinite.SpecMap_iff _).mpr
+    (RingHom.finite_algebraMap.mpr inferInstance)
+  have : DiscreteTopology (Spec (.of R)) := finiteScheme_discreteTopology p
+  exact proper_dimZero_exists_finite_projectiveLine p
+    (topologicalKrullDim_zero_of_discreteTopology _)
+
+-- The smooth case uses the original scalar action and derives normality;
+-- no local-normality, map-existence or H1-finiteness premise is supplied.
+example {k : Type} [Field k] {X : Scheme} [IsIntegral X]
+    (p : X ⟶ Spec (.of k)) [IsProper p] [Smooth p]
+    (hdim : topologicalKrullDim X ≤ 1) :
+    letI := schemeModuleCohomologyModule p (SheafOfModules.unit X.ringCatSheaf) 1
+    Module.Finite k (Sheaf.H ((schemeModulesToAbelianSheaves X).obj
+      (SheafOfModules.unit X.ringCatSheaf)) 1) :=
+  properSmoothCurve_unit_H1_finite p hdim
+
+-- One possibly singular point is allowed; normality at that point is absent.
+example {X : Scheme} [IsIntegral X] (p : X ⟶ Spec (.of ℚ)) [IsProper p]
+    (hdim : topologicalKrullDim X ≤ 1) (x : X)
+    (h : ∀ y : X, y ≠ x → IsIntegrallyClosed (X.presheaf.stalk y)) :
+    ∃ f : X ⟶ projectiveLine ℚ, f ≫ projectiveLineToSpec ℚ = p ∧ IsFinite f :=
+  properCurve_exists_finite_projectiveLine_of_normalAwayPoint p hdim x h
+
+end CurveMapExistenceChecks

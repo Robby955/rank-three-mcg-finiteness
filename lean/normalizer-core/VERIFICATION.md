@@ -1,66 +1,89 @@
 # Verification record
 
-This checkpoint was checked locally on 10 September 2026. It starts from
-public PR #7's merged commit `a7544c5b9136dd88d6741188a7be531d49bbace2`.
-The base package's hosted Linux checks passed. The local zero-ideal step
-ended at `d5cc96d0dcf8af6a42a047463a7a75c924680926` with 547 theorems,
-791 audited declarations and 52 examples. The finiteness continuation adds
-44 theorems, one named construction and two examples. The results below
-record local verification. Hosted verification of the source commit is
-recorded in its pull request checks and workflow runs.
+This cumulative update was prepared against public main
+`307a99b7ace7a51380c1377fba50504352af0999` on 11 September 2026.
+Its proof sources match the verified local mathematical checkpoint
+`0a7c55c234d16f1f1bca69b5b5bc1bd2acde547f`; all 183 proof/pin hashes
+were checked before transfer. Compared with the public baseline, it adds
+53 proof modules, 284 named theorems, 394 audited declarations and 30
+examples. No dependency pin or manuscript changed. The final public payload
+was also built and audited locally.
 
 | Check | Result |
 |---|---|
-| `python3 scripts/verify.py` | **PASS**: complete library and audit build, 591 named theorems, 836 audited named declarations, 54 compiled examples. |
-| `#print axioms` for every audited name | Only `propext`, `Classical.choice`, and `Quot.sound`. |
-| Proof placeholders and custom axioms | None in the proved core. |
-| `python3 scripts/check_correspondence.py` | **PASS**: 836 accurate declaration links and package documentation links. |
-| Source manifest | `SHA256SUMS` identifies the exact distributed package files, excluding itself and generated outputs. |
+| `python3 scripts/verify.py` | PASS: full build, 875 named theorems, 1230 audited declarations, 84 compiled examples. |
+| Complete `#print axioms` audit | Only `propext`, `Classical.choice`, and `Quot.sound`. |
+| Proof placeholders or custom axioms | None in the proved core. |
+| `python3 scripts/check_correspondence.py` | PASS: 1230 accurate declaration links and package documentation links. |
+| Distribution manifest | 194 source/documentation/pin files, excluding itself, receipts, dependencies and build outputs. |
 
-The isolated worktree reused the pinned dependency cache and a copied cache
-of the verified base package's build outputs. Base proof hashes were compared
-before reuse. Lake rebuilt the changed modules and their dependents, and the
-full library and regenerated declaration audit passed. This continuation does
-not claim a clean-from-zero project or dependency build.
+The full library, examples and regenerated audit passed 4157 build jobs.
+The worktree shares pinned dependencies and has its own copy of the prior
+verified project cache. This is an incremental full-target build, not an
+independent clean dependency rebuild. Complete actual #print axioms output
+is generated in receipts/axioms.log. Exact statements are in the source
+and all audited declaration links are checked in CORRESPONDENCE.md.
 
-The run used Lean `4.34.0-rc2` on macOS ARM64, Lean commit
-`6a10ac8c22beadecabdbb0919c2b50214762f91d`, and mathlib commit
-`7974e751bece493b6ff508039423ca9fa2452fa8`. The base and new continuation have
-the same pins. This local run is not independent external reproduction.
+There are 22,485 core Lean source lines including comments, blanks and
+examples, excluding the generated audit and dependencies. The machine
+receipt verification.json records 183 proof/pin hashes and exact versions.
 
-The dedicated workflow downloads the pinned toolchain and mathlib cache,
-builds the package, checks the source manifest and correspondence, and uploads
-logs and hashes. Hosted results must be checked for the new source commit
-before claiming hosted verification of this continuation.
+## Checked mathematical scope
 
-## Reproduce the evidence
+CurveMapExistence constructs a finite map X -> P1_k from the hypotheses:
+k a field, X integral, p:X -> Spec k proper, dimension at most one, and
+integrally closed actual stalks. A nontrivial affine neighborhood has a
+section with a nonempty proper invertibility locus; its [1:s] map is
+nonconstant. A proved extension retains its restriction on the whole open,
+so the global map is nonconstant. The existing finiteness criterion then
+applies. No rational function or nonconstancy certificate is a premise.
+The zero-dimensional case is also proved without reducedness or integrality.
+Every positive-degree abelian-sheaf cohomology group vanishes in that case.
 
-From `lean/normalizer-core/`, run the commands in [README.md](README.md).
-They generate:
+The proper smooth integral curve result derives actual stalk normality
+from smooth regularity and the dimension bound. Both normal and smooth
+branches give actual H1(X,O_X) finiteness with the original field action.
+Neither assumes H1 finiteness, an abstract quotient, or a supplied finite map.
 
-| Output | Meaning |
-|---|---|
-| `receipts/build.log` | Full Lake build output. |
-| `receipts/axioms.log` | Lean's axiom dependency output for every named declaration in the audit. |
-| `receipts/declarations.json` | Name, kind, file, and line of each audited declaration. |
-| `receipts/verification.json` | Counts, axiom set, toolchain version, mathlib commit, and core source hashes. |
+CurveMapSingular uses the extension theorem only outside a specified affine
+open; its points may be singular. It constructs the required open when
+there is at most one nonnormal point, giving an actual finite map and H1
+finiteness. The general statement with a supplied affine open states that
+input explicitly and does not construct it for arbitrary singular curves.
 
-The output directory is generated and ignored by Git. No pre-existing
-receipt is needed to run the verifier. The `AxiomAudit.lean` source is
-included and regenerated by the verifier; CI checks that regeneration
-does not change it.
+The accumulated examples include the doubled point over Q (retaining its nilpotent),
+the smooth-curve H1 conclusion with the actual field action, and the
+one-exceptional-point finite-map conclusion without normality at that point.
+Existing exact matrix and geometric examples remain included in the build.
 
-The audit enumerates top-level named `theorem`, `def`, and `abbrev`
-declarations in the current modules. Private support declarations are
-checked when the modules compile and when their dependencies enter an
-audited proof. Examples compile in `Normalizer.Examples`. The recorded
-counts concern these named declarations and examples, not every internal
-declaration generated by Lean.
+## Remaining geometry
 
-## What verification establishes
+For a proper integral curve with at least two points, construct a nontrivial
+affine open containing all nonnormal points. The new extension and finite-map
+theorems then close H1 finiteness without requiring global normality.
+This affine-neighborhood result and the alternative general normalization,
+finite-support defect and cohomology transfer remain unformalized.
+The original general target has not been narrowed. Dimension zero is closed.
 
-Lean checks the listed formal propositions with their stated hypotheses.
-The [correspondence table](CORRESPONDENCE.md) explains their manuscript
-roles; [OVERVIEW.md](OVERVIEW.md) records the unformalized curve and
-representation-theoretic interfaces. Neither this build nor the repository's
-finite arithmetic tests establishes the complete candidate theorem.
+Higher curve vanishing, Euler/degree comparison, determinant nowhere
+vanishing, the complete h0(E/M)<=4 bound and representation-theorem
+obligations remain. The specified normal, smooth and one-exceptional-point
+branches are FORMALIZED. The unrestricted request and campaign are PARTIAL.
+
+## Reproduction and public status
+
+```sh
+python3 scripts/verify.py
+python3 scripts/check_correspondence.py
+shasum -a 256 -c SHA256SUMS
+```
+
+Lean remains pinned to leanprover/lean4:v4.34.0-rc2, commit
+6a10ac8c22beadecabdbb0919c2b50214762f91d; mathlib remains pinned to
+7974e751bece493b6ff508039423ca9fa2452fa8. Generated verification receipts record the exact source hashes, toolchain
+version and complete axiom output.
+Hosted verification of this update is pending. The existing workflow checks
+hashes before building, regenerates the full declaration audit, checks
+correspondence and immutable pins, and uploads the generated evidence.
+The workflow must pass for the submitted commit before claiming hosted
+verification. No pre-existing receipt is required to run the checks.

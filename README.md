@@ -175,15 +175,60 @@ and a dedicated build and axiom-audit workflow. It does not formally verify
 the complete rank-three finite-image candidate, the square endpoint, or
 a genus-three result. The manuscript claim labels above are unchanged.
 
-The checkpoint checks 591 named theorems, 836 audited declarations
-and 54 examples. Genuine bundle charts give the exterior-stalk identification;
+The local continuation checks 875 named theorems, 1230 audited declarations
+and 84 examples. Genuine bundle charts give the exterior-stalk identification;
 actual generic independence proves the specified determinant section nonzero.
 Finite quasi-compact line charts now construct its actual zero ideal and closed
 subscheme, and the inverse image-ideal module recovers the exterior line with
 its specified section. On a proper integral curve the actual zero scheme is
 now proved finite; a zero of the specified section gives positive dimension
-of its actual global function space. Local verification passed; hosted
-verification is recorded in the pull request checks and workflow runs.
+of its actual global function space. Both the scalar and line-bundle short
+exact sequences are now proved with their specified maps, including the
+determinant application. The actual closed-pushforward cohomology comparison
+transports higher-cohomology vanishing on the finite zero scheme to the
+actual section cokernel on the ambient curve. It is natural and agrees with
+the global-section comparison in degree zero. Genuine line charts now give
+the actual restricted-line section dimension on the finite zero scheme,
+including its nilpotents; the actual cokernel and its H⁰ have that same
+dimension. All cokernel cohomology is finite, and a zero gives positive H⁰
+dimension. The base-field cohomology actions and connecting-map linearity
+are constructed. Over an algebraically closed field, every genuine line
+bundle on the proper integral curve now has finite-dimensional sections
+and H⁰. The H¹ section map has a finite-dimensional kernel, and the actual
+H⁰/kernel dimension balance is proved without assuming whole H¹ spaces finite.
+Natural terminal and slice-site comparisons connect the two sheaf-cohomology
+APIs. The slice comparison constructs the exact adjoints and the representing-object
+isomorphism, is natural in the sheaf, and preserves degree-zero evaluation.
+Actual affine H¹ vanishing is now proved for every commutative ring and
+module, in the category of all abelian sheaves, and for every quasicoherent
+module sheaf on `Spec R`. The proof constructs the cocycle correction and
+passes through an actual injective presentation. Actual geometric open
+restriction and structure-field scalars now transport this to every affine
+open of an ambient scheme. A supplied two-affine cover gives the actual
+linear Mayer-Vietoris quotient presentation of global H1, without a
+finiteness assertion. Two further results prove the finite Laurent quotient
+from its generating families and prove a given nonconstant proper curve map
+finite. The normal-curve extension and the actual map to the Proj model of
+P1 are now constructed from a specified rational function. Actual chart
+sections, their restriction differences and their H1 quotient comparison
+are proved; finite maps give finite actual chart modules. Polynomial and
+Laurent coordinates on the actual chart section rings,
+with both actual restriction formulas, are now proved. They yield actual
+H1(P1_k,O)=0 over every field. The actual pullback-module comparison now proves H1(X,O_X) finite-dimensional
+for any finite X -> P1_k, without source normality or integrality. Actual
+chart restriction images are the two Laurent power spans, and the field
+action agrees with the original structure map. The continuation constructs finite maps and actual H1 finiteness for
+proper normal curves, derives the smooth case, and covers integral curves
+normal away from one possibly singular point. Dimension zero is also closed.
+The arbitrary singular integral case still needs an affine neighborhood of
+the nonnormal locus or normalization/cohomology transfer. No normality was
+added to that general target; higher vanishing and Euler/degree comparison
+remain.
+The [cohomology review guide](lean/normalizer-core/COHOMOLOGY_REVIEW.md)
+lists the main declarations, assumptions and dependency order.
+These additions have only been verified locally.
+Public PR #8 is merged at `307a99b7ace7a51380c1377fba50504352af0999`;
+it contains the preceding 591-theorem checkpoint and passed hosted verification.
 The comparison with line-bundle degree and the degree/nonvanishing
 implication remain unformalized. The
 [publication roadmap](PUBLICATION_ROADMAP.md) records the exact next
