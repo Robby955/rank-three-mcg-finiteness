@@ -1,266 +1,138 @@
-# Rank-three finite-image candidates in genus at least four
+# Mapping-class-finite representations and Lean proofs
 
-[![Status: candidate](https://img.shields.io/badge/status-candidate-C27C0E)](STATUS.md)
-[![Verify](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml/badge.svg)](https://github.com/Robby955/rank-three-mcg-finiteness/actions/workflows/verify.yml)
+This project studies complex representations of surface groups whose conjugacy
+classes have finite mapping class group orbits. It contains Lean 4 proofs of
+normalizer obstructions and curve cohomology, together with candidate
+manuscripts on finite-image bounds.
 
-A public manuscript and review package for proposed extensions of the
-rank-three finite-image range for punctured surface groups.
+## Proved in Lean
 
-The genus-at-least-five manuscript and the separate conditional genus-four
-extension are new and have not received independent mathematical review.
-Genus three remains open.
+### A dimension obstruction in sl₃
 
-## Published foundation
+Let F be a field of characteristic zero and m a nonzero element of sl₃(F).
+Write N(m) for the Lie normalizer of the line Fm, and define its character
+by [x,m] = λ(x)m. If a subspace U of N(m)/Fm satisfies
 
-This candidate starts from two papers by Aaron Landesman and Daniel Litt:
+```text
+[x,y] = λ(x)y − λ(y)x    for all x,y in U,
+```
 
-- *Canonical representations of surface groups*, **Annals of Mathematics**
-  199 (2024), 823–897
-  ([published version](https://annals.math.princeton.edu/2024/199-2/p06),
-  [arXiv:2205.15352v4](https://arxiv.org/abs/2205.15352v4)). Their Theorem 1.2.1
-  proves finite image for mapping-class-finite representations of rank r when
-  r < √(g + 1), with arbitrary punctures.
-- *Geometric local systems on very general curves and isomonodromy*,
-  **Journal of the American Mathematical Society** 37 (2024), 683–729
-  ([published version](https://doi.org/10.1090/jams/1038),
-  [arXiv:2202.00039v3](https://arxiv.org/abs/2202.00039v3)). The candidate uses
-  its isomonodromy and Harder–Narasimhan estimates in the specialized
-  rank-three analysis.
+then **dim_F U ≤ 2**. In particular, the boundary law excludes a
+three-dimensional subspace of the normalizer quotient.
 
-The candidate arguments extend the framework of these papers; the rank-three
-projective-closure reduction and low-genus eliminations are developed here.
-The proposed extensions in genus at least five and genus four are new and
-unrefereed.
+The proof covers every nonzero traceless 3×3 matrix. It includes the explicit
+semisimple representative diag(1,1,−2), the minimal-nilpotent representative
+E₁₂, their quotient brackets, and the reduction over arbitrary
+characteristic-zero fields.
+[Theorem and proof](lean/normalizer-core/Normalizer/ActualNormalizerQuotient.lean#L91).
 
-The current tagged public review release is `v0.1.5-candidate`. The repository
-contains a prepared `v0.1.6-candidate` genus-at-least-five manuscript with
-sharper attribution and presentation, together with the standalone
-square-endpoint and genus-four candidate notes. Earlier releases remain
-available as fixed historical review copies.
+The preceding cocycle calculation proves
+∂[x,y] = λ(x)∂y − λ(y)∂x. When ∂ is injective, this gives the displayed
+bracket identity and hence the obstruction.
+[Boundary law](lean/normalizer-core/Normalizer/Boundary.lean).
 
-## Additional general-rank candidate
+### Affine vanishing and finite-dimensional curve cohomology
 
-A separate six-page note isolates a proposed extension of the published
-general-rank bound to the square endpoint `r² = g + 1`, equivalently
-`g ≥ r² − 1`. This endpoint statement remains `CANDIDATE`. The published
-strict range is due to Landesman--Litt. The note does not prove the proposed
-sharper range `g ≥ r² − 4`, and it does not change the open status of the
-rank-three genus-three case or the conditional candidate status of the
-separate genus-four extension.
+The package also formalizes the following results in mathlib's sheaf-cohomology
+framework. These are supporting results from algebraic geometry.
 
-## Genus-at-least-five candidate
-
-For g ≥ 5 and n ≥ 0, consider a complex rank-three representation of the
-genus-g surface group with n punctures. The manuscript argues that if its
-conjugacy class has finite orbit under the mapping class group, then the
-representation has finite image.
-
-Landesman and Litt prove finite image when r < √(g + 1). In rank three, their
-published theorem starts at g ≥ 9; the candidate argument treats the remaining
-genera 8, 7, 6, and 5.
-
-## Genus-four candidate extension
-
-A separate 30-page manuscript proposes the same finite-image conclusion for
-rank three in genus four, with arbitrary punctures. Its statement is
-explicitly conditional on the five imported interface groups B1--B5 from the
-companion genus-at-least-five candidate. The proposed genus-four argument
-addresses the dense rank-eight, rank-five orthogonal, and rank-six monomial
-coefficient cases and the remaining propagation equality.
-
-This extension is `CANDIDATE`, not an established theorem. The manuscript
-lists its imported assumptions and the geometric steps requiring independent
-specialist reconstruction. It makes no genus-three claim.
-
-## Read the argument
-
-| Document | Purpose |
-|---|---|
-| [Genus-at-least-five manuscript PDF](output/pdf/rank3_genus5_reader-v0.1.6-candidate.pdf) | Prepared version-specific review copy |
-| [Genus-at-least-five source](manuscript/rank3_genus5_reader.tex) | Canonical source corresponding to the PDF |
-| [Genus-four candidate PDF](output/pdf/rank3_genus4_extension.pdf) | Standalone conditional candidate extension |
-| [Genus-four candidate source](manuscript/rank3_genus4_extension.tex) | Canonical source for the genus-four PDF |
-| [Square-endpoint note PDF](output/pdf/general_rank_square_endpoint.pdf) | Standalone general-rank candidate note |
-| [Square-endpoint note source](manuscript/general_rank_square_endpoint.tex) | Canonical source for the standalone note |
-| [Proof map](PROOF_MAP.md) | Suggested specialist review order |
-| [Pipeline audit](PIPELINE_AUDIT.md) | Exact substitutions in Landesman–Litt Sections 8.2–8.7 |
-| [Proof-interface notes](LOAD_BEARING_AUDIT.md) | Normalizer cocycle, fixed part, and Artin propagation expanded in order |
-| [Focused review request](REVIEW_REQUEST.md) | Four questions on the genus-at-least-five manuscript |
-| [Dependency ledger](DEPENDENCIES.md) | Published inputs and new interfaces |
-| [Status](STATUS.md) | Exact claim boundaries, including genera three and four |
-| [Provenance](PROVENANCE.md) | Source checkpoint and artifact hashes |
-| [Citation metadata](CITATION.cff) | Versioned citation for the rank-three candidate |
-
-## Main review points
-
-### Genus at least five
-
-The main new ingredients are:
-
-1. the normalizer boundary-cocycle obstruction, including full boundary-map
-   injectivity in its two genus-five applications;
-2. the zero-weight genus-five q = 9 closed-family boundary descent;
-3. the rank-one fixed-part construction on the full finite cover;
-4. the propagation from adjoint vanishing to arbitrary rank-three
-   representations.
-
-Each appears in the manuscript itself or is tied to a published input.
-
-The manuscript also includes separate q = 9 Pfaffian/spectral-projector and
-canonical-Deligne no-pole reconstructions. Neither is used in the main
-elimination.
-
-### Genus four
-
-The genus-four review should begin with the B1--B5 dependency boundary and
-then check the dense rank-eight elimination, the two proper projective-closure
-coefficients, and the scalar propagation equality. Finite enumeration and a
-successful TeX build do not certify those geometric arguments.
-
-## Range and status
-
-| Genus | Status | Basis |
+| Hypotheses | Proved conclusion | Lean source |
 |---|---|---|
-| `g ≥ 9` | **Published** | Landesman–Litt |
-| `5 ≤ g ≤ 8` | **Candidate** | Manuscript in this repository |
-| Genus four | **Candidate** | Separate conditional manuscript in this repository |
-| Genus three | **Open** | Substantial reductions exist, but explicit residual walls remain |
+| R any commutative ring, M any R-module | H¹(Spec R, M̃) = 0 | [Affine vanishing](lean/normalizer-core/Normalizer/AffineH1Vanishing.lean#L43) |
+| A finite morphism X → ℙ¹_k, over any field k | H¹(X,O_X) is finite-dimensional over k | [Finite-map theorem](lean/normalizer-core/Normalizer/FiniteMapH1.lean#L115) |
+| X a proper normal integral curve over k | Construction of a finite map X → ℙ¹_k, and finiteness of H¹(X,O_X) | [Normal curves](lean/normalizer-core/Normalizer/CurveMapExistence.lean#L206) |
+| X a proper integral curve, normal away from one specified point | The same conclusions, allowing a singularity at that point | [Singular curve case](lean/normalizer-core/Normalizer/CurveMapSingular.lean#L64) |
 
+Further proofs construct top exterior sheaves and their stalk comparisons,
+prove nonzeroness of determinant sections from generic independence, and
+construct the zero scheme and sheaf exact sequence of a nonzero line-bundle
+section. [Proof guide](lean/normalizer-core/README.md) ·
+[Theorem correspondence](lean/normalizer-core/CORRESPONDENCE.md).
 
-## Verification
+## Check the proofs
 
-With TeX Live, Poppler, and Ghostscript installed:
+The public package contains **875 named theorems and 84 examples**. Its build
+and axiom audit passed [GitHub Actions](https://github.com/Robby955/rank-three-mcg-finiteness/actions/runs/34649596032).
+Every one of its 1,230 named declarations is audited; the only axioms used are
+`propext`, `Classical.choice`, and `Quot.sound`. There are no `sorry`, `admit`,
+or custom axioms.
 
-```sh
-make verify-release
-```
-
-The release check verifies all three candidate packages. It enforces source
-and PDF hashes, claim-status language, page counts, encryption state, embedded fonts,
-Ghostscript preflight, clean fresh builds, extracted-text equality, and a
-120-DPI pixel comparison for the rank-three manuscript. GitHub Actions runs
-the portable genus-at-least-five gate and the standalone square-endpoint and
-genus-four gates on every push and pull request.
-
-To check either standalone note, run:
-
-```sh
-make verify-square-endpoint
-make verify-genus4-candidate
-```
-
-The separate finite-mathematics checks are:
+With [elan](https://github.com/leanprover/elan#installation), Git and Python 3.10+
+installed, run:
 
 ```sh
-make verify-math
+cd lean/normalizer-core
+lake exe cache get
+python3 scripts/verify.py
+python3 scripts/check_correspondence.py
 ```
 
-They enumerate the displayed genus-six and genus-five HN arithmetic and check
-the q = 9 fibre algebra with exact rational and polynomial arithmetic. They
-also retain a non-load-bearing replay of the former q = 10 local jet
-calculation. Their precise scope is recorded in
-[`verification/math`](verification/math).
+Lean and mathlib are pinned in the package. The verifier builds the proofs and
+examples, runs `#print axioms` for every named declaration, and saves the
+output in `receipts/`. [Verification details](lean/normalizer-core/VERIFICATION.md).
 
-## Lean normalizer core
+## The representation problem
 
-The [Lean package](lean/normalizer-core/README.md) proves the abstract
-boundary law, exhaustive algebraic `sl₃` normalizer reduction, and supporting
-sheaf, local-freeness and generic-stalk results. Its
-[mathematical overview](lean/normalizer-core/OVERVIEW.md) and
-[theorem correspondence](lean/normalizer-core/CORRESPONDENCE.md) distinguish
-the proved statements from their remaining geometric applications.
+For a genus-g surface with n punctures, what is the smallest rank of an
+infinite-image complex representation with finite mapping class group orbit?
+This is [Litt's Problem 10](https://www.problemsilike.com/10).
 
-The package has pinned Lean and mathlib dependencies, compiled examples,
-and a dedicated build and axiom-audit workflow. It does not formally verify
-the complete rank-three finite-image candidate, the square endpoint, or
-a genus-three result. The manuscript claim labels above are unchanged.
+Aaron Landesman and Daniel Litt proved finite image when r < √(g + 1),
+for arbitrary punctures. In rank three this gives g ≥ 9. The candidate
+manuscripts below propose extending the bound to the square endpoint in
+general rank and to genera 5–8 in rank three, with a separate conditional
+argument for genus four.
 
-The local continuation checks 875 named theorems, 1230 audited declarations
-and 84 examples. Genuine bundle charts give the exterior-stalk identification;
-actual generic independence proves the specified determinant section nonzero.
-Finite quasi-compact line charts now construct its actual zero ideal and closed
-subscheme, and the inverse image-ideal module recovers the exterior line with
-its specified section. On a proper integral curve the actual zero scheme is
-now proved finite; a zero of the specified section gives positive dimension
-of its actual global function space. Both the scalar and line-bundle short
-exact sequences are now proved with their specified maps, including the
-determinant application. The actual closed-pushforward cohomology comparison
-transports higher-cohomology vanishing on the finite zero scheme to the
-actual section cokernel on the ambient curve. It is natural and agrees with
-the global-section comparison in degree zero. Genuine line charts now give
-the actual restricted-line section dimension on the finite zero scheme,
-including its nilpotents; the actual cokernel and its H⁰ have that same
-dimension. All cokernel cohomology is finite, and a zero gives positive H⁰
-dimension. The base-field cohomology actions and connecting-map linearity
-are constructed. Over an algebraically closed field, every genuine line
-bundle on the proper integral curve now has finite-dimensional sections
-and H⁰. The H¹ section map has a finite-dimensional kernel, and the actual
-H⁰/kernel dimension balance is proved without assuming whole H¹ spaces finite.
-Natural terminal and slice-site comparisons connect the two sheaf-cohomology
-APIs. The slice comparison constructs the exact adjoints and the representing-object
-isomorphism, is natural in the sheaf, and preserves degree-zero evaluation.
-Actual affine H¹ vanishing is now proved for every commutative ring and
-module, in the category of all abelian sheaves, and for every quasicoherent
-module sheaf on `Spec R`. The proof constructs the cocycle correction and
-passes through an actual injective presentation. Actual geometric open
-restriction and structure-field scalars now transport this to every affine
-open of an ambient scheme. A supplied two-affine cover gives the actual
-linear Mayer-Vietoris quotient presentation of global H1, without a
-finiteness assertion. Two further results prove the finite Laurent quotient
-from its generating families and prove a given nonconstant proper curve map
-finite. The normal-curve extension and the actual map to the Proj model of
-P1 are now constructed from a specified rational function. Actual chart
-sections, their restriction differences and their H1 quotient comparison
-are proved; finite maps give finite actual chart modules. Polynomial and
-Laurent coordinates on the actual chart section rings,
-with both actual restriction formulas, are now proved. They yield actual
-H1(P1_k,O)=0 over every field. The actual pullback-module comparison now proves H1(X,O_X) finite-dimensional
-for any finite X -> P1_k, without source normality or integrality. Actual
-chart restriction images are the two Laurent power spans, and the field
-action agrees with the original structure map. The continuation constructs finite maps and actual H1 finiteness for
-proper normal curves, derives the smooth case, and covers integral curves
-normal away from one possibly singular point. Dimension zero is also closed.
-The arbitrary singular integral case still needs an affine neighborhood of
-the nonnormal locus or normalization/cohomology transfer. No normality was
-added to that general target; higher vanishing and Euler/degree comparison
-remain.
-The [cohomology review guide](lean/normalizer-core/COHOMOLOGY_REVIEW.md)
-lists the main declarations, assumptions and dependency order.
-These additions have only been verified locally.
-Public PR #8 is merged at `307a99b7ace7a51380c1377fba50504352af0999`;
-it contains the preceding 591-theorem checkpoint and passed hosted verification.
-The comparison with line-bundle degree and the degree/nonvanishing
-implication remain unformalized. The
-[publication roadmap](PUBLICATION_ROADMAP.md) records the exact next
-geometric construction and the distinction between local and hosted checks.
+[![Manuscript status: candidate](https://img.shields.io/badge/status-candidate-C27C0E)](STATUS.md)
 
-## Citation and licensing
+| Proposed range | Status | Qualification |
+|---|---|---|
+| General rank, r² ≤ g + 1 | **Candidate** | Equality endpoint beyond the published strict bound |
+| Rank three, 5 ≤ g ≤ 8 | **Candidate** | Full geometric and representation arguments remain to be established |
+| Genus four | **Candidate** | Rank-three extension conditional on B1–B5 |
+| Genus three | **Open** | No finite-image theorem claimed |
+| General rank, g ≥ r² − 4 | **Open** | No theorem claimed |
 
-The current public review release is
-[`v0.1.5-candidate`](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.5-candidate).
-The repository contains the prepared, untagged `v0.1.6-candidate` manuscript;
-earlier versioned review copies remain archived and unchanged on the
-[Releases page](https://github.com/Robby955/rank-three-mcg-finiteness/releases).
-The root [CITATION.cff](CITATION.cff) describes the rank-three candidate.
+The complete candidate representation theorems are not formalized in Lean.
+The remaining steps include the determinant degree argument, the geometric
+bound h⁰(E/M) ≤ 4, and the representation-theoretic and finiteness arguments.
+[Roadmap](PUBLICATION_ROADMAP.md) · [Detailed status](STATUS.md).
 
-The standalone note may be cited as:
+## Manuscripts and references
 
-> Robert Sneiderman, *The General-Rank Square Endpoint for MCG-Finite
-> Surface-Group Representations*, version 0.1.0-candidate, 2026.
+| Manuscript | PDF | Source |
+|---|---|---|
+| Rank three, genus at least five | [Genus-five PDF](output/pdf/rank3_genus5_reader-v0.1.6-candidate.pdf) | [Genus-five source](manuscript/rank3_genus5_reader.tex) |
+| General-rank square endpoint | [Square-endpoint note PDF](output/pdf/general_rank_square_endpoint.pdf) | [Square-endpoint note source](manuscript/general_rank_square_endpoint.tex) |
+| Conditional genus-four extension | [Genus-four candidate PDF](output/pdf/rank3_genus4_extension.pdf) | [Genus-four candidate source](manuscript/rank3_genus4_extension.tex) |
 
-The genus-four extension may be cited as:
+The manuscripts are unrefereed. Their dependency and review notes are in
+[LOAD_BEARING_AUDIT.md](LOAD_BEARING_AUDIT.md), [PROOF_MAP.md](PROOF_MAP.md),
+and [DEPENDENCIES.md](DEPENDENCIES.md).
 
-> Robert Sneiderman, *Rank-Three Mapping-Class-Finite Representations in
-> Genus Four: A Candidate Extension*, version 0.1.1-candidate, 2026.
+The published foundation is:
 
-The manuscript and documentation are licensed under CC BY 4.0. Verification
-software and repository infrastructure are licensed under the MIT License.
-The Lean package under `lean/normalizer-core/` is licensed under Apache-2.0.
-See [LICENSE](LICENSE) for the exact path mapping and terms.
+- Landesman–Litt, *Canonical representations of surface groups*,
+  Annals of Mathematics 199 (2024), 823–897.
+  [Published paper](https://annals.math.princeton.edu/2024/199-2/p06) ·
+  [arXiv](https://arxiv.org/abs/2205.15352v4).
+- Landesman–Litt, *Geometric local systems on very general curves and
+  isomonodromy*, JAMS 37 (2024), 683–729.
+  [Published paper](https://doi.org/10.1090/jams/1038) ·
+  [arXiv](https://arxiv.org/abs/2202.00039v3).
 
-## Scope
+The [v0.1.5-candidate release](https://github.com/Robby955/rank-three-mcg-finiteness/releases/tag/v0.1.5-candidate)
+is an August 2026 manuscript snapshot and predates the Lean package. The
+repository contains the later v0.1.6-candidate genus-five manuscript and the
+Lean sources described above. Release tags preserve their original files.
 
-This repository contains the genus-at-least-five rank-three manuscript, the
-standalone genus-four and general-rank square-endpoint candidate notes, and the
-review materials needed to evaluate them. Genus-three working material and
-exploratory notes are outside its scope.
+For manuscript reproduction, `make verify-release` checks the PDFs and
+sources; `make verify-math` checks the finite arithmetic calculations.
+[Verification scope](verification/math/README.md).
+
+## Citation and license
+
+[CITATION.cff](CITATION.cff) describes the candidate manuscript. The Lean
+package is [Apache-2.0](lean/normalizer-core/LICENSE); manuscripts and
+documentation are CC BY 4.0, and other verification software is MIT.
+See [LICENSE](LICENSE) for the path-specific terms.

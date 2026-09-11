@@ -166,19 +166,22 @@ def verify_claim_boundaries() -> None:
     )
     require(
         "status-candidate" in readme
-        and "have not received independent mathematical review" in readme
-        and "Genus three remains open" in readme
+        and "The manuscripts are unrefereed" in readme
+        and "General rank, r² ≤ g + 1 | **Candidate**" in readme
+        and "Rank three, 5 ≤ g ≤ 8 | **Candidate**" in readme
+        and "Genus four | **Candidate** | Rank-three extension conditional on B1–B5" in readme
+        and "Genus three | **Open**" in readme
+        and "General rank, g ≥ r² − 4 | **Open**" in readme
+        and "The complete candidate representation theorems are not formalized in Lean" in readme
         and "Aaron Landesman and Daniel Litt" in readme
         and "https://annals.math.princeton.edu/2024/199-2/p06" in readme
         and "https://arxiv.org/abs/2205.15352v4" in readme
         and "https://doi.org/10.1090/jams/1038" in readme
         and "https://arxiv.org/abs/2202.00039v3" in readme
-        and "current tagged public review release" in readme
-        and "current tagged public review release is `v0.1.5-candidate`" in readme
-        and "v0.1.5-candidate" in readme
-        and "prepared `v0.1.6-candidate`" in readme
         and "releases/tag/v0.1.5-candidate" in readme
-        and "archived and unchanged" in readme
+        and "predates the Lean package" in readme
+        and "v0.1.6-candidate" in readme
+        and "Release tags preserve their original files" in readme
         and "rank3_genus5_reader-v0.1.6-candidate.pdf" in readme
         and "rank3_genus4_extension.pdf" in readme,
         "README claim boundary is missing",
