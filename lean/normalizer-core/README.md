@@ -1,21 +1,21 @@
 # Normalizer obstructions and curve cohomology in Lean
 
-Lean 4 proofs of a dimension obstruction for line normalizers in sl₃, and
+Lean 4 proofs of a dimension obstruction for line normalizers in $\mathfrak{sl}_3$, and
 algebraic geometry used in its proposed application to surface-group
 representations. The package contains 875 named theorems and 84 examples.
 
 ## Normalizer obstruction
 
-Over a characteristic-zero field F, let m ≠ 0 lie in sl₃(F), let N(m)
-normalize Fm, and let λ be the character defined by [x,m] = λ(x)m.
-Every subspace U of N(m)/Fm satisfying
+Over a characteristic-zero field $F$, let $m\ne0$ lie in $\mathfrak{sl}_3(F)$,
+let $N(m)$ normalize $Fm$, and let $\lambda$ be the character defined by
+$[x,m]=\lambda(x)m$. Every subspace $U\subseteq N(m)/Fm$ satisfying
 
-```text
-[x,y] = λ(x)y − λ(y)x    for x,y in U
-```
+$$
+[x,y]=\lambda(x)y-\lambda(y)x \qquad \text{for all }x,y\in U
+$$
 
-has dimension at most two. The proof classifies all nonzero traceless
-3×3 matrices and includes the semisimple and minimal-nilpotent normalizer
+has $\dim_F U\le2$. The proof classifies all nonzero traceless
+$3\times3$ matrices and includes the semisimple and minimal-nilpotent normalizer
 calculations. The linear representatives used in the proof are constructed.
 
 Start with
@@ -27,16 +27,16 @@ and [Examples.lean](Normalizer/Examples.lean) contains the matrix checks.
 
 ## Cohomology and curve maps
 
-Throughout this table k is a field. Cohomology uses mathlib's Ext construction
-for abelian sheaves; its k-action comes from the scheme's structure morphism.
+Throughout this table $k$ is a field. Cohomology uses mathlib's Ext construction
+for abelian sheaves; its $k$-action comes from the scheme's structure morphism.
 
 | Result | Hypotheses | Declaration |
 |---|---|---|
-| H¹(Spec R, M̃) = 0 | Any commutative ring R and R-module M | [`tilde_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L43) |
-| H¹(Spec R, F) = 0 | F a quasicoherent module sheaf | [`quasicoherent_Spec_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L59) |
-| H¹(X,O_X) finite-dimensional over k | A finite morphism X → ℙ¹_k | [`finiteMap_projectiveLine_unit_H1_finite`](Normalizer/FiniteMapH1.lean#L115) |
-| A finite map X → ℙ¹_k exists | X proper, integral, normal, of dimension at most one | [`properNormalCurve_exists_finite_projectiveLine`](Normalizer/CurveMapExistence.lean#L206) |
-| A finite map exists, giving finite-dimensional H¹(X,O_X) | X proper and integral of dimension at most one, normal away from one specified point | [`properCurve_exists_finite_projectiveLine_of_normalAwayPoint`](Normalizer/CurveMapSingular.lean#L64) |
+| $H^1(\mathrm{Spec}(R),\widetilde{M})=0$ | Any commutative ring $R$ and $R$-module $M$ | [`tilde_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L43) |
+| $H^1(\mathrm{Spec}(R),F)=0$ | $F$ a quasicoherent module sheaf | [`quasicoherent_Spec_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L59) |
+| $H^1(X,\mathcal{O}_X)$ finite-dimensional over $k$ | A finite morphism $X\to\mathbb{P}^1_k$ | [`finiteMap_projectiveLine_unit_H1_finite`](Normalizer/FiniteMapH1.lean#L115) |
+| A finite map $X\to\mathbb{P}^1_k$ exists | $X$ proper, integral, normal, of dimension at most one | [`properNormalCurve_exists_finite_projectiveLine`](Normalizer/CurveMapExistence.lean#L206) |
+| A finite map exists, giving finite-dimensional $H^1(X,\mathcal{O}_X)$ | $X$ proper and integral of dimension at most one, normal away from one specified point | [`properCurve_exists_finite_projectiveLine_of_normalAwayPoint`](Normalizer/CurveMapSingular.lean#L64) |
 
 The finite-map theorem allows nonreduced and nonintegral sources. The curve
 existence theorems construct the map; they do not require a rational function
@@ -53,8 +53,8 @@ The supporting constructions include:
   [`schemeExteriorStalkEquivOfChart`](Normalizer/ExteriorStalkComparison.lean#L231).
 - A nonzero determinant section from generic independence of the specified
   sections: [`schemeExteriorGlobalSection_ne_zero`](Normalizer/DeterminantGenericNonzero.lean#L33).
-- The zero scheme D of a nonzero line-bundle section s, and the short exact
-  sequence 0 → O_X → L → i_*(L restricted to D) → 0:
+- The zero scheme $D$ of a nonzero line-bundle section $s$, and the short exact
+  sequence $`0\to\mathcal{O}_X\to L\to i_*(L\vert_D)\to0`$:
   [`properScheme_exists_sectionLine_shortExact`](Normalizer/SectionLineExact.lean#L282).
 
 The zero scheme is finite on a proper integral curve. The package proves
@@ -66,8 +66,8 @@ vanishing of positive-degree cohomology of the section cokernel.
 ## Remaining application
 
 The determinant degree/nonvanishing implication and the complete geometric
-bound h⁰(E/M) ≤ 4 remain unformalized. The unrestricted singular-curve case
-still requires a construction yielding H¹ finiteness. Higher curve vanishing
+bound $h^0(E/M)\le4$ remain unformalized. The unrestricted singular-curve case
+still requires a construction yielding $H^1$ finiteness. Higher curve vanishing
 and the Euler-characteristic comparison with line-bundle degree are also
 unfinished.
 

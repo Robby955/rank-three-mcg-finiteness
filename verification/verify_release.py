@@ -167,11 +167,11 @@ def verify_claim_boundaries() -> None:
     require(
         "status-candidate" in readme
         and "The manuscripts are unrefereed" in readme
-        and "General rank, r² ≤ g + 1 | **Candidate**" in readme
-        and "Rank three, 5 ≤ g ≤ 8 | **Candidate**" in readme
+        and r"General rank, $r^2\le g+1$ | **Candidate**" in readme
+        and r"Rank three, $5\le g\le8$ | **Candidate**" in readme
         and "Genus four | **Candidate** | Rank-three extension conditional on B1–B5" in readme
         and "Genus three | **Open**" in readme
-        and "General rank, g ≥ r² − 4 | **Open**" in readme
+        and r"General rank, $g\ge r^2-4$ | **Open**" in readme
         and "The complete candidate representation theorems are not formalized in Lean" in readme
         and "Aaron Landesman and Daniel Litt" in readme
         and "https://annals.math.princeton.edu/2024/199-2/p06" in readme
@@ -219,21 +219,29 @@ def verify_claim_boundaries() -> None:
         "non-load-bearing q=10 diagnostic is not wired into the release",
     )
 
-    forbidden_markdown = ("$", "```math", r"\(", r"\)", r"\[", r"\]")
+    # GitHub supports dollar-delimited math and fenced math blocks.
+    # Inspect the remaining prose for unmatched delimiters or raw TeX.
+    supported_math = re.compile(r"```math\n[\s\S]*?```|\$\$[\s\S]*?\$\$|\$[^$\n]+\$")
+    forbidden_markdown = (r"\(", r"\)", r"\[", r"\]")
     for markdown in sorted(ROOT.rglob("*.md")):
         if any(part.startswith(".") or part == "build" for part in markdown.parts):
             continue
         text = markdown.read_text(encoding="utf-8")
+        prose = supported_math.sub("", text)
+        require(
+            "$" not in prose and "```math" not in prose,
+            f"unbalanced GitHub math delimiters: {markdown.relative_to(ROOT)}",
+        )
         for fragment in forbidden_markdown:
             require(
-                fragment not in text,
+                fragment not in prose,
                 f"unsupported GitHub math syntax {fragment!r}: {markdown.relative_to(ROOT)}",
             )
-        latex_command = re.search(r"\\[A-Za-z]+", text)
+        latex_command = re.search(r"\\[A-Za-z]+", prose)
         require(
             latex_command is None,
             (
-                "unsupported GitHub LaTeX command "
+                "LaTeX command outside a GitHub math expression "
                 f"{latex_command.group(0)!r}: {markdown.relative_to(ROOT)}"
                 if latex_command
                 else ""
