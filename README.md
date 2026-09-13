@@ -7,28 +7,40 @@ manuscripts on finite-image bounds.
 
 ## Proved in Lean
 
-### A dimension obstruction in sl₃
+### A normalizer dimension obstruction
 
-Let F be a field of characteristic zero and m a nonzero element of sl₃(F).
-Write N(m) for the Lie normalizer of the line Fm, and define its character
-by [x,m] = λ(x)m. If a subspace U of N(m)/Fm satisfies
+Let $F$ be a field of characteristic zero and $m$ a nonzero element of
+$\mathfrak{sl}_3(F)$. Write $N(m)$ for the Lie normalizer of the line $Fm$,
+and define its character by $[x,m]=\lambda(x)m$.
+If a subspace $U\subseteq N(m)/Fm$ satisfies
 
-```text
-[x,y] = λ(x)y − λ(y)x    for all x,y in U,
-```
+$$
+[x,y]=\lambda(x)y-\lambda(y)x \qquad \text{for all }x,y\in U,
+$$
 
-then **dim_F U ≤ 2**. In particular, the boundary law excludes a
-three-dimensional subspace of the normalizer quotient.
+then
 
-The proof covers every nonzero traceless 3×3 matrix. It includes the explicit
-semisimple representative diag(1,1,−2), the minimal-nilpotent representative
-E₁₂, their quotient brackets, and the reduction over arbitrary
+$$
+\dim_F U\le 2.
+$$
+
+In particular, the boundary law excludes a three-dimensional subspace of
+the normalizer quotient.
+
+The proof covers every nonzero traceless $3\times3$ matrix. It includes the explicit
+semisimple representative $\operatorname{diag}(1,1,-2)$, the minimal-nilpotent
+representative $E_{12}$, their quotient brackets, and the reduction over arbitrary
 characteristic-zero fields.
 [Theorem and proof](lean/normalizer-core/Normalizer/ActualNormalizerQuotient.lean#L91).
 
 The preceding cocycle calculation proves
-∂[x,y] = λ(x)∂y − λ(y)∂x. When ∂ is injective, this gives the displayed
-bracket identity and hence the obstruction.
+
+$$
+\partial[x,y]=\lambda(x)\partial y-\lambda(y)\partial x.
+$$
+
+When $\partial$ is injective, this gives the displayed bracket identity and
+hence the obstruction.
 [Boundary law](lean/normalizer-core/Normalizer/Boundary.lean).
 
 ### Affine vanishing and finite-dimensional curve cohomology
@@ -38,10 +50,10 @@ framework. These are supporting results from algebraic geometry.
 
 | Hypotheses | Proved conclusion | Lean source |
 |---|---|---|
-| R any commutative ring, M any R-module | H¹(Spec R, M̃) = 0 | [Affine vanishing](lean/normalizer-core/Normalizer/AffineH1Vanishing.lean#L43) |
-| A finite morphism X → ℙ¹_k, over any field k | H¹(X,O_X) is finite-dimensional over k | [Finite-map theorem](lean/normalizer-core/Normalizer/FiniteMapH1.lean#L115) |
-| X a proper normal integral curve over k | Construction of a finite map X → ℙ¹_k, and finiteness of H¹(X,O_X) | [Normal curves](lean/normalizer-core/Normalizer/CurveMapExistence.lean#L206) |
-| X a proper integral curve, normal away from one specified point | The same conclusions, allowing a singularity at that point | [Singular curve case](lean/normalizer-core/Normalizer/CurveMapSingular.lean#L64) |
+| $R$ any commutative ring, $M$ any $R$-module | $H^1(\operatorname{Spec}R,\widetilde{M})=0$ | [Affine vanishing](lean/normalizer-core/Normalizer/AffineH1Vanishing.lean#L43) |
+| A finite morphism $X\to\mathbb{P}^1_k$, over any field $k$ | $H^1(X,\mathcal{O}_X)$ is finite-dimensional over $k$ | [Finite-map theorem](lean/normalizer-core/Normalizer/FiniteMapH1.lean#L115) |
+| $X$ a proper normal integral curve over $k$ | Construction of a finite map $X\to\mathbb{P}^1_k$, and finiteness of $H^1(X,\mathcal{O}_X)$ | [Normal curves](lean/normalizer-core/Normalizer/CurveMapExistence.lean#L206) |
+| $X$ a proper integral curve, normal away from one specified point | The same conclusions, allowing a singularity at that point | [Singular curve case](lean/normalizer-core/Normalizer/CurveMapSingular.lean#L64) |
 
 Further proofs construct top exterior sheaves and their stalk comparisons,
 prove nonzeroness of determinant sections from generic independence, and
@@ -73,12 +85,12 @@ output in `receipts/`. [Verification details](lean/normalizer-core/VERIFICATION.
 
 ## The representation problem
 
-For a genus-g surface with n punctures, what is the smallest rank of an
+For a surface of genus $g$ with $n$ punctures, what is the smallest rank of an
 infinite-image complex representation with finite mapping class group orbit?
 This is [Litt's Problem 10](https://www.problemsilike.com/10).
 
-Aaron Landesman and Daniel Litt proved finite image when r < √(g + 1),
-for arbitrary punctures. In rank three this gives g ≥ 9. The candidate
+Aaron Landesman and Daniel Litt proved finite image when $r\lt\sqrt{g+1}$,
+for arbitrary punctures. In rank three this gives $g\ge9$. The candidate
 manuscripts below propose extending the bound to the square endpoint in
 general rank and to genera 5–8 in rank three, with a separate conditional
 argument for genus four.
@@ -87,15 +99,15 @@ argument for genus four.
 
 | Proposed range | Status | Qualification |
 |---|---|---|
-| General rank, r² ≤ g + 1 | **Candidate** | Equality endpoint beyond the published strict bound |
-| Rank three, 5 ≤ g ≤ 8 | **Candidate** | Full geometric and representation arguments remain to be established |
+| General rank, $r^2\le g+1$ | **Candidate** | Equality endpoint beyond the published strict bound |
+| Rank three, $5\le g\le8$ | **Candidate** | Full geometric and representation arguments remain to be established |
 | Genus four | **Candidate** | Rank-three extension conditional on B1–B5 |
 | Genus three | **Open** | No finite-image theorem claimed |
-| General rank, g ≥ r² − 4 | **Open** | No theorem claimed |
+| General rank, $g\ge r^2-4$ | **Open** | No theorem claimed |
 
 The complete candidate representation theorems are not formalized in Lean.
 The remaining steps include the determinant degree argument, the geometric
-bound h⁰(E/M) ≤ 4, and the representation-theoretic and finiteness arguments.
+bound $h^0(E/M)\le4$, and the representation-theoretic and finiteness arguments.
 [Roadmap](PUBLICATION_ROADMAP.md) · [Detailed status](STATUS.md).
 
 ## Manuscripts and references
