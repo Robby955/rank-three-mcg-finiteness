@@ -28,7 +28,7 @@ In particular, the boundary law excludes a three-dimensional subspace of
 the normalizer quotient.
 
 The proof covers every nonzero traceless $3\times3$ matrix. It includes the explicit
-semisimple representative $\operatorname{diag}(1,1,-2)$, the minimal-nilpotent
+semisimple representative $\mathrm{diag}(1,1,-2)$, the minimal-nilpotent
 representative $E_{12}$, their quotient brackets, and the reduction over arbitrary
 characteristic-zero fields.
 [Theorem and proof](lean/normalizer-core/Normalizer/ActualNormalizerQuotient.lean#L91).
@@ -50,7 +50,7 @@ framework. These are supporting results from algebraic geometry.
 
 | Hypotheses | Proved conclusion | Lean source |
 |---|---|---|
-| $R$ any commutative ring, $M$ any $R$-module | $H^1(\operatorname{Spec}R,\widetilde{M})=0$ | [Affine vanishing](lean/normalizer-core/Normalizer/AffineH1Vanishing.lean#L43) |
+| $R$ any commutative ring, $M$ any $R$-module | $H^1(\mathrm{Spec}\,R,\widetilde{M})=0$ | [Affine vanishing](lean/normalizer-core/Normalizer/AffineH1Vanishing.lean#L43) |
 | A finite morphism $X\to\mathbb{P}^1_k$, over any field $k$ | $H^1(X,\mathcal{O}_X)$ is finite-dimensional over $k$ | [Finite-map theorem](lean/normalizer-core/Normalizer/FiniteMapH1.lean#L115) |
 | $X$ a proper normal integral curve over $k$ | Construction of a finite map $X\to\mathbb{P}^1_k$, and finiteness of $H^1(X,\mathcal{O}_X)$ | [Normal curves](lean/normalizer-core/Normalizer/CurveMapExistence.lean#L206) |
 | $X$ a proper integral curve, normal away from one specified point | The same conclusions, allowing a singularity at that point | [Singular curve case](lean/normalizer-core/Normalizer/CurveMapSingular.lean#L64) |

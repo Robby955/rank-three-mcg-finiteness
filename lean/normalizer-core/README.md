@@ -32,8 +32,8 @@ for abelian sheaves; its $k$-action comes from the scheme's structure morphism.
 
 | Result | Hypotheses | Declaration |
 |---|---|---|
-| $H^1(\operatorname{Spec}R,\widetilde{M})=0$ | Any commutative ring $R$ and $R$-module $M$ | [`tilde_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L43) |
-| $H^1(\operatorname{Spec}R,F)=0$ | $F$ a quasicoherent module sheaf | [`quasicoherent_Spec_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L59) |
+| $H^1(\mathrm{Spec}\,R,\widetilde{M})=0$ | Any commutative ring $R$ and $R$-module $M$ | [`tilde_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L43) |
+| $H^1(\mathrm{Spec}\,R,F)=0$ | $F$ a quasicoherent module sheaf | [`quasicoherent_Spec_H1_subsingleton`](Normalizer/AffineH1Vanishing.lean#L59) |
 | $H^1(X,\mathcal{O}_X)$ finite-dimensional over $k$ | A finite morphism $X\to\mathbb{P}^1_k$ | [`finiteMap_projectiveLine_unit_H1_finite`](Normalizer/FiniteMapH1.lean#L115) |
 | A finite map $X\to\mathbb{P}^1_k$ exists | $X$ proper, integral, normal, of dimension at most one | [`properNormalCurve_exists_finite_projectiveLine`](Normalizer/CurveMapExistence.lean#L206) |
 | A finite map exists, giving finite-dimensional $H^1(X,\mathcal{O}_X)$ | $X$ proper and integral of dimension at most one, normal away from one specified point | [`properCurve_exists_finite_projectiveLine_of_normalAwayPoint`](Normalizer/CurveMapSingular.lean#L64) |
